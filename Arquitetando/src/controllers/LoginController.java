@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import main.MainController;
@@ -26,6 +27,8 @@ public class LoginController implements Initializable {
 
     @FXML
     private PasswordField pfPassword;
+    @FXML
+    private Button btnSubmit;
 
     /**
      * Initializes the controller class.
@@ -38,6 +41,7 @@ public class LoginController implements Initializable {
 
     }
 
+    @FXML
     public void submit(ActionEvent event) {
         String email = tfEmail.getText();
         String password = pfPassword.getText();

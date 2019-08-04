@@ -7,7 +7,12 @@ package controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import main.MainController;
 
 /**
  * FXML Controller class
@@ -15,6 +20,18 @@ import javafx.fxml.Initializable;
  * @author nyko-
  */
 public class DashboardController implements Initializable {
+    @FXML
+    private Button btnDashboard;
+    @FXML
+    private Button btnUsers;
+    @FXML
+    private Button btnMaterials;
+    @FXML
+    private Button btnCategories;
+    @FXML
+    private AnchorPane mainPane;
+    @FXML
+    private Button btnClose;
 
     /**
      * Initializes the controller class.
@@ -23,5 +40,10 @@ public class DashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    @FXML
+    public void close(ActionEvent event) {
+        MainController.closeStage();
+    }
     
 }
