@@ -3,16 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sorces;
+package sources;
 
 /**
  *
  * @author nyko-
  */
-public class Categoria {
-    
+public class Material {
+
     private int id;
     private String nome;
+    private boolean ativo;
 
     public int getId() {
         return id;
@@ -29,5 +30,20 @@ public class Categoria {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
     
+    public boolean isInativo() {
+        return !isAtivo();
+    }
+
+    public void ativar() {
+        this.ativo = true;
+    }
+
+    public void inativar() {
+        this.ativo = false;
+    }
 }

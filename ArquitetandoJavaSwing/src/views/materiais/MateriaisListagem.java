@@ -3,34 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.categorias;
+package views.materiais;
 
-import controllers.CategoriasController;
+import controllers.MateriaisController;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import sources.Categoria;
+import sources.Material;
 import views.main.ApplicationView;
 
 /**
  *
  * @author nyko-
  */
-public class CategoriasListagem extends javax.swing.JInternalFrame {
+public class MateriaisListagem extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form CategoriasListagem
+     * Creates new form MateriasListagem
      */
-    public CategoriasListagem() {
+    public MateriaisListagem() {
         initComponents();
         configurarPesquisa();
-        
-        ArrayList<Categoria> categorias = new CategoriasController().listar(parametrosPesquisa());
-        popularTabela(tableData(categorias), tableHeader());
+
+        ArrayList<Material> materiais = new MateriaisController().listar(parametrosPesquisa());
+        popularTabela(tableData(materiais), tableHeader());
     }
-    
+
     private void configurarPesquisa() {
         cb_pesquisaStatus.removeAllItems();
         cb_pesquisaStatus.addItem("Todos");
@@ -38,7 +38,7 @@ public class CategoriasListagem extends javax.swing.JInternalFrame {
         cb_pesquisaStatus.addItem("Inativos");
         cb_pesquisaStatus.setSelectedIndex(1);
     }
-    
+
     private void popularTabela(Object[][] tableData, String[] tableHeader) {
         table.setModel(new DefaultTableModel(tableData, tableHeader) {
             @Override
@@ -47,27 +47,27 @@ public class CategoriasListagem extends javax.swing.JInternalFrame {
                 return false;
             }
         });
-        
+
         cofigurarTabela();
     }
-    
+
     private String[] tableHeader() {
-        String[] header = { "ID", "Nome", "", "" };
-        
+        String[] header = {"ID", "Nome", "", ""};
+
         return header;
     }
-    
-    private Object[][] tableData(ArrayList<Categoria> categorias) {
+
+    private Object[][] tableData(ArrayList<Material> materiais) {
         int row = 0;
-        Object[][] data = new Object[categorias.size()][5];
+        Object[][] data = new Object[materiais.size()][5];
 
-        for (Object object : categorias) {
-            Categoria categoria = (Categoria) object;
+        for (Object object : materiais) {
+            Material material = (Material) object;
 
-            data[row][0] = categoria.getId();
-            data[row][1] = categoria.getNome();
+            data[row][0] = material.getId();
+            data[row][1] = material.getNome();
             
-            if (categoria.isInativo() && cb_pesquisaStatus.getSelectedItem() != "Inativos") {
+            if (material.isInativo() && cb_pesquisaStatus.getSelectedItem() != "Inativos") {
                 data[row][1] += " - INATIVO";
             }
             
@@ -79,7 +79,7 @@ public class CategoriasListagem extends javax.swing.JInternalFrame {
 
         return data;
     }
-    
+
     private void cofigurarTabela() {
         definirLarguraColunas();
 
@@ -90,12 +90,12 @@ public class CategoriasListagem extends javax.swing.JInternalFrame {
         table.setRowSelectionAllowed(false);
 
         // definir conteudo como img
-         table.getColumnModel().getColumn(2).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
-         table.getColumnModel().getColumn(3).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
+        table.getColumnModel().getColumn(2).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
+        table.getColumnModel().getColumn(3).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
 
         definirClickNasColunas();
     }
-    
+
     private void definirLarguraColunas() {
         table.getColumnModel().getColumn(0).setWidth(0);
         table.getColumnModel().getColumn(0).setMinWidth(0);
@@ -104,12 +104,12 @@ public class CategoriasListagem extends javax.swing.JInternalFrame {
         table.getColumnModel().getColumn(2).setWidth(20);
         table.getColumnModel().getColumn(2).setMinWidth(20);
         table.getColumnModel().getColumn(2).setMaxWidth(20);
-        
+
         table.getColumnModel().getColumn(3).setWidth(20);
         table.getColumnModel().getColumn(3).setMinWidth(20);
         table.getColumnModel().getColumn(3).setMaxWidth(20);
     }
-    
+
     private void definirClickNasColunas() {
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -120,27 +120,27 @@ public class CategoriasListagem extends javax.swing.JInternalFrame {
                 if (row >= 0 && col == 2) {
                     int id = (int) table.getModel().getValueAt(row, 0);
 
-                    CategoriasAtualizar frame = new CategoriasAtualizar(id);
+                    MateriaisAtualizar frame = new MateriaisAtualizar(id);
                     ApplicationView.changeInternalFrame(frame);
                 } else if (row >= 0 && col == 3) {
                     int id = (int) table.getModel().getValueAt(row, 0);
 
-                    excluirCategoria(id);
+                    excluirMaterial(id);
                 }
             }
         });
     }
-    
-    private void excluirCategoria(int id) {
-        Categoria categoria = new CategoriasController().procurar(id);
 
-        if (categoria != null) {
-            String pergunta = "Você tem certeza de que dezeja excluir a categoria '" + categoria.getNome() + "'?";
+    private void excluirMaterial(int id) {
+        Material material = new MateriaisController().procurar(id);
+
+        if (material != null) {
+            String pergunta = "Você tem certeza de que dezeja excluir o material '" + material.getNome() + "'?";
 
             int dialogResult = JOptionPane.showConfirmDialog(null, pergunta, "Arquitetando", JOptionPane.YES_NO_OPTION);
 
             if (dialogResult == JOptionPane.YES_OPTION) {
-                String errors = new CategoriasController().excluir(id);
+                String errors = new MateriaisController().excluir(id);
 
                 if (errors == null || errors.isEmpty()) {
                     btn_submit.doClick();
@@ -149,22 +149,22 @@ public class CategoriasListagem extends javax.swing.JInternalFrame {
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Houve um problema ao exlcuir pois essa categoria não foi encontrado no banco de dados.");
+            JOptionPane.showMessageDialog(null, "Houve um problema ao exlcuir pois esse material não foi encontrado no banco de dados.");
         }
     }
-    
+
     private String parametrosPesquisa() {
         String nome = tf_pesquisaNome.getText();
         String status = (String) cb_pesquisaStatus.getSelectedItem();
-        
+
         String params = "{nome: \"%[nome]%\", status: \"%[status]%\"}";
-        
+
         params = params.replaceAll("%[nome]%", nome);
         params = params.replaceAll("%[status]%", status);
 
         return params;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -288,7 +288,7 @@ public class CategoriasListagem extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newActionPerformed
-        CategoriasAdicionar frame = new CategoriasAdicionar();
+        MateriaisAdicionar frame = new MateriaisAdicionar();
         ApplicationView.changeInternalFrame(frame);
     }//GEN-LAST:event_btn_newActionPerformed
 
@@ -299,10 +299,10 @@ public class CategoriasListagem extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tf_pesquisaNomeKeyPressed
 
     private void btn_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_submitActionPerformed
-        ArrayList<Categoria> categorias = new CategoriasController().listar(parametrosPesquisa());
-        
-        Object[][] tableData = tableData(categorias);
-        
+        ArrayList<Material> materiais = new MateriaisController().listar(parametrosPesquisa());
+
+        Object[][] tableData = tableData(materiais);
+
         popularTabela(tableData, tableHeader());
     }//GEN-LAST:event_btn_submitActionPerformed
 
@@ -319,5 +319,4 @@ public class CategoriasListagem extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tf_pesquisaNome;
     // End of variables declaration//GEN-END:variables
 
-    
 }

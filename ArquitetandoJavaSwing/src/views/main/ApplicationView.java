@@ -8,8 +8,8 @@ package views.main;
 import java.awt.Dimension;
 import java.beans.PropertyVetoException;
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
 import views.categorias.CategoriasListagem;
+import views.materiais.MateriaisListagem;
 
 /**
  *
@@ -31,7 +31,7 @@ public class ApplicationView extends javax.swing.JFrame {
         applicationView = this;
     }
 
-    public void changeInternalFrame(Object object) {
+    public static void changeInternalFrame(Object object) {
         JInternalFrame frame = (JInternalFrame) object;
 
         applicationView.desktoPaine.removeAll();
@@ -126,9 +126,8 @@ public class ApplicationView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuItem_materiaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_materiaisActionPerformed
-//        MateriaisListagem view = new MateriaisListagem();
-//        changeView(view);
-        JOptionPane.showMessageDialog(null, "IMPLEMENTAR LSITAGEM DE MATERIAIS");
+        MateriaisListagem frame = new MateriaisListagem();
+        changeInternalFrame(frame);
     }//GEN-LAST:event_menuItem_materiaisActionPerformed
 
     private void menuItem_categoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_categoriasActionPerformed

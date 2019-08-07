@@ -6,40 +6,40 @@
 package controllers;
 
 import java.util.ArrayList;
-import sources.Categoria;
+import sources.Material;
 
 /**
  *
  * @author nyko-
  */
-public class CategoriasController {
+public class MateriaisController {
 
-    public ArrayList<Categoria> listar(String parametrosPesquisa) {
+    public ArrayList<Material> listar(String parametrosPesquisa) {
         System.out.println("CRIAR DEVE CONECTAR NO SERVIDOR");
-        ArrayList<Categoria> categorias = new ArrayList<>();
-        Categoria categoria = new Categoria();
-        categoria.setId(1);
-        categoria.setNome("Categoria");
-        categoria.ativar();
-        categorias.add(categoria);
-        return categorias;
+        ArrayList<Material> materiais = new ArrayList<>();
+        Material material = new Material();
+        material.setId(1);
+        material.setNome("Material");
+        material.ativar();
+        materiais.add(material);
+        return materiais;
     }
 
-    public String criar(Categoria categoria) {
+    public String criar(Material material) {
         System.out.println("CRIAR DEVE CONECTAR NO SERVIDOR");
         return "";
     }
 
-    public Categoria procurar(int categoriaId) {
+    public Material procurar(int materialId) {
         System.out.println("PROCURAR DEVE CONECTAR NO SERVIDOR");
-        Categoria categoria = new Categoria();
-        categoria.setId(1);
-        categoria.setNome("Categoria");
-        categoria.inativar();
-        return categoria;
+        Material material = new Material();
+        material.setId(1);
+        material.setNome("Material");
+        material.inativar();
+        return material;
     }
 
-    public String atualizar(int id, Categoria categoria) {
+    public String atualizar(int id, Material material) {
         System.out.println("ATUALIZAR DEVE CONECTAR NO SERVIDOR");
         return "";
     }
