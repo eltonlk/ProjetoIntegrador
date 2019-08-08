@@ -21,24 +21,22 @@ services:
       - 'db:/var/lib/mysql'
 
   nginx:
-    container_name: some-nginx
     image: nginx:1.13
     restart: always
     ports:
-    - 80:80
-    - 443:443
+      - 80:80
+      - 443:443
     volumes:
-    - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/conf.d:/etc/nginx/conf.d
     depends_on:
-    - api
+      - api
 
   api:
     restart: always
     build: ./server-api
-    working_dir: /app
+    working_dir: /server-api
     volumes:
-      - ./server-api:/app
-      # - ~/.m2:/root/.m2
+      - ./server-api:/server-api
     expose:
       - "8080"
     command: mvn clean spring-boot:run
