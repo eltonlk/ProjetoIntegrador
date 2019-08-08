@@ -16,7 +16,7 @@ services:
       - "--innodb_log_file_size=80M"
       - "--max_allowed_packet=8M"
     ports:
-      - '3306:3306'
+      - '33066:3306'
     volumes:
       - 'db:/var/lib/mysql'
 
