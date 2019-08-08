@@ -10,11 +10,13 @@ services:
     environment:
       MYSQL_DATABASE: projeto_integrador
       MYSQL_ROOT_PASSWORD: 123456789
+      MYSQL_ROOT_HOST: '%'
     command:
       - "--character-set-server=utf8"
       - "--innodb_log_buffer_size=32M"
       - "--innodb_log_file_size=80M"
       - "--max_allowed_packet=8M"
+      - "--explicit_defaults_for_timestamp"
     ports:
       - '33066:3306'
     volumes:
