@@ -1,0 +1,11 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - MainLaunch",
+      "request": "launch",
+      "mainClass": "main.MainLaunch",
+      "projectName": "Arquitetando_8237625"
+    }
+  ]
+}

@@ -5,7 +5,15 @@
  */
 package controllers;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+
 import sources.Material;
 
 /**
@@ -15,9 +23,39 @@ import sources.Material;
 public class MateriaisController {
 
     public ArrayList<Material> listar(String parametrosPesquisa) {
-        System.out.println("CRIAR DEVE CONECTAR NO SERVIDOR");
         ArrayList<Material> materiais = new ArrayList<>();
-        Material material = new Material();
+        
+        try {
+            URL url = new URL("http://localhost:8080/materials");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/json");
+
+            if (conn.getResponseCode() != 200) {
+                throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
+            }
+
+            BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+
+            String output;
+            StringBuilder builder = new StringBuilder();
+
+            while ((output = br.readLine()) != null) {
+                builder.append(output);
+            }
+
+            System.out.println(builder.toString());
+
+            conn.disconnect();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+//        System.out.println("CRIAR DEVE CONECTAR NO SERVIDOR");;
+
+        Material material = new Material();;
         material.setId(1);
         material.setNome("Material");
         material.ativar();
@@ -26,8 +64,33 @@ public class MateriaisController {
     }
 
     public String criar(Material material) {
-        System.out.println("CRIAR DEVE CONECTAR NO SERVIDOR");
-        return "";
+        try {
+            URL url = new URL("http://localhost:8080/materials");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+
+            String input = "{\"name\":\"" + material.getNome() + "\"}";
+
+            OutputStream os = conn.getOutputStream();
+            os.write(input.getBytes());
+            os.flush();
+
+            if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
+                throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
+            }
+
+            conn.disconnect();
+            
+            return "";
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }        
+
+        return "Não foi possivel gravar o material.";
     }
 
     public Material procurar(int materialId) {

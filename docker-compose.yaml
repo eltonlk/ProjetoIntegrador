@@ -1,0 +1,42 @@
+version: '3'
+
+volumes:
+  db:
+
+services:
+  api:
+    container_name: api
+    restart: always
+    build: ./server-api
+    working_dir: /server-api
+    volumes:
+      - ./server-api:/server-api
+    expose:
+      - "8080"
+    ports:
+      - 8080:8080
+    command: mvn spring-boot:run # mvn clean spring-boot:run
+    depends_on:
+      - db
+    links:
+      - db
+
+  db:
+    image: mysql:8
+    container_name: db
+    restart: always
+    environment:
+      MYSQL_DATABASE: projeto_integrador
+      MYSQL_ROOT_PASSWORD: 123456789
+      MYSQL_ROOT_HOST: '%'
+    command:
+      - "--character-set-server=utf8"
+      - "--innodb_log_buffer_size=32M"
+      - "--innodb_log_file_size=80M"
+      - "--max_allowed_packet=8M"
+      - "--explicit_defaults_for_timestamp"
+      - "--default-authentication-plugin=mysql_native_password"
+    ports:
+      - '3306:3306'
+    volumes:
+      - 'db:/var/lib/mysql'
