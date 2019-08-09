@@ -9,11 +9,11 @@ package sources;
  *
  * @author nyko-
  */
-public class Categoria {
+public class Category {
 
     private int id;
-    private String nome;
-    private boolean ativo;
+    private String name;
+    private boolean active;
 
     public int getId() {
         return id;
@@ -23,27 +23,27 @@ public class Categoria {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public boolean isAtivo() {
-        return ativo;
+        return active;
     }
     
     public boolean isInativo() {
         return !isAtivo();
     }
 
-    public void ativar() {
-        this.ativo = true;
+    public void active() {
+        this.active = true;
     }
 
-    public void inativar() {
-        this.ativo = false;
+    public void inactive() {
+        this.active = false;
     }
 }

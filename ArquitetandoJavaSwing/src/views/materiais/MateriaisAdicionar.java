@@ -35,12 +35,12 @@ public class MateriaisAdicionar extends javax.swing.JInternalFrame {
         boolean ativo = rb_ativo.isSelected();
 
         Material material = new Material();
-        material.setNome(nome);
+        material.setName(nome);
 
         if (ativo) {
-            material.ativar();
+            material.active();
         } else {
-            material.inativar();
+            material.inactive();
         }
 
         return material;

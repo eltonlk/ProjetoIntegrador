@@ -65,7 +65,7 @@ public class MateriaisListagem extends javax.swing.JInternalFrame {
             Material material = (Material) object;
 
             data[row][0] = material.getId();
-            data[row][1] = material.getNome();
+            data[row][1] = material.getName();
             
             if (material.isInativo() && cb_pesquisaStatus.getSelectedItem() != "Inativos") {
                 data[row][1] += " - INATIVO";
@@ -135,7 +135,7 @@ public class MateriaisListagem extends javax.swing.JInternalFrame {
         Material material = new MateriaisController().procurar(id);
 
         if (material != null) {
-            String pergunta = "Você tem certeza de que dezeja excluir o material '" + material.getNome() + "'?";
+            String pergunta = "Você tem certeza de que dezeja excluir o material '" + material.getName() + "'?";
 
             int dialogResult = JOptionPane.showConfirmDialog(null, pergunta, "Arquitetando", JOptionPane.YES_NO_OPTION);
 

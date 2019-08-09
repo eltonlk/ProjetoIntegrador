@@ -8,7 +8,7 @@ package views.categorias;
 import controllers.CategoriasController;
 import java.awt.Color;
 import javax.swing.JOptionPane;
-import sources.Categoria;
+import sources.Category;
 import views.main.ApplicationView;
 
 /**
@@ -30,17 +30,17 @@ public class CategoriasAdicionar extends javax.swing.JInternalFrame {
         this.btn_cancelar.setForeground(Color.RED);
     }
 
-    public Categoria construirCategoria() {
+    public Category construirCategoria() {
         String nome = tf_nome.getText();
         boolean ativo = rb_ativo.isSelected();
 
-        Categoria categoria = new Categoria();
-        categoria.setNome(nome);
+        Category categoria = new Category();
+        categoria.setName(nome);
 
         if (ativo) {
-            categoria.ativar();
+            categoria.active();
         } else {
-            categoria.inativar();
+            categoria.inactive();
         }
 
         return categoria;
@@ -221,7 +221,7 @@ public class CategoriasAdicionar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_backActionPerformed
 
     private void btn_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_submitActionPerformed
-        Categoria categoria = construirCategoria();
+        Category categoria = construirCategoria();
         String errors = new CategoriasController().criar(categoria);
 
         if (errors == null || errors.isEmpty()) {

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import sources.Categoria;
+import sources.Category;
 import views.main.ApplicationView;
 
 /**
@@ -27,7 +27,7 @@ public class CategoriasListagem extends javax.swing.JInternalFrame {
         initComponents();
         configurarPesquisa();
         
-        ArrayList<Categoria> categorias = new CategoriasController().listar(parametrosPesquisa());
+        ArrayList<Category> categorias = new CategoriasController().listar(parametrosPesquisa());
         popularTabela(tableData(categorias), tableHeader());
     }
     
@@ -57,15 +57,15 @@ public class CategoriasListagem extends javax.swing.JInternalFrame {
         return header;
     }
     
-    private Object[][] tableData(ArrayList<Categoria> categorias) {
+    private Object[][] tableData(ArrayList<Category> categorias) {
         int row = 0;
         Object[][] data = new Object[categorias.size()][5];
 
         for (Object object : categorias) {
-            Categoria categoria = (Categoria) object;
+            Category categoria = (Category) object;
 
             data[row][0] = categoria.getId();
-            data[row][1] = categoria.getNome();
+            data[row][1] = categoria.getName();
             
             if (categoria.isInativo() && cb_pesquisaStatus.getSelectedItem() != "Inativos") {
                 data[row][1] += " - INATIVO";
@@ -132,10 +132,10 @@ public class CategoriasListagem extends javax.swing.JInternalFrame {
     }
     
     private void excluirCategoria(int id) {
-        Categoria categoria = new CategoriasController().procurar(id);
+        Category categoria = new CategoriasController().procurar(id);
 
         if (categoria != null) {
-            String pergunta = "Você tem certeza de que dezeja excluir a categoria '" + categoria.getNome() + "'?";
+            String pergunta = "Você tem certeza de que dezeja excluir a categoria '" + categoria.getName() + "'?";
 
             int dialogResult = JOptionPane.showConfirmDialog(null, pergunta, "Arquitetando", JOptionPane.YES_NO_OPTION);
 
@@ -299,7 +299,7 @@ public class CategoriasListagem extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tf_pesquisaNomeKeyPressed
 
     private void btn_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_submitActionPerformed
-        ArrayList<Categoria> categorias = new CategoriasController().listar(parametrosPesquisa());
+        ArrayList<Category> categorias = new CategoriasController().listar(parametrosPesquisa());
         
         Object[][] tableData = tableData(categorias);
         

@@ -31,7 +31,7 @@ public class MateriaisAtualizar extends javax.swing.JInternalFrame {
     }
 
     public void definirCampos() {
-        this.tf_nome.setText(materialSalvo.getNome());
+        this.tf_nome.setText(materialSalvo.getName());
 
         if (materialSalvo.isAtivo()) {
             this.rb_ativo.setSelected(true);
@@ -47,12 +47,12 @@ public class MateriaisAtualizar extends javax.swing.JInternalFrame {
         boolean ativo = rb_ativo.isSelected();
 
         Material material = new Material();
-        material.setNome(nome);
+        material.setName(nome);
 
         if (ativo) {
-            material.ativar();
+            material.active();
         } else {
-            material.inativar();
+            material.inactive();
         }
 
         return material;

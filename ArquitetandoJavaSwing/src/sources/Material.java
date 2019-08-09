@@ -11,10 +11,18 @@ package sources;
  */
 public class Material {
 
-    private int id;
-    private String nome;
-    private boolean ativo;
+    public int id;
+    public String name;
+    public boolean active;
 
+    public Material(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }    
+
+    public Material() {
+    }
+    
     public int getId() {
         return id;
     }
@@ -23,27 +31,27 @@ public class Material {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public boolean isAtivo() {
-        return ativo;
+        return active;
     }
     
     public boolean isInativo() {
         return !isAtivo();
     }
 
-    public void ativar() {
-        this.ativo = true;
+    public void active() {
+        this.active = true;
     }
 
-    public void inativar() {
-        this.ativo = false;
+    public void inactive() {
+        this.active = false;
     }
 }
