@@ -9,7 +9,6 @@ import controllers.MateriaisController;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import sources.Material;
-import views.categorias.CategoriasListagem;
 import views.main.ApplicationView;
 
 /**
@@ -255,7 +254,7 @@ public class MateriaisAtualizar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_rb_inativoActionPerformed
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
-        CategoriasListagem frame = new CategoriasListagem();
+        MateriaisListagem frame = new MateriaisListagem();
         ApplicationView.changeInternalFrame(frame);
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
