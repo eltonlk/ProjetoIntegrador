@@ -15,20 +15,21 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import sources.Category;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sources.Material;
 
 /**
  *
  * @author nyko-
  */
-public class CategoriasController {
+public class MaterialsController {
 
-    public ArrayList<Category> listar(String parametrosPesquisa) {
-        ArrayList<Category> categorias = new ArrayList<>();
+    public ArrayList<Material> list(String searchParams) {
+        ArrayList<Material> materials = new ArrayList<>();
 
         try {
-            URL url = new URL("http://localhost:8080/categories");
+            URL url = new URL("http://localhost:8080/materials");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
@@ -47,34 +48,35 @@ public class CategoriasController {
             }
 
             System.out.println(builder.toString());
-            
-            ArrayList<Category> categoriesObjects;
-            categoriesObjects = new Genson().deserialize(builder.toString(), new GenericType<ArrayList<Category>>(){});
-            
-            for (Category categoryObject : categoriesObjects) {
-                categoryObject.active();
-                categorias.add(categoryObject);
+
+            ArrayList<Material> materialsObjects;
+            materialsObjects = new Genson().deserialize(builder.toString(), new GenericType<ArrayList<Material>>() {
+            });
+
+            for (Material materialObject : materialsObjects) {
+                materialObject.active();
+                materials.add(materialObject);
             }
-            
+
             conn.disconnect();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(CategoriesController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CategoriesController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        return categorias;
+
+        return materials;
     }
 
-    public String criar(Category categoria) {
+    public String create(Material material) {
         try {
-            URL url = new URL("http://localhost:8080/categories");
+            URL url = new URL("http://localhost:8080/materials");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
 
-            String input = "{\"name\":\"" + categoria.getName() + "\"}";
+            String input = "{\"name\":\"" + material.getName() + "\"}";
 
             OutputStream os = conn.getOutputStream();
             os.write(input.getBytes());
@@ -85,22 +87,22 @@ public class CategoriasController {
             }
 
             conn.disconnect();
-            
+
             return "";
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }    
-        
-        return "Não foi possivel gravar a Categoria.";
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(CategoriesController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CategoriesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return "Não foi possivel gravar o material.";
     }
 
-    public Category procurar(int categoryId) {
-        Category category = new Category();
-        
+    public Material find(int materialId) {
+        Material material = new Material();
+
         try {
-            URL url = new URL("http://localhost:8080/categories/" + categoryId);
+            URL url = new URL("http://localhost:8080/materials/" + materialId);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
@@ -119,30 +121,30 @@ public class CategoriasController {
             }
 
             System.out.println(builder.toString());
-            
-            category = new Genson().deserialize(builder.toString(), Category.class);
-            
-            category.active();
+
+            material = new Genson().deserialize(builder.toString(), Material.class);
+
+            material.active();
 
             conn.disconnect();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(CategoriesController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CategoriesController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        return category;
+
+        return material;
     }
 
-    public String atualizar(int id, Category categoria) {
+    public String update(int materialId, Material material) {
         try {
-            URL url = new URL("http://localhost:8080/categories/" + id);
+            URL url = new URL("http://localhost:8080/materials/" + materialId);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             conn.setRequestMethod("PUT");
             conn.setRequestProperty("Content-Type", "application/json");
 
-            String input = "{\"name\":\"" + categoria.getName() + "\"}";
+            String input = "{\"name\":\"" + material.getName() + "\"}";
 
             OutputStream os = conn.getOutputStream();
             os.write(input.getBytes());
@@ -153,20 +155,20 @@ public class CategoriasController {
             }
 
             conn.disconnect();
-            
-            return "";
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }        
 
-        return "Não foi possivel gravar a categoria.";
+            return "";
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(CategoriesController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CategoriesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return "Não foi possivel gravar o material.";
     }
 
-    public String excluir(int id) {
+    public String delete(int materialId) {
         try {
-            URL url = new URL("http://localhost:8080/categories/" + id);
+            URL url = new URL("http://localhost:8080/materials/" + materialId);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             conn.setRequestMethod("DELETE");
@@ -177,15 +179,15 @@ public class CategoriasController {
             }
 
             conn.disconnect();
-            
+
             return "";
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }        
-        
-        return "Não foi possivel excluir a categoria";
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(CategoriesController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CategoriesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return "Não foi possivel excluir o Material";
     }
-    
+
 }

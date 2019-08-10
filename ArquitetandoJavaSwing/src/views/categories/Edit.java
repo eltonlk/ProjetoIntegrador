@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.categorias;
+package views.categories;
 
-import controllers.CategoriasController;
+import controllers.CategoriesController;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import sources.Category;
@@ -15,46 +15,39 @@ import views.main.ApplicationView;
  *
  * @author nyko-
  */
-public class CategoriasAtualizar extends javax.swing.JInternalFrame {
-    
-    private final Category categoriaSalva;
+public class Edit extends javax.swing.JInternalFrame {
+
+    private final Category category;
 
     /**
-     * Creates new form CategoriasAtualizar
+     * Creates new form Edit
+     *
+     * @param id
      */
-    public CategoriasAtualizar(int id) {
-        categoriaSalva = new CategoriasController().procurar(id);
+    public Edit(final int id) {
+        this.category = new CategoriesController().find(id);
 
         initComponents();
-        definirCampos();
+        initFields();
     }
 
-    public void definirCampos() {
-        this.tf_nome.setText(categoriaSalva.getName());
-        
-        if (categoriaSalva.isAtivo()) {
-            this.rb_ativo.setSelected(true);
+    private void initFields() {
+        this.tfName.setText(this.category.getName());
+
+        if (this.category.isActive()) {
+            this.rb_active.setSelected(true);
         } else {
-            this.rb_inativo.setSelected(true);
+            this.rb_inactive.setSelected(true);
         }
-        
-        this.btn_cancelar.setForeground(Color.RED);
+
+        this.btn_cancel.setForeground(Color.RED);
     }
 
-    public Category construirCategoria() {
-        String nome = tf_nome.getText();
-        boolean ativo = rb_ativo.isSelected();
+    private Category buildCategory() {
+        String name = tfName.getText();
+        boolean active = rb_active.isSelected();
 
-        Category categoria = new Category();
-        categoria.setName(nome);
-
-        if (ativo) {
-            categoria.active();
-        } else {
-            categoria.inactive();
-        }
-
-        return categoria;
+        return new Category(name, active);
     }
 
     /**
@@ -68,16 +61,16 @@ public class CategoriasAtualizar extends javax.swing.JInternalFrame {
 
         btn_back = new javax.swing.JButton();
         btn_submit = new javax.swing.JButton();
-        lbl_ou = new javax.swing.JLabel();
+        lbl_or = new javax.swing.JLabel();
         rowPane = new javax.swing.JPanel();
         col1Pane = new javax.swing.JPanel();
-        lbl_nome = new javax.swing.JLabel();
-        tf_nome = new javax.swing.JTextField();
+        lbl_name = new javax.swing.JLabel();
+        tfName = new javax.swing.JTextField();
         col2Pane = new javax.swing.JPanel();
-        lbl_situacao = new javax.swing.JLabel();
-        rb_ativo = new javax.swing.JRadioButton();
-        rb_inativo = new javax.swing.JRadioButton();
-        btn_cancelar = new javax.swing.JButton();
+        lbl_status = new javax.swing.JLabel();
+        rb_active = new javax.swing.JRadioButton();
+        rb_inactive = new javax.swing.JRadioButton();
+        btn_cancel = new javax.swing.JButton();
 
         btn_back.setText("Voltar");
         btn_back.addActionListener(new java.awt.event.ActionListener() {
@@ -93,9 +86,9 @@ public class CategoriasAtualizar extends javax.swing.JInternalFrame {
             }
         });
 
-        lbl_ou.setText("ou");
+        lbl_or.setText("ou");
 
-        lbl_nome.setText("* Nome:");
+        lbl_name.setText("* Nome:");
 
         javax.swing.GroupLayout col1PaneLayout = new javax.swing.GroupLayout(col1Pane);
         col1Pane.setLayout(col1PaneLayout);
@@ -105,34 +98,34 @@ public class CategoriasAtualizar extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(col1PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(col1PaneLayout.createSequentialGroup()
-                        .addComponent(lbl_nome)
+                        .addComponent(lbl_name)
                         .addGap(0, 227, Short.MAX_VALUE))
-                    .addComponent(tf_nome))
+                    .addComponent(tfName))
                 .addContainerGap())
         );
         col1PaneLayout.setVerticalGroup(
             col1PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(col1PaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl_nome)
+                .addComponent(lbl_name)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tf_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
-        lbl_situacao.setText("Situação:");
+        lbl_status.setText("Situação:");
 
-        rb_ativo.setText("Ativo");
-        rb_ativo.addActionListener(new java.awt.event.ActionListener() {
+        rb_active.setText("Ativo");
+        rb_active.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rb_ativoActionPerformed(evt);
+                rb_activeActionPerformed(evt);
             }
         });
 
-        rb_inativo.setText("Inativo");
-        rb_inativo.addActionListener(new java.awt.event.ActionListener() {
+        rb_inactive.setText("Inativo");
+        rb_inactive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rb_inativoActionPerformed(evt);
+                rb_inactiveActionPerformed(evt);
             }
         });
 
@@ -144,21 +137,21 @@ public class CategoriasAtualizar extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(col2PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(col2PaneLayout.createSequentialGroup()
-                        .addComponent(rb_ativo)
+                        .addComponent(rb_active)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rb_inativo))
-                    .addComponent(lbl_situacao))
+                        .addComponent(rb_inactive))
+                    .addComponent(lbl_status))
                 .addContainerGap(182, Short.MAX_VALUE))
         );
         col2PaneLayout.setVerticalGroup(
             col2PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(col2PaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl_situacao)
+                .addComponent(lbl_status)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(col2PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rb_ativo)
-                    .addComponent(rb_inativo))
+                    .addComponent(rb_active)
+                    .addComponent(rb_inactive))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
@@ -181,10 +174,10 @@ public class CategoriasAtualizar extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        btn_cancelar.setText("Cancelar");
-        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+        btn_cancel.setText("Cancelar");
+        btn_cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_cancelarActionPerformed(evt);
+                btn_cancelActionPerformed(evt);
             }
         });
 
@@ -201,9 +194,9 @@ public class CategoriasAtualizar extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btn_submit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lbl_ou)
+                        .addComponent(lbl_or)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_cancelar)
+                        .addComponent(btn_cancel)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addComponent(rowPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -217,9 +210,9 @@ public class CategoriasAtualizar extends javax.swing.JInternalFrame {
                 .addComponent(rowPane, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_ou)
+                    .addComponent(lbl_or)
                     .addComponent(btn_submit)
-                    .addComponent(btn_cancelar))
+                    .addComponent(btn_cancel))
                 .addContainerGap(145, Short.MAX_VALUE))
         );
 
@@ -227,49 +220,49 @@ public class CategoriasAtualizar extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
-        CategoriasListagem frame = new CategoriasListagem();
+        List frame = new List();
         ApplicationView.changeInternalFrame(frame);
     }//GEN-LAST:event_btn_backActionPerformed
 
     private void btn_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_submitActionPerformed
-        Category categoria = construirCategoria();
-        String errors = new CategoriasController().atualizar(categoriaSalva.getId(), categoria);
+        Category newCategory = buildCategory();
+        String errors = new CategoriesController().update(this.category.getId(), newCategory);
 
         if (errors == null || errors.isEmpty()) {
-            CategoriasListagem frame = new CategoriasListagem();
+            List frame = new List();
             ApplicationView.changeInternalFrame(frame);
         } else {
             JOptionPane.showMessageDialog(null, errors);
         }
     }//GEN-LAST:event_btn_submitActionPerformed
 
-    private void rb_ativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_ativoActionPerformed
-        rb_ativo.setSelected(true);
-        rb_inativo.setSelected(false);
-    }//GEN-LAST:event_rb_ativoActionPerformed
+    private void rb_activeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_activeActionPerformed
+        rb_active.setSelected(true);
+        rb_inactive.setSelected(false);
+    }//GEN-LAST:event_rb_activeActionPerformed
 
-    private void rb_inativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_inativoActionPerformed
-        rb_ativo.setSelected(false);
-        rb_inativo.setSelected(true);
-    }//GEN-LAST:event_rb_inativoActionPerformed
+    private void rb_inactiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_inactiveActionPerformed
+        rb_active.setSelected(false);
+        rb_inactive.setSelected(true);
+    }//GEN-LAST:event_rb_inactiveActionPerformed
 
-    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
-        CategoriasListagem frame = new CategoriasListagem();
+    private void btn_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelActionPerformed
+        List frame = new List();
         ApplicationView.changeInternalFrame(frame);
-    }//GEN-LAST:event_btn_cancelarActionPerformed
+    }//GEN-LAST:event_btn_cancelActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_back;
-    private javax.swing.JButton btn_cancelar;
+    private javax.swing.JButton btn_cancel;
     private javax.swing.JButton btn_submit;
     private javax.swing.JPanel col1Pane;
     private javax.swing.JPanel col2Pane;
-    private javax.swing.JLabel lbl_nome;
-    private javax.swing.JLabel lbl_ou;
-    private javax.swing.JLabel lbl_situacao;
-    private javax.swing.JRadioButton rb_ativo;
-    private javax.swing.JRadioButton rb_inativo;
+    private javax.swing.JLabel lbl_name;
+    private javax.swing.JLabel lbl_or;
+    private javax.swing.JLabel lbl_status;
+    private javax.swing.JRadioButton rb_active;
+    private javax.swing.JRadioButton rb_inactive;
     private javax.swing.JPanel rowPane;
-    private javax.swing.JTextField tf_nome;
+    private javax.swing.JTextField tfName;
     // End of variables declaration//GEN-END:variables
 }

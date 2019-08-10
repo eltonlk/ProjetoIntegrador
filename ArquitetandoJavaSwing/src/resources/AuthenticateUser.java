@@ -10,17 +10,17 @@ package resources;
  * @author nyko-
  */
 public class AuthenticateUser {
-    
+
     private static boolean authenticated;
-    
+
     public static boolean authenticate(String login, String password) {
         authenticated = "admin".equals(login) && "admin".equals(password);
-        
+
         return authenticated;
     }
 
     public static boolean isAuthenticated() {
         return authenticated;
     }
-    
+
 }

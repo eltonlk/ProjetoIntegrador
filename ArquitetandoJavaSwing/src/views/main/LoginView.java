@@ -21,7 +21,7 @@ public class LoginView extends javax.swing.JFrame {
      */
     public LoginView() {
         initComponents();
-        
+
         this.tf_login.setText("");
         this.pf_password.setText("");
         this.tf_login.grabFocus();

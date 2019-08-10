@@ -15,14 +15,21 @@ public class Material {
     public String name;
     public boolean active;
 
-    public Material(int id, String name) {
+    public Material() {
+        this.active = true;
+    }
+
+    public Material(String name, boolean active) {
+        this.name = name;
+        this.active = active;
+    }
+
+    public Material(int id, String name, boolean active) {
         this.id = id;
         this.name = name;
-    }    
-
-    public Material() {
+        this.active = active;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -39,12 +46,12 @@ public class Material {
         this.name = name;
     }
 
-    public boolean isAtivo() {
+    public boolean isActive() {
         return active;
     }
-    
-    public boolean isInativo() {
-        return !isAtivo();
+
+    public boolean isInactive() {
+        return !isActive();
     }
 
     public void active() {

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.materiais;
+package views.materials;
 
-import controllers.MateriaisController;
+import controllers.MaterialsController;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -18,28 +18,28 @@ import views.main.ApplicationView;
  *
  * @author nyko-
  */
-public class MateriaisListagem extends javax.swing.JInternalFrame {
+public class List extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form MateriasListagem
+     * Creates new form List
      */
-    public MateriaisListagem() {
+    public List() {
         initComponents();
-        configurarPesquisa();
+        initSearchForm();
 
-        ArrayList<Material> materiais = new MateriaisController().listar(parametrosPesquisa());
-        popularTabela(tableData(materiais), tableHeader());
+        ArrayList<Material> materials = new MaterialsController().list(searchParams());
+        setTableData(tableData(materials), tableHeader());
     }
 
-    private void configurarPesquisa() {
-        cb_pesquisaStatus.removeAllItems();
-        cb_pesquisaStatus.addItem("Todos");
-        cb_pesquisaStatus.addItem("Ativos");
-        cb_pesquisaStatus.addItem("Inativos");
-        cb_pesquisaStatus.setSelectedIndex(1);
+    private void initSearchForm() {
+        cb_searchStatus.removeAllItems();
+        cb_searchStatus.addItem("Todos");
+        cb_searchStatus.addItem("Ativos");
+        cb_searchStatus.addItem("Inativos");
+        cb_searchStatus.setSelectedIndex(1);
     }
 
-    private void popularTabela(Object[][] tableData, String[] tableHeader) {
+    private void setTableData(Object[][] tableData, String[] tableHeader) {
         table.setModel(new DefaultTableModel(tableData, tableHeader) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -48,7 +48,7 @@ public class MateriaisListagem extends javax.swing.JInternalFrame {
             }
         });
 
-        cofigurarTabela();
+        setTableConfig();
     }
 
     private String[] tableHeader() {
@@ -57,20 +57,20 @@ public class MateriaisListagem extends javax.swing.JInternalFrame {
         return header;
     }
 
-    private Object[][] tableData(ArrayList<Material> materiais) {
+    private Object[][] tableData(ArrayList<Material> materials) {
         int row = 0;
-        Object[][] data = new Object[materiais.size()][5];
+        Object[][] data = new Object[materials.size()][5];
 
-        for (Object object : materiais) {
+        for (Object object : materials) {
             Material material = (Material) object;
 
             data[row][0] = material.getId();
             data[row][1] = material.getName();
-            
-            if (material.isInativo() && cb_pesquisaStatus.getSelectedItem() != "Inativos") {
+
+            if (material.isInactive() && cb_searchStatus.getSelectedItem() != "Inativos") {
                 data[row][1] += " - INATIVO";
             }
-            
+
             data[row][2] = new ImageIcon(getClass().getResource("/images/pencil.png"));
             data[row][3] = new ImageIcon(getClass().getResource("/images/times.png"));
 
@@ -80,9 +80,7 @@ public class MateriaisListagem extends javax.swing.JInternalFrame {
         return data;
     }
 
-    private void cofigurarTabela() {
-        definirLarguraColunas();
-
+    private void setTableConfig() {
         // não redimencionavel
         table.getTableHeader().setReorderingAllowed(false);
 
@@ -93,14 +91,15 @@ public class MateriaisListagem extends javax.swing.JInternalFrame {
         table.getColumnModel().getColumn(2).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
         table.getColumnModel().getColumn(3).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
 
-        definirClickNasColunas();
+        setTableColumnsWidth();
+        setTableColumnAction();
     }
 
-    private void definirLarguraColunas() {
+    private void setTableColumnsWidth() {
         table.getColumnModel().getColumn(0).setWidth(0);
         table.getColumnModel().getColumn(0).setMinWidth(0);
         table.getColumnModel().getColumn(0).setMaxWidth(0);
-        
+
         table.getColumnModel().getColumn(2).setWidth(20);
         table.getColumnModel().getColumn(2).setMinWidth(20);
         table.getColumnModel().getColumn(2).setMaxWidth(20);
@@ -110,7 +109,7 @@ public class MateriaisListagem extends javax.swing.JInternalFrame {
         table.getColumnModel().getColumn(3).setMaxWidth(20);
     }
 
-    private void definirClickNasColunas() {
+    private void setTableColumnAction() {
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -120,19 +119,19 @@ public class MateriaisListagem extends javax.swing.JInternalFrame {
                 if (row >= 0 && col == 2) {
                     int id = (int) table.getModel().getValueAt(row, 0);
 
-                    MateriaisAtualizar frame = new MateriaisAtualizar(id);
+                    Edit frame = new Edit(id);
                     ApplicationView.changeInternalFrame(frame);
                 } else if (row >= 0 && col == 3) {
                     int id = (int) table.getModel().getValueAt(row, 0);
 
-                    excluirMaterial(id);
+                    destroyMaterial(id);
                 }
             }
         });
     }
 
-    private void excluirMaterial(int id) {
-        Material material = new MateriaisController().procurar(id);
+    private void destroyMaterial(int id) {
+        Material material = new MaterialsController().find(id);
 
         if (material != null) {
             String pergunta = "Você tem certeza de que dezeja excluir o material '" + material.getName() + "'?";
@@ -140,10 +139,10 @@ public class MateriaisListagem extends javax.swing.JInternalFrame {
             int dialogResult = JOptionPane.showConfirmDialog(null, pergunta, "Arquitetando", JOptionPane.YES_NO_OPTION);
 
             if (dialogResult == JOptionPane.YES_OPTION) {
-                String errors = new MateriaisController().excluir(id);
+                String errors = new MaterialsController().delete(id);
 
                 if (errors == null || errors.isEmpty()) {
-                    btn_submit.doClick();
+                    btn_searchSubmit.doClick();
                 } else {
                     JOptionPane.showMessageDialog(null, errors);
                 }
@@ -153,13 +152,13 @@ public class MateriaisListagem extends javax.swing.JInternalFrame {
         }
     }
 
-    private String parametrosPesquisa() {
-        String nome = tf_pesquisaNome.getText();
-        String status = (String) cb_pesquisaStatus.getSelectedItem();
+    private String searchParams() {
+        String name = tf_searchName.getText();
+        String status = (String) cb_searchStatus.getSelectedItem();
 
-        String params = "{nome: \"%[nome]%\", status: \"%[status]%\"}";
+        String params = "{ \"name\":\"%[name]%\", \"status\":\"%[status]%\" }";
 
-        params = params.replaceAll("%[nome]%", nome);
+        params = params.replaceAll("%[name]%", name);
         params = params.replaceAll("%[status]%", status);
 
         return params;
@@ -175,12 +174,12 @@ public class MateriaisListagem extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         btn_new = new javax.swing.JButton();
-        painelPesquisa = new javax.swing.JPanel();
+        searchPane = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        tf_pesquisaNome = new javax.swing.JTextField();
-        btn_submit = new javax.swing.JButton();
+        tf_searchName = new javax.swing.JTextField();
+        btn_searchSubmit = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        cb_pesquisaStatus = new javax.swing.JComboBox<String>();
+        cb_searchStatus = new javax.swing.JComboBox<String>();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
 
@@ -191,57 +190,57 @@ public class MateriaisListagem extends javax.swing.JInternalFrame {
             }
         });
 
-        painelPesquisa.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 204, 204), null));
+        searchPane.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 204, 204), null));
 
         jLabel1.setText("Nome:");
 
-        tf_pesquisaNome.addKeyListener(new java.awt.event.KeyAdapter() {
+        tf_searchName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                tf_pesquisaNomeKeyPressed(evt);
+                tf_searchNameKeyPressed(evt);
             }
         });
 
-        btn_submit.setText("Pesquisar");
-        btn_submit.addActionListener(new java.awt.event.ActionListener() {
+        btn_searchSubmit.setText("Pesquisar");
+        btn_searchSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_submitActionPerformed(evt);
+                btn_searchSubmitActionPerformed(evt);
             }
         });
 
         jLabel4.setText("Situação:");
 
-        cb_pesquisaStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_searchStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        javax.swing.GroupLayout painelPesquisaLayout = new javax.swing.GroupLayout(painelPesquisa);
-        painelPesquisa.setLayout(painelPesquisaLayout);
-        painelPesquisaLayout.setHorizontalGroup(
-            painelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelPesquisaLayout.createSequentialGroup()
+        javax.swing.GroupLayout searchPaneLayout = new javax.swing.GroupLayout(searchPane);
+        searchPane.setLayout(searchPaneLayout);
+        searchPaneLayout.setHorizontalGroup(
+            searchPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(painelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tf_pesquisaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(searchPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tf_searchName, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(painelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(searchPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addGroup(painelPesquisaLayout.createSequentialGroup()
-                        .addComponent(cb_pesquisaStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(searchPaneLayout.createSequentialGroup()
+                        .addComponent(cb_searchStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_submit)))
+                        .addComponent(btn_searchSubmit)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        painelPesquisaLayout.setVerticalGroup(
-            painelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelPesquisaLayout.createSequentialGroup()
+        searchPaneLayout.setVerticalGroup(
+            searchPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(painelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(searchPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tf_pesquisaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_submit)
-                    .addComponent(cb_pesquisaStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(searchPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_searchName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_searchSubmit)
+                    .addComponent(cb_searchStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -265,7 +264,7 @@ public class MateriaisListagem extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(painelPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btn_new))
@@ -278,7 +277,7 @@ public class MateriaisListagem extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(btn_new)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(searchPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
                 .addContainerGap())
@@ -288,35 +287,35 @@ public class MateriaisListagem extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newActionPerformed
-        MateriaisAdicionar frame = new MateriaisAdicionar();
+        New frame = new New();
         ApplicationView.changeInternalFrame(frame);
     }//GEN-LAST:event_btn_newActionPerformed
 
-    private void tf_pesquisaNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_pesquisaNomeKeyPressed
+    private void tf_searchNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_searchNameKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            btn_submit.doClick();
+            btn_searchSubmit.doClick();
         }
-    }//GEN-LAST:event_tf_pesquisaNomeKeyPressed
+    }//GEN-LAST:event_tf_searchNameKeyPressed
 
-    private void btn_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_submitActionPerformed
-        ArrayList<Material> materiais = new MateriaisController().listar(parametrosPesquisa());
+    private void btn_searchSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchSubmitActionPerformed
+        ArrayList<Material> materials = new MaterialsController().list(searchParams());
 
-        Object[][] tableData = tableData(materiais);
+        Object[][] tableData = tableData(materials);
 
-        popularTabela(tableData, tableHeader());
-    }//GEN-LAST:event_btn_submitActionPerformed
+        setTableData(tableData, tableHeader());
+    }//GEN-LAST:event_btn_searchSubmitActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_new;
-    private javax.swing.JButton btn_submit;
-    private javax.swing.JComboBox<String> cb_pesquisaStatus;
+    private javax.swing.JButton btn_searchSubmit;
+    private javax.swing.JComboBox<String> cb_searchStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel painelPesquisa;
+    private javax.swing.JPanel searchPane;
     private javax.swing.JTable table;
-    private javax.swing.JTextField tf_pesquisaNome;
+    private javax.swing.JTextField tf_searchName;
     // End of variables declaration//GEN-END:variables
 
 }

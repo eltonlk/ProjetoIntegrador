@@ -29,9 +29,9 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="btn_submit" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="lbl_ou" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_or" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btn_cancelar" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn_cancel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -49,9 +49,9 @@
               <Component id="rowPane" min="-2" pref="66" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lbl_ou" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbl_or" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_submit" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btn_cancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_cancel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="145" max="32767" attributes="0"/>
           </Group>
@@ -75,7 +75,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_submitActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbl_ou">
+    <Component class="javax.swing.JLabel" name="lbl_or">
       <Properties>
         <Property name="text" type="java.lang.String" value="ou"/>
       </Properties>
@@ -115,10 +115,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="lbl_nome" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_name" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="227" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="tf_nome" max="32767" attributes="0"/>
+                          <Component id="tf_name" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -128,21 +128,21 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lbl_nome" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_name" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tf_nome" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_name" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="49" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="lbl_nome">
+            <Component class="javax.swing.JLabel" name="lbl_name">
               <Properties>
                 <Property name="text" type="java.lang.String" value="* Nome:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="tf_nome">
+            <Component class="javax.swing.JTextField" name="tf_name">
             </Component>
           </SubComponents>
         </Container>
@@ -155,11 +155,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="rb_ativo" min="-2" max="-2" attributes="0"/>
+                              <Component id="rb_active" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="rb_inativo" min="-2" max="-2" attributes="0"/>
+                              <Component id="rb_inactive" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="lbl_situacao" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_status" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="182" max="32767" attributes="0"/>
                   </Group>
@@ -169,11 +169,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lbl_situacao" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_status" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="rb_ativo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="rb_inativo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rb_active" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rb_inactive" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="50" max="32767" attributes="0"/>
                   </Group>
@@ -181,37 +181,37 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="lbl_situacao">
+            <Component class="javax.swing.JLabel" name="lbl_status">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Situa&#xe7;&#xe3;o:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="rb_ativo">
+            <Component class="javax.swing.JRadioButton" name="rb_active">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ativo"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rb_ativoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rb_activeActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="rb_inativo">
+            <Component class="javax.swing.JRadioButton" name="rb_inactive">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Inativo"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rb_inativoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rb_inactiveActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btn_cancelar">
+    <Component class="javax.swing.JButton" name="btn_cancel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_cancelarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_cancelActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

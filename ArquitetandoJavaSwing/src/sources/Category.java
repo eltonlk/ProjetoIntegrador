@@ -15,6 +15,21 @@ public class Category {
     private String name;
     private boolean active;
 
+    public Category() {
+        this.active = true;
+    }
+
+    public Category(String name, boolean active) {
+        this.name = name;
+        this.active = active;
+    }
+    
+    public Category(int id, String name, boolean active) {
+        this.id = id;
+        this.name = name;
+        this.active = active;
+    }
+
     public int getId() {
         return id;
     }
@@ -31,12 +46,12 @@ public class Category {
         this.name = name;
     }
 
-    public boolean isAtivo() {
+    public boolean isActive() {
         return active;
     }
-    
-    public boolean isInativo() {
-        return !isAtivo();
+
+    public boolean isInactive() {
+        return !isActive();
     }
 
     public void active() {

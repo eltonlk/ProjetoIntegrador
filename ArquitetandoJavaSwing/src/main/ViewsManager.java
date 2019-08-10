@@ -14,14 +14,14 @@ import views.main.LoginView;
  * @author nyko-
  */
 public class ViewsManager {
-    
+
     private static final LoginView loginView = new LoginView();
     private static final ApplicationView applicationView = new ApplicationView();
 
     public enum View {
         LOGIN,
         APPLICATION
-    }    
+    }
 
     public static void showView(View view) {
         switch (view) {

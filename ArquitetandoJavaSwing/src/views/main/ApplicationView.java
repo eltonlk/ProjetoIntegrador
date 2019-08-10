@@ -8,15 +8,13 @@ package views.main;
 import java.awt.Dimension;
 import java.beans.PropertyVetoException;
 import javax.swing.JInternalFrame;
-import views.categorias.CategoriasListagem;
-import views.materiais.MateriaisListagem;
 
 /**
  *
  * @author nyko-
  */
 public class ApplicationView extends javax.swing.JFrame {
-    
+
     private static ApplicationView applicationView;
 
     /**
@@ -27,8 +25,8 @@ public class ApplicationView extends javax.swing.JFrame {
 
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setMinimumSize(new Dimension(600, 400));
-        
-        applicationView = this;
+
+        this.applicationView = this;
     }
 
     public static void changeInternalFrame(Object object) {
@@ -56,11 +54,11 @@ public class ApplicationView extends javax.swing.JFrame {
     private void initComponents() {
 
         desktoPaine = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        welcome = new javax.swing.JLabel();
+        menuBar = new javax.swing.JMenuBar();
         menu_cadastro = new javax.swing.JMenu();
-        menuItem_categorias = new javax.swing.JMenuItem();
-        menuItem_materiais = new javax.swing.JMenuItem();
+        menuItemcategories = new javax.swing.JMenuItem();
+        menuItemMaterials = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Arquitetando");
@@ -68,8 +66,8 @@ public class ApplicationView extends javax.swing.JFrame {
 
         desktoPaine.setBackground(new java.awt.Color(240, 240, 240));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Bem Vindo");
+        welcome.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        welcome.setText("Bem Vindo");
 
         javax.swing.GroupLayout desktoPaineLayout = new javax.swing.GroupLayout(desktoPaine);
         desktoPaine.setLayout(desktoPaineLayout);
@@ -77,39 +75,39 @@ public class ApplicationView extends javax.swing.JFrame {
             desktoPaineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktoPaineLayout.createSequentialGroup()
                 .addContainerGap(150, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(welcome)
                 .addContainerGap(150, Short.MAX_VALUE))
         );
         desktoPaineLayout.setVerticalGroup(
             desktoPaineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(desktoPaineLayout.createSequentialGroup()
                 .addContainerGap(150, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(welcome)
                 .addContainerGap(150, Short.MAX_VALUE))
         );
-        desktoPaine.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktoPaine.setLayer(welcome, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         menu_cadastro.setText("Cadastros");
 
-        menuItem_categorias.setText("Categorias");
-        menuItem_categorias.addActionListener(new java.awt.event.ActionListener() {
+        menuItemcategories.setText("Categorias");
+        menuItemcategories.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItem_categoriasActionPerformed(evt);
+                menuItemcategoriesActionPerformed(evt);
             }
         });
-        menu_cadastro.add(menuItem_categorias);
+        menu_cadastro.add(menuItemcategories);
 
-        menuItem_materiais.setText("Materiais");
-        menuItem_materiais.addActionListener(new java.awt.event.ActionListener() {
+        menuItemMaterials.setText("Materiais");
+        menuItemMaterials.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItem_materiaisActionPerformed(evt);
+                menuItemMaterialsActionPerformed(evt);
             }
         });
-        menu_cadastro.add(menuItem_materiais);
+        menu_cadastro.add(menuItemMaterials);
 
-        jMenuBar1.add(menu_cadastro);
+        menuBar.add(menu_cadastro);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,15 +123,15 @@ public class ApplicationView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuItem_materiaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_materiaisActionPerformed
-        MateriaisListagem frame = new MateriaisListagem();
+    private void menuItemMaterialsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemMaterialsActionPerformed
+        views.materials.List frame = new views.materials.List();
         changeInternalFrame(frame);
-    }//GEN-LAST:event_menuItem_materiaisActionPerformed
+    }//GEN-LAST:event_menuItemMaterialsActionPerformed
 
-    private void menuItem_categoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_categoriasActionPerformed
-        CategoriasListagem frame = new CategoriasListagem();
+    private void menuItemcategoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemcategoriesActionPerformed
+        views.categories.List frame = new views.categories.List();
         changeInternalFrame(frame);
-    }//GEN-LAST:event_menuItem_categoriasActionPerformed
+    }//GEN-LAST:event_menuItemcategoriesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,10 +165,10 @@ public class ApplicationView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktoPaine;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem menuItem_categorias;
-    private javax.swing.JMenuItem menuItem_materiais;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem menuItemMaterials;
+    private javax.swing.JMenuItem menuItemcategories;
     private javax.swing.JMenu menu_cadastro;
+    private javax.swing.JLabel welcome;
     // End of variables declaration//GEN-END:variables
 }
