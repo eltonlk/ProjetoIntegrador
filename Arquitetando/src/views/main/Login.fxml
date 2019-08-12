@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="250.0" style="-fx-background-color: #F97500;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="64.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="64.0">
+               <image>
+                  <Image url="@../../assets/images/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="278.0" prefHeight="400.0" prefWidth="322.0">
+         <children>
+            <Text layoutX="128.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="page-title" text="Login" textAlignment="CENTER" AnchorPane.leftAnchor="143.0" AnchorPane.rightAnchor="143.0" AnchorPane.topAnchor="80.0" />
+            <JFXButton fx:id="btnSubmit" layoutX="179.0" layoutY="243.0" onAction="#submit" text="Sing In">
+               <styleClass>
+                  <String fx:value="btn" />
+                  <String fx:value="btn-primary" />
+               </styleClass>
+            </JFXButton>
+            <JFXTextField fx:id="tfLogin" layoutX="90.0" layoutY="163.0" promptText="Login" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" />
+            <JFXPasswordField fx:id="tfPassword" layoutX="90.0" layoutY="200.0" promptText="Password" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

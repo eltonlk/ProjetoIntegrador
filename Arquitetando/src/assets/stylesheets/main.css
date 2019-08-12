@@ -1,0 +1,35 @@
+/*
+ * Main CSS for all pages.
+ */
+
+.page-title {
+    -fx-font-family: "System";
+    -fx-font-weight: bold;
+    -fx-font-size: 24px;
+    -fx-font-smoothing-type: gray;
+}
+
+
+/*====== Button CSS ======*/
+.btn {
+    -fx-font-size: 14px;
+    -jfx-button-type: RAISED;
+    -fx-text-fill: #212529;
+    -fx-cursor: hand;
+}
+
+.btn-primary {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #007bff;
+}
+
+.btn-success {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #28a745;
+}
+
+.btn-danger {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #dc3545;
+}
+/*====== Button CSS ======*/

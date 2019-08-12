@@ -5,15 +5,19 @@
  */
 package controllers;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import main.MainController;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javax.swing.JOptionPane;
+import main.StageManager;
+import resources.AuthenticateUser;
 
 /**
  * FXML Controller class
@@ -21,14 +25,13 @@ import main.MainController;
  * @author nyko-
  */
 public class LoginController implements Initializable {
-
     @FXML
-    public TextField tfEmail;
-
+    private JFXButton btnSubmit;
     @FXML
-    private PasswordField pfPassword;
+    private JFXTextField tfLogin;
     @FXML
-    private Button btnSubmit;
+    private JFXPasswordField tfPassword;
+   
 
     /**
      * Initializes the controller class.
@@ -43,16 +46,25 @@ public class LoginController implements Initializable {
 
     @FXML
     public void submit(ActionEvent event) {
-        String email = tfEmail.getText();
-        String password = pfPassword.getText();
+        submit();
+    }
 
-        boolean authenticated = email.equals("admin") && password.equals("admin");
+    private void fieldKeyPressed(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            submit();
+        }
+    }
 
-        if (authenticated) {
-            System.out.println("Usuário autenticado");
-            MainController.setScene("/views/Dashboard.fxml");
+    private void submit() {
+        String login = tfLogin.getText();
+        String password = tfPassword.getText();
+
+        if (AuthenticateUser.authenticate(login, password)) {
+            StageManager.setScene(StageManager.View.APPLICATION);
         } else {
-            System.out.println("E-mail ou senha incorreto");
+            tfPassword.setText("");
+            tfPassword.requestFocus();
+            JOptionPane.showMessageDialog(null, "Usuário ou senha inválido!");
         }
     }
 }
