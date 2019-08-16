@@ -13,7 +13,7 @@
 /*====== Button CSS ======*/
 .btn {
     -fx-font-size: 14px;
-    -jfx-button-type: RAISED;
+    -jfx-button-type: FLAT;
     -fx-text-fill: #212529;
     -fx-cursor: hand;
 }
