@@ -22,19 +22,49 @@ import resources.AuthenticateUser;
 public class StageManager {
 
     private static Stage stage;
+    public static final String MAIN_CSS = "/assets/stylesheets/main.css";
 
     public enum View {
-        LOGIN,
-        APPLICATION
+
+        LOGIN("/views/main/Session.fxml", false),
+        APPLICATION("/views/main/Application.fxml", true);
+
+        private final String path;
+        private final boolean resizable;
+
+        public String getPath() {
+            return this.path;
+        }
+
+        public boolean isResizable() {
+            return this.resizable;
+        }
+
+        private View(String path, boolean resizable) {
+            this.path = path;
+            this.resizable = resizable;
+        }
     }
 
     public static void setStage(Stage stage) {
         StageManager.stage = stage;
     }
 
+    public static void setStageResizable(boolean value) {
+        stage.setResizable(value);
+
+        if (!value) {
+            stage.sizeToScene();
+        }
+    }
+
     public static void setScene(View view) {
+        if (!view.equals(View.LOGIN) && !AuthenticateUser.isAuthenticated()) {
+            view = View.LOGIN;
+        }
+
         try {
-            switchView(view);
+            switchScene(view);
         } catch (IOException ex) {
             String message = "Não foi possivel localizar a tela.";
 
@@ -42,29 +72,14 @@ public class StageManager {
         }
     }
 
-    private static void switchView(View view) throws IOException {
-        switch (view) {
-            case LOGIN:
-                setScene("/views/main/Login.fxml");
-                break;
-            case APPLICATION:
-                if (AuthenticateUser.isAuthenticated()) {
-                    setScene("/views/main/Application.fxml");
-                } else {
-                    setScene("/views/main/Login.fxml");
-                }
-                break;
-        }
-    }
-
-    private static void setScene(String path) throws IOException {
-        URL resource = StageManager.class.getClass().getResource(path);
+    private static void switchScene(View view) throws IOException {
+        URL resource = StageManager.class.getClass().getResource(view.getPath());
 
         Parent root = FXMLLoader.load(resource);
 
         Scene scene = new Scene(root);
 
-        String style = StageManager.class.getClass().getResource("/assets/stylesheets/main.css").toExternalForm();
+        String style = StageManager.class.getClass().getResource(MAIN_CSS).toExternalForm();
 
         scene.getStylesheets().add(style);
 
@@ -73,6 +88,7 @@ public class StageManager {
         if (!StageManager.stage.isShowing()) {
             StageManager.stage.show();
         }
-    }
 
+        StageManager.setStageResizable(view.isResizable());
+    }
 }

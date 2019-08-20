@@ -13,7 +13,7 @@ public class MainLaunch extends Application {
     public void start(Stage stage) {
         stage.setTitle("Arquitetando");
         stage.setResizable(false);
-        
+
         StageManager.setStage(stage);
         StageManager.setScene(StageManager.View.LOGIN);
     }

@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.main.SessionController">
     <children>
         <AnchorPane fx:id="leftPane" prefHeight="400.0" prefWidth="250.0" style="-fx-background-color: #F97500;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -27,7 +27,7 @@
                   <Label fx:id="title" layoutX="79.0" layoutY="14.0" styleClass="page-title" text="Login" textAlignment="CENTER" AnchorPane.topAnchor="14.0" />
                         <JFXTextField fx:id="tfLogin" layoutX="90.0" layoutY="61.0" onKeyPressed="#fieldKeyPressed" promptText="Login" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="70.0" />
                         <JFXPasswordField fx:id="tfPassword" layoutX="90.0" layoutY="109.0" onKeyPressed="#fieldKeyPressed" promptText="Password" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="110.0" />
-                        <JFXButton fx:id="btnSubmit" layoutX="133.0" layoutY="161.0" onAction="#submit" text="Sing In" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
+                        <JFXButton fx:id="btnSubmit" layoutX="133.0" layoutY="161.0" onAction="#btnSubmitOnAction" text="Sing In" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
                             <styleClass>
                                 <String fx:value="btn" />
                                 <String fx:value="btn-primary" />

@@ -18,8 +18,16 @@
     -fx-cursor: hand;
 }
 
+.btn:hover {
+    -fx-background-color: rgba(33, 33, 33, 0.1);
+}
+
 .btn-primary {
     -fx-text-fill: #ffffff;
+    -fx-background-color: #007bff;
+}
+
+.btn-primary:hover {
     -fx-background-color: #007bff;
 }
 
@@ -28,8 +36,16 @@
     -fx-background-color: #28a745;
 }
 
+.btn-success:hover {
+    -fx-background-color: #28a745;
+}
+
 .btn-danger {
     -fx-text-fill: #ffffff;
+    -fx-background-color: #dc3545;
+}
+
+.btn-danger:hover {
     -fx-background-color: #dc3545;
 }
 /*====== Button CSS ======*/
