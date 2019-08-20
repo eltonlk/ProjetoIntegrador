@@ -1,18 +1,16 @@
 package com.projeto.integrador.serverapi.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
 @Entity
 @Table(name = "users")
 public class User {
@@ -21,15 +19,29 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private String login;
   private String name;
+  private String email;
+  private String login;
+  private String password;
+  private boolean active;
+
+  @ManyToMany
+  @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+  private Collection<Role> roles;
+
+  public User(Long id, String name, String email, String password) {
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.email = password;
+  }
 
   public Long getId() {
     return id;
   }
 
-  public String getLogin() {
-    return login;
+  public String getEmail() {
+    return email;
   }
 
   public String getName() {
@@ -40,8 +52,8 @@ public class User {
     this.id = id;
   }
 
-  public void setLogin(String login) {
-    this.login = login;
+  public void setEmail(String email) {
+    this.email = email;
   }
 
   public void setName(String name) {

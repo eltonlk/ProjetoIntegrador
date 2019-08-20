@@ -57,7 +57,7 @@ public class UsersController {
   public ResponseEntity<User> update(@PathVariable("id") long id, @RequestBody User user) {
     return repository.findById(id)
       .map(record -> {
-        record.setLogin(user.getLogin());
+        record.setEmail(user.getEmail());
         record.setName(user.getName());
 
         User updated = repository.save(record);
