@@ -10,6 +10,9 @@ public class UserCredentials {
     this.password = password;
   }
 
+  public UserCredentials() {
+  }
+
   public String getPassword() {
     return password;
   }

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 @RestController
 @RequestMapping({"/users"})
 public class UsersController {
@@ -50,6 +52,10 @@ public class UsersController {
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public User create(@RequestBody User user) {
+    BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
+
+    user.setPassword(bCrypt.encode(user.getPassword()));
+
     return repository.save(user);
   }
 

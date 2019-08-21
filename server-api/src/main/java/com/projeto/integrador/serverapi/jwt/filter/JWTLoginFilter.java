@@ -17,6 +17,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -34,6 +35,12 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
     HttpServletResponse response
   ) throws AuthenticationException, IOException, ServletException {
     UserCredentials credentials = new ObjectMapper().readValue(request.getInputStream(), UserCredentials.class);
+
+    BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
+
+    System.out.println(credentials.getUsername());
+    System.out.println(credentials.getPassword());
+    System.out.println(bCrypt.encode(credentials.getPassword()));
 
     return getAuthenticationManager().authenticate(
       new UsernamePasswordAuthenticationToken(
