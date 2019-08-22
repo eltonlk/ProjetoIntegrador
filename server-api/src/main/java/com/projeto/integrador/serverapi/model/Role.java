@@ -1,38 +1,43 @@
 package com.projeto.integrador.serverapi.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import com.projeto.integrador.serverapi.serializer.RoleSerializer;
+
+import java.util.Collection;
+
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import com.projeto.integrador.serverapi.model.observer.AuditListener;
-
 @Entity
-@EntityListeners(AuditListener.class)
-@Table(name = "categories")
-public class Category {
+@JsonSerialize(using = RoleSerializer.class)
+@Table(name = "roles")
+public class Role {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
   @NotNull
   @NotEmpty
   private String name;
 
-  private boolean active;
+  @ManyToMany(mappedBy = "roles")
+  private Collection<User> users;
 
-  public Category(Long id, String name) {
+  public Role(Long id, String name) {
     this.id = id;
     this.name = name;
   }
 
-  public Category() {
+  public Role() {
   }
 
   public Long getId() {
@@ -51,20 +56,12 @@ public class Category {
     this.name = name;
   }
 
-  public boolean isActive() {
-    return active;
+  public Collection<User> getUsers() {
+    return users;
   }
 
-  public void setActive(boolean active) {
-    this.active = active;
-  }
-
-  @Override
-  public String toString() {
-    return "Category{" +
-      "id=" + id +
-      ", name='" + name + '\'' +
-      '}';
+  public void setUsers(Collection<User> users) {
+    this.users = users;
   }
 
 }

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @RestController
 @RequestMapping({"/users"})
@@ -36,11 +38,13 @@ public class UsersController {
   }
 
   @GetMapping
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
   public List<User> findAll(){
     return repository.findAll();
   }
 
   @GetMapping(path = {"/{id}"})
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
   public ResponseEntity<User> findById(@PathVariable long id) {
     return repository.findById(id)
       .map(record -> ResponseEntity.ok().body(record))
@@ -48,16 +52,22 @@ public class UsersController {
   }
 
   @PostMapping
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
   @ResponseStatus(HttpStatus.CREATED)
   public User create(@RequestBody User user) {
+    BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
+
+    user.setPassword(bCrypt.encode(user.getPassword()));
+
     return repository.save(user);
   }
 
   @PutMapping(value="/{id}")
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
   public ResponseEntity<User> update(@PathVariable("id") long id, @RequestBody User user) {
     return repository.findById(id)
       .map(record -> {
-        record.setLogin(user.getLogin());
+        record.setEmail(user.getEmail());
         record.setName(user.getName());
 
         User updated = repository.save(record);
@@ -67,6 +77,7 @@ public class UsersController {
   }
 
   @DeleteMapping(path ={"/{id}"})
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
   public ResponseEntity<?> delete(@PathVariable long id) {
     return repository.findById(id)
       .map(record -> {
