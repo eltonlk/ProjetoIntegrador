@@ -53,12 +53,20 @@ public class ApplicationView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         desktoPaine = new javax.swing.JDesktopPane();
         welcome = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menu_cadastro = new javax.swing.JMenu();
         menuItemcategories = new javax.swing.JMenuItem();
         menuItemMaterials = new javax.swing.JMenuItem();
+        menu_options = new javax.swing.JMenu();
+        menuItemOptions = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Arquitetando");
@@ -107,6 +115,18 @@ public class ApplicationView extends javax.swing.JFrame {
 
         menuBar.add(menu_cadastro);
 
+        menu_options.setText("Configurações");
+
+        menuItemOptions.setText("Configurações");
+        menuItemOptions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemOptionsActionPerformed(evt);
+            }
+        });
+        menu_options.add(menuItemOptions);
+
+        menuBar.add(menu_options);
+
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -132,6 +152,11 @@ public class ApplicationView extends javax.swing.JFrame {
         views.categories.List frame = new views.categories.List();
         changeInternalFrame(frame);
     }//GEN-LAST:event_menuItemcategoriesActionPerformed
+
+    private void menuItemOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemOptionsActionPerformed
+        views.options.Config frame = new views.options.Config();
+        changeInternalFrame(frame);
+    }//GEN-LAST:event_menuItemOptionsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,10 +190,14 @@ public class ApplicationView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktoPaine;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menuItemMaterials;
+    private javax.swing.JMenuItem menuItemOptions;
     private javax.swing.JMenuItem menuItemcategories;
     private javax.swing.JMenu menu_cadastro;
+    private javax.swing.JMenu menu_options;
     private javax.swing.JLabel welcome;
     // End of variables declaration//GEN-END:variables
 }

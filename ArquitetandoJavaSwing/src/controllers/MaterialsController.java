@@ -34,6 +34,8 @@ public class MaterialsController {
             LogManager.doLog(ex.getMessage());
         } catch (IOException ex) {
             LogManager.doLog(ex.getMessage());
+        } catch (Exception ex) {
+            LogManager.doLog(ex.getMessage());
         }
 
         return materials;
@@ -48,6 +50,8 @@ public class MaterialsController {
         } catch (MalformedURLException ex) {
             LogManager.doLog(ex.getMessage());
         } catch (IOException ex) {
+            LogManager.doLog(ex.getMessage());
+        } catch (Exception ex) {
             LogManager.doLog(ex.getMessage());
         }
 
@@ -65,6 +69,8 @@ public class MaterialsController {
             LogManager.doLog(ex.getMessage());
         } catch (IOException ex) {
             LogManager.doLog(ex.getMessage());
+        } catch (Exception ex) {
+            LogManager.doLog(ex.getMessage());
         }
 
         return "Não foi possivel gravar o material.";
@@ -81,6 +87,8 @@ public class MaterialsController {
             LogManager.doLog(ex.getMessage());
         } catch (IOException ex) {
             LogManager.doLog(ex.getMessage());
+        } catch (Exception ex) {
+            LogManager.doLog(ex.getMessage());
         }
 
         return "Não foi possivel gravar o material.";
@@ -94,6 +102,8 @@ public class MaterialsController {
         } catch (MalformedURLException ex) {
             LogManager.doLog(ex.getMessage());
         } catch (IOException ex) {
+            LogManager.doLog(ex.getMessage());
+        } catch (Exception ex) {
             LogManager.doLog(ex.getMessage());
         }
 
