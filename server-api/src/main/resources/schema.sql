@@ -10,7 +10,6 @@ CREATE TABLE `projeto_integrador`.`users` (
   `email` VARCHAR(255) NOT NULL,
   `username` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
-  `admin` BOOLEAN DEFAULT 0,
   `active` BOOLEAN DEFAULT 1
 );
 
@@ -28,10 +27,12 @@ CREATE TABLE `projeto_integrador`.`users_roles` (
 
 CREATE TABLE `projeto_integrador`.`categories` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
-  `name` VARCHAR(255) NULL
+  `name` VARCHAR(255) NULL,
+  `active` BOOLEAN DEFAULT 1
 );
 
 CREATE TABLE `projeto_integrador`.`materials` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
-  `name` VARCHAR(255) NOT NULL
+  `name` VARCHAR(255) NOT NULL,
+  `active` BOOLEAN DEFAULT 1
 );

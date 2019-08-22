@@ -7,6 +7,7 @@ import com.projeto.integrador.serverapi.serializer.UserSerializer;
 import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,7 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -44,23 +44,18 @@ public class User {
   @NotEmpty
   private String password;
 
-  @Transient
-  private String passwordConfirm;
-
-  private boolean admin;
   private boolean active;
 
-  @ManyToMany
+  @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
   private Collection<Role> roles;
 
-  public User(Long id, String name, String email, String username, String password, boolean admin, boolean active, Collection<Role> roles) {
+  public User(Long id, String name, String email, String username, String password, boolean active, Collection<Role> roles) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.username = username;
     this.password = password;
-    this.admin = admin;
     this.active = active;
     this.roles = roles;
   }
@@ -106,22 +101,6 @@ public class User {
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public String getPasswordConfirm() {
-    return passwordConfirm;
-  }
-
-  public void setPasswordConfirm(String passwordConfirm) {
-    this.passwordConfirm = passwordConfirm;
-  }
-
-  public boolean isAdmin() {
-    return admin;
-  }
-
-  public void setAdmin(boolean admin) {
-    this.admin = admin;
   }
 
   public boolean isActive() {

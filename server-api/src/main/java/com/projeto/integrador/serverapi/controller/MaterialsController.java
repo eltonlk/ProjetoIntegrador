@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,11 +37,13 @@ public class MaterialsController {
   }
 
   @GetMapping
+  @PreAuthorize("hasRole('ROLE_MATERIALS')")
   public List<Material> findAll(){
     return repository.findAll();
   }
 
   @GetMapping(path = {"/{id}"})
+  @PreAuthorize("hasRole('ROLE_MATERIALS')")
   public ResponseEntity<Material> findById(@PathVariable long id) {
     return repository.findById(id)
       .map(record -> ResponseEntity.ok().body(record))
@@ -48,12 +51,14 @@ public class MaterialsController {
   }
 
   @PostMapping
+  @PreAuthorize("hasRole('ROLE_MATERIALS')")
   @ResponseStatus(HttpStatus.CREATED)
   public Material create(@RequestBody Material material) {
     return repository.save(material);
   }
 
   @PutMapping(value="/{id}")
+  @PreAuthorize("hasRole('ROLE_MATERIALS')")
   public ResponseEntity<Material> update(@PathVariable("id") long id, @RequestBody Material material) {
     return repository.findById(id)
       .map(record -> {
@@ -66,6 +71,7 @@ public class MaterialsController {
   }
 
   @DeleteMapping(path ={"/{id}"})
+  @PreAuthorize("hasRole('ROLE_MATERIALS')")
   public ResponseEntity<?> delete(@PathVariable long id) {
     return repository.findById(id)
       .map(record -> {
