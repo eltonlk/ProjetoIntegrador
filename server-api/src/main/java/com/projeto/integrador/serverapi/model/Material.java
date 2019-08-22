@@ -1,15 +1,18 @@
 package com.projeto.integrador.serverapi.model;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.projeto.integrador.serverapi.model.observer.AuditListener;
+
 @Entity
+@EntityListeners(AuditListener.class)
 @Table(name = "materials")
 public class Material {
 
@@ -53,6 +56,14 @@ public class Material {
 
   public void setActive(boolean active) {
     this.active = active;
+  }
+
+  @Override
+  public String toString() {
+    return "Material{" +
+      "id=" + id +
+      ", name='" + name + '\'' +
+      '}';
   }
 
 }
