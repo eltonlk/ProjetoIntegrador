@@ -17,6 +17,8 @@ INSERT INTO users (id, name, email, username, password, active)
 VALUES (3, 'Estágiario', 'estagiario@mail.com', 'estagiario', '$2a$10$2EJCEa0kr9QFyhm3kguxg.F9jS3rjRRy8Qj0l0.ILBIank0TJoK8G', 0);
 INSERT INTO users_roles (user_id, role_id) VALUES (3, 2);
 
+INSERT INTO options (id, name, value) VALUES (1, 'audits', 'enabled');
+
 INSERT INTO categories (name, active) VALUES ('Muito leve', 1);
 INSERT INTO categories (name, active) VALUES ('Leve', 1);
 INSERT INTO categories (name, active) VALUES ('Mediano', 1);

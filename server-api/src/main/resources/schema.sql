@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS `projeto_integrador`.`audits`;
+DROP TABLE IF EXISTS `projeto_integrador`.`options`;
 
 DROP TABLE IF EXISTS `projeto_integrador`.`categories`;
 DROP TABLE IF EXISTS `projeto_integrador`.`materials`;
@@ -46,4 +47,10 @@ CREATE TABLE `projeto_integrador`.`audits` (
   `modified_by` VARCHAR(255) NULL,
   `modified_date` DATETIME,
   `action` VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE `projeto_integrador`.`options` (
+  `id` INT PRIMARY KEY AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `value` VARCHAR(255) NULL
 );

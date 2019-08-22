@@ -37,3 +37,9 @@ http://localhost:8080/users => GET, POST, PUT, DELETE
 - active
 
 http://localhost:8080/roles => GET
+
+http://localhost:8080/audits => GET
+
+http://localhost:8080/options => GET, PUT
+- name
+- value
