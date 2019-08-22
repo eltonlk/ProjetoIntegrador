@@ -38,6 +38,7 @@ public class ApiConnection {
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Accept", "application/json");
+        conn.setRequestProperty("Authorization", AuthenticateUser.getToken());
 
         if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
             throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
@@ -51,8 +52,6 @@ public class ApiConnection {
         while ((output = br.readLine()) != null) {
             builder.append(output);
         }
-
-        System.out.println(builder.toString());
 
         Object deserialize = new Genson().deserialize(builder.toString(), genericType);
 
@@ -75,6 +74,7 @@ public class ApiConnection {
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Accept", "application/json");
+        conn.setRequestProperty("Authorization", AuthenticateUser.getToken());
 
         if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
             throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
@@ -88,8 +88,6 @@ public class ApiConnection {
         while ((output = br.readLine()) != null) {
             builder.append(output);
         }
-
-        System.out.println(builder.toString());
 
         Object deserialize = new Genson().deserialize(builder.toString(), objectClass);
 
@@ -112,6 +110,7 @@ public class ApiConnection {
         conn.setDoOutput(true);
         conn.setRequestMethod("POST");
         conn.setRequestProperty("Content-Type", "application/json");
+        conn.setRequestProperty("Authorization", AuthenticateUser.getToken());
 
         OutputStream os = conn.getOutputStream();
         os.write(json.getBytes());
@@ -119,7 +118,7 @@ public class ApiConnection {
 
         if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
             throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
-        }
+        }       
 
         conn.disconnect();
     }
@@ -138,6 +137,7 @@ public class ApiConnection {
         conn.setDoOutput(true);
         conn.setRequestMethod("PUT");
         conn.setRequestProperty("Content-Type", "application/json");
+        conn.setRequestProperty("Authorization", AuthenticateUser.getToken());
 
         OutputStream os = conn.getOutputStream();
         os.write(json.getBytes());
@@ -163,6 +163,7 @@ public class ApiConnection {
         conn.setDoOutput(true);
         conn.setRequestMethod("DELETE");
         conn.setRequestProperty("Content-Type", "application/json");
+        conn.setRequestProperty("Authorization", AuthenticateUser.getToken());
 
         if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
             throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
