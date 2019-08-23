@@ -33,6 +33,8 @@ public class CategoriesController {
             LogManager.doLog(ex.getMessage());
         } catch (IOException ex) {
             LogManager.doLog(ex.getMessage());
+        } catch (Exception ex) {
+            LogManager.doLog(ex.getMessage());
         }
 
         return categories;
@@ -47,6 +49,8 @@ public class CategoriesController {
         } catch (MalformedURLException ex) {
             LogManager.doLog(ex.getMessage());
         } catch (IOException ex) {
+            LogManager.doLog(ex.getMessage());
+        } catch (Exception ex) {
             LogManager.doLog(ex.getMessage());
         }
 
@@ -64,6 +68,8 @@ public class CategoriesController {
             LogManager.doLog(ex.getMessage());
         } catch (IOException ex) {
             LogManager.doLog(ex.getMessage());
+        } catch (Exception ex) {
+            LogManager.doLog(ex.getMessage());
         }
 
         return "Não foi possivel gravar a Categoria.";
@@ -80,6 +86,8 @@ public class CategoriesController {
             LogManager.doLog(ex.getMessage());
         } catch (IOException ex) {
             LogManager.doLog(ex.getMessage());
+        } catch (Exception ex) {
+            LogManager.doLog(ex.getMessage());
         }
 
         return "Não foi possivel gravar a categoria.";
@@ -93,6 +101,8 @@ public class CategoriesController {
         } catch (MalformedURLException ex) {
             LogManager.doLog(ex.getMessage());
         } catch (IOException ex) {
+            LogManager.doLog(ex.getMessage());
+        } catch (Exception ex) {
             LogManager.doLog(ex.getMessage());
         }
 
