@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import com.projeto.integrador.serverapi.auditor.BeanUtil;
 import com.projeto.integrador.serverapi.model.Audit;
+import com.projeto.integrador.serverapi.model.Option;
 
 import static javax.transaction.Transactional.TxType.MANDATORY;
 
@@ -32,7 +33,13 @@ public class AuditListener {
   private void perform(Object auditable, String action) {
     EntityManager entityManager = BeanUtil.getBean(EntityManager.class);
 
-    entityManager.persist(new Audit(auditable, action));
+    Long optionId = new Long(1);
+
+    Option option = entityManager.find(Option.class, optionId);
+
+    if ("enabled".equals(option.getValue()) || auditable.getClass().equals(Option.class)) {
+      entityManager.persist(new Audit(auditable, action));
+    }
   }
 
 }
