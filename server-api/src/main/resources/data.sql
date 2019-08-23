@@ -32,3 +32,30 @@ INSERT INTO materials (name, active) VALUES ('Madeira', 1);
 INSERT INTO materials (name, active) VALUES ('PVC', 1);
 INSERT INTO materials (name, active) VALUES ('Vidro', 1);
 INSERT INTO materials (name, active) VALUES ('Espaço vazio', 0);
+
+INSERT INTO audits (modified_by, modified_date, action, content)
+VALUES ('admin', '2019-08-23T00:18:22.000+0000', 'CREATED', "Option{id=null, name='audits', value='enabled'}");
+INSERT INTO audits (modified_by, modified_date, action, content)
+VALUES ('admin', '2019-08-23T00:18:22.000+0000', 'CREATED', "Category{id=null, name='Muito leve', active=true}");
+INSERT INTO audits (modified_by, modified_date, action, content)
+VALUES ('admin', '2019-08-23T00:18:22.000+0000', 'CREATED', "Category{id=null, name='Leve', active=true}");
+INSERT INTO audits (modified_by, modified_date, action, content)
+VALUES ('admin', '2019-08-23T00:18:22.000+0000', 'CREATED', "Category{id=null, name='Mediano', active=true}");
+INSERT INTO audits (modified_by, modified_date, action, content)
+VALUES ('admin', '2019-08-23T00:18:22.000+0000', 'CREATED', "Category{id=null, name='Pesado', active=true}");
+INSERT INTO audits (modified_by, modified_date, action, content)
+VALUES ('admin', '2019-08-23T00:18:22.000+0000', 'CREATED', "Category{id=null, name='Muito pesado', active=true}");
+INSERT INTO audits (modified_by, modified_date, action, content)
+VALUES ('admin', '2019-08-23T00:18:22.000+0000', 'CREATED', "Category{id=null, name='Extremamente leve', active=false}");
+INSERT INTO audits (modified_by, modified_date, action, content)
+VALUES ('admin', '2019-08-23T00:18:22.000+0000', 'CREATED', "Material{id=null, name='Alvenaria', active=true}");
+INSERT INTO audits (modified_by, modified_date, action, content)
+VALUES ('admin', '2019-08-23T00:18:22.000+0000', 'CREATED', "Material{id=null, name='Gesso', active=true}");
+INSERT INTO audits (modified_by, modified_date, action, content)
+VALUES ('admin', '2019-08-23T00:18:22.000+0000', 'CREATED', "Material{id=null, name='Madeira', active=true}");
+INSERT INTO audits (modified_by, modified_date, action, content)
+VALUES ('admin', '2019-08-23T00:18:22.000+0000', 'CREATED', "Material{id=null, name='PVC', active=true}");
+INSERT INTO audits (modified_by, modified_date, action, content)
+VALUES ('admin', '2019-08-23T00:18:22.000+0000', 'CREATED', "Material{id=null, name='Vidro', active=true}");
+INSERT INTO audits (modified_by, modified_date, action, content)
+VALUES ('admin', '2019-08-23T00:18:22.000+0000', 'CREATED', "Material{id=null, name='Espaço vazio', active=true}");
