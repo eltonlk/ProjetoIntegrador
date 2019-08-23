@@ -61,6 +61,8 @@ public class ApplicationView extends javax.swing.JFrame {
         menu_cadastro = new javax.swing.JMenu();
         menuItemcategories = new javax.swing.JMenuItem();
         menuItemMaterials = new javax.swing.JMenuItem();
+        menu_audits = new javax.swing.JMenu();
+        menuItemAudits = new javax.swing.JMenuItem();
         menu_options = new javax.swing.JMenu();
         menuItemOptions = new javax.swing.JMenuItem();
 
@@ -115,6 +117,18 @@ public class ApplicationView extends javax.swing.JFrame {
 
         menuBar.add(menu_cadastro);
 
+        menu_audits.setText("Auditoria");
+
+        menuItemAudits.setText("Listagem");
+        menuItemAudits.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemAuditsActionPerformed(evt);
+            }
+        });
+        menu_audits.add(menuItemAudits);
+
+        menuBar.add(menu_audits);
+
         menu_options.setText("Configurações");
 
         menuItemOptions.setText("Configurações");
@@ -158,6 +172,11 @@ public class ApplicationView extends javax.swing.JFrame {
         changeInternalFrame(frame);
     }//GEN-LAST:event_menuItemOptionsActionPerformed
 
+    private void menuItemAuditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAuditsActionPerformed
+        views.audits.List frame = new views.audits.List();
+        changeInternalFrame(frame);
+    }//GEN-LAST:event_menuItemAuditsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -193,9 +212,11 @@ public class ApplicationView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem menuItemAudits;
     private javax.swing.JMenuItem menuItemMaterials;
     private javax.swing.JMenuItem menuItemOptions;
     private javax.swing.JMenuItem menuItemcategories;
+    private javax.swing.JMenu menu_audits;
     private javax.swing.JMenu menu_cadastro;
     private javax.swing.JMenu menu_options;
     private javax.swing.JLabel welcome;
