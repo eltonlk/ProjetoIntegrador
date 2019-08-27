@@ -60,10 +60,15 @@
 			<version>0.9.1</version>
 		</dependency>
 
-		<!-- mysql connector -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+
+		<!-- postgreSQL connector -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
 		</dependency>
 	</dependencies>
 
