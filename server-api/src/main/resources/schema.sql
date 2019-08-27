@@ -17,35 +17,27 @@ CREATE TABLE users (
   active BOOLEAN
 );
 
--- CREATE TABLE roles (
---   id   SERIAL PRIMARY KEY,
---   name varchar(255) NOT NULL
--- );
+CREATE TABLE roles (
+  id   SERIAL PRIMARY KEY,
+  name varchar(255) NOT NULL
+);
 
--- CREATE TABLE users_roles (
---   user_id INTEGER REFERENCES users(id),
---   role_id INTEGER REFERENCES roles(id)
--- );
+CREATE TABLE users_roles (
+  user_id INTEGER REFERENCES users(id),
+  role_id INTEGER REFERENCES roles(id)
+);
 
--- CREATE TABLE categories (
---   id     SERIAL PRIMARY KEY,
---   name   varchar(255) NOT NULL,
---   active boolean NOT NULL DEFAULT TRUE
--- );
+CREATE TABLE categories (
+  id     SERIAL PRIMARY KEY,
+  name   varchar(255) NOT NULL,
+  active BOOLEAN
+);
 
--- CREATE TABLE materials (
---   id     SERIAL PRIMARY KEY,
---   name   varchar(255) NOT NULL,
---   active boolean NOT NULL DEFAULT TRUE
--- );
-
--- CREATE TABLE audits (
---   id            SERIAL PRIMARY KEY,
---   content       text NOT NULL,
---   modified_by   varchar(255),
---   modified_date timestamp,
---   action        varchar(255) NOT NULL
--- );
+CREATE TABLE materials (
+  id     SERIAL PRIMARY KEY,
+  name   varchar(255) NOT NULL,
+  active BOOLEAN
+);
 
 CREATE TABLE audits (
   id serial PRIMARY KEY,
@@ -55,11 +47,11 @@ CREATE TABLE audits (
   action VARCHAR (255) NOT NULL
 );
 
--- CREATE TABLE options (
---   id    SERIAL PRIMARY KEY,
---   name  varchar(255),
---   value varchar(255)
--- );
+CREATE TABLE options (
+  id    SERIAL PRIMARY KEY,
+  name  varchar(255),
+  value varchar(255)
+);
 
 -- DROP TABLE IF EXISTS `projeto_integrador`.`audits`;
 -- DROP TABLE IF EXISTS `projeto_integrador`.`options`;
