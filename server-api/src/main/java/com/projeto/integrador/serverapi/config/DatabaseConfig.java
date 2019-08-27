@@ -1,20 +1,19 @@
 package com.projeto.integrador.serverapi.config;
 
-import com.zaxxer.hikari.*;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.*;
 import javax.sql.DataSource;
 
 @Configuration
+@PropertySource({ "classpath:application.properties" })
 public class DatabaseConfig {
 
-  @Value("${spring.datasource.url}")
-  private String dbUrl;
-
   @Bean
+  @Primary
+  @ConfigurationProperties(prefix = "spring.datasource")
   public DataSource dataSource() {
-      HikariConfig config = new HikariConfig();
-      config.setJdbcUrl(dbUrl);
-      return new HikariDataSource(config);
+    return DataSourceBuilder.create().build();
   }
+
 }
