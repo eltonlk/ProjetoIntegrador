@@ -9,17 +9,17 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS roles;
 
 CREATE TABLE users (
-  id serial PRIMARY KEY,
-  name VARCHAR (255) UNIQUE NOT NULL,
-  email VARCHAR (255) UNIQUE NOT NULL,
+  id       SERIAL PRIMARY KEY,
+  name     VARCHAR (255) UNIQUE NOT NULL,
+  email    VARCHAR (255) UNIQUE NOT NULL,
   username VARCHAR (255) UNIQUE NOT NULL,
   password VARCHAR (255) NOT NULL,
-  active BOOLEAN
+  active   BOOLEAN
 );
 
 CREATE TABLE roles (
   id   SERIAL PRIMARY KEY,
-  name varchar(255) NOT NULL
+  name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE users_roles (
@@ -29,28 +29,28 @@ CREATE TABLE users_roles (
 
 CREATE TABLE categories (
   id     SERIAL PRIMARY KEY,
-  name   varchar(255) NOT NULL,
+  name   VARCHAR(255) NOT NULL,
   active BOOLEAN
 );
 
 CREATE TABLE materials (
   id     SERIAL PRIMARY KEY,
-  name   varchar(255) NOT NULL,
+  name   VARCHAR(255) NOT NULL,
   active BOOLEAN
 );
 
 CREATE TABLE audits (
-  id serial PRIMARY KEY,
-  content TEXT,
-  modified_by VARCHAR (255),
+  id            SERIAL PRIMARY KEY,
+  content       TEXT,
+  modified_by   VARCHAR (255),
   modified_date TIMESTAMP,
-  action VARCHAR (255) NOT NULL
+  action        VARCHAR (255) NOT NULL
 );
 
 CREATE TABLE options (
   id    SERIAL PRIMARY KEY,
-  name  varchar(255),
-  value varchar(255)
+  name  VARCHAR(255),
+  value VARCHAR(255)
 );
 
 -- DROP TABLE IF EXISTS `projeto_integrador`.`audits`;
