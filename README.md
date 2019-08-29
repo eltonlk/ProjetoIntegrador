@@ -43,3 +43,12 @@ http://localhost:8080/audits => GET
 http://localhost:8080/options => GET, PUT
 - name
 - value
+
+## Heroku
+
+heroku login
+heroku apps
+heroku git:remote -a eltonlk-projeto-integrador
+git subtree push --prefix web heroku master
+
+https://eltonlk-projeto-integrador.herokuapp.com/
