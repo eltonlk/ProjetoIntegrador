@@ -63,6 +63,7 @@ public class CategoriesController {
     return repository.findById(id)
       .map(record -> {
         record.setName(category.getName());
+        record.setActive(category.isActive());
 
         Category updated = repository.save(record);
 

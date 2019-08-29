@@ -1,5 +1,6 @@
 package com.projeto.integrador.serverapi.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -26,9 +27,15 @@ public class Material {
 
   private boolean active;
 
-  public Material(Long id, String name) {
+  @Column(name = "thermal_conductivity_index")
+  @NotNull
+  private double thermalConductivityIndex;
+
+  public Material(Long id, String name, boolean active, double thermalConductivityIndex) {
     this.id = id;
     this.name = name;
+    this.active = active;
+    this.thermalConductivityIndex = thermalConductivityIndex;
   }
 
   public Material() {
@@ -58,11 +65,21 @@ public class Material {
     this.active = active;
   }
 
+  public double getThermalConductivityIndex() {
+    return thermalConductivityIndex;
+  }
+
+  public void setThermalConductivityIndex(double thermalConductivityIndex) {
+    this.thermalConductivityIndex = thermalConductivityIndex;
+  }
+
   @Override
   public String toString() {
     return "Material{" +
       "id=" + id +
       ", name='" + name + '\'' +
+      ", active='" + active + '\'' +
+      ", thermal_conductivity_index='" + thermalConductivityIndex + '\'' +
       '}';
   }
 
