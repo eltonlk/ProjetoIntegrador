@@ -37,7 +37,7 @@ CREATE TABLE materials (
   id     SERIAL PRIMARY KEY,
   name   VARCHAR(255) NOT NULL,
   active BOOLEAN,
-  thermal_conductivity_index NUMERIC(5, 5) NOT NULL DEFAULT 0
+  thermal_conductivity_index NUMERIC(10, 5) NOT NULL DEFAULT 0
 );
 
 CREATE TABLE audits (
