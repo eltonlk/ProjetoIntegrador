@@ -47,8 +47,7 @@ public class New extends javax.swing.JInternalFrame {
         Material material = new Material();
         material.setName(name);
         material.setActive(active);
-        material.setThermalConductivityKind(thermaConductivityKind);
-        material.setThermalConductivityIndex(thermaConductivity);
+//        material.setThermalConductivityIndex(thermaConductivity);
 
         return material;
     }

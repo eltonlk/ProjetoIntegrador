@@ -25,7 +25,8 @@ public class AuthenticateUser {
         try {
             String input = "{ \"username\":\"" + login + "\", \"password\":\"" + password + "\" }";
 
-            String HOST = "http://localhost:8080";
+//            String HOST = "http://localhost:8080";
+            String HOST = "https://eltonlk-projeto-integrador.herokuapp.com";
             URL url = new URL(HOST + "/login");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);

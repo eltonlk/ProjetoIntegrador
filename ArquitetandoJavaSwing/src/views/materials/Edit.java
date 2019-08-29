@@ -42,15 +42,8 @@ public class Edit extends javax.swing.JInternalFrame {
             this.rb_inactive.setSelected(true);
         }
         
-        if (material.isThermalConductivityVaried()) {
-            this.rb_variedThermaConductivityIndex.setSelected(true);
-        } else {
-            this.rb_variedThermaConductivityIndex.setEnabled(false);
-            this.rb_fixedThermalConductivityIndex.setSelected(true);
-        }
-        
         ftf_thermalConductivityIndex = new JFormattedTextField(NumberFormater.newDecimal(5, 5));
-        ftf_thermalConductivityIndex.setValue(this.material.getThermalConductivityIndex());
+//        ftf_thermalConductivityIndex.setValue(this.material.getThermalConductivityIndex());
 
         this.btn_cancel.setForeground(Color.RED);
     }
@@ -64,8 +57,7 @@ public class Edit extends javax.swing.JInternalFrame {
         Material newMaterial = new Material();
         newMaterial.setName(name);
         newMaterial.setActive(active);
-        newMaterial.setThermalConductivityKind(thermaConductivityKind);
-        newMaterial.setThermalConductivityIndex(thermaConductivity);
+//        newMaterial.setThermalConductivityIndex(thermaConductivity);
 
         return newMaterial;
     }

@@ -22,7 +22,8 @@ import java.net.URL;
  */
 public class ApiConnection {
 
-    private static final String HOST = "http://localhost:8080";
+//    private static final String HOST = "http://localhost:8080";;
+    private static final String HOST = "https://eltonlk-projeto-integrador.herokuapp.com";
 
     /**
      *

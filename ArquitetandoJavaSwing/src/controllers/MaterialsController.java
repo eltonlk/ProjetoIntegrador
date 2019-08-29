@@ -56,8 +56,7 @@ public class MaterialsController {
         try {
             String input = "{\"name\":\"" + material.getName() + "\""
                     + ", \"active\":\"" + material.isActive() + "\""
-                    + ", \"thermal_conductivity_index_kind\":\"" + material.isThermalConductivityFixed() + "\""
-                    + ", \"thermal_conductivity_index\":\"" + material.getThermalConductivityIndex() + "\""
+                    + ", \"thermalConductivityIndex\":\"" + material.getThermalConductivityIndex() + "\""
                     + "}";
 
             new ApiConnection().post("/materials", input);
@@ -78,8 +77,7 @@ public class MaterialsController {
         try {
             String input = "{\"name\":\"" + material.getName() + "\""
                     + ", \"active\":\"" + material.isActive() + "\""
-                    + ", \"thermal_conductivity_index_kind\":\"" + material.isThermalConductivityFixed() + "\""
-                    + ", \"thermal_conductivity_index\":\"" + material.getThermalConductivityIndex() + "\""
+                    + ", \"thermalConductivityIndex\":\"" + material.getThermalConductivityIndex() + "\""
                     + "}";
 
             new ApiConnection().put("/materials/" + id, input);
