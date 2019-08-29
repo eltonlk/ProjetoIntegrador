@@ -14,7 +14,7 @@ public class Material {
     public int id;
     public String name;
     public boolean active;
-//    public double thermalConductivityIndex;
+    public double thermalConductivityIndex;
 
     public Material() {
         this.active = true;
@@ -56,12 +56,12 @@ public class Material {
         this.active = false;
     }
 
-//    public double getThermalConductivityIndex() {;
-//        return thermalConductivityIndex;
-//    }
-//
-//    public void setThermalConductivityIndex(double thermalConductivityIndex) {
-//        this.thermalConductivityIndex = thermalConductivityIndex;
-//    }
+    public double getThermalConductivityIndex() {;
+        return thermalConductivityIndex;
+    }
+
+    public void setThermalConductivityIndex(double thermalConductivityIndex) {
+        this.thermalConductivityIndex = thermalConductivityIndex;
+    }
 
 }

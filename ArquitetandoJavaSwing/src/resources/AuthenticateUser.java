@@ -20,13 +20,13 @@ import java.net.URL;
 public class AuthenticateUser {
 
     private static String token;
+    //private static final String HOST = "http://localhost:8080";
+    private static final String HOST = "https://eltonlk-projeto-integrador.herokuapp.com";
 
     public static boolean authenticate(String login, String password) {
         try {
             String input = "{ \"username\":\"" + login + "\", \"password\":\"" + password + "\" }";
 
-//            String HOST = "http://localhost:8080";
-            String HOST = "https://eltonlk-projeto-integrador.herokuapp.com";
             URL url = new URL(HOST + "/login");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);

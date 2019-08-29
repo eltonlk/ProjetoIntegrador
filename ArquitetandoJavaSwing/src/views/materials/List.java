@@ -68,9 +68,9 @@ public class List extends javax.swing.JInternalFrame {
             data[row][1] = material.getName();
 
             if (material.isInactive()) {
-                data[row][2] = "INATIVO";
+                data[row][2] = "Inativo";
             } else {
-                data[row][2] = "ATIVO";
+                data[row][2] = "Ativo";
             }
             
             data[row][3] = new ImageIcon(getClass().getResource("/images/pencil.png"));
