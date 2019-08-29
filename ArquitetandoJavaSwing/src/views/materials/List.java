@@ -59,7 +59,7 @@ public class List extends javax.swing.JInternalFrame {
 
     private Object[][] tableData(ArrayList<Material> materials) {
         int row = 0;
-        Object[][] data = new Object[materials.size()][5];
+        Object[][] data = new Object[materials.size()][6];
 
         for (Object object : materials) {
             Material material = (Material) object;
@@ -67,12 +67,20 @@ public class List extends javax.swing.JInternalFrame {
             data[row][0] = material.getId();
             data[row][1] = material.getName();
 
-            if (material.isInactive() && cb_searchStatus.getSelectedItem() != "Inativos") {
-                data[row][1] += " - INATIVO";
+            if (material.isInactive()) {
+                data[row][2] += "INATIVO";
+            } else {
+                data[row][2] += "ATIVO";
+            }
+            
+            if (material.isThermalConductivityFixed()) {
+                data[row][3] += "VARIADO";
+            } else {
+                data[row][3] += "FIXO";
             }
 
-            data[row][2] = new ImageIcon(getClass().getResource("/images/pencil.png"));
-            data[row][3] = new ImageIcon(getClass().getResource("/images/times.png"));
+            data[row][4] = new ImageIcon(getClass().getResource("/images/pencil.png"));
+            data[row][5] = new ImageIcon(getClass().getResource("/images/times.png"));
 
             row++;
         }
@@ -88,8 +96,8 @@ public class List extends javax.swing.JInternalFrame {
         table.setRowSelectionAllowed(false);
 
         // definir conteudo como img
-        table.getColumnModel().getColumn(2).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
-        table.getColumnModel().getColumn(3).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
+        table.getColumnModel().getColumn(4).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
+        table.getColumnModel().getColumn(5).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
 
         setTableColumnsWidth();
         setTableColumnAction();
@@ -99,14 +107,22 @@ public class List extends javax.swing.JInternalFrame {
         table.getColumnModel().getColumn(0).setWidth(0);
         table.getColumnModel().getColumn(0).setMinWidth(0);
         table.getColumnModel().getColumn(0).setMaxWidth(0);
+        
+        table.getColumnModel().getColumn(2).setWidth(80);
+        table.getColumnModel().getColumn(2).setMinWidth(80);
+        table.getColumnModel().getColumn(2).setMaxWidth(80);
+        
+        table.getColumnModel().getColumn(3).setWidth(80);
+        table.getColumnModel().getColumn(3).setMinWidth(80);
+        table.getColumnModel().getColumn(3).setMaxWidth(80);
 
-        table.getColumnModel().getColumn(2).setWidth(20);
-        table.getColumnModel().getColumn(2).setMinWidth(20);
-        table.getColumnModel().getColumn(2).setMaxWidth(20);
+        table.getColumnModel().getColumn(4).setWidth(20);
+        table.getColumnModel().getColumn(4).setMinWidth(20);
+        table.getColumnModel().getColumn(4).setMaxWidth(20);
 
-        table.getColumnModel().getColumn(3).setWidth(20);
-        table.getColumnModel().getColumn(3).setMinWidth(20);
-        table.getColumnModel().getColumn(3).setMaxWidth(20);
+        table.getColumnModel().getColumn(5).setWidth(20);
+        table.getColumnModel().getColumn(5).setMinWidth(20);
+        table.getColumnModel().getColumn(5).setMaxWidth(20);
     }
 
     private void setTableColumnAction() {
@@ -116,12 +132,12 @@ public class List extends javax.swing.JInternalFrame {
                 int row = table.rowAtPoint(evt.getPoint());
                 int col = table.columnAtPoint(evt.getPoint());
 
-                if (row >= 0 && col == 2) {
+                if (row >= 0 && col == 4) {
                     int id = (int) table.getModel().getValueAt(row, 0);
 
                     Edit frame = new Edit(id);
                     ApplicationView.changeInternalFrame(frame);
-                } else if (row >= 0 && col == 3) {
+                } else if (row >= 0 && col == 5) {
                     int id = (int) table.getModel().getValueAt(row, 0);
 
                     destroyMaterial(id);

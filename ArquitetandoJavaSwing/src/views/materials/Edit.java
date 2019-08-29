@@ -7,7 +7,9 @@ package views.materials;
 
 import controllers.MaterialsController;
 import java.awt.Color;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import resources.NumberFormater;
 import sources.Material;
 import views.main.ApplicationView;
 
@@ -39,6 +41,16 @@ public class Edit extends javax.swing.JInternalFrame {
         } else {
             this.rb_inactive.setSelected(true);
         }
+        
+        if (material.isThermalConductivityVaried()) {
+            this.rb_variedThermaConductivityIndex.setSelected(true);
+        } else {
+            this.rb_variedThermaConductivityIndex.setEnabled(false);
+            this.rb_fixedThermalConductivityIndex.setSelected(true);
+        }
+        
+        ftf_thermalConductivityIndex = new JFormattedTextField(NumberFormater.newDecimal(5, 5));
+        ftf_thermalConductivityIndex.setValue(this.material.getThermalConductivityIndex());
 
         this.btn_cancel.setForeground(Color.RED);
     }
@@ -46,8 +58,16 @@ public class Edit extends javax.swing.JInternalFrame {
     private Material buildMaterial() {
         String name = tf_name.getText();
         boolean active = rb_active.isSelected();
+        boolean thermaConductivityKind = rb_fixedThermalConductivityIndex.isSelected();
+        double thermaConductivity = Double.parseDouble(ftf_thermalConductivityIndex.getText());
 
-        return new Material(name, active);
+        Material newMaterial = new Material();
+        newMaterial.setName(name);
+        newMaterial.setActive(active);
+        newMaterial.setThermalConductivityKind(thermaConductivityKind);
+        newMaterial.setThermalConductivityIndex(thermaConductivity);
+
+        return newMaterial;
     }
 
     /**
@@ -60,16 +80,19 @@ public class Edit extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         btn_back = new javax.swing.JButton();
-        btn_submit = new javax.swing.JButton();
-        lbl_or = new javax.swing.JLabel();
-        rowPane = new javax.swing.JPanel();
-        col1Pane = new javax.swing.JPanel();
+        mainPane = new javax.swing.JPanel();
         lbl_name = new javax.swing.JLabel();
         tf_name = new javax.swing.JTextField();
-        col2Pane = new javax.swing.JPanel();
         lbl_status = new javax.swing.JLabel();
         rb_active = new javax.swing.JRadioButton();
         rb_inactive = new javax.swing.JRadioButton();
+        lbl_thermalConductivityIndexKind = new javax.swing.JLabel();
+        rb_fixedThermalConductivityIndex = new javax.swing.JRadioButton();
+        rb_variedThermaConductivityIndex = new javax.swing.JRadioButton();
+        lbl_thermalConductivityIndex = new javax.swing.JLabel();
+        ftf_thermalConductivityIndex = new javax.swing.JFormattedTextField();
+        btn_submit = new javax.swing.JButton();
+        lbl_or = new javax.swing.JLabel();
         btn_cancel = new javax.swing.JButton();
 
         btn_back.setText("Voltar");
@@ -79,39 +102,7 @@ public class Edit extends javax.swing.JInternalFrame {
             }
         });
 
-        btn_submit.setText("Atualizar");
-        btn_submit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_submitActionPerformed(evt);
-            }
-        });
-
-        lbl_or.setText("ou");
-
         lbl_name.setText("* Nome:");
-
-        javax.swing.GroupLayout col1PaneLayout = new javax.swing.GroupLayout(col1Pane);
-        col1Pane.setLayout(col1PaneLayout);
-        col1PaneLayout.setHorizontalGroup(
-            col1PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(col1PaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(col1PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(col1PaneLayout.createSequentialGroup()
-                        .addComponent(lbl_name)
-                        .addGap(0, 227, Short.MAX_VALUE))
-                    .addComponent(tf_name))
-                .addContainerGap())
-        );
-        col1PaneLayout.setVerticalGroup(
-            col1PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(col1PaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbl_name)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tf_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
-        );
 
         lbl_status.setText("Situação:");
 
@@ -129,50 +120,84 @@ public class Edit extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout col2PaneLayout = new javax.swing.GroupLayout(col2Pane);
-        col2Pane.setLayout(col2PaneLayout);
-        col2PaneLayout.setHorizontalGroup(
-            col2PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(col2PaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(col2PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(col2PaneLayout.createSequentialGroup()
-                        .addComponent(rb_active)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rb_inactive))
-                    .addComponent(lbl_status))
-                .addContainerGap(182, Short.MAX_VALUE))
-        );
-        col2PaneLayout.setVerticalGroup(
-            col2PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(col2PaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbl_status)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(col2PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rb_active)
-                    .addComponent(rb_inactive))
-                .addContainerGap(50, Short.MAX_VALUE))
-        );
+        lbl_thermalConductivityIndexKind.setText("* Indice Cond. Term.");
 
-        javax.swing.GroupLayout rowPaneLayout = new javax.swing.GroupLayout(rowPane);
-        rowPane.setLayout(rowPaneLayout);
-        rowPaneLayout.setHorizontalGroup(
-            rowPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rowPaneLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(col1Pane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(col2Pane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        rowPaneLayout.setVerticalGroup(
-            rowPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rowPaneLayout.createSequentialGroup()
-                .addGroup(rowPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(col1Pane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(col2Pane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        rb_fixedThermalConductivityIndex.setText("Fixo");
+        rb_fixedThermalConductivityIndex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rb_fixedThermalConductivityIndexActionPerformed(evt);
+            }
+        });
+
+        rb_variedThermaConductivityIndex.setText("Variado");
+        rb_variedThermaConductivityIndex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rb_variedThermaConductivityIndexActionPerformed(evt);
+            }
+        });
+
+        lbl_thermalConductivityIndex.setText("* Indice Cond. Term.:");
+
+        javax.swing.GroupLayout mainPaneLayout = new javax.swing.GroupLayout(mainPane);
+        mainPane.setLayout(mainPaneLayout);
+        mainPaneLayout.setHorizontalGroup(
+            mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tf_name, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ftf_thermalConductivityIndex)
+                    .addGroup(mainPaneLayout.createSequentialGroup()
+                        .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_thermalConductivityIndexKind)
+                            .addComponent(lbl_thermalConductivityIndex)
+                            .addGroup(mainPaneLayout.createSequentialGroup()
+                                .addComponent(rb_fixedThermalConductivityIndex)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rb_variedThermaConductivityIndex))
+                            .addComponent(lbl_name)
+                            .addGroup(mainPaneLayout.createSequentialGroup()
+                                .addComponent(rb_active)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rb_inactive))
+                            .addComponent(lbl_status))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
+        mainPaneLayout.setVerticalGroup(
+            mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbl_name)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tf_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lbl_status)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rb_active)
+                    .addComponent(rb_inactive))
+                .addGap(18, 18, 18)
+                .addComponent(lbl_thermalConductivityIndexKind)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rb_fixedThermalConductivityIndex)
+                    .addComponent(rb_variedThermaConductivityIndex))
+                .addGap(18, 18, 18)
+                .addComponent(lbl_thermalConductivityIndex)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ftf_thermalConductivityIndex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        btn_submit.setText("Atualizar");
+        btn_submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_submitActionPerformed(evt);
+            }
+        });
+
+        lbl_or.setText("ou");
 
         btn_cancel.setText("Cancelar");
         btn_cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -197,9 +222,9 @@ public class Edit extends javax.swing.JInternalFrame {
                         .addComponent(lbl_or)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btn_cancel)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 493, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addComponent(rowPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,13 +232,13 @@ public class Edit extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(btn_back)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rowPane, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mainPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_or)
                     .addComponent(btn_submit)
                     .addComponent(btn_cancel))
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
@@ -251,18 +276,31 @@ public class Edit extends javax.swing.JInternalFrame {
         ApplicationView.changeInternalFrame(frame);
     }//GEN-LAST:event_btn_cancelActionPerformed
 
+    private void rb_variedThermaConductivityIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_variedThermaConductivityIndexActionPerformed
+        rb_fixedThermalConductivityIndex.setSelected(false);
+        rb_variedThermaConductivityIndex.setSelected(true);
+    }//GEN-LAST:event_rb_variedThermaConductivityIndexActionPerformed
+
+    private void rb_fixedThermalConductivityIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_fixedThermalConductivityIndexActionPerformed
+        rb_fixedThermalConductivityIndex.setSelected(true);
+        rb_variedThermaConductivityIndex.setSelected(false);
+    }//GEN-LAST:event_rb_fixedThermalConductivityIndexActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_back;
     private javax.swing.JButton btn_cancel;
     private javax.swing.JButton btn_submit;
-    private javax.swing.JPanel col1Pane;
-    private javax.swing.JPanel col2Pane;
+    private javax.swing.JFormattedTextField ftf_thermalConductivityIndex;
     private javax.swing.JLabel lbl_name;
     private javax.swing.JLabel lbl_or;
     private javax.swing.JLabel lbl_status;
+    private javax.swing.JLabel lbl_thermalConductivityIndex;
+    private javax.swing.JLabel lbl_thermalConductivityIndexKind;
+    private javax.swing.JPanel mainPane;
     private javax.swing.JRadioButton rb_active;
+    private javax.swing.JRadioButton rb_fixedThermalConductivityIndex;
     private javax.swing.JRadioButton rb_inactive;
-    private javax.swing.JPanel rowPane;
+    private javax.swing.JRadioButton rb_variedThermaConductivityIndex;
     private javax.swing.JTextField tf_name;
     // End of variables declaration//GEN-END:variables
 }

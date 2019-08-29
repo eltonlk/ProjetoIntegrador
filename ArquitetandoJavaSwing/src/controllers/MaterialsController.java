@@ -23,13 +23,8 @@ public class MaterialsController {
         ArrayList<Material> materials = new ArrayList<>();
 
         try {
-            ArrayList<Material> materialsObjects = (ArrayList<Material>) new ApiConnection().getList("/materials", new GenericType<ArrayList<Material>>() {
+            materials = (ArrayList<Material>) new ApiConnection().getList("/materials", new GenericType<ArrayList<Material>>() {
             });
-
-            for (Material material : materialsObjects) {
-                material.active();
-                materials.add(material);
-            }
         } catch (MalformedURLException ex) {
             LogManager.doLog(ex.getMessage());
         } catch (IOException ex) {
@@ -46,7 +41,6 @@ public class MaterialsController {
 
         try {
             material = (Material) new ApiConnection().get("/materials/" + id, Material.class);
-            material.active();
         } catch (MalformedURLException ex) {
             LogManager.doLog(ex.getMessage());
         } catch (IOException ex) {
@@ -60,7 +54,11 @@ public class MaterialsController {
 
     public String create(Material material) {
         try {
-            String input = "{\"name\":\"" + material.getName() + "\"}";
+            String input = "{\"name\":\"" + material.getName() + "\""
+                    + ", \"active\":\"" + material.isActive() + "\""
+                    + ", \"thermal_conductivity_index_kind\":\"" + material.isThermalConductivityFixed() + "\""
+                    + ", \"thermal_conductivity_index\":\"" + material.getThermalConductivityIndex() + "\""
+                    + "}";
 
             new ApiConnection().post("/materials", input);
 
@@ -75,10 +73,14 @@ public class MaterialsController {
 
         return "Não foi possivel gravar o material.";
     }
-
+    
     public String update(int id, Material material) {
         try {
-            String input = "{\"name\":\"" + material.getName() + "\"}";
+            String input = "{\"name\":\"" + material.getName() + "\""
+                    + ", \"active\":\"" + material.isActive() + "\""
+                    + ", \"thermal_conductivity_index_kind\":\"" + material.isThermalConductivityFixed() + "\""
+                    + ", \"thermal_conductivity_index\":\"" + material.getThermalConductivityIndex() + "\""
+                    + "}";
 
             new ApiConnection().put("/materials/" + id, input);
 

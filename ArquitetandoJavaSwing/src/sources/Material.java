@@ -14,20 +14,12 @@ public class Material {
     public int id;
     public String name;
     public boolean active;
+    public boolean thermalConductivityKind;
+    public double thermalConductivityIndex;
 
     public Material() {
         this.active = true;
-    }
-
-    public Material(String name, boolean active) {
-        this.name = name;
-        this.active = active;
-    }
-
-    public Material(int id, String name, boolean active) {
-        this.id = id;
-        this.name = name;
-        this.active = active;
+        this.thermalConductivityKind = true;
     }
 
     public int getId() {
@@ -54,11 +46,36 @@ public class Material {
         return !isActive();
     }
 
-    public void active() {
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void activate() {
         this.active = true;
     }
 
-    public void inactive() {
+    public void inactivate() {
         this.active = false;
     }
+
+    public boolean isThermalConductivityFixed() {
+        return thermalConductivityKind;
+    }
+
+    public boolean isThermalConductivityVaried() {
+        return !this.isThermalConductivityFixed();
+    }
+
+    public void setThermalConductivityKind(boolean thermalConductivityKind) {
+        this.thermalConductivityKind = thermalConductivityKind;
+    }
+
+    public double getThermalConductivityIndex() {
+        return thermalConductivityIndex;
+    }
+
+    public void setThermalConductivityIndex(double thermalConductivityIndex) {
+        this.thermalConductivityIndex = thermalConductivityIndex;
+    }
+
 }
