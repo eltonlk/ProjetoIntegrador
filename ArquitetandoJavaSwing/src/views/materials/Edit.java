@@ -7,9 +7,9 @@ package views.materials;
 
 import controllers.MaterialsController;
 import java.awt.Color;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
-import resources.NumberFormater;
+import resources.NumberFormatterFactory;
+import resources.NumberParse;
 import sources.Material;
 import views.main.ApplicationView;
 
@@ -42,8 +42,8 @@ public class Edit extends javax.swing.JInternalFrame {
             this.rb_inactive.setSelected(true);
         }
         
-        ftf_thermalConductivityIndex = new JFormattedTextField(NumberFormater.newDecimal(5, 5));
-//        ftf_thermalConductivityIndex.setValue(this.material.getThermalConductivityIndex());
+        this.ftf_thermalConductivityIndex.setValue(this.material.getThermalConductivityIndex());
+        this.ftf_thermalConductivityIndex.setFormatterFactory(NumberFormatterFactory.newDecimal("####0.00###", 99999.99999));
 
         this.btn_cancel.setForeground(Color.RED);
     }
@@ -51,13 +51,12 @@ public class Edit extends javax.swing.JInternalFrame {
     private Material buildMaterial() {
         String name = tf_name.getText();
         boolean active = rb_active.isSelected();
-        boolean thermaConductivityKind = rb_fixedThermalConductivityIndex.isSelected();
-        double thermaConductivity = Double.parseDouble(ftf_thermalConductivityIndex.getText());
+        double thermaConductivity = NumberParse.parseToDouble(ftf_thermalConductivityIndex.getText());
 
         Material newMaterial = new Material();
         newMaterial.setName(name);
         newMaterial.setActive(active);
-//        newMaterial.setThermalConductivityIndex(thermaConductivity);
+        newMaterial.setThermalConductivityIndex(thermaConductivity);
 
         return newMaterial;
     }
@@ -78,9 +77,6 @@ public class Edit extends javax.swing.JInternalFrame {
         lbl_status = new javax.swing.JLabel();
         rb_active = new javax.swing.JRadioButton();
         rb_inactive = new javax.swing.JRadioButton();
-        lbl_thermalConductivityIndexKind = new javax.swing.JLabel();
-        rb_fixedThermalConductivityIndex = new javax.swing.JRadioButton();
-        rb_variedThermaConductivityIndex = new javax.swing.JRadioButton();
         lbl_thermalConductivityIndex = new javax.swing.JLabel();
         ftf_thermalConductivityIndex = new javax.swing.JFormattedTextField();
         btn_submit = new javax.swing.JButton();
@@ -112,23 +108,7 @@ public class Edit extends javax.swing.JInternalFrame {
             }
         });
 
-        lbl_thermalConductivityIndexKind.setText("* Indice Cond. Term.");
-
-        rb_fixedThermalConductivityIndex.setText("Fixo");
-        rb_fixedThermalConductivityIndex.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rb_fixedThermalConductivityIndexActionPerformed(evt);
-            }
-        });
-
-        rb_variedThermaConductivityIndex.setText("Variado");
-        rb_variedThermaConductivityIndex.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rb_variedThermaConductivityIndexActionPerformed(evt);
-            }
-        });
-
-        lbl_thermalConductivityIndex.setText("* Indice Cond. Term.:");
+        lbl_thermalConductivityIndex.setText("* Indice Condutividade Térmica:");
 
         javax.swing.GroupLayout mainPaneLayout = new javax.swing.GroupLayout(mainPane);
         mainPane.setLayout(mainPaneLayout);
@@ -138,21 +118,16 @@ public class Edit extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tf_name, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ftf_thermalConductivityIndex)
                     .addGroup(mainPaneLayout.createSequentialGroup()
-                        .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_thermalConductivityIndexKind)
-                            .addComponent(lbl_thermalConductivityIndex)
-                            .addGroup(mainPaneLayout.createSequentialGroup()
-                                .addComponent(rb_fixedThermalConductivityIndex)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rb_variedThermaConductivityIndex))
-                            .addComponent(lbl_name)
-                            .addGroup(mainPaneLayout.createSequentialGroup()
+                        .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(ftf_thermalConductivityIndex, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_name, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, mainPaneLayout.createSequentialGroup()
                                 .addComponent(rb_active)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(rb_inactive))
-                            .addComponent(lbl_status))
+                            .addComponent(lbl_status, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_thermalConductivityIndex, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -163,23 +138,17 @@ public class Edit extends javax.swing.JInternalFrame {
                 .addComponent(lbl_name)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tf_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbl_thermalConductivityIndex)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ftf_thermalConductivityIndex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbl_status)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rb_active)
                     .addComponent(rb_inactive))
-                .addGap(18, 18, 18)
-                .addComponent(lbl_thermalConductivityIndexKind)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rb_fixedThermalConductivityIndex)
-                    .addComponent(rb_variedThermaConductivityIndex))
-                .addGap(18, 18, 18)
-                .addComponent(lbl_thermalConductivityIndex)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ftf_thermalConductivityIndex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         btn_submit.setText("Atualizar");
@@ -268,16 +237,6 @@ public class Edit extends javax.swing.JInternalFrame {
         ApplicationView.changeInternalFrame(frame);
     }//GEN-LAST:event_btn_cancelActionPerformed
 
-    private void rb_variedThermaConductivityIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_variedThermaConductivityIndexActionPerformed
-        rb_fixedThermalConductivityIndex.setSelected(false);
-        rb_variedThermaConductivityIndex.setSelected(true);
-    }//GEN-LAST:event_rb_variedThermaConductivityIndexActionPerformed
-
-    private void rb_fixedThermalConductivityIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_fixedThermalConductivityIndexActionPerformed
-        rb_fixedThermalConductivityIndex.setSelected(true);
-        rb_variedThermaConductivityIndex.setSelected(false);
-    }//GEN-LAST:event_rb_fixedThermalConductivityIndexActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_back;
     private javax.swing.JButton btn_cancel;
@@ -287,12 +246,9 @@ public class Edit extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbl_or;
     private javax.swing.JLabel lbl_status;
     private javax.swing.JLabel lbl_thermalConductivityIndex;
-    private javax.swing.JLabel lbl_thermalConductivityIndexKind;
     private javax.swing.JPanel mainPane;
     private javax.swing.JRadioButton rb_active;
-    private javax.swing.JRadioButton rb_fixedThermalConductivityIndex;
     private javax.swing.JRadioButton rb_inactive;
-    private javax.swing.JRadioButton rb_variedThermaConductivityIndex;
     private javax.swing.JTextField tf_name;
     // End of variables declaration//GEN-END:variables
 }
