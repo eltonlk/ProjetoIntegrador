@@ -64,4 +64,8 @@ public class Material {
         this.thermalConductivityIndex = thermalConductivityIndex;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }
