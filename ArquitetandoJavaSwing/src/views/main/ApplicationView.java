@@ -61,6 +61,8 @@ public class ApplicationView extends javax.swing.JFrame {
         menu_cadastro = new javax.swing.JMenu();
         menuItemcategories = new javax.swing.JMenuItem();
         menuItemMaterials = new javax.swing.JMenuItem();
+        menu_calculator = new javax.swing.JMenu();
+        menuItemCaculateThermalTransmittance = new javax.swing.JMenuItem();
         menu_audits = new javax.swing.JMenu();
         menuItemAudits = new javax.swing.JMenuItem();
         menu_options = new javax.swing.JMenu();
@@ -79,6 +81,8 @@ public class ApplicationView extends javax.swing.JFrame {
         welcome.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         welcome.setText("Bem Vindo");
 
+        desktoPaine.setLayer(welcome, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout desktoPaineLayout = new javax.swing.GroupLayout(desktoPaine);
         desktoPaine.setLayout(desktoPaineLayout);
         desktoPaineLayout.setHorizontalGroup(
@@ -95,7 +99,6 @@ public class ApplicationView extends javax.swing.JFrame {
                 .addComponent(welcome)
                 .addContainerGap(150, Short.MAX_VALUE))
         );
-        desktoPaine.setLayer(welcome, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         menu_cadastro.setText("Cadastros");
 
@@ -116,6 +119,18 @@ public class ApplicationView extends javax.swing.JFrame {
         menu_cadastro.add(menuItemMaterials);
 
         menuBar.add(menu_cadastro);
+
+        menu_calculator.setText("Calculo");
+
+        menuItemCaculateThermalTransmittance.setText("Calcular Transmitância Térmica");
+        menuItemCaculateThermalTransmittance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCaculateThermalTransmittanceActionPerformed(evt);
+            }
+        });
+        menu_calculator.add(menuItemCaculateThermalTransmittance);
+
+        menuBar.add(menu_calculator);
 
         menu_audits.setText("Auditoria");
 
@@ -177,6 +192,11 @@ public class ApplicationView extends javax.swing.JFrame {
         changeInternalFrame(frame);
     }//GEN-LAST:event_menuItemAuditsActionPerformed
 
+    private void menuItemCaculateThermalTransmittanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCaculateThermalTransmittanceActionPerformed
+        views.thermalTransmittance.Calculate frame = new views.thermalTransmittance.Calculate();
+        changeInternalFrame(frame);
+    }//GEN-LAST:event_menuItemCaculateThermalTransmittanceActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -213,11 +233,13 @@ public class ApplicationView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menuItemAudits;
+    private javax.swing.JMenuItem menuItemCaculateThermalTransmittance;
     private javax.swing.JMenuItem menuItemMaterials;
     private javax.swing.JMenuItem menuItemOptions;
     private javax.swing.JMenuItem menuItemcategories;
     private javax.swing.JMenu menu_audits;
     private javax.swing.JMenu menu_cadastro;
+    private javax.swing.JMenu menu_calculator;
     private javax.swing.JMenu menu_options;
     private javax.swing.JLabel welcome;
     // End of variables declaration//GEN-END:variables

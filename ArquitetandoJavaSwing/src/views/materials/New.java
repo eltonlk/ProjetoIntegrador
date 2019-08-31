@@ -29,10 +29,10 @@ public class New extends javax.swing.JInternalFrame {
 
     private void initFields() {
         this.rb_active.setSelected(true);
-        
+
         this.ftf_thermalConductivityIndex.setValue(0.0);
         this.ftf_thermalConductivityIndex.setFormatterFactory(NumberFormatterFactory.newDecimal("####0.00###", 99999.99999));
-        
+
         this.btn_cancel.setForeground(Color.RED);
     }
 
@@ -95,6 +95,7 @@ public class New extends javax.swing.JInternalFrame {
                 rb_inactiveActionPerformed(evt);
             }
         });
+
 
         lbl_thermalConductivityIndex.setText("* Indice Condutividade Térmica:");
 
@@ -186,7 +187,7 @@ public class New extends javax.swing.JInternalFrame {
                     .addComponent(lbl_or)
                     .addComponent(btn_submit)
                     .addComponent(btn_cancel))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
 
         pack();

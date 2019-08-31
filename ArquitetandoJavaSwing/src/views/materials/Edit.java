@@ -41,7 +41,7 @@ public class Edit extends javax.swing.JInternalFrame {
         } else {
             this.rb_inactive.setSelected(true);
         }
-        
+
         this.ftf_thermalConductivityIndex.setValue(this.material.getThermalConductivityIndex());
         this.ftf_thermalConductivityIndex.setFormatterFactory(NumberFormatterFactory.newDecimal("####0.00###", 99999.99999));
 
@@ -199,7 +199,7 @@ public class Edit extends javax.swing.JInternalFrame {
                     .addComponent(lbl_or)
                     .addComponent(btn_submit)
                     .addComponent(btn_cancel))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         pack();

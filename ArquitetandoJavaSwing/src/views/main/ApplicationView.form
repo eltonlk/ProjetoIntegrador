@@ -37,6 +37,21 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="menu_calculator">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Calculo"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemCaculateThermalTransmittance">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Calcular Transmit&#xe2;ncia T&#xe9;rmica"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemCaculateThermalTransmittanceActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="menu_audits">
           <Properties>
             <Property name="text" type="java.lang.String" value="Auditoria"/>

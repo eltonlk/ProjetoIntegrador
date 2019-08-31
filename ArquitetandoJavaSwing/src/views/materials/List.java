@@ -70,11 +70,11 @@ public class List extends javax.swing.JInternalFrame {
             data[row][2] = NumberParse.localizeFromDouble(material.getThermalConductivityIndex(), "####0.00###");
 
             if (material.isInactive()) {
-                data[row][3] = "INATIVO";
+                data[row][3] = "Inativo";
             } else {
-                data[row][3] = "ATIVO";
+                data[row][3] = "Ativo";
             }
-            
+
             data[row][4] = new ImageIcon(getClass().getResource("/images/pencil.png"));
             data[row][5] = new ImageIcon(getClass().getResource("/images/times.png"));
 
@@ -103,11 +103,11 @@ public class List extends javax.swing.JInternalFrame {
         table.getColumnModel().getColumn(0).setWidth(0);
         table.getColumnModel().getColumn(0).setMinWidth(0);
         table.getColumnModel().getColumn(0).setMaxWidth(0);
-        
+
         table.getColumnModel().getColumn(3).setWidth(80);
         table.getColumnModel().getColumn(3).setMinWidth(80);
         table.getColumnModel().getColumn(3).setMaxWidth(80);
-        
+
         table.getColumnModel().getColumn(4).setWidth(20);
         table.getColumnModel().getColumn(4).setMinWidth(20);
         table.getColumnModel().getColumn(4).setMaxWidth(20);

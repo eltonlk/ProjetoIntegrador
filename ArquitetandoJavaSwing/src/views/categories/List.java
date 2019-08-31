@@ -88,7 +88,7 @@ public class List extends javax.swing.JInternalFrame {
         // definir conteudo como img
         table.getColumnModel().getColumn(2).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
         table.getColumnModel().getColumn(3).setCellRenderer(table.getDefaultRenderer(ImageIcon.class));
-        
+
         setTableColumnWidth();
         setTableColumnAction();
     }
@@ -117,8 +117,7 @@ public class List extends javax.swing.JInternalFrame {
                 if (row >= 0 && col == 2) {
                     int id = (int) table.getModel().getValueAt(row, 0);
 
-                    Edit frame = new Edit(id);
-                    ApplicationView.changeInternalFrame(frame);
+                    ApplicationView.changeInternalFrame(new Form(id));
                 } else if (row >= 0 && col == 3) {
                     int id = (int) table.getModel().getValueAt(row, 0);
 
@@ -285,8 +284,7 @@ public class List extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newActionPerformed
-        New frame = new New();
-        ApplicationView.changeInternalFrame(frame);
+        ApplicationView.changeInternalFrame(new Form());
     }//GEN-LAST:event_btn_newActionPerformed
 
     private void tf_searchNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_searchNameKeyPressed
