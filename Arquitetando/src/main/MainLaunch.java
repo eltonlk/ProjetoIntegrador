@@ -13,10 +13,9 @@ public class MainLaunch extends Application {
     public void start(Stage stage) {
         stage.setTitle("Arquitetando");
         stage.setResizable(false);
-        
-        MainController.setMainLaunch(this);
-        MainController.setStage(stage);
-        MainController.setScene("/views/Login.fxml");
+
+        StageManager.setStage(stage);
+        StageManager.setScene(StageManager.View.LOGIN);
     }
 
     /**
