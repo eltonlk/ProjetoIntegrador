@@ -26,12 +26,13 @@ INSERT INTO categories (name, active) VALUES ('Pesado', TRUE);
 INSERT INTO categories (name, active) VALUES ('Muito pesado', TRUE);
 INSERT INTO categories (name, active) VALUES ('Extremamente leve', FALSE);
 
-INSERT INTO materials (name, active) VALUES ('Alvenaria', TRUE);
-INSERT INTO materials (name, active) VALUES ('Gesso', TRUE);
-INSERT INTO materials (name, active) VALUES ('Madeira', TRUE);
-INSERT INTO materials (name, active) VALUES ('PVC', TRUE);
-INSERT INTO materials (name, active) VALUES ('Vidro', TRUE);
-INSERT INTO materials (name, active) VALUES ('Espaço vazio', FALSE);
+INSERT INTO materials (name, active, thermal_conductivity_index)
+VALUES ('Alvenaria', TRUE, 123.231),
+  ('Gesso', TRUE, 12345.12345),
+  ('Madeira', TRUE, 12.23),
+  ('PVC', TRUE, 10),
+  ('Vidro', TRUE, 0.123),
+  ('Espaço vazio', FALSE, 12345);
 
 INSERT INTO "audits"("modified_by", "modified_date", "action", "content")
 VALUES ('admin', '2019-08-23 00:18:22', 'CREATED', 'Option{id=null, name=''audits'', value=''enabled''}'),
