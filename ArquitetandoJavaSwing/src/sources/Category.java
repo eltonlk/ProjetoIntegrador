@@ -23,7 +23,7 @@ public class Category {
         this.name = name;
         this.active = active;
     }
-    
+
     public Category(int id, String name, boolean active) {
         this.id = id;
         this.name = name;
@@ -31,7 +31,7 @@ public class Category {
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(int id) {
@@ -39,7 +39,7 @@ public class Category {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -47,7 +47,7 @@ public class Category {
     }
 
     public boolean isActive() {
-        return active;
+        return this.active;
     }
 
     public boolean isInactive() {
