@@ -22,8 +22,8 @@ import java.net.URL;
  */
 public class ApiConnection {
 
-//    private static final String HOST = "http://localhost:8080";;
-    private static final String HOST = "https://eltonlk-projeto-integrador.herokuapp.com";
+//    public static final String HOST = "http://localhost:8080";;
+    public static final String HOST = "https://eltonlk-projeto-integrador.herokuapp.com";
 
     /**
      *
@@ -119,7 +119,7 @@ public class ApiConnection {
 
         if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
             throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
-        }       
+        }
 
         conn.disconnect();
     }

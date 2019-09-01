@@ -8,7 +8,6 @@ package forms;
 import controllers.CategoriesController;
 import javax.swing.JOptionPane;
 import sources.Category;
-import views.categories.List;
 import views.main.ApplicationView;
 
 /**
@@ -65,7 +64,7 @@ public class CategoryForm {
     }
 
     private void goBackToList() {
-        List frame = new List();
+        views.categories.List frame = new views.categories.List();
         ApplicationView.changeInternalFrame(frame);
     }
 }

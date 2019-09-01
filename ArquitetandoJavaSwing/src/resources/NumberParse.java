@@ -13,13 +13,13 @@ import java.text.DecimalFormat;
  * @author Elton Luis Kolling
  */
 public class NumberParse {
-    
+
     public static Double parseToDouble(String numberString) {
         return Double.parseDouble(numberString.replace(",", "."));
     }
-    
+
     public static String localizeFromDouble(double number, String mask) {
-        DecimalFormat formatter = new DecimalFormat(mask);     
+        DecimalFormat formatter = new DecimalFormat(mask);
 
         return formatter.format(number);
     }

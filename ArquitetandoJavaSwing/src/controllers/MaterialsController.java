@@ -72,7 +72,7 @@ public class MaterialsController {
 
         return "Não foi possivel gravar o material.";
     }
-    
+
     public String update(int id, Material material) {
         try {
             String input = "{\"name\":\"" + material.getName() + "\""

@@ -18,6 +18,7 @@ import sources.Audit;
  * @author nyko-
  */
 public class AuditsController {
+
     public ArrayList<Audit> list() {
         ArrayList<Audit> audits = new ArrayList<>();
 

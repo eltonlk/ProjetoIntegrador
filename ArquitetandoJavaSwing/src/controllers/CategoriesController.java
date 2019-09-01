@@ -18,6 +18,7 @@ import sources.Category;
  * @author nyko-
  */
 public class CategoriesController {
+
     public ArrayList<Category> list(String searchParams) {
         ArrayList<Category> categories = new ArrayList<>();
 
@@ -59,7 +60,9 @@ public class CategoriesController {
 
     public String create(Category category) {
         try {
-            String input = "{\"name\":\"" + category.getName() + "\"}";
+            String input = "{\"name\":\"" + category.getName() + "\""
+                    + ", \"active\":\"" + category.isActive() + "\""
+                    + "}";
 
             new ApiConnection().post("/categories", input);
 
@@ -77,7 +80,9 @@ public class CategoriesController {
 
     public String update(int id, Category category) {
         try {
-            String input = "{\"name\":\"" + category.getName() + "\"}";
+            String input = "{\"name\":\"" + category.getName() + "\""
+                    + ", \"active\":\"" + category.isActive() + "\""
+                    + "}";
 
             new ApiConnection().put("/categories/" + id, input);
 
