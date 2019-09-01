@@ -7,6 +7,7 @@ package views.categories;
 
 import forms.CategoryForm;
 import java.awt.Color;
+import java.awt.Font;
 
 /**
  *
@@ -25,6 +26,10 @@ public class Form extends javax.swing.JInternalFrame {
         form = new CategoryForm(id);
 
         initComponents();
+        
+        titleLabel.setText("Alterar Categoria");
+        titleLabel.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
+        
         initFields();
     }
 
@@ -35,6 +40,10 @@ public class Form extends javax.swing.JInternalFrame {
         form = new CategoryForm();
 
         initComponents();
+        
+        titleLabel.setText("Adicionar Categoria");
+        titleLabel.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
+        
         initFields();
     }
 
@@ -63,6 +72,7 @@ public class Form extends javax.swing.JInternalFrame {
         submitButton = new javax.swing.JButton();
         orLabel = new javax.swing.JLabel();
         cancellButton = new javax.swing.JButton();
+        titleLabel = new javax.swing.JLabel();
 
         backButton.setText("Voltar");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +115,8 @@ public class Form extends javax.swing.JInternalFrame {
             }
         });
 
+        titleLabel.setText("Adicionar/Alterar Categoria");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,32 +125,37 @@ public class Form extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(submitButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(orLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cancellButton))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
-                            .addComponent(nameLabel))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(statusLabel)
-                            .addComponent(activeRadioButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(inactiveRadioButton)))
-                .addContainerGap(161, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(backButton)
-                .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(submitButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(orLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cancellButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                                    .addComponent(nameLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(statusLabel)
+                                    .addComponent(activeRadioButton))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(inactiveRadioButton)))
+                        .addContainerGap(161, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(titleLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backButton)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(backButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backButton)
+                    .addComponent(titleLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(statusLabel)
@@ -194,5 +211,6 @@ public class Form extends javax.swing.JInternalFrame {
     private javax.swing.JLabel orLabel;
     private javax.swing.JLabel statusLabel;
     private javax.swing.JButton submitButton;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -27,16 +27,17 @@ public class ViewsManager {
 
     private static LoginView buildLoginView() {
         LoginView view = new LoginView();
+        view.setSize(new Dimension(600, 400));
+        view.setResizable(false);
         view.setLocationRelativeTo(null);
-        view.setMinimumSize(new Dimension(600, 400));
         return view;
     }
 
     private static ApplicationView buildApplicationView() {
         ApplicationView view = new ApplicationView();
-        view.setLocationRelativeTo(null);
         view.setExtendedState(MAXIMIZED_BOTH);
         view.setMinimumSize(new Dimension(600, 400));
+        view.setLocationRelativeTo(null);
         return view;
     }
 

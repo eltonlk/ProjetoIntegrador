@@ -7,6 +7,7 @@ package views.materials;
 
 import forms.MaterialForm;
 import java.awt.Color;
+import java.awt.Font;
 import resources.NumberFormatterFactory;
 
 /**
@@ -26,6 +27,10 @@ public class Form extends javax.swing.JInternalFrame {
         form = new MaterialForm(id);
 
         initComponents();
+
+        titleLabel.setText("Alterar Material");
+        titleLabel.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
+
         initFields();
     }
 
@@ -33,6 +38,10 @@ public class Form extends javax.swing.JInternalFrame {
         form = new MaterialForm();
 
         initComponents();
+
+        titleLabel.setText("Adicionar Material");
+        titleLabel.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
+
         initFields();
     }
 
@@ -65,6 +74,7 @@ public class Form extends javax.swing.JInternalFrame {
         submitButton = new javax.swing.JButton();
         orLabel = new javax.swing.JLabel();
         cancellButton = new javax.swing.JButton();
+        titleLabel = new javax.swing.JLabel();
 
         backButton.setText("Voltar");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +119,8 @@ public class Form extends javax.swing.JInternalFrame {
             }
         });
 
+        titleLabel.setText("Adicionar/Alterar Material");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,7 +153,8 @@ public class Form extends javax.swing.JInternalFrame {
                                 .addComponent(cancellButton)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(titleLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(backButton)))
                 .addContainerGap())
         );
@@ -149,7 +162,9 @@ public class Form extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(backButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backButton)
+                    .addComponent(titleLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameLabel)
@@ -213,5 +228,6 @@ public class Form extends javax.swing.JInternalFrame {
     private javax.swing.JButton submitButton;
     private javax.swing.JFormattedTextField thermalConductivityIndexFormattedTextField;
     private javax.swing.JLabel thermalConductivityIndexLabel;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,7 @@
 package views.categories;
 
 import controllers.CategoriesController;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -25,6 +26,9 @@ public class List extends javax.swing.JInternalFrame {
      */
     public List() {
         initComponents();
+
+        titleLabel.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
+
         initSearchForm();
 
         ArrayList<Category> categories = new CategoriesController().list(searchParams());
@@ -176,9 +180,10 @@ public class List extends javax.swing.JInternalFrame {
         tf_searchName = new javax.swing.JTextField();
         btn_searchSubmit = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        cb_searchStatus = new javax.swing.JComboBox<String>();
+        cb_searchStatus = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
+        titleLabel = new javax.swing.JLabel();
 
         btn_new.setText("Adicionar");
         btn_new.addActionListener(new java.awt.event.ActionListener() {
@@ -206,7 +211,7 @@ public class List extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Situação:");
 
-        cb_searchStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_searchStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout searchPaneLayout = new javax.swing.GroupLayout(searchPane);
         searchPane.setLayout(searchPaneLayout);
@@ -254,6 +259,8 @@ public class List extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(table);
 
+        titleLabel.setText("Categorias");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -263,7 +270,8 @@ public class List extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(searchPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(titleLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_new))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE))
                 .addContainerGap())
@@ -272,7 +280,9 @@ public class List extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btn_new)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_new)
+                    .addComponent(titleLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(searchPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -312,6 +322,7 @@ public class List extends javax.swing.JInternalFrame {
     private javax.swing.JPanel searchPane;
     private javax.swing.JTable table;
     private javax.swing.JTextField tf_searchName;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 
 }

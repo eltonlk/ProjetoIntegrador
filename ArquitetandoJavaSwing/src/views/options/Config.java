@@ -6,6 +6,7 @@
 package views.options;
 
 import controllers.OptionsController;
+import java.awt.Font;
 import javax.swing.JOptionPane;
 import sources.Option;
 
@@ -22,6 +23,8 @@ public class Config extends javax.swing.JInternalFrame {
      */
     public Config() {
         initComponents();
+
+        titleLabel.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
 
         option = new OptionsController().list().get(0);
 
@@ -43,11 +46,20 @@ public class Config extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        col2Pane = new javax.swing.JPanel();
+        btn_submit = new javax.swing.JButton();
+        titleLabel = new javax.swing.JLabel();
         lbl_status = new javax.swing.JLabel();
         rb_active = new javax.swing.JRadioButton();
         rb_inactive = new javax.swing.JRadioButton();
-        btn_submit = new javax.swing.JButton();
+
+        btn_submit.setText("Atualizar");
+        btn_submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_submitActionPerformed(evt);
+            }
+        });
+
+        titleLabel.setText("Opções do Sistema");
 
         lbl_status.setText("Auditar registros:");
 
@@ -65,39 +77,6 @@ public class Config extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout col2PaneLayout = new javax.swing.GroupLayout(col2Pane);
-        col2Pane.setLayout(col2PaneLayout);
-        col2PaneLayout.setHorizontalGroup(
-            col2PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(col2PaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(col2PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(col2PaneLayout.createSequentialGroup()
-                        .addComponent(rb_active)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rb_inactive))
-                    .addComponent(lbl_status))
-                .addContainerGap(182, Short.MAX_VALUE))
-        );
-        col2PaneLayout.setVerticalGroup(
-            col2PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(col2PaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbl_status)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(col2PaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rb_active)
-                    .addComponent(rb_inactive))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        btn_submit.setText("Atualizar");
-        btn_submit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_submitActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,20 +85,32 @@ public class Config extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(col2Pane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(351, 351, 351))
+                        .addComponent(titleLabel)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_submit)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(rb_active)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rb_inactive))
+                            .addComponent(lbl_status)
+                            .addComponent(btn_submit))
+                        .addGap(0, 543, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(col2Pane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbl_status)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rb_active)
+                    .addComponent(rb_inactive))
+                .addGap(18, 18, 18)
                 .addComponent(btn_submit)
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
         pack();
@@ -154,10 +145,10 @@ public class Config extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_submit;
-    private javax.swing.JPanel col2Pane;
     private javax.swing.JLabel lbl_status;
     private javax.swing.JRadioButton rb_active;
     private javax.swing.JRadioButton rb_inactive;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 
 }
