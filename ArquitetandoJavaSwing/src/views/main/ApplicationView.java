@@ -5,7 +5,6 @@
  */
 package views.main;
 
-import java.awt.Dimension;
 import java.beans.PropertyVetoException;
 import javax.swing.JInternalFrame;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -23,9 +22,6 @@ public class ApplicationView extends javax.swing.JFrame {
      */
     public ApplicationView() {
         initComponents();
-
-        this.setExtendedState(MAXIMIZED_BOTH);
-        this.setMinimumSize(new Dimension(600, 400));
 
         this.applicationView = this;
     }

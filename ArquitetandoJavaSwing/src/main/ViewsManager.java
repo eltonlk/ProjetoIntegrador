@@ -5,6 +5,8 @@
  */
 package main;
 
+import java.awt.Dimension;
+import static java.awt.Frame.MAXIMIZED_BOTH;
 import resources.AuthenticateUser;
 import views.main.ApplicationView;
 import views.main.LoginView;
@@ -15,27 +17,42 @@ import views.main.LoginView;
  */
 public class ViewsManager {
 
-    private static final LoginView loginView = new LoginView();
-    private static final ApplicationView applicationView = new ApplicationView();
+    private static final LoginView LOGIN_VIEW = buildLoginView();
+    private static final ApplicationView APPLICATION_VIEW = buildApplicationView();
 
     public enum View {
         LOGIN,
         APPLICATION
     }
 
+    private static LoginView buildLoginView() {
+        LoginView view = new LoginView();
+        view.setLocationRelativeTo(null);
+        view.setMinimumSize(new Dimension(600, 400));
+        return view;
+    }
+
+    private static ApplicationView buildApplicationView() {
+        ApplicationView view = new ApplicationView();
+        view.setLocationRelativeTo(null);
+        view.setExtendedState(MAXIMIZED_BOTH);
+        view.setMinimumSize(new Dimension(600, 400));
+        return view;
+    }
+
     public static void showView(View view) {
         switch (view) {
             case LOGIN:
-                loginView.setVisible(true);
-                applicationView.setVisible(false);
+                LOGIN_VIEW.setVisible(true);
+                APPLICATION_VIEW.setVisible(false);
                 break;
             case APPLICATION:
                 if (AuthenticateUser.isAuthenticated()) {
-                    applicationView.setVisible(true);
-                    loginView.setVisible(false);
+                    APPLICATION_VIEW.setVisible(true);
+                    LOGIN_VIEW.setVisible(false);
                 } else {
-                    loginView.setVisible(true);
-                    applicationView.setVisible(false);
+                    LOGIN_VIEW.setVisible(true);
+                    APPLICATION_VIEW.setVisible(false);
                 }
                 break;
         }
