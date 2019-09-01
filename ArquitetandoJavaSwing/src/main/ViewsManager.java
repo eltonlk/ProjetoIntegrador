@@ -7,6 +7,9 @@ package main;
 
 import java.awt.Dimension;
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import resources.AuthenticateUser;
 import views.main.ApplicationView;
 import views.main.LoginView;
@@ -30,6 +33,11 @@ public class ViewsManager {
         view.setSize(new Dimension(600, 400));
         view.setResizable(false);
         view.setLocationRelativeTo(null);
+
+        URL resource = view.getClass().getResource("/images/logo.png");
+        Image image = Toolkit.getDefaultToolkit().getImage(resource);
+        view.setIconImage(image);
+
         return view;
     }
 
@@ -38,6 +46,11 @@ public class ViewsManager {
         view.setExtendedState(MAXIMIZED_BOTH);
         view.setMinimumSize(new Dimension(600, 400));
         view.setLocationRelativeTo(null);
+
+        URL resource = view.getClass().getResource("/images/logo.png");
+        Image image = Toolkit.getDefaultToolkit().getImage(resource);
+        view.setIconImage(image);
+
         return view;
     }
 
