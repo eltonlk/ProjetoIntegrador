@@ -8,6 +8,7 @@ package views.main;
 import java.awt.Dimension;
 import java.beans.PropertyVetoException;
 import javax.swing.JInternalFrame;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
  *
@@ -31,6 +32,10 @@ public class ApplicationView extends javax.swing.JFrame {
 
     public static void changeInternalFrame(Object object) {
         JInternalFrame frame = (JInternalFrame) object;
+        frame.setBorder(null);
+
+        BasicInternalFrameUI bi = (BasicInternalFrameUI) frame.getUI();
+        bi.setNorthPane(null);
 
         applicationView.desktoPaine.removeAll();
         applicationView.desktoPaine.add(frame);
