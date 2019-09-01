@@ -16,8 +16,8 @@ import views.main.ApplicationView;
  */
 public class CategoryForm {
 
-    protected final Category category;
-    protected final String action;
+    private final Category category;
+    private final String action;
 
     public CategoryForm(int id) {
         this.action = "update";

@@ -17,8 +17,8 @@ import views.main.ApplicationView;
  */
 public class MaterialForm {
 
-    protected final Material material;
-    protected final String action;
+    private final Material material;
+    private final String action;
 
     public MaterialForm(int id) {
         this.action = "update";

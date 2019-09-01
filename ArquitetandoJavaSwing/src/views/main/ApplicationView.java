@@ -33,8 +33,8 @@ public class ApplicationView extends javax.swing.JFrame {
         BasicInternalFrameUI bi = (BasicInternalFrameUI) frame.getUI();
         bi.setNorthPane(null);
 
-        applicationView.desktoPaine.removeAll();
-        applicationView.desktoPaine.add(frame);
+        applicationView.desktopPane.removeAll();
+        applicationView.desktopPane.add(frame);
         frame.setVisible(true);
 
         // setMaximum works only after setVisible
@@ -54,108 +54,110 @@ public class ApplicationView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        desktoPaine = new javax.swing.JDesktopPane();
+        desktopPane = new javax.swing.JDesktopPane();
         welcome = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
-        menu_cadastro = new javax.swing.JMenu();
-        menuItemcategories = new javax.swing.JMenuItem();
-        menuItemMaterials = new javax.swing.JMenuItem();
-        menu_calculator = new javax.swing.JMenu();
-        menuItemCaculateThermalTransmittance = new javax.swing.JMenuItem();
-        menu_audits = new javax.swing.JMenu();
-        menuItemAudits = new javax.swing.JMenuItem();
-        menu_options = new javax.swing.JMenu();
-        menuItemOptions = new javax.swing.JMenuItem();
-
-        jMenuItem1.setText("jMenuItem1");
-
-        jMenuItem2.setText("jMenuItem2");
+        registerMenu = new javax.swing.JMenu();
+        categoryMenuItem = new javax.swing.JMenuItem();
+        materialMenuItem = new javax.swing.JMenuItem();
+        userMenuItem = new javax.swing.JMenuItem();
+        calculatorMenu = new javax.swing.JMenu();
+        calculatorMenuItem = new javax.swing.JMenuItem();
+        auditMenu = new javax.swing.JMenu();
+        auditMenuItem = new javax.swing.JMenuItem();
+        optionMenu = new javax.swing.JMenu();
+        optionMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Arquitetando");
-        setPreferredSize(new java.awt.Dimension(400, 250));
 
-        desktoPaine.setBackground(new java.awt.Color(240, 240, 240));
+        desktopPane.setBackground(new java.awt.Color(240, 240, 240));
 
         welcome.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         welcome.setText("Bem Vindo");
 
-        desktoPaine.setLayer(welcome, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktopPane.setLayer(welcome, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout desktoPaineLayout = new javax.swing.GroupLayout(desktoPaine);
-        desktoPaine.setLayout(desktoPaineLayout);
-        desktoPaineLayout.setHorizontalGroup(
-            desktoPaineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktoPaineLayout.createSequentialGroup()
+        javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
+        desktopPane.setLayout(desktopPaneLayout);
+        desktopPaneLayout.setHorizontalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopPaneLayout.createSequentialGroup()
                 .addContainerGap(150, Short.MAX_VALUE)
                 .addComponent(welcome)
                 .addContainerGap(150, Short.MAX_VALUE))
         );
-        desktoPaineLayout.setVerticalGroup(
-            desktoPaineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(desktoPaineLayout.createSequentialGroup()
+        desktopPaneLayout.setVerticalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(desktopPaneLayout.createSequentialGroup()
                 .addContainerGap(150, Short.MAX_VALUE)
                 .addComponent(welcome)
                 .addContainerGap(150, Short.MAX_VALUE))
         );
 
-        menu_cadastro.setText("Cadastros");
+        registerMenu.setText("Cadastros");
 
-        menuItemcategories.setText("Categorias");
-        menuItemcategories.addActionListener(new java.awt.event.ActionListener() {
+        categoryMenuItem.setText("Categorias");
+        categoryMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemcategoriesActionPerformed(evt);
+                categoryMenuItemActionPerformed(evt);
             }
         });
-        menu_cadastro.add(menuItemcategories);
+        registerMenu.add(categoryMenuItem);
 
-        menuItemMaterials.setText("Materiais");
-        menuItemMaterials.addActionListener(new java.awt.event.ActionListener() {
+        materialMenuItem.setText("Materiais");
+        materialMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemMaterialsActionPerformed(evt);
+                materialMenuItemActionPerformed(evt);
             }
         });
-        menu_cadastro.add(menuItemMaterials);
+        registerMenu.add(materialMenuItem);
 
-        menuBar.add(menu_cadastro);
-
-        menu_calculator.setText("Calculo");
-
-        menuItemCaculateThermalTransmittance.setText("Calcular Transmitância Térmica");
-        menuItemCaculateThermalTransmittance.addActionListener(new java.awt.event.ActionListener() {
+        userMenuItem.setText("Usuários");
+        userMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemCaculateThermalTransmittanceActionPerformed(evt);
+                userMenuItemActionPerformed(evt);
             }
         });
-        menu_calculator.add(menuItemCaculateThermalTransmittance);
+        registerMenu.add(userMenuItem);
 
-        menuBar.add(menu_calculator);
+        menuBar.add(registerMenu);
 
-        menu_audits.setText("Auditoria");
+        calculatorMenu.setText("Calculo");
 
-        menuItemAudits.setText("Listagem");
-        menuItemAudits.addActionListener(new java.awt.event.ActionListener() {
+        calculatorMenuItem.setText("Calcular Transmitância Térmica");
+        calculatorMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemAuditsActionPerformed(evt);
+                calculatorMenuItemActionPerformed(evt);
             }
         });
-        menu_audits.add(menuItemAudits);
+        calculatorMenu.add(calculatorMenuItem);
 
-        menuBar.add(menu_audits);
+        menuBar.add(calculatorMenu);
 
-        menu_options.setText("Configurações");
+        auditMenu.setText("Auditoria");
 
-        menuItemOptions.setText("Configurações");
-        menuItemOptions.addActionListener(new java.awt.event.ActionListener() {
+        auditMenuItem.setText("Listagem");
+        auditMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemOptionsActionPerformed(evt);
+                auditMenuItemActionPerformed(evt);
             }
         });
-        menu_options.add(menuItemOptions);
+        auditMenu.add(auditMenuItem);
 
-        menuBar.add(menu_options);
+        menuBar.add(auditMenu);
+
+        optionMenu.setText("Configurações");
+
+        optionMenuItem.setText("Configurações");
+        optionMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optionMenuItemActionPerformed(evt);
+            }
+        });
+        optionMenu.add(optionMenuItem);
+
+        menuBar.add(optionMenu);
 
         setJMenuBar(menuBar);
 
@@ -163,40 +165,45 @@ public class ApplicationView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktoPaine)
+            .addComponent(desktopPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktoPaine, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(desktopPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuItemMaterialsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemMaterialsActionPerformed
+    private void materialMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialMenuItemActionPerformed
         views.materials.List frame = new views.materials.List();
         changeInternalFrame(frame);
-    }//GEN-LAST:event_menuItemMaterialsActionPerformed
+    }//GEN-LAST:event_materialMenuItemActionPerformed
 
-    private void menuItemcategoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemcategoriesActionPerformed
+    private void categoryMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryMenuItemActionPerformed
         views.categories.List frame = new views.categories.List();
         changeInternalFrame(frame);
-    }//GEN-LAST:event_menuItemcategoriesActionPerformed
+    }//GEN-LAST:event_categoryMenuItemActionPerformed
 
-    private void menuItemOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemOptionsActionPerformed
+    private void optionMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionMenuItemActionPerformed
         views.options.Config frame = new views.options.Config();
         changeInternalFrame(frame);
-    }//GEN-LAST:event_menuItemOptionsActionPerformed
+    }//GEN-LAST:event_optionMenuItemActionPerformed
 
-    private void menuItemAuditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAuditsActionPerformed
+    private void auditMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_auditMenuItemActionPerformed
         views.audits.List frame = new views.audits.List();
         changeInternalFrame(frame);
-    }//GEN-LAST:event_menuItemAuditsActionPerformed
+    }//GEN-LAST:event_auditMenuItemActionPerformed
 
-    private void menuItemCaculateThermalTransmittanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCaculateThermalTransmittanceActionPerformed
+    private void calculatorMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculatorMenuItemActionPerformed
         views.thermalTransmittance.Calculate frame = new views.thermalTransmittance.Calculate();
         changeInternalFrame(frame);
-    }//GEN-LAST:event_menuItemCaculateThermalTransmittanceActionPerformed
+    }//GEN-LAST:event_calculatorMenuItemActionPerformed
+
+    private void userMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userMenuItemActionPerformed
+        views.users.List frame = new views.users.List();
+        changeInternalFrame(frame);
+    }//GEN-LAST:event_userMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,19 +236,18 @@ public class ApplicationView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane desktoPaine;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenu auditMenu;
+    private javax.swing.JMenuItem auditMenuItem;
+    private javax.swing.JMenu calculatorMenu;
+    private javax.swing.JMenuItem calculatorMenuItem;
+    private javax.swing.JMenuItem categoryMenuItem;
+    private javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JMenuItem materialMenuItem;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem menuItemAudits;
-    private javax.swing.JMenuItem menuItemCaculateThermalTransmittance;
-    private javax.swing.JMenuItem menuItemMaterials;
-    private javax.swing.JMenuItem menuItemOptions;
-    private javax.swing.JMenuItem menuItemcategories;
-    private javax.swing.JMenu menu_audits;
-    private javax.swing.JMenu menu_cadastro;
-    private javax.swing.JMenu menu_calculator;
-    private javax.swing.JMenu menu_options;
+    private javax.swing.JMenu optionMenu;
+    private javax.swing.JMenuItem optionMenuItem;
+    private javax.swing.JMenu registerMenu;
+    private javax.swing.JMenuItem userMenuItem;
     private javax.swing.JLabel welcome;
     // End of variables declaration//GEN-END:variables
 }
