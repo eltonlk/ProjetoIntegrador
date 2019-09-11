@@ -5,38 +5,31 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
-import com.projeto.integrador.serverapi.model.Role;
+import com.projeto.integrador.serverapi.model.Privilege;
 
 import java.io.IOException;
 
-public class RoleSerializer extends StdSerializer<Role> {
+public class PrivilegeSerializer extends StdSerializer<Privilege> {
 
   private static final long serialVersionUID = 1L;
 
-  public RoleSerializer() {
+  public PrivilegeSerializer() {
     this(null);
   }
 
-  protected RoleSerializer(Class<Role> t) {
+  protected PrivilegeSerializer(Class<Privilege> t) {
     super(t);
   }
 
   @Override
   public void serialize(
-    Role role,
+    Privilege privilege,
     JsonGenerator generator,
     SerializerProvider provider)
   throws IOException, JsonProcessingException {
     generator.writeStartObject();
-    generator.writeNumberField("id", role.getId());
-    generator.writeStringField("name", role.getName());
-    generator.writeArrayFieldStart("privileges");
-
-    for (Object privilege : role.getPrivileges()) {
-      generator.writeObject(privilege);
-    }
-
-    generator.writeEndArray();
+    generator.writeNumberField("id", privilege.getId());
+    generator.writeStringField("name", privilege.getName());
     generator.writeEndObject();
   }
 
