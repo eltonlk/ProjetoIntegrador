@@ -1,10 +1,16 @@
 package com.projeto.integrador.serverapi.controller;
 
+import com.projeto.integrador.serverapi.model.Privilege;
+import com.projeto.integrador.serverapi.model.Role;
 import com.projeto.integrador.serverapi.model.User;
+import com.projeto.integrador.serverapi.repository.PrivilegesRepository;
+import com.projeto.integrador.serverapi.repository.RolesRepository;
 import com.projeto.integrador.serverapi.repository.UsersRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,6 +29,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @RequestMapping({"/users"})
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 public class UsersController {
+
+  @Autowired
+  private PrivilegesRepository privilegesRepository;
+
+  @Autowired
+  private RolesRepository rolesRepository;
 
   private UsersRepository repository;
 
@@ -67,6 +79,33 @@ public class UsersController {
       .map(record -> {
         record.setEmail(user.getEmail());
         record.setName(user.getName());
+        record.setUsername(user.getUsername());
+        record.setActive(user.isActive());
+
+        for (Role role : record.getRoles()) {
+          for (Privilege privilege : role.getPrivileges()) {
+            privilegesRepository.delete(privilege);
+          }
+
+          rolesRepository.delete(role);
+        }
+
+        for (Role role : user.getRoles()) {
+          List<Privilege> privileges = new ArrayList<>();
+
+          for (Privilege privilege : role.getPrivileges()) {
+            Privilege newPrivilege = new Privilege();
+            newPrivilege.setName(privilege.getName());
+
+            // privileges.add(privilegesRepository.save(newPrivilege));
+          }
+
+          Role newRole = new Role();
+          newRole.setName(role.getName());
+          newRole.setPrivileges(privileges);
+
+          // rolesRepository.save(newRole);
+        }
 
         User updated = repository.save(record);
 
@@ -78,7 +117,7 @@ public class UsersController {
   public ResponseEntity<?> delete(@PathVariable long id) {
     return repository.findById(id)
       .map(record -> {
-        repository.deleteById(id);
+        repository.delete(record);
 
         return ResponseEntity.ok().build();
       }).orElse(ResponseEntity.notFound().build());
