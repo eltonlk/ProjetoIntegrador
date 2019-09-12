@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping({"/materials"})
+@PreAuthorize("hasRole('ROLE_MATERIALS')")
 public class MaterialsController {
 
   private MaterialsRepository repository;
@@ -37,13 +38,13 @@ public class MaterialsController {
   }
 
   @GetMapping
-  @PreAuthorize("hasRole('ROLE_MATERIALS')")
+  @PreAuthorize("hasAuthority('READ_PRIVILEGE')")
   public List<Material> findAll(){
     return repository.findAll();
   }
 
   @GetMapping(path = {"/{id}"})
-  @PreAuthorize("hasRole('ROLE_MATERIALS')")
+  @PreAuthorize("hasAuthority('READ_PRIVILEGE')")
   public ResponseEntity<Material> findById(@PathVariable long id) {
     return repository.findById(id)
       .map(record -> ResponseEntity.ok().body(record))
@@ -51,14 +52,14 @@ public class MaterialsController {
   }
 
   @PostMapping
-  @PreAuthorize("hasRole('ROLE_MATERIALS')")
+  @PreAuthorize("hasAuthority('CREATE_PRIVILEGE')")
   @ResponseStatus(HttpStatus.CREATED)
   public Material create(@RequestBody Material material) {
     return repository.save(material);
   }
 
   @PutMapping(value="/{id}")
-  @PreAuthorize("hasRole('ROLE_MATERIALS')")
+  @PreAuthorize("hasAuthority('UPDATE_PRIVILEGE')")
   public ResponseEntity<Material> update(@PathVariable("id") long id, @RequestBody Material material) {
     return repository.findById(id)
       .map(record -> {
@@ -73,7 +74,7 @@ public class MaterialsController {
   }
 
   @DeleteMapping(path ={"/{id}"})
-  @PreAuthorize("hasRole('ROLE_MATERIALS')")
+  @PreAuthorize("hasAuthority('DELETE_PRIVILEGE')")
   public ResponseEntity<?> delete(@PathVariable long id) {
     return repository.findById(id)
       .map(record -> {

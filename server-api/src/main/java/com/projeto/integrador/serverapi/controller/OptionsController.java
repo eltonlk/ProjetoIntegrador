@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping({"/options"})
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class OptionsController {
 
   private OptionsRepository repository;
@@ -33,13 +34,11 @@ public class OptionsController {
   }
 
   @GetMapping
-  @PreAuthorize("hasRole('ROLE_ADMIN')")
   public List<Option> findAll(){
     return repository.findAll();
   }
 
   @PutMapping(value="/{id}")
-  @PreAuthorize("hasRole('ROLE_ADMIN')")
   public ResponseEntity<Option> update(@PathVariable("id") long id, @RequestBody Option option) {
     return repository.findById(id)
       .map(record -> {

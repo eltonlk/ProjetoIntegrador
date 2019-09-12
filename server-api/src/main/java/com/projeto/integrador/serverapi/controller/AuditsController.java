@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping({"/audits"})
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class AuditsController {
 
   private AuditsRepository repository;
@@ -29,7 +30,6 @@ public class AuditsController {
   }
 
   @GetMapping
-  @PreAuthorize("hasRole('ROLE_ADMIN')")
   public List<Audit> findAll() {
     return repository.findAll();
   }

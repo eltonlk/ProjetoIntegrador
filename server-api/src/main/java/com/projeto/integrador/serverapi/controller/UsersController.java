@@ -21,6 +21,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @RestController
 @RequestMapping({"/users"})
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class UsersController {
 
   private UsersRepository repository;
@@ -38,13 +39,12 @@ public class UsersController {
   }
 
   @GetMapping
-  @PreAuthorize("hasRole('ROLE_ADMIN')")
+
   public List<User> findAll(){
     return repository.findAll();
   }
 
   @GetMapping(path = {"/{id}"})
-  @PreAuthorize("hasRole('ROLE_ADMIN')")
   public ResponseEntity<User> findById(@PathVariable long id) {
     return repository.findById(id)
       .map(record -> ResponseEntity.ok().body(record))
@@ -52,7 +52,6 @@ public class UsersController {
   }
 
   @PostMapping
-  @PreAuthorize("hasRole('ROLE_ADMIN')")
   @ResponseStatus(HttpStatus.CREATED)
   public User create(@RequestBody User user) {
     BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
@@ -63,7 +62,6 @@ public class UsersController {
   }
 
   @PutMapping(value="/{id}")
-  @PreAuthorize("hasRole('ROLE_ADMIN')")
   public ResponseEntity<User> update(@PathVariable("id") long id, @RequestBody User user) {
     return repository.findById(id)
       .map(record -> {
@@ -77,7 +75,6 @@ public class UsersController {
   }
 
   @DeleteMapping(path ={"/{id}"})
-  @PreAuthorize("hasRole('ROLE_ADMIN')")
   public ResponseEntity<?> delete(@PathVariable long id) {
     return repository.findById(id)
       .map(record -> {

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping({"/roles"})
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class RolesController {
 
   private RolesRepository repository;
@@ -29,7 +30,6 @@ public class RolesController {
   }
 
   @GetMapping
-  @PreAuthorize("hasRole('ROLE_ADMIN')")
   public List<Role> findAll() {
     return repository.findAll();
   }

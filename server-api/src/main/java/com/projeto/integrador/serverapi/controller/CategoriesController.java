@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping({"/categories"})
+@PreAuthorize("hasRole('ROLE_CATEGORIES')")
 public class CategoriesController {
 
   private CategoriesRepository repository;
@@ -37,13 +38,13 @@ public class CategoriesController {
   }
 
   @GetMapping
-  @PreAuthorize("hasRole('ROLE_CATEGORIES')")
+  @PreAuthorize("hasAuthority('READ_PRIVILEGE')")
   public List<Category> findAll(){
     return repository.findAll();
   }
 
   @GetMapping(path = {"/{id}"})
-  @PreAuthorize("hasRole('ROLE_CATEGORIES')")
+  @PreAuthorize("hasAuthority('READ_PRIVILEGE')")
   public ResponseEntity<Category> findById(@PathVariable long id) {
     return repository.findById(id)
       .map(record -> ResponseEntity.ok().body(record))
@@ -51,14 +52,14 @@ public class CategoriesController {
   }
 
   @PostMapping
-  @PreAuthorize("hasRole('ROLE_CATEGORIES')")
+  @PreAuthorize("hasAuthority('CREATE_PRIVILEGE')")
   @ResponseStatus(HttpStatus.CREATED)
   public Category create(@RequestBody Category category) {
     return repository.save(category);
   }
 
+  @PreAuthorize("hasAuthority('UPDATE_PRIVILEGE')")
   @PutMapping(value="/{id}")
-  @PreAuthorize("hasRole('ROLE_CATEGORIES')")
   public ResponseEntity<Category> update(@PathVariable("id") long id, @RequestBody Category category) {
     return repository.findById(id)
       .map(record -> {
@@ -72,7 +73,7 @@ public class CategoriesController {
   }
 
   @DeleteMapping(path ={"/{id}"})
-  @PreAuthorize("hasRole('ROLE_CATEGORIES')")
+  @PreAuthorize("hasAuthority('DELETE_PRIVILEGE')")
   public ResponseEntity<?> delete(@PathVariable long id) {
     return repository.findById(id)
       .map(record -> {
