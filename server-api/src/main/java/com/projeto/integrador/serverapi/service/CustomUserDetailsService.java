@@ -27,12 +27,13 @@ public class CustomUserDetailsService implements UserDetailsService {
     return new org.springframework.security.core.userdetails.User(
       user.getUsername(),
       user.getPassword(),
-      user.isActive(),
-      true,
-      true,
-      true,
       getAuthorities(user.getRoles())
     );
+
+    // user.isActive(),
+    // true,
+    // true,
+    // true,
   }
 
   private Collection<? extends GrantedAuthority> getAuthorities(Collection<Role> roles) {
