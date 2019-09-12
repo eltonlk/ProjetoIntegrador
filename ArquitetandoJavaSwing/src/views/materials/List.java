@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import policies.MaterialPolicy;
 import resources.NumberParse;
 import sources.Material;
 import views.main.ApplicationView;
@@ -31,6 +32,7 @@ public class List extends javax.swing.JInternalFrame {
         titleLabel.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
         
         initSearchForm();
+        disableActions();
 
         ArrayList<Material> materials = new MaterialsController().list(searchParams());
         setTableData(tableData(materials), tableHeader());
@@ -42,6 +44,11 @@ public class List extends javax.swing.JInternalFrame {
         cb_searchStatus.addItem("Ativos");
         cb_searchStatus.addItem("Inativos");
         cb_searchStatus.setSelectedIndex(1);
+    }
+    
+    private void disableActions() {
+        btn_new.setEnabled(MaterialPolicy.canNew());
+        btn_searchSubmit.setEnabled(MaterialPolicy.canSearch());
     }
 
     private void setTableData(Object[][] tableData, String[] tableHeader) {
@@ -129,13 +136,23 @@ public class List extends javax.swing.JInternalFrame {
                 int col = table.columnAtPoint(evt.getPoint());
 
                 if (row >= 0 && col == 4) {
-                    int id = (int) table.getModel().getValueAt(row, 0);
-
-                    ApplicationView.changeInternalFrame(new Form(id));
+                    if (MaterialPolicy.canEdit()) {
+                        int id = (int) table.getModel().getValueAt(row, 0);
+                        
+                        ApplicationView.changeInternalFrame(new Form(id));
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Você não tem permição para alterar os materiais.");
+                    }
+                    
                 } else if (row >= 0 && col == 5) {
-                    int id = (int) table.getModel().getValueAt(row, 0);
-
-                    destroyMaterial(id);
+                    if (MaterialPolicy.canDestroy()) {
+                        int id = (int) table.getModel().getValueAt(row, 0);
+                        
+                        destroyMaterial(id);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Você não tem permição para excluir os materiais.");
+                    }
+                    
                 }
             }
         });

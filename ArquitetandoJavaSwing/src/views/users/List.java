@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import policies.CategoryPolicy;
+import policies.UserPolicy;
 import sources.User;
 import views.main.ApplicationView;
 
@@ -27,6 +29,8 @@ public class List extends javax.swing.JInternalFrame {
         initComponents();
 
         titleLabel.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
+        
+        btn_new.setEnabled(UserPolicy.canNew());
 
         loadUsers();
     }
@@ -122,13 +126,21 @@ public class List extends javax.swing.JInternalFrame {
                 int col = table.columnAtPoint(evt.getPoint());
 
                 if (row >= 0 && col == 5) {
-                    int id = (int) table.getModel().getValueAt(row, 0);
-
-                    ApplicationView.changeInternalFrame(new Form(id));
+                    if (UserPolicy.canEdit()) {
+                        int id = (int) table.getModel().getValueAt(row, 0);
+                        
+                        ApplicationView.changeInternalFrame(new views.categories.Form(id));
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Você não tem permição para alterar os usuários.");
+                    }
                 } else if (row >= 0 && col == 6) {
-                    int id = (int) table.getModel().getValueAt(row, 0);
-
-                    destroyUser(id);
+                    if (CategoryPolicy.canEdit()) {
+                        int id = (int) table.getModel().getValueAt(row, 0);
+                        
+                        destroyUser(id);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Você não tem permição para excluir os usuários.");
+                    }
                 }
             }
         });
