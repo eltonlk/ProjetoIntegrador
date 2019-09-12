@@ -3,8 +3,8 @@ package com.projeto.integrador.serverapi.controller;
 import com.projeto.integrador.serverapi.model.Privilege;
 import com.projeto.integrador.serverapi.model.Role;
 import com.projeto.integrador.serverapi.model.User;
-import com.projeto.integrador.serverapi.repository.PrivilegesRepository;
-import com.projeto.integrador.serverapi.repository.RolesRepository;
+// import com.projeto.integrador.serverapi.repository.PrivilegesRepository;
+// import com.projeto.integrador.serverapi.repository.RolesRepository;
 import com.projeto.integrador.serverapi.repository.UsersRepository;
 
 import java.util.ArrayList;
@@ -30,11 +30,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 public class UsersController {
 
-  @Autowired
-  private PrivilegesRepository privilegesRepository;
+  // @Autowired
+  // private PrivilegesRepository privilegesRepository;
 
-  @Autowired
-  private RolesRepository rolesRepository;
+  // @Autowired
+  // private RolesRepository rolesRepository;
 
   private UsersRepository repository;
 
@@ -82,13 +82,13 @@ public class UsersController {
         record.setUsername(user.getUsername());
         record.setActive(user.isActive());
 
-        for (Role role : record.getRoles()) {
-          for (Privilege privilege : role.getPrivileges()) {
-            privilegesRepository.delete(privilege);
-          }
+        // for (Role role : record.getRoles()) {
+        //   for (Privilege privilege : role.getPrivileges()) {
+        //     privilegesRepository.delete(privilege);
+        //   }
 
-          rolesRepository.delete(role);
-        }
+        //   rolesRepository.delete(role);
+        // }
 
         for (Role role : user.getRoles()) {
           List<Privilege> privileges = new ArrayList<>();
