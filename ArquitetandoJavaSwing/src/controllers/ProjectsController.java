@@ -44,10 +44,9 @@ public class ProjectsController {
 
     public String create(Project project) {
         try {
-            String input = "{\"name\":\"" + project.getName() + "\""
-                    + "}";
+            String json = projectToJson(project);
 
-            new ApiConnection().post("/projects", input);
+            new ApiConnection().post("/projects", json);
 
             return "";
         } catch (Exception ex) {
@@ -59,10 +58,9 @@ public class ProjectsController {
 
     public String update(int id, Project project) {
         try {
-            String input = "{\"name\":\"" + project.getName() + "\""
-                    + "}";
+            String json = projectToJson(project);
 
-            new ApiConnection().put("/projects/" + id, input);
+            new ApiConnection().put("/projects/" + id, json);
 
             return "";
         } catch (Exception ex) {
@@ -82,5 +80,12 @@ public class ProjectsController {
         }
 
         return "Não foi possivel excluir o projeto";
+    }
+
+    private String projectToJson(Project project) {
+        String json = "{\"name\":\"" + project.getName() + "\""
+                + "}";
+
+        return json;
     }
 }

@@ -54,12 +54,9 @@ public class MaterialsController {
 
     public String create(Material material) {
         try {
-            String input = "{\"name\":\"" + material.getName() + "\""
-                    + ", \"active\":\"" + material.isActive() + "\""
-                    + ", \"thermal_conductivity_index\":\"" + material.getThermalConductivityIndex() + "\""
-                    + "}";
+            String json = materialToJson(material);
 
-            new ApiConnection().post("/materials", input);
+            new ApiConnection().post("/materials", json);
 
             return "";
         } catch (MalformedURLException ex) {
@@ -75,12 +72,9 @@ public class MaterialsController {
 
     public String update(int id, Material material) {
         try {
-            String input = "{\"name\":\"" + material.getName() + "\""
-                    + ", \"active\":\"" + material.isActive() + "\""
-                    + ", \"thermal_conductivity_index\":\"" + material.getThermalConductivityIndex() + "\""
-                    + "}";
+            String json = materialToJson(material);
 
-            new ApiConnection().put("/materials/" + id, input);
+            new ApiConnection().put("/materials/" + id, json);
 
             return "";
         } catch (MalformedURLException ex) {
@@ -108,5 +102,14 @@ public class MaterialsController {
         }
 
         return "Não foi possivel excluir o Material";
+    }
+
+    private String materialToJson(Material material) {
+        String json = "{\"name\":\"" + material.getName() + "\""
+                + ", \"active\":\"" + material.isActive() + "\""
+                + ", \"thermal_conductivity_index\":\"" + material.getThermalConductivityIndex() + "\""
+                + "}";
+
+        return json;
     }
 }

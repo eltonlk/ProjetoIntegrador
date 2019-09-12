@@ -42,9 +42,9 @@ public class OptionsController {
 
     public String update(int id, Option option) {
         try {
-            String input = "{ \"name\":\"" + option.getName() + "\", \"value\":\"" + option.getValue() + "\"}";
+            String json = optionToJson(option);
 
-            new ApiConnection().put("/options/" + id, input);
+            new ApiConnection().put("/options/" + id, json);
 
             return "";
         } catch (MalformedURLException ex) {
@@ -56,6 +56,14 @@ public class OptionsController {
         }
 
         return "Não foi possivel gravar a opção.";
+    }
+
+    private String optionToJson(Option option) {
+        String json = "{ \"name\":\"" + option.getName() + "\""
+                + ", \"value\":\"" + option.getValue() + "\""
+                + "}";
+
+        return json;
     }
 
 }

@@ -60,11 +60,9 @@ public class CategoriesController {
 
     public String create(Category category) {
         try {
-            String input = "{\"name\":\"" + category.getName() + "\""
-                    + ", \"active\":\"" + category.isActive() + "\""
-                    + "}";
+            String json = categoryToJson(category);
 
-            new ApiConnection().post("/categories", input);
+            new ApiConnection().post("/categories", json);
 
             return "";
         } catch (MalformedURLException ex) {
@@ -80,11 +78,9 @@ public class CategoriesController {
 
     public String update(int id, Category category) {
         try {
-            String input = "{\"name\":\"" + category.getName() + "\""
-                    + ", \"active\":\"" + category.isActive() + "\""
-                    + "}";
+            String json = categoryToJson(category);
 
-            new ApiConnection().put("/categories/" + id, input);
+            new ApiConnection().put("/categories/" + id, json);
 
             return "";
         } catch (MalformedURLException ex) {
@@ -112,5 +108,13 @@ public class CategoriesController {
         }
 
         return "Não foi possivel excluir a categoria";
+    }
+
+    private String categoryToJson(Category category) {
+        String json = "{\"name\":\"" + category.getName() + "\""
+                + ", \"active\":\"" + category.isActive() + "\""
+                + "}";
+
+        return json;
     }
 }

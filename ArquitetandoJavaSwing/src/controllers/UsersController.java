@@ -44,14 +44,9 @@ public class UsersController {
 
     public String create(User user) {
         try {
-            String input = "{\"name\":\"" + user.getName() + "\""
-                    + ", \"email\":\"" + user.getEmail() + "\""
-                    + ", \"username\":\"" + user.getUsername() + "\""
-                    + ", \"password\":\"" + user.getPassword() + "\""
-                    + ", \"active\":\"" + user.isActive() + "\""
-                    + "}";
+            String json = userToJsonOnCreate(user);
 
-            new ApiConnection().post("/users", input);
+            new ApiConnection().post("/users", json);
 
             return "";
         } catch (Exception ex) {
@@ -63,13 +58,9 @@ public class UsersController {
 
     public String update(int id, User user) {
         try {
-            String input = "{\"name\":\"" + user.getName() + "\""
-                    + ", \"email\":\"" + user.getEmail() + "\""
-                    + ", \"username\":\"" + user.getUsername() + "\""
-                    + ", \"active\":\"" + user.isActive() + "\""
-                    + "}";
+            String json = userToJsonOnUpdate(user);
 
-            new ApiConnection().put("/users/" + id, input);
+            new ApiConnection().put("/users/" + id, json);
 
             return "";
         } catch (Exception ex) {
@@ -89,5 +80,26 @@ public class UsersController {
         }
 
         return "Não foi possivel excluir o usuário";
+    }
+
+    private String userToJsonOnCreate(User user) {
+        String json = "{\"name\":\"" + user.getName() + "\""
+                + ", \"email\":\"" + user.getEmail() + "\""
+                + ", \"username\":\"" + user.getUsername() + "\""
+                + ", \"password\":\"" + user.getPassword() + "\""
+                + ", \"active\":\"" + user.isActive() + "\""
+                + "}";
+
+        return json;
+    }
+
+    private String userToJsonOnUpdate(User user) {
+        String json = "{\"name\":\"" + user.getName() + "\""
+                + ", \"email\":\"" + user.getEmail() + "\""
+                + ", \"username\":\"" + user.getUsername() + "\""
+                + ", \"active\":\"" + user.isActive() + "\""
+                + "}";
+
+        return json;
     }
 }
