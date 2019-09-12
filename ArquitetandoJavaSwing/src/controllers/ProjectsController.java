@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import resources.ApiConnection;
 import resources.LogManager;
 import sources.Project;
+import sources.ProjectMaterial;
 
 /**
  *
@@ -84,8 +85,29 @@ public class ProjectsController {
 
     private String projectToJson(Project project) {
         String json = "{\"name\":\"" + project.getName() + "\""
+                + ", \"slab_attributes\":\"" + projectMaterialsToJson(project.getSlabMaterials()) + "\""
+                + ", \"wall_attributes\":\"" + projectMaterialsToJson(project.getWallMaterials()) + "\""
                 + "}";
 
         return json;
+    }
+
+    private String projectMaterialsToJson(ArrayList<ProjectMaterial> materials) {
+        String json = "";
+
+        for (int i = 0; i < materials.size(); i++) {
+            ProjectMaterial material = materials.get(i);
+
+            json += "{\"id\":\"" + material.getId() + "\""
+                    + ", \"material_id\":\"" + material.getMaterial().getId() + "\""
+                    + ", \"width\":\"" + material.getWidth() + "\""
+                    + "}";
+
+            if (materials.get(i + 1) != null) {
+                json += ",";
+            }
+        }
+
+        return "[" + json + "]";
     }
 }
