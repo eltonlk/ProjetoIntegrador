@@ -22,16 +22,18 @@ public class StageManager {
   public void switchScene(AbstractFxmlView view) {
     Parent viewRootNodeHierarchy = loadViewNodeHierarchy(view.getFxmlFile());
 
-    show(viewRootNodeHierarchy, view.getTitle());
+    show(viewRootNodeHierarchy, view);
   }
 
-  private void show(final Parent rootNode, String title) {
+  private void show(final Parent rootNode, AbstractFxmlView view) {
     Scene scene = prepareScene(rootNode);
 
-    stage.setTitle(title);
     stage.setScene(scene);
     stage.sizeToScene();
     stage.centerOnScreen();
+    stage.setResizable(true);
+
+    view.prepareStage(stage);
 
     try {
       stage.show();

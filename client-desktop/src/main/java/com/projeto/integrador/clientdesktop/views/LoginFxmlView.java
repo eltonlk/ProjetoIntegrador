@@ -1,15 +1,18 @@
 package com.projeto.integrador.clientdesktop.views;
 
-public class LoginFxmlView implements AbstractFxmlView {
+import javafx.stage.Stage;
 
-  @Override
-  public String getTitle() {
-    return "Login";
-  }
+public class LoginFxmlView implements AbstractFxmlView {
 
   @Override
   public String getFxmlFile() {
     return "/fxml/Login.fxml";
+  }
+
+  @Override
+  public void prepareStage(Stage stage) {
+    stage.setTitle("Login");
+    stage.setResizable(false);
   }
 
 }
