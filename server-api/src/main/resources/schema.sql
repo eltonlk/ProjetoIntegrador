@@ -4,8 +4,10 @@ DROP TABLE IF EXISTS options;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS materials;
 
+DROP TABLE IF EXISTS roles_privileges;
 DROP TABLE IF EXISTS users_roles;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS privileges;
 DROP TABLE IF EXISTS roles;
 
 CREATE TABLE users (
@@ -25,6 +27,16 @@ CREATE TABLE roles (
 CREATE TABLE users_roles (
   user_id INTEGER REFERENCES users(id),
   role_id INTEGER REFERENCES roles(id)
+);
+
+CREATE TABLE privileges (
+  id   SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE roles_privileges (
+  role_id      INTEGER REFERENCES roles(id),
+  privilege_id INTEGER REFERENCES privileges(id)
 );
 
 CREATE TABLE categories (
