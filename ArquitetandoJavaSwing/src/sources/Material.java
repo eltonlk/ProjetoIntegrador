@@ -56,7 +56,7 @@ public class Material {
         this.active = false;
     }
 
-    public double getThermalConductivityIndex() {;;
+    public double getThermalConductivityIndex() {
         return thermalConductivityIndex;
     }
 

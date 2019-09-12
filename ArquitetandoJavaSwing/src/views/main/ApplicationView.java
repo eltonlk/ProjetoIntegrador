@@ -61,8 +61,8 @@ public class ApplicationView extends javax.swing.JFrame {
         categoryMenuItem = new javax.swing.JMenuItem();
         materialMenuItem = new javax.swing.JMenuItem();
         userMenuItem = new javax.swing.JMenuItem();
-        calculatorMenu = new javax.swing.JMenu();
-        calculatorMenuItem = new javax.swing.JMenuItem();
+        projectMenu = new javax.swing.JMenu();
+        projectMenuItem = new javax.swing.JMenuItem();
         auditMenu = new javax.swing.JMenu();
         auditMenuItem = new javax.swing.JMenuItem();
         optionMenu = new javax.swing.JMenu();
@@ -123,17 +123,17 @@ public class ApplicationView extends javax.swing.JFrame {
 
         menuBar.add(registerMenu);
 
-        calculatorMenu.setText("Calculo");
+        projectMenu.setText("Projetos");
 
-        calculatorMenuItem.setText("Calcular Transmitância Térmica");
-        calculatorMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        projectMenuItem.setText("Projetos");
+        projectMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                calculatorMenuItemActionPerformed(evt);
+                projectMenuItemActionPerformed(evt);
             }
         });
-        calculatorMenu.add(calculatorMenuItem);
+        projectMenu.add(projectMenuItem);
 
-        menuBar.add(calculatorMenu);
+        menuBar.add(projectMenu);
 
         auditMenu.setText("Auditoria");
 
@@ -195,10 +195,10 @@ public class ApplicationView extends javax.swing.JFrame {
         changeInternalFrame(frame);
     }//GEN-LAST:event_auditMenuItemActionPerformed
 
-    private void calculatorMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculatorMenuItemActionPerformed
-        views.thermalTransmittance.Calculate frame = new views.thermalTransmittance.Calculate();
+    private void projectMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectMenuItemActionPerformed
+        views.projects.List frame = new views.projects.List();
         changeInternalFrame(frame);
-    }//GEN-LAST:event_calculatorMenuItemActionPerformed
+    }//GEN-LAST:event_projectMenuItemActionPerformed
 
     private void userMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userMenuItemActionPerformed
         views.users.List frame = new views.users.List();
@@ -238,14 +238,14 @@ public class ApplicationView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu auditMenu;
     private javax.swing.JMenuItem auditMenuItem;
-    private javax.swing.JMenu calculatorMenu;
-    private javax.swing.JMenuItem calculatorMenuItem;
     private javax.swing.JMenuItem categoryMenuItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem materialMenuItem;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu optionMenu;
     private javax.swing.JMenuItem optionMenuItem;
+    private javax.swing.JMenu projectMenu;
+    private javax.swing.JMenuItem projectMenuItem;
     private javax.swing.JMenu registerMenu;
     private javax.swing.JMenuItem userMenuItem;
     private javax.swing.JLabel welcome;

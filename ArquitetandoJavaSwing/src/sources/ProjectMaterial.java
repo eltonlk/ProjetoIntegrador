@@ -3,43 +3,52 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.thermalTransmittance;
-
-import sources.Material;
+package sources;
 
 /**
  *
  * @author nyko-
  */
-public class Item {
+public class ProjectMaterial {
 
+    private int id;
     private Material material;
     private double width;
 
-    Material getMaterial() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Material getMaterial() {
         return this.material;
     }
 
-    void setMaterial(Material material) {
+    public void setMaterial(Material material) {
         this.material = material;
     }
 
-    double getWidth() {
+    public double getWidth() {
         return this.width;
     }
 
-    void setWidth(double width) {
+    public void setWidth(double width) {
         if (width < 0) {
             width = 0;
         }
+
         this.width = width;
     }
 
-    double getThermalConductivity() {
+    public double getThermalConductivity() {
         if (material == null) {
             return 0;
         } else {
             return width / material.getThermalConductivityIndex();
         }
     }
+
 }

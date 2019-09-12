@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.thermalTransmittance;
+package forms;
 
 import controllers.MaterialsController;
 import java.awt.event.ActionEvent;
@@ -16,28 +16,29 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import sources.Material;
+import sources.ProjectMaterial;
 
 /**
  *
  * @author nyko-
  */
-public class ItemModal {
+public class ProjectMaterialForm {
 
     private ArrayList<Material> materials;
-    private Item item;
+    private ProjectMaterial projectMaterial;
     private JComboBox materialsComboBox;
     private JTextField widthTextField;
     private JTextField resistanceTextField;
 
-    public void add(Item item) {
-        this.item = item;
+    public void add(ProjectMaterial projectMaterial) {
+        this.projectMaterial = projectMaterial;
         this.materials = new MaterialsController().list("");
 
         showModal("Adicionar Material");
     }
 
-    public void edit(Item item) {
-        this.item = item;
+    public void edit(ProjectMaterial projectMaterial) {
+        this.projectMaterial = projectMaterial;
         this.materials = new MaterialsController().list("");
 
         showModal("Alterar Material");
@@ -49,16 +50,16 @@ public class ItemModal {
         this.resistanceTextField = newResistanceTextField();
 
         int index = 0;
-        if (item.getMaterial() != null) {
+        if (projectMaterial.getMaterial() != null) {
             for (Material material : materials) {
-                if (item.getMaterial().getId() == material.getId()) {
+                if (projectMaterial.getMaterial().getId() == material.getId()) {
                     index = materials.indexOf(material);
                 }
             }
         }
         materialsComboBox.setSelectedIndex(index);
 
-        widthTextField.setText("" + item.getWidth());
+        widthTextField.setText("" + projectMaterial.getWidth());
 
         Object[] message = {
             "* Material:", this.materialsComboBox,
@@ -75,8 +76,8 @@ public class ItemModal {
 
             int result = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
-            if (result == JOptionPane.OK_OPTION && item.getThermalConductivity() == 0.0) {
-                errors = "Espessura não pode ser ZERO.";
+            if (result == JOptionPane.OK_OPTION && projectMaterial.getThermalConductivity() == 0.0) {
+                errors = "Espessura deve ser maior que ZERO.";
             } else {
                 errors = null;
             }
@@ -91,7 +92,7 @@ public class ItemModal {
             public void actionPerformed(ActionEvent e) {
                 JComboBox<Material> combo = (JComboBox<Material>) e.getSource();
                 Material material = (Material) combo.getSelectedItem();
-                item.setMaterial(material);
+                projectMaterial.setMaterial(material);
                 calculateResistence();
             }
         });
@@ -109,7 +110,7 @@ public class ItemModal {
                 String text = textField.getText();
                 double width = Double.parseDouble(text.replace(".", "").replace(",", "."));
                 textField.setText("" + width);
-                item.setWidth(width);
+                projectMaterial.setWidth(width);
                 calculateResistence();
             }
         });
@@ -126,7 +127,7 @@ public class ItemModal {
     }
 
     private void calculateResistence() {
-        String resistance = "" + item.getThermalConductivity();
+        String resistance = "" + projectMaterial.getThermalConductivity();
 
         resistanceTextField.setText(resistance);
     }

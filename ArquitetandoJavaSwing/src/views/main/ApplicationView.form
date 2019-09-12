@@ -35,17 +35,17 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="calculatorMenu">
+        <Menu class="javax.swing.JMenu" name="projectMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Calculo"/>
+            <Property name="text" type="java.lang.String" value="Projetos"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="calculatorMenuItem">
+            <MenuItem class="javax.swing.JMenuItem" name="projectMenuItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Calcular Transmit&#xe2;ncia T&#xe9;rmica"/>
+                <Property name="text" type="java.lang.String" value="Projetos"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="calculatorMenuItemActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="projectMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
