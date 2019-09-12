@@ -8,6 +8,12 @@ package views.main;
 import java.beans.PropertyVetoException;
 import javax.swing.JInternalFrame;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import policies.AuditPolicy;
+import policies.CategoryPolicy;
+import policies.MaterialPolicy;
+import policies.OptionPolicy;
+import policies.ProjectPolicy;
+import policies.UserPolicy;
 
 /**
  *
@@ -23,7 +29,18 @@ public class ApplicationView extends javax.swing.JFrame {
     public ApplicationView() {
         initComponents();
 
-        this.applicationView = this;
+       disableMenuItems();
+       
+       this.applicationView = this;
+    }
+    
+    private void disableMenuItems() {
+        this.auditMenuItem.setEnabled(AuditPolicy.canRead());
+        this.categoryMenuItem.setEnabled(CategoryPolicy.canRead());
+        this.materialMenuItem.setEnabled(MaterialPolicy.canRead());
+        this.optionMenuItem.setEnabled(OptionPolicy.canEdit());
+        this.projectMenuItem.setEnabled(ProjectPolicy.canRead());
+        this.userMenuItem.setEnabled(UserPolicy.canRead());
     }
 
     public static void changeInternalFrame(Object object) {
