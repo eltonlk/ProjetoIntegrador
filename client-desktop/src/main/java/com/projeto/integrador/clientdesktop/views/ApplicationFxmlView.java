@@ -1,15 +1,17 @@
 package com.projeto.integrador.clientdesktop.views;
 
-public class ApplicationFxmlView implements AbstractFxmlView {
+import javafx.stage.Stage;
 
-  @Override
-  public String getTitle() {
-    return "Arquitetando";
-  }
+public class ApplicationFxmlView implements AbstractFxmlView {
 
   @Override
   public String getFxmlFile() {
     return "/fxml/Application.fxml";
+  }
+
+  @Override
+  public void prepareStage(Stage stage) {
+    stage.setTitle("Arquitetando");
   }
 
 }
