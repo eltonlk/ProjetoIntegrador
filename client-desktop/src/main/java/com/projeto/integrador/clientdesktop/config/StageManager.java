@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class StageManager {
@@ -29,11 +30,11 @@ public class StageManager {
     Scene scene = prepareScene(rootNode);
 
     stage.setScene(scene);
-    stage.sizeToScene();
-    stage.centerOnScreen();
-    stage.setResizable(true);
-
-    view.prepareStage(stage);
+    // stage.sizeToScene();
+    // stage.centerOnScreen();
+    stage.setTitle(view.getTitle());
+    stage.setResizable(view.isResizable());
+    stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/logo.png")));
 
     try {
       stage.show();

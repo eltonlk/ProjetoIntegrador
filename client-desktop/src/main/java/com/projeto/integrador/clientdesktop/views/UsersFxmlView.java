@@ -1,20 +1,22 @@
 package com.projeto.integrador.clientdesktop.views;
 
-public class LoginFxmlView implements AbstractFxmlView {
+import javafx.stage.Stage;
+
+public class UsersFxmlView implements AbstractFxmlView {
 
   @Override
   public String getFxmlFile() {
-    return "/fxml/Login.fxml";
+    return "/fxml/Users.fxml";
   }
 
   @Override
   public String getTitle() {
-    return "Arquitetando";
+    return "Arquitetando: Usuários";
   }
 
   @Override
   public Boolean isResizable() {
-    return false;
+    return true;
   }
 
 }

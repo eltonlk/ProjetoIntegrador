@@ -1,7 +1,7 @@
-package com.projeto.integrador.clientdesktop.controllers.application;
+package com.projeto.integrador.clientdesktop.controllers;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
-import com.projeto.integrador.clientdesktop.views.LoginFxmlView;
+import com.projeto.integrador.clientdesktop.views.ApplicationFxmlView;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,19 +16,19 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class MenuController implements Initializable {
+public class UsersController implements Initializable {
 
-	@Lazy
+  @Lazy
   @Autowired
   private StageManager stageManager;
 
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
+	@FXML
+  private void goToDashboard(ActionEvent event) throws IOException{
+    stageManager.switchScene(new ApplicationFxmlView());
   }
 
-  @FXML
-  private void loadMaterials(ActionEvent event) throws IOException {
-    stageManager.switchScene(new LoginFxmlView());
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
   }
 
 }

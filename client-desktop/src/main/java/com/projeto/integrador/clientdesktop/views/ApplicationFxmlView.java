@@ -10,8 +10,13 @@ public class ApplicationFxmlView implements AbstractFxmlView {
   }
 
   @Override
-  public void prepareStage(Stage stage) {
-    stage.setTitle("Arquitetando");
+  public String getTitle() {
+    return "Arquitetando";
+  }
+
+  @Override
+  public Boolean isResizable() {
+    return true;
   }
 
 }
