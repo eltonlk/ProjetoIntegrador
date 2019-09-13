@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import policies.CategoryPolicy;
 import policies.UserPolicy;
 import sources.User;
 import views.main.ApplicationView;
@@ -129,12 +128,12 @@ public class List extends javax.swing.JInternalFrame {
                     if (UserPolicy.canEdit()) {
                         int id = (int) table.getModel().getValueAt(row, 0);
                         
-                        ApplicationView.changeInternalFrame(new views.categories.Form(id));
+                        ApplicationView.changeInternalFrame(new views.users.Form(id));
                     } else {
                         JOptionPane.showMessageDialog(null, "Você não tem permição para alterar os usuários.");
                     }
                 } else if (row >= 0 && col == 6) {
-                    if (CategoryPolicy.canEdit()) {
+                    if (UserPolicy.canEdit()) {
                         int id = (int) table.getModel().getValueAt(row, 0);
                         
                         destroyUser(id);
