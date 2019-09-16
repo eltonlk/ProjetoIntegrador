@@ -1,7 +1,7 @@
 package com.projeto.integrador.clientdesktop.controllers;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
-import com.projeto.integrador.clientdesktop.views.ApplicationFxmlView;
+import com.projeto.integrador.clientdesktop.views.DashboardFxmlView;
 
 import java.io.IOException;
 import java.net.URL;
@@ -40,9 +40,7 @@ public class LoginController implements Initializable {
 
 	@FXML
   private void login(ActionEvent event) throws IOException{
-    stageManager.switchScene(new ApplicationFxmlView());
-
-    // lblLogin.setText("Login Failed.");
+    stageManager.switchScene(new DashboardFxmlView());
   }
 
 	public String getPassword() {

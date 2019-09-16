@@ -1,4 +1,4 @@
-package com.projeto.integrador.clientdesktop.controllers;
+package com.projeto.integrador.clientdesktop.controllers.shared;
 
 import java.io.IOException;
 import java.net.URL;
@@ -11,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +18,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class ApplicationController implements Initializable {
-
-  @FXML
-  private AnchorPane rootAnchorPane;
+public class MenuController implements Initializable {
 
   @Lazy
   @Autowired
@@ -54,7 +50,6 @@ public class ApplicationController implements Initializable {
 
 	@FXML
   private void goToUsers(ActionEvent event) throws IOException {
-		// rootAnchorPane.getChildren().setAll(FXMLLoader.load("vista2.fxml"));
 		stageManager.switchScene(new UsersFxmlView());
   }
 

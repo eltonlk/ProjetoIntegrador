@@ -1,12 +1,10 @@
 package com.projeto.integrador.clientdesktop.views;
 
-import javafx.stage.Stage;
-
-public class ApplicationFxmlView implements AbstractFxmlView {
+public class DashboardFxmlView implements AbstractFxmlView {
 
   @Override
   public String getFxmlFile() {
-    return "/fxml/Application.fxml";
+    return "/fxml/Dashboard.fxml";
   }
 
   @Override

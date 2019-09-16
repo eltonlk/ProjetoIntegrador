@@ -30,11 +30,14 @@ public class StageManager {
     Scene scene = prepareScene(rootNode);
 
     stage.setScene(scene);
-    // stage.sizeToScene();
-    // stage.centerOnScreen();
     stage.setTitle(view.getTitle());
     stage.setResizable(view.isResizable());
     stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/logo.png")));
+
+    if (!view.isResizable()) {
+      stage.sizeToScene();
+      stage.centerOnScreen();
+    }
 
     try {
       stage.show();

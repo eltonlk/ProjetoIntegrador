@@ -1,7 +1,5 @@
 package com.projeto.integrador.clientdesktop.views;
 
-import javafx.stage.Stage;
-
 public class UsersFxmlView implements AbstractFxmlView {
 
   @Override
