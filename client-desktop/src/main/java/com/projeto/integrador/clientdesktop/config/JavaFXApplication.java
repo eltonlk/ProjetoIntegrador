@@ -10,7 +10,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
-
 public class JavaFXApplication extends Application {
 
   private ConfigurableApplicationContext context;

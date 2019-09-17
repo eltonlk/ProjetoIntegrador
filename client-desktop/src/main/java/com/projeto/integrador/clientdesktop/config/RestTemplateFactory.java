@@ -3,8 +3,8 @@ package com.projeto.integrador.clientdesktop.config;
 // import org.apache.http.HttpHost;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.http.client.ClientHttpRequestFactory;
-import org.springframework.http.client.support.BasicAuthenticationInterceptor;
+// import org.springframework.http.client.ClientHttpRequestFactory;
+// import org.springframework.http.client.support.BasicAuthenticationInterceptor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
