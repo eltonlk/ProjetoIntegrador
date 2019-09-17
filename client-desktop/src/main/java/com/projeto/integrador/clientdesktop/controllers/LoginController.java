@@ -17,6 +17,11 @@ import javafx.scene.control.TextField;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 
 @Controller
@@ -34,13 +39,25 @@ public class LoginController implements Initializable {
   @FXML
   private Label lblLogin;
 
+  @Autowired
+  private AuthenticationManager authenticationManager;
+
   @Lazy
   @Autowired
   private StageManager stageManager;
 
 	@FXML
   private void login(ActionEvent event) throws IOException{
-    stageManager.switchScene(new DashboardFxmlView());
+    Authentication authToken = new UsernamePasswordAuthenticationToken(username.getText(), password.getText());
+
+    try {
+      authToken = authenticationManager.authenticate(authToken);
+      SecurityContextHolder.getContext().setAuthentication(authToken);
+      stageManager.switchScene(new DashboardFxmlView());
+    } catch (AuthenticationException e) {
+System.out.println(e.getMessage());
+      lblLogin.setText("Login failure, please try again:");
+    }
   }
 
 	public String getPassword() {
