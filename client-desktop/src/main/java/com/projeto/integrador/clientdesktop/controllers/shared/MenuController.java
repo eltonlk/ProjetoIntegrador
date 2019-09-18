@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
-import com.projeto.integrador.clientdesktop.views.UsersFxmlView;
+import com.projeto.integrador.clientdesktop.views.users.ListUsersFxmlView;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,7 +50,7 @@ public class MenuController implements Initializable {
 
 	@FXML
   private void goToUsers(ActionEvent event) throws IOException {
-		stageManager.switchScene(new UsersFxmlView());
+		stageManager.switchScene(new ListUsersFxmlView());
   }
 
   @FXML

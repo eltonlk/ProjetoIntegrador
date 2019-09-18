@@ -27,18 +27,6 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class LoginController implements Initializable {
 
-	@FXML
-  private Button btnLogin;
-
-  @FXML
-  private PasswordField password;
-
-  @FXML
-  private TextField username;
-
-  @FXML
-  private Label lblLogin;
-
   @Autowired
   private AuthenticationManager authenticationManager;
 
@@ -46,30 +34,42 @@ public class LoginController implements Initializable {
   @Autowired
   private StageManager stageManager;
 
-	@FXML
-  private void login(ActionEvent event) throws IOException{
-    Authentication authToken = new UsernamePasswordAuthenticationToken(username.getText(), password.getText());
-
-    try {
-      authToken = authenticationManager.authenticate(authToken);
-      SecurityContextHolder.getContext().setAuthentication(authToken);
-      stageManager.switchScene(new DashboardFxmlView());
-    } catch (AuthenticationException e) {
-System.out.println(e.getMessage());
-      lblLogin.setText("Login failure, please try again:");
-    }
-  }
-
-	public String getPassword() {
-		return password.getText();
-	}
-
-	public String getUsername() {
-		return username.getText();
-	}
-
   @Override
   public void initialize(URL location, ResourceBundle resources) {
   }
 
+	public String getPassword() {
+		return passwordInput.getText();
+	}
+
+	public String getUsername() {
+		return usernameInput.getText();
+	}
+
+	@FXML
+  private void login(ActionEvent event) throws IOException{
+    Authentication authToken = new UsernamePasswordAuthenticationToken(getUsername(), getPassword());
+
+    try {
+      authToken = authenticationManager.authenticate(authToken);
+
+      SecurityContextHolder.getContext().setAuthentication(authToken);
+
+      stageManager.switchScene(new DashboardFxmlView());
+    } catch (AuthenticationException e) {
+      lblLogin.setText("Login failure, please try again:");
+    }
+  }
+
+  @FXML
+  private Button submitButton;
+
+  @FXML
+  private PasswordField passwordInput;
+
+  @FXML
+  private TextField usernameInput;
+
+  @FXML
+  private Label lblLogin;
 }

@@ -1,23 +1,29 @@
 package com.projeto.integrador.clientdesktop.resources;
 
-import com.projeto.integrador.clientdesktop.models.User;
+import com.projeto.integrador.clientdesktop.models.TokenCredential;
+import com.projeto.integrador.clientdesktop.models.UserCredential;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+@Service
 public class SessionResource {
 
+  final static String NAMESPACE = "/login";
+
+  private RestTemplate restTemplate;
+
   @Autowired
-	private RestTemplate restTemplate;
+  public SessionResource(RestTemplate restTemplate) {
+    this.restTemplate = restTemplate;
+  }
 
-	final String ROOT_URI = "/login";
+  public TokenCredential requestToken(UserCredential userCredential) throws Exception {
+    ResponseEntity<TokenCredential> tokenCredential = restTemplate.postForEntity(NAMESPACE, userCredential, TokenCredential.class);
 
-  public HttpStatus login(User user) {
-    ResponseEntity<HttpStatus> response = restTemplate.postForEntity(ROOT_URI, user, HttpStatus.class);
-
-    return response.getBody();
+    return tokenCredential.getBody();
 	}
 
 }

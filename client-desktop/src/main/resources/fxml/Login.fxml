@@ -42,20 +42,20 @@
         <VBox spacing="2.0">
           <children>
             <Label fx:id="usernameLabel" text="Usuário"/>
-            <TextField fx:id="username" promptText="Usuário"/>
+            <TextField fx:id="usernameInput" promptText="Usuário"/>
           </children>
         </VBox>
 
         <VBox spacing="2.0">
           <children>
             <Label fx:id="passwordLabel" text="Senha"/>
-            <PasswordField fx:id="password" promptText="Senha" onAction="#login"/>
+            <PasswordField fx:id="passwordInput" promptText="Senha" onAction="#login"/>
           </children>
         </VBox>
 
         <HBox alignment="TOP_RIGHT">
           <children>
-            <Button fx:id="submit" onAction="#login" styleClass="button-primary" text="ENTRAR"/>
+            <Button fx:id="submitButton" onAction="#login" styleClass="button-primary" text="ENTRAR"/>
           </children>
         </HBox>
       </children>

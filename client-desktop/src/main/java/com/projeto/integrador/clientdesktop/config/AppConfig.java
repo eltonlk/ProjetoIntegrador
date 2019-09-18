@@ -37,7 +37,7 @@ public class AppConfig {
   public RestTemplate restTemplate() {
     RestTemplate restTemplate = new RestTemplate();
 
-    restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory("https://polar-ridge-82955.herokuapp.com"));
+    restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory("https://eltonlk-projeto-integrador.herokuapp.com/"));
 
     List<ClientHttpRequestInterceptor> interceptors = restTemplate.getInterceptors();
 

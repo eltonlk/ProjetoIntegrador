@@ -2,10 +2,13 @@ package com.projeto.integrador.clientdesktop.config;
 
 import java.io.IOException;
 
+import com.projeto.integrador.clientdesktop.models.TokenCredential;
+
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 public class RestTemplateAuthenticationInterceptor implements ClientHttpRequestInterceptor {
 
@@ -15,11 +18,21 @@ public class RestTemplateAuthenticationInterceptor implements ClientHttpRequestI
     byte[] body,
     ClientHttpRequestExecution execution
   ) throws IOException {
-    ClientHttpResponse response = execution.execute(request, body);
+    request.getHeaders().add("Accept", "application/json");
 
-    response.getHeaders().add("Foo", "bar");
+    if (SecurityContextHolder.getContext().getAuthentication() != null &&
+      SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
 
-    return response;
+      TokenCredential tokenCredential = (TokenCredential) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+      String token = tokenCredential.getToken();
+
+      System.out.print(token);
+
+      request.getHeaders().add("Authorization", token);
+    }
+
+    return execution.execute(request, body);
   }
 
 }
