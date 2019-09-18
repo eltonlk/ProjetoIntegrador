@@ -27,7 +27,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @RestController
 @RequestMapping({"/users"})
-@PreAuthorize("hasRole('ROLE_ADMIN')")
+@PreAuthorize("hasRole('ROLE_USERS')")
 public class UsersController {
 
   // @Autowired
@@ -51,7 +51,6 @@ public class UsersController {
   }
 
   @GetMapping
-
   public List<User> findAll(){
     return repository.findAll();
   }
@@ -90,22 +89,22 @@ public class UsersController {
         //   rolesRepository.delete(role);
         // }
 
-        for (Role role : user.getRoles()) {
-          List<Privilege> privileges = new ArrayList<>();
+        // for (Role role : user.getRoles()) {
+        //   List<Privilege> privileges = new ArrayList<>();
 
-          for (Privilege privilege : role.getPrivileges()) {
-            Privilege newPrivilege = new Privilege();
-            newPrivilege.setName(privilege.getName());
+        //   for (Privilege privilege : role.getPrivileges()) {
+        //     Privilege newPrivilege = new Privilege();
+        //     newPrivilege.setName(privilege.getName());
 
-            // privileges.add(privilegesRepository.save(newPrivilege));
-          }
+        //     // privileges.add(privilegesRepository.save(newPrivilege));
+        //   }
 
-          Role newRole = new Role();
-          newRole.setName(role.getName());
-          newRole.setPrivileges(privileges);
+        //   Role newRole = new Role();
+        //   newRole.setName(role.getName());
+        //   newRole.setPrivileges(privileges);
 
-          // rolesRepository.save(newRole);
-        }
+        //   // rolesRepository.save(newRole);
+        // }
 
         User updated = repository.save(record);
 

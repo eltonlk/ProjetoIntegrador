@@ -4,6 +4,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +32,12 @@ public class TokenAuthenticationService {
     res.addHeader(HEADER_STRING, token);
 
     try {
-      res.getOutputStream().print(token);
+      PrintWriter out = res.getWriter();
+      res.setContentType("application/json");
+      res.setCharacterEncoding("UTF-8");
+      out.print("{\"token\":\"" + token + "\"}");
+      out.flush();
+
     } catch (IOException e) {
       e.printStackTrace();
     }

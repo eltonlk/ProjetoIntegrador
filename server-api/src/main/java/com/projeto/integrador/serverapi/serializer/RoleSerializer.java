@@ -30,13 +30,13 @@ public class RoleSerializer extends StdSerializer<Role> {
     generator.writeStartObject();
     generator.writeNumberField("id", role.getId());
     generator.writeStringField("name", role.getName());
-    generator.writeArrayFieldStart("privileges");
+    // generator.writeArrayFieldStart("privileges");
 
-    for (Object privilege : role.getPrivileges()) {
-      generator.writeObject(privilege);
-    }
+    // for (Object privilege : role.getPrivileges()) {
+    //   generator.writeObject(privilege);
+    // }
 
-    generator.writeEndArray();
+    // generator.writeEndArray();
     generator.writeEndObject();
   }
 
