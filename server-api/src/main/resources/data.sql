@@ -1,20 +1,26 @@
-INSERT INTO roles (id, name) VALUES (1, 'ROLE_ADMIN');
-
-INSERT INTO roles (id, name) VALUES (2, 'ROLE_CATEGORIES');
 INSERT INTO privileges (id, name) VALUES (1, 'CREATE_PRIVILEGE');
 INSERT INTO privileges (id, name) VALUES (2, 'UPDATE_PRIVILEGE');
 INSERT INTO privileges (id, name) VALUES (3, 'DELETE_PRIVILEGE');
-INSERT INTO roles_privileges (role_id, privilege_id) VALUES (2, 1);
-INSERT INTO roles_privileges (role_id, privilege_id) VALUES (2, 2);
-INSERT INTO roles_privileges (role_id, privilege_id) VALUES (2, 3);
 
-INSERT INTO roles (id, name) VALUES (3, 'ROLE_MATERIALS');
-INSERT INTO privileges (id, name) VALUES (4, 'CREATE_PRIVILEGE');
-INSERT INTO privileges (id, name) VALUES (5, 'UPDATE_PRIVILEGE');
-INSERT INTO privileges (id, name) VALUES (6, 'DELETE_PRIVILEGE');
-INSERT INTO roles_privileges (role_id, privilege_id) VALUES (3, 4);
-INSERT INTO roles_privileges (role_id, privilege_id) VALUES (3, 5);
-INSERT INTO roles_privileges (role_id, privilege_id) VALUES (3, 6);
+INSERT INTO roles (id, name) VALUES (1, 'ROLE_AUDITS');
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1, 2);
+
+INSERT INTO roles (id, name) VALUES (2, 'ROLE_OPTIONS');
+
+INSERT INTO roles (id, name) VALUES (3, 'ROLE_USERS');
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (3, 1);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (3, 2);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (3, 3);
+
+INSERT INTO roles (id, name) VALUES (4, 'ROLE_CATEGORIES');
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (4, 1);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (4, 2);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (4, 3);
+
+INSERT INTO roles (id, name) VALUES (5, 'ROLE_MATERIALS');
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (5, 1);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (5, 2);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (5, 3);
 
 INSERT INTO users (id, name, email, username, password, active)
 VALUES (1, 'Administrador', 'administrador@mail.com', 'admin', '$2a$10$2EJCEa0kr9QFyhm3kguxg.F9jS3rjRRy8Qj0l0.ILBIank0TJoK8G', TRUE);
