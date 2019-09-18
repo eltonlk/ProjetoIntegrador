@@ -14,9 +14,10 @@ import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.DefaultUriBuilderFactory;
 
 @Configuration
-public class AppJavaConfig {
+public class AppConfig {
 
   @Autowired
   SpringFxmlLoader loader;
@@ -36,16 +37,19 @@ public class AppJavaConfig {
   public RestTemplate restTemplate() {
     RestTemplate restTemplate = new RestTemplate();
 
-    List<ClientHttpRequestInterceptor> interceptors
-      = restTemplate.getInterceptors();
+    restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory("https://polar-ridge-82955.herokuapp.com"));
+
+    List<ClientHttpRequestInterceptor> interceptors = restTemplate.getInterceptors();
+
     if (CollectionUtils.isEmpty(interceptors)) {
-        interceptors = new ArrayList<>();
+      interceptors = new ArrayList<>();
     }
-    interceptors.add(new RestTemplateHeaderModifierInterceptor());
+
+    interceptors.add(new RestTemplateAuthenticationInterceptor());
+
     restTemplate.setInterceptors(interceptors);
+
     return restTemplate;
   }
 
 }
-
-// https://www.baeldung.com/spring-rest-template-interceptor

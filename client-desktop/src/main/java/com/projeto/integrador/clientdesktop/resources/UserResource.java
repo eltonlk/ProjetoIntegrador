@@ -1,8 +1,5 @@
 package com.projeto.integrador.clientdesktop.resources;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.projeto.integrador.clientdesktop.models.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,32 +12,32 @@ public class UserResource {
   @Autowired
 	private RestTemplate restTemplate;
 
-	final String ROOT_URI = "https://polar-ridge-82955.herokuapp.com/users";
+	private static final String URI_USER = "/users";
 
-  public List<User> getAll() {
-    ResponseEntity<User[]> response = restTemplate.getForEntity(ROOT_URI, User[].class);
+	public User[] getAll() {
+		User[] users = restTemplate.getForObject(URI_USER, User[].class);
 
-		return Arrays.asList(response.getBody());
+		return users;
 	}
 
-	public User getById(Long id) {
-    ResponseEntity<User> response = restTemplate.getForEntity(ROOT_URI + "/"+id, User.class);
+	public User create(User user) {
+		ResponseEntity<User> responseEntity = restTemplate.postForEntity(URI_USER, user, User.class);
 
-		return response.getBody();
-	}
+		User createdUser = null;
 
-	public HttpStatus create(User user) {
-		ResponseEntity<HttpStatus> response = restTemplate.postForEntity(ROOT_URI, user, HttpStatus.class);
+		if (responseEntity.getStatusCode() == HttpStatus.CREATED) {
+      createdUser = responseEntity.getBody();
+		}
 
-    return response.getBody();
+    return createdUser;
 	}
 
 	public void update(User user) {
-		restTemplate.put(ROOT_URI, user);
+    restTemplate.put(URI_USER + "/{id}", user, user.getId());
 	}
 
-	public void delete(Long id) {
-		restTemplate.delete(ROOT_URI + id);
-	}
+	public void delete(User user) {
+    restTemplate.delete(URI_USER + "/{id}", user.getId());
+  }
 
 }

@@ -12,7 +12,7 @@ public class SessionResource {
   @Autowired
 	private RestTemplate restTemplate;
 
-	final String ROOT_URI = "https://polar-ridge-82955.herokuapp.com/login";
+	final String ROOT_URI = "/login";
 
   public HttpStatus login(User user) {
     ResponseEntity<HttpStatus> response = restTemplate.postForEntity(ROOT_URI, user, HttpStatus.class);

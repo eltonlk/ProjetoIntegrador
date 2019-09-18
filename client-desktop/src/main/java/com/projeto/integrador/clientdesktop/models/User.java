@@ -28,6 +28,13 @@ public class User {
     this.roles = roles;
   }
 
+  public User(Long id, String name, String email, String username) {
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.username = username;
+  }
+
   public User() {
   }
 
