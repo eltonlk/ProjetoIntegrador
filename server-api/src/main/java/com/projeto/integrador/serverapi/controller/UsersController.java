@@ -1,16 +1,10 @@
 package com.projeto.integrador.serverapi.controller;
 
-import com.projeto.integrador.serverapi.model.Privilege;
-import com.projeto.integrador.serverapi.model.Role;
 import com.projeto.integrador.serverapi.model.User;
-// import com.projeto.integrador.serverapi.repository.PrivilegesRepository;
-// import com.projeto.integrador.serverapi.repository.RolesRepository;
 import com.projeto.integrador.serverapi.repository.UsersRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,12 +24,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @PreAuthorize("hasRole('ROLE_USERS')")
 public class UsersController {
 
-  // @Autowired
-  // private PrivilegesRepository privilegesRepository;
-
-  // @Autowired
-  // private RolesRepository rolesRepository;
-
   private UsersRepository repository;
 
   UsersController(UsersRepository usersRepository) {
@@ -51,11 +39,13 @@ public class UsersController {
   }
 
   @GetMapping
+  @PreAuthorize("hasAuthority('READ_PRIVILEGE')")
   public List<User> findAll(){
     return repository.findAll();
   }
 
   @GetMapping(path = {"/{id}"})
+  @PreAuthorize("hasAuthority('READ_PRIVILEGE')")
   public ResponseEntity<User> findById(@PathVariable long id) {
     return repository.findById(id)
       .map(record -> ResponseEntity.ok().body(record))
@@ -64,6 +54,7 @@ public class UsersController {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
+  @PreAuthorize("hasAuthority('CREATE_PRIVILEGE')")
   public User create(@RequestBody User user) {
     BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
 
@@ -73,6 +64,7 @@ public class UsersController {
   }
 
   @PutMapping(value="/{id}")
+  @PreAuthorize("hasAuthority('UPDATE_PRIVILEGE')")
   public ResponseEntity<User> update(@PathVariable("id") long id, @RequestBody User user) {
     return repository.findById(id)
       .map(record -> {
@@ -81,31 +73,6 @@ public class UsersController {
         record.setUsername(user.getUsername());
         record.setActive(user.isActive());
 
-        // for (Role role : record.getRoles()) {
-        //   for (Privilege privilege : role.getPrivileges()) {
-        //     privilegesRepository.delete(privilege);
-        //   }
-
-        //   rolesRepository.delete(role);
-        // }
-
-        // for (Role role : user.getRoles()) {
-        //   List<Privilege> privileges = new ArrayList<>();
-
-        //   for (Privilege privilege : role.getPrivileges()) {
-        //     Privilege newPrivilege = new Privilege();
-        //     newPrivilege.setName(privilege.getName());
-
-        //     // privileges.add(privilegesRepository.save(newPrivilege));
-        //   }
-
-        //   Role newRole = new Role();
-        //   newRole.setName(role.getName());
-        //   newRole.setPrivileges(privileges);
-
-        //   // rolesRepository.save(newRole);
-        // }
-
         User updated = repository.save(record);
 
         return ResponseEntity.ok().body(updated);
@@ -113,6 +80,7 @@ public class UsersController {
   }
 
   @DeleteMapping(path ={"/{id}"})
+  @PreAuthorize("hasAuthority('DELETE_PRIVILEGE')")
   public ResponseEntity<?> delete(@PathVariable long id) {
     return repository.findById(id)
       .map(record -> {

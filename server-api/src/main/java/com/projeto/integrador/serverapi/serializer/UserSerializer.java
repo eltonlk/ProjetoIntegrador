@@ -33,10 +33,10 @@ public class UserSerializer extends StdSerializer<User> {
     generator.writeStringField("email", user.getEmail());
     generator.writeStringField("username", user.getUsername());
     generator.writeBooleanField("active", user.isActive());
-    generator.writeArrayFieldStart("roles");
+    generator.writeArrayFieldStart("userRoles");
 
-    for (Object role : user.getRoles()) {
-      generator.writeObject(role);
+    for (Object userRole : user.getUserRoles()) {
+      generator.writeObject(userRole);
     }
 
     generator.writeEndArray();

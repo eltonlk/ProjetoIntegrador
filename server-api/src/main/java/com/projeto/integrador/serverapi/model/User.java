@@ -6,14 +6,14 @@ import com.projeto.integrador.serverapi.serializer.UserSerializer;
 
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 
 import javax.validation.constraints.NotEmpty;
@@ -46,18 +46,17 @@ public class User {
 
   private boolean active;
 
-  @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-  private Collection<Role> roles;
+  @OneToMany(fetch = FetchType.EAGER, mappedBy="user", cascade = CascadeType.ALL)
+  private Collection<UserRole> userRoles;
 
-  public User(Long id, String name, String email, String username, String password, boolean active, Collection<Role> roles) {
+  public User(Long id, String name, String email, String username, String password, boolean active, Collection<UserRole> userRoles) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.username = username;
     this.password = password;
     this.active = active;
-    this.roles = roles;
+    this.userRoles = userRoles;
   }
 
   public User() {
@@ -111,12 +110,12 @@ public class User {
     this.active = active;
   }
 
-  public Collection<Role> getRoles() {
-    return roles;
+  public Collection<UserRole> getUserRoles() {
+    return userRoles;
   }
 
-  public void setRoles(Collection<Role> roles) {
-    this.roles = roles;
+  public void setUserRoles(Collection<UserRole> userRoles) {
+    this.userRoles = userRoles;
   }
 
 }

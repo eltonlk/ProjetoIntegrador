@@ -29,12 +29,13 @@ public class Privilege {
   @NotEmpty
   private String name;
 
-  // @ManyToMany(mappedBy = "privileges")
-  // private Collection<Role> roles;
+  @ManyToMany(mappedBy = "privileges")
+  private Collection<Role> roles;
 
-  public Privilege(Long id, String name) {
+  public Privilege(Long id, String name, Collection<Role> roles) {
     this.id = id;
     this.name = name;
+    this.roles = roles;
   }
 
   public Privilege() {
@@ -56,12 +57,12 @@ public class Privilege {
     this.name = name;
   }
 
-  // public Collection<Role> getRoles() {
-  //   return roles;
-  // }
+  public Collection<Role> getRoles() {
+    return roles;
+  }
 
-  // public void setRoles(Collection<Role> roles) {
-  //   this.roles = roles;
-  // }
+  public void setRoles(Collection<Role> roles) {
+    this.roles = roles;
+  }
 
 }

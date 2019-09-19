@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.projeto.integrador.serverapi.model.Role;
 import com.projeto.integrador.serverapi.model.User;
+import com.projeto.integrador.serverapi.model.UserRole;
 import com.projeto.integrador.serverapi.repository.UsersRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,22 +27,18 @@ public class CustomUserDetailsService implements UserDetailsService {
     return new org.springframework.security.core.userdetails.User(
       user.getUsername(),
       user.getPassword(),
-      getAuthorities(user.getRoles())
+      getAuthorities(user.getUserRoles())
     );
-
-    // user.isActive(),
-    // true,
-    // true,
-    // true,
   }
 
-  private Collection<? extends GrantedAuthority> getAuthorities(Collection<Role> roles) {
+  private Collection<? extends GrantedAuthority> getAuthorities(Collection<UserRole> userRoles) {
     List<GrantedAuthority> authorities = new ArrayList<>();
 
-    for (Role role: roles) {
-      authorities.add(new SimpleGrantedAuthority(role.getName()));
+    for (UserRole userRole: userRoles) {
+      authorities.add(new SimpleGrantedAuthority(userRole.getRole().getName()));
+      authorities.add(new SimpleGrantedAuthority(userRole.getPrivilege().getName()));
 
-      // role.getPrivileges().stream().map(p -> new SimpleGrantedAuthority(p.getName())).forEach(authorities::add);
+      // userRole.getPrivileges().stream().map(p -> new SimpleGrantedAuthority(p.getName())).forEach(authorities::add);
     }
 
     return authorities;

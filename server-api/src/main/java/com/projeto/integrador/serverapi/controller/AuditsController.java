@@ -30,6 +30,7 @@ public class AuditsController {
   }
 
   @GetMapping
+  @PreAuthorize("hasAuthority('READ_PRIVILEGE')")
   public List<Audit> findAll() {
     return repository.findAll();
   }

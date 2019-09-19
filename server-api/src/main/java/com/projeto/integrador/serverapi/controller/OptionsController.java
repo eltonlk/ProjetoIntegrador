@@ -34,11 +34,13 @@ public class OptionsController {
   }
 
   @GetMapping
+  @PreAuthorize("hasAuthority('READ_PRIVILEGE')")
   public List<Option> findAll(){
     return repository.findAll();
   }
 
   @PutMapping(value="/{id}")
+  @PreAuthorize("hasAuthority('UPDATE_PRIVILEGE')")
   public ResponseEntity<Option> update(@PathVariable("id") long id, @RequestBody Option option) {
     return repository.findById(id)
       .map(record -> {

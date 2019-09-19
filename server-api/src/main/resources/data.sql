@@ -1,9 +1,11 @@
-INSERT INTO privileges (id, name) VALUES (1, 'CREATE_PRIVILEGE');
-INSERT INTO privileges (id, name) VALUES (2, 'UPDATE_PRIVILEGE');
-INSERT INTO privileges (id, name) VALUES (3, 'DELETE_PRIVILEGE');
+INSERT INTO privileges (id, name) VALUES (1, 'READ_PRIVILEGE');
+INSERT INTO privileges (id, name) VALUES (2, 'CREATE_PRIVILEGE');
+INSERT INTO privileges (id, name) VALUES (3, 'UPDATE_PRIVILEGE');
+INSERT INTO privileges (id, name) VALUES (4, 'DELETE_PRIVILEGE');
 
 INSERT INTO roles (id, name) VALUES (1, 'ROLE_AUDITS');
-INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1, 2);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1, 1);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1, 3);
 
 INSERT INTO roles (id, name) VALUES (2, 'ROLE_OPTIONS');
 
@@ -11,40 +13,36 @@ INSERT INTO roles (id, name) VALUES (3, 'ROLE_USERS');
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (3, 1);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (3, 2);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (3, 3);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (3, 4);
 
 INSERT INTO roles (id, name) VALUES (4, 'ROLE_CATEGORIES');
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (4, 1);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (4, 2);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (4, 3);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (4, 4);
 
 INSERT INTO roles (id, name) VALUES (5, 'ROLE_MATERIALS');
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (5, 1);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (5, 2);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (5, 3);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (5, 4);
 
 INSERT INTO users (id, name, email, username, password, active)
-VALUES (1, 'Administrador', 'administrador@mail.com', 'admin', '$2a$10$2EJCEa0kr9QFyhm3kguxg.F9jS3rjRRy8Qj0l0.ILBIank0TJoK8G', TRUE);
-INSERT INTO users_roles (user_id, role_id) VALUES (1, 1);
-INSERT INTO users_roles (user_id, role_id) VALUES (1, 2);
-INSERT INTO users_roles (user_id, role_id) VALUES (1, 3);
+VALUES (1, 'Administrador', 'administrador@mail.com', 'admin', '$2a$10$2EJCEa0kr9QFyhm3kguxg.F9jS3rjRRy8Qj0l0.ILBIank0TJoK8G', TRUE),
+  (2, 'Colaborador', 'colaborador@mail.com', 'colaborador', '$2a$10$2EJCEa0kr9QFyhm3kguxg.F9jS3rjRRy8Qj0l0.ILBIank0TJoK8G', TRUE),
+  (3, 'Estágiario', 'estagiario@mail.com', 'estagiario', '$2a$10$2EJCEa0kr9QFyhm3kguxg.F9jS3rjRRy8Qj0l0.ILBIank0TJoK8G', FALSE);
 
-INSERT INTO users (id, name, email, username, password, active)
-VALUES (2, 'Colaborador', 'colaborador@mail.com', 'colaborador', '$2a$10$2EJCEa0kr9QFyhm3kguxg.F9jS3rjRRy8Qj0l0.ILBIank0TJoK8G', TRUE);
-INSERT INTO users_roles (user_id, role_id) VALUES (2, 2);
-INSERT INTO users_roles (user_id, role_id) VALUES (2, 3);
-
-INSERT INTO users (id, name, email, username, password, active)
-VALUES (3, 'Estágiario', 'estagiario@mail.com', 'estagiario', '$2a$10$2EJCEa0kr9QFyhm3kguxg.F9jS3rjRRy8Qj0l0.ILBIank0TJoK8G', FALSE);
-INSERT INTO users_roles (user_id, role_id) VALUES (3, 2);
+UPDATE user_roles SET enable = TRUE WHERE user_id = 1;
 
 INSERT INTO options (id, name, value) VALUES (1, 'audits', 'enabled');
 
-INSERT INTO categories (name, active) VALUES ('Muito leve', TRUE);
-INSERT INTO categories (name, active) VALUES ('Leve', TRUE);
-INSERT INTO categories (name, active) VALUES ('Mediano', TRUE);
-INSERT INTO categories (name, active) VALUES ('Pesado', TRUE);
-INSERT INTO categories (name, active) VALUES ('Muito pesado', TRUE);
-INSERT INTO categories (name, active) VALUES ('Extremamente leve', FALSE);
+INSERT INTO categories (name, active)
+VALUES ('Muito leve', TRUE),
+  ('Leve', TRUE),
+  ('Mediano', TRUE),
+  ('Pesado', TRUE),
+  ('Muito pesado', TRUE),
+  ('Extremamente leve', FALSE);
 
 INSERT INTO materials (name, active, thermal_conductivity_index)
 VALUES ('Alvenaria', TRUE, 123.231),
