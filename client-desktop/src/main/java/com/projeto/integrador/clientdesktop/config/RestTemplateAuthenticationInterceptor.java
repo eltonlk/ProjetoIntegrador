@@ -27,8 +27,6 @@ public class RestTemplateAuthenticationInterceptor implements ClientHttpRequestI
 
       String token = tokenCredential.getToken();
 
-      System.out.print(token);
-
       request.getHeaders().add("Authorization", token);
     }
 
