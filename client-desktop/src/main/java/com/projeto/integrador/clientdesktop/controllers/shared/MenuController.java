@@ -33,7 +33,7 @@ public class MenuController implements Initializable {
   }
 
   @FXML
-  private void goToCategories(ActionEvent event) throws IOException {
+  private void goToColors(ActionEvent event) throws IOException {
   }
 
   @FXML

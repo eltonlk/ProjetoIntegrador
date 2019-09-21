@@ -1,19 +1,22 @@
 package com.projeto.integrador.clientdesktop.models;
 
-public class Category {
+public class Color {
 
   private Long id;
 
   private String name;
 
+  private double absorbabilityIndex;
+
   private boolean active;
 
-  public Category(Long id, String name) {
+  public Color(Long id, String name, double absorbabilityIndex) {
     this.id = id;
     this.name = name;
+    this.absorbabilityIndex = absorbabilityIndex;
   }
 
-  public Category() {
+  public Color() {
   }
 
   public Long getId() {
@@ -30,6 +33,14 @@ public class Category {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public double getAbsorbabilityIndex() {
+    return absorbabilityIndex;
+  }
+
+  public void setAbsorbabilityIndex(double absorbabilityIndex) {
+    this.absorbabilityIndex = absorbabilityIndex;
   }
 
   public boolean isActive() {

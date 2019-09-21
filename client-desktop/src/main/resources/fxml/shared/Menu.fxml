@@ -26,9 +26,9 @@
           <FontIcon iconLiteral="fas-puzzle-piece" iconSize="20"/>
         </graphic>
       </Button>
-      <Button onAction="#goToCategories" text="Categorias" textAlignment="CENTER" contentDisplay="TOP">
+      <Button onAction="#goToColors" text="Cores" textAlignment="CENTER" contentDisplay="TOP">
         <graphic>
-          <FontIcon iconLiteral="fas-tags" iconSize="20"/>
+          <FontIcon iconLiteral="fas-swatchbook" iconSize="20"/>
         </graphic>
       </Button>
       <Button onAction="#goToAudits" text="Histórico" textAlignment="CENTER" contentDisplay="TOP">
