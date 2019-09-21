@@ -31,35 +31,38 @@
   </left>
 
   <center>
-    <VBox prefHeight="400.0" prefWidth="300.0" spacing="20.0" alignment="CENTER">
+    <VBox fx:id="loginPanel" prefHeight="400.0" prefWidth="300.0" alignment="CENTER">
       <padding>
         <Insets top="25" right="25" bottom="25" left="25"/>
       </padding>
 
       <children>
-        <Label fx:id="lblLogin" text="Login" styleClass="label-header"/>
-
-        <VBox spacing="2.0">
+        <VBox prefHeight="350.0" prefWidth="250.0" spacing="20.0" alignment="CENTER">
           <children>
-            <Label fx:id="usernameLabel" text="Usuário"/>
-            <TextField fx:id="usernameInput" promptText="Usuário"/>
+            <Label fx:id="lblLogin" text="Login" styleClass="label-header"/>
+
+            <VBox spacing="2.0">
+              <children>
+                <Label fx:id="usernameLabel" text="Usuário"/>
+                <TextField fx:id="usernameInput" promptText="Usuário"/>
+              </children>
+            </VBox>
+
+            <VBox spacing="2.0">
+              <children>
+                <Label fx:id="passwordLabel" text="Senha"/>
+                <PasswordField fx:id="passwordInput" promptText="Senha" onAction="#login"/>
+              </children>
+            </VBox>
+
+            <HBox alignment="TOP_RIGHT">
+              <children>
+                <Button fx:id="submitButton" onAction="#login" styleClass="button-primary" text="ENTRAR"/>
+              </children>
+            </HBox>
           </children>
         </VBox>
-
-        <VBox spacing="2.0">
-          <children>
-            <Label fx:id="passwordLabel" text="Senha"/>
-            <PasswordField fx:id="passwordInput" promptText="Senha" onAction="#login"/>
-          </children>
-        </VBox>
-
-        <HBox alignment="TOP_RIGHT">
-          <children>
-            <Button fx:id="submitButton" onAction="#login" styleClass="button-primary" text="ENTRAR"/>
-          </children>
-        </HBox>
       </children>
     </VBox>
   </center>
-
 </BorderPane>

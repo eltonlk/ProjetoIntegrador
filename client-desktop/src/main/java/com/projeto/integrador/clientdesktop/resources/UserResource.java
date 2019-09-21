@@ -20,29 +20,29 @@ public class UserResource {
     this.restTemplate = restTemplate;
   }
 
-	public User[] getAll() {
-		User[] users = restTemplate.getForObject(NAMESPACE, User[].class);
+  public User[] getAll() {
+    User[] users = restTemplate.getForObject(NAMESPACE, User[].class);
 
-		return users;
-	}
+    return users;
+  }
 
-	public User create(User user) {
-		ResponseEntity<User> responseEntity = restTemplate.postForEntity(NAMESPACE, user, User.class);
+  public User create(User user) {
+    ResponseEntity<User> responseEntity = restTemplate.postForEntity(NAMESPACE, user, User.class);
 
-		User createdUser = null;
+    User createdUser = null;
 
-		if (responseEntity.getStatusCode() == HttpStatus.CREATED) {
+    if (responseEntity.getStatusCode() == HttpStatus.CREATED) {
       createdUser = responseEntity.getBody();
-		}
+    }
 
     return createdUser;
-	}
+  }
 
-	public void update(User user) {
+  public void update(User user) {
     restTemplate.put(NAMESPACE + "/{id}", user, user.getId());
-	}
+  }
 
-	public void delete(User user) {
+  public void delete(User user) {
     restTemplate.delete(NAMESPACE + "/{id}", user.getId());
   }
 

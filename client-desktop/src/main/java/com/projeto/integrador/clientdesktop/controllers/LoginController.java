@@ -1,5 +1,6 @@
 package com.projeto.integrador.clientdesktop.controllers;
 
+import com.projeto.integrador.clientdesktop.components.Flash;
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.views.DashboardFxmlView;
 
@@ -10,10 +11,12 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -38,13 +41,13 @@ public class LoginController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
   }
 
-	public String getPassword() {
-		return passwordInput.getText();
+  public String getPassword() {
+    return passwordInput.getText();
 	}
 
 	public String getUsername() {
-		return usernameInput.getText();
-	}
+    return usernameInput.getText();
+  }
 
 	@FXML
   private void login(ActionEvent event) throws IOException{
@@ -57,7 +60,13 @@ public class LoginController implements Initializable {
 
       stageManager.switchScene(new DashboardFxmlView());
     } catch (AuthenticationException e) {
-      lblLogin.setText("Login failure, please try again:");
+      Node flash = new Flash().showMessage("Usuário ou senha inválido");
+
+      if (loginPanel.getChildren().size() > 1) {
+        loginPanel.getChildren().remove(0);
+      }
+
+      loginPanel.getChildren().add(0, flash);
     }
   }
 
@@ -72,4 +81,7 @@ public class LoginController implements Initializable {
 
   @FXML
   private Label lblLogin;
+
+  @FXML
+  private VBox loginPanel;
 }
