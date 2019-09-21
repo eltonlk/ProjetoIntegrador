@@ -1,5 +1,6 @@
 package com.projeto.integrador.serverapi.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -14,8 +15,8 @@ import com.projeto.integrador.serverapi.model.observer.AuditListener;
 
 @Entity
 @EntityListeners(AuditListener.class)
-@Table(name = "categories")
-public class Category {
+@Table(name = "colors")
+public class Color {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,14 +26,19 @@ public class Category {
   @NotEmpty
   private String name;
 
+  @Column(name = "absorbability_index")
+  @NotNull
+  private double absorbabilityIndex;
+
   private boolean active;
 
-  public Category(Long id, String name) {
+  public Color(Long id, String name, double absorbabilityIndex) {
     this.id = id;
     this.name = name;
+    this.absorbabilityIndex = absorbabilityIndex;
   }
 
-  public Category() {
+  public Color() {
   }
 
   public Long getId() {
@@ -51,6 +57,14 @@ public class Category {
     this.name = name;
   }
 
+  public double getAbsorbabilityIndex() {
+    return absorbabilityIndex;
+  }
+
+  public void setAbsorbabilityIndex(double absorbabilityIndex) {
+    this.absorbabilityIndex = absorbabilityIndex;
+  }
+
   public boolean isActive() {
     return active;
   }
@@ -61,9 +75,10 @@ public class Category {
 
   @Override
   public String toString() {
-    return "Category{" +
+    return "Color{" +
       "id=" + id +
       ", name='" + name + '\'' +
+      ", absorbability_index='" + absorbabilityIndex + '\'' +
       ", active='" + active + '\'' +
       '}';
   }

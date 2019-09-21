@@ -1,7 +1,7 @@
 package com.projeto.integrador.serverapi.controller;
 
-import com.projeto.integrador.serverapi.model.Category;
-import com.projeto.integrador.serverapi.repository.CategoriesRepository;
+import com.projeto.integrador.serverapi.model.Color;
+import com.projeto.integrador.serverapi.repository.ColorsRepository;
 
 import java.util.List;
 
@@ -19,33 +19,33 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping({"/categories"})
-@PreAuthorize("hasRole('ROLE_CATEGORIES')")
-public class CategoriesController {
+@RequestMapping({"/colors"})
+@PreAuthorize("hasRole('ROLE_COLORS')")
+public class ColorsController {
 
-  private CategoriesRepository repository;
+  private ColorsRepository repository;
 
-  CategoriesController(CategoriesRepository categoriesRepository) {
-    this.setRepository(categoriesRepository);
+  ColorsController(ColorsRepository colorsRepository) {
+    this.setRepository(colorsRepository);
   }
 
-  public CategoriesRepository getRepository() {
+  public ColorsRepository getRepository() {
     return repository;
   }
 
-  public void setRepository(CategoriesRepository repository) {
+  public void setRepository(ColorsRepository repository) {
     this.repository = repository;
   }
 
   @GetMapping
   @PreAuthorize("hasAuthority('READ_PRIVILEGE')")
-  public List<Category> findAll(){
+  public List<Color> findAll(){
     return repository.findAll();
   }
 
   @GetMapping(path = {"/{id}"})
   @PreAuthorize("hasAuthority('READ_PRIVILEGE')")
-  public ResponseEntity<Category> findById(@PathVariable long id) {
+  public ResponseEntity<Color> findById(@PathVariable long id) {
     return repository.findById(id)
       .map(record -> ResponseEntity.ok().body(record))
       .orElse(ResponseEntity.notFound().build());
@@ -54,19 +54,20 @@ public class CategoriesController {
   @PostMapping
   @PreAuthorize("hasAuthority('CREATE_PRIVILEGE')")
   @ResponseStatus(HttpStatus.CREATED)
-  public Category create(@RequestBody Category category) {
-    return repository.save(category);
+  public Color create(@RequestBody Color color) {
+    return repository.save(color);
   }
 
   @PreAuthorize("hasAuthority('UPDATE_PRIVILEGE')")
   @PutMapping(value="/{id}")
-  public ResponseEntity<Category> update(@PathVariable("id") long id, @RequestBody Category category) {
+  public ResponseEntity<Color> update(@PathVariable("id") long id, @RequestBody Color color) {
     return repository.findById(id)
       .map(record -> {
-        record.setName(category.getName());
-        record.setActive(category.isActive());
+        record.setName(color.getName());
+        record.setAbsorbabilityIndex(color.getAbsorbabilityIndex());
+        record.setActive(color.isActive());
 
-        Category updated = repository.save(record);
+        Color updated = repository.save(record);
 
         return ResponseEntity.ok().body(updated);
       }).orElse(ResponseEntity.notFound().build());

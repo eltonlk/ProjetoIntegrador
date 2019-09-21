@@ -64,8 +64,8 @@ public class MaterialsController {
     return repository.findById(id)
       .map(record -> {
         record.setName(material.getName());
-        record.setActive(material.isActive());
         record.setThermalConductivityIndex(material.getThermalConductivityIndex());
+        record.setActive(material.isActive());
 
         Material updated = repository.save(record);
 

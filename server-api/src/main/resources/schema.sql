@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS audits CASCADE;
 DROP TABLE IF EXISTS options CASCADE;
 
 DROP TABLE IF EXISTS categories CASCADE;
+DROP TABLE IF EXISTS colors CASCADE;
 DROP TABLE IF EXISTS materials CASCADE;
 
 CREATE TABLE roles (
@@ -42,10 +43,11 @@ CREATE TABLE user_roles (
   enable       BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE categories (
-  id     SERIAL PRIMARY KEY,
-  name   VARCHAR(255) NOT NULL,
-  active BOOLEAN DEFAULT TRUE
+CREATE TABLE colors (
+  id                  SERIAL PRIMARY KEY,
+  name                VARCHAR(255) NOT NULL,
+  absorbability_index NUMERIC(10, 5) NOT NULL DEFAULT 0,
+  active              BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE materials (

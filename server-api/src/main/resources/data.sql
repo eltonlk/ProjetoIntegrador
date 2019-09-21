@@ -15,7 +15,7 @@ INSERT INTO roles_privileges (role_id, privilege_id) VALUES (3, 2);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (3, 3);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (3, 4);
 
-INSERT INTO roles (id, name) VALUES (4, 'ROLE_CATEGORIES');
+INSERT INTO roles (id, name) VALUES (4, 'ROLE_COLORS');
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (4, 1);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (4, 2);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (4, 3);
@@ -36,33 +36,33 @@ UPDATE user_roles SET enable = TRUE WHERE user_id = 1;
 
 INSERT INTO options (id, name, value) VALUES (1, 'audits', 'enabled');
 
-INSERT INTO categories (name, active)
-VALUES ('Muito leve', TRUE),
-  ('Leve', TRUE),
-  ('Mediano', TRUE),
-  ('Pesado', TRUE),
-  ('Muito pesado', TRUE),
-  ('Extremamente leve', FALSE);
+INSERT INTO colors (name, absorbability_index, active)
+VALUES ('Branco', 0.1, TRUE),
+  ('Branco (óxido de zinco)', 0.3, TRUE),
+  ('Cinza', 0.75, TRUE),
+  ('Preta', 0.9, TRUE),
+  ('Aluminío', 0.55, TRUE),
+  ('Verde Rosado', 0.65, FALSE);
 
 INSERT INTO materials (name, active, thermal_conductivity_index)
-VALUES ('Alvenaria', TRUE, 123.231),
-  ('Gesso', TRUE, 12345.12345),
-  ('Madeira', TRUE, 12.23),
-  ('PVC', TRUE, 10),
-  ('Vidro', TRUE, 0.123),
-  ('Espaço vazio', FALSE, 12345);
+VALUES ('Argamassa comum', 1.15, TRUE),
+  ('Reboco', 0.87, TRUE),
+  ('Concreto', 1.75, TRUE),
+  ('PVC', 0.2, TRUE),
+  ('Vidro', 1, TRUE),
+  ('Espaço vazio (AR)', 0.17, FALSE);
 
 INSERT INTO "audits"("modified_by", "modified_date", "action", "content")
 VALUES ('admin', '2019-08-23 00:18:22', 'CREATED', 'Option{id=null, name=''audits'', value=''enabled''}'),
-  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Category{id=null, name=''Muito leve'', active=true}'),
-  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Category{id=null, name=''Leve'', active=true}'),
-  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Category{id=null, name=''Mediano'', active=true}'),
-  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Category{id=null, name=''Pesado'', active=true}'),
-  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Category{id=null, name=''Muito pesado'', active=true}'),
-  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Category{id=null, name=''Extremamente leve'', active=false}'),
-  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Material{id=null, name=''Alvenaria'', active=true}'),
-  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Material{id=null, name=''Gesso'', active=true}'),
-  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Material{id=null, name=''Madeira'', active=true}'),
-  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Material{id=null, name=''PVC'', active=true}'),
-  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Material{id=null, name=''Vidro'', active=true}'),
-  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Material{id=null, name=''Espaço vazio'', active=true}');
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Color{id=null, name=''Branco'', absorbability_index=0.1, active=true}'),
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Color{id=null, name=''Branco (óxido de zinco)'', absorbability_index=0.3, active=true}'),
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Color{id=null, name=''Cinza'', absorbability_index=0.75, active=true}'),
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Color{id=null, name=''Preta'', absorbability_index=0.9, active=true}'),
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Color{id=null, name=''Aluminío'', absorbability_index=0.55, active=true}'),
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Color{id=null, name=''Verde Rosado'', absorbability_index=0.65, active=false}'),
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Material{id=null, name=''Argamassa comum'', thermal_conductivity_index=1.15, active=true}'),
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Material{id=null, name=''Reboco'', thermal_conductivity_index=0.87, active=true}'),
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Material{id=null, name=''Concreto'', thermal_conductivity_index=1.75, active=true}'),
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Material{id=null, name=''PVC'', thermal_conductivity_index=0.2, active=true}'),
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Material{id=null, name=''Vidro'', thermal_conductivity_index=1, active=true}'),
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Material{id=null, name=''Espaço vazio (AR)'', thermal_conductivity_index=0.17, active=false}');
