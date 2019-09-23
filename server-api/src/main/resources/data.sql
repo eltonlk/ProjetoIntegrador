@@ -52,6 +52,13 @@ VALUES ('Argamassa comum', 1.15, TRUE),
   ('Vidro', 1, TRUE),
   ('Espaço vazio (AR)', 0.17, FALSE);
 
+INSERT INTO solar_radiations (name, index)
+VALUES ('Sul', 600),
+  ('Sudeste', 700),
+  ('Centro-Oeste', 600),
+  ('Nordeste', 800),
+  ('Norte', 500);
+
 INSERT INTO "audits"("modified_by", "modified_date", "action", "content")
 VALUES ('admin', '2019-08-23 00:18:22', 'CREATED', 'Option{id=null, name=''audits'', value=''enabled''}'),
   ('admin', '2019-08-23 00:18:22', 'CREATED', 'Color{id=null, name=''Branco'', absorbability_index=0.1, active=true}'),
@@ -65,4 +72,9 @@ VALUES ('admin', '2019-08-23 00:18:22', 'CREATED', 'Option{id=null, name=''audit
   ('admin', '2019-08-23 00:18:22', 'CREATED', 'Material{id=null, name=''Concreto'', thermal_conductivity_index=1.75, active=true}'),
   ('admin', '2019-08-23 00:18:22', 'CREATED', 'Material{id=null, name=''PVC'', thermal_conductivity_index=0.2, active=true}'),
   ('admin', '2019-08-23 00:18:22', 'CREATED', 'Material{id=null, name=''Vidro'', thermal_conductivity_index=1, active=true}'),
-  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Material{id=null, name=''Espaço vazio (AR)'', thermal_conductivity_index=0.17, active=false}');
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'Material{id=null, name=''Espaço vazio (AR)'', thermal_conductivity_index=0.17, active=false}'),
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'SolarRadiation{id=null, name=''Sul'', index=600}'),
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'SolarRadiation{id=null, name=''Sudeste'', index=700}'),
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'SolarRadiation{id=null, name=''Centro-Oeste'', index=600}'),
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'SolarRadiation{id=null, name=''Nordeste'', index=800}'),
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'SolarRadiation{id=null, name=''Norte'', index=500}');
