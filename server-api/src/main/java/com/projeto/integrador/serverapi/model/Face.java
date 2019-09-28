@@ -1,12 +1,17 @@
 package com.projeto.integrador.serverapi.model;
 
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import javax.validation.constraints.NotEmpty;
@@ -31,10 +36,14 @@ public class Face {
   @JoinColumn(name="room_id", nullable=false)
   private Room room;
 
-  public Face(Long id, String name, Room room) {
+  @OneToMany(fetch = FetchType.EAGER, mappedBy="face", cascade = CascadeType.ALL)
+  private Collection<Component> components;
+
+  public Face(Long id, String name, Room room, Collection<Component> components) {
     this.id = id;
     this.name = name;
     this.room = room;
+    this.components = components;
   }
 
   public Face() {
@@ -62,6 +71,14 @@ public class Face {
 
   public void setRoom(Room room) {
     this.room = room;
+  }
+
+  public Collection<Component> getComponents() {
+    return components;
+  }
+
+  public void setComponents(Collection<Component> components) {
+    this.components = components;
   }
 
   @Override

@@ -1,12 +1,17 @@
 package com.projeto.integrador.serverapi.model;
 
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import javax.validation.constraints.NotEmpty;
@@ -38,12 +43,16 @@ public class Component {
   @JoinColumn(name="color_id", nullable=false)
   private Color color;
 
-  public Component(Long id, String name, double area, Face face, Color color) {
+  @OneToMany(fetch = FetchType.EAGER, mappedBy="component", cascade = CascadeType.ALL)
+  private Collection<ComponentMaterial> componentMaterials;
+
+  public Component(Long id, String name, double area, Face face, Color color, Collection<ComponentMaterial> componentMaterials) {
     this.id = id;
     this.name = name;
     this.area = area;
     this.face = face;
     this.color = color;
+    this.componentMaterials = componentMaterials;
   }
 
   public Component() {
@@ -87,6 +96,14 @@ public class Component {
 
   public void setColor(Color color) {
     this.color = color;
+  }
+
+  public Collection<ComponentMaterial> getComponentMaterials() {
+    return componentMaterials;
+  }
+
+  public void setComponentMaterials(Collection<ComponentMaterial> componentMaterials) {
+    this.componentMaterials = componentMaterials;
   }
 
   @Override

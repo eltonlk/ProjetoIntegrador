@@ -9,7 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.projeto.integrador.serverapi.model.observer.AuditListener;
@@ -37,15 +36,14 @@ public class ComponentMaterial {
   @JoinColumn(name="material_id", nullable=false)
   private Material material;
 
-  public ComponentMaterial(Long id, double width, Face face, Color color) {
+  public ComponentMaterial(Long id, double width, Component component, Material material) {
     this.id = id;
-    this.name = name;
-    this.area = area;
-    this.face = face;
-    this.color = color;
+    this.width = width;
+    this.component = component;
+    this.material = material;
   }
 
-  public Component() {
+  public ComponentMaterial() {
   }
 
   public Long getId() {
@@ -56,46 +54,37 @@ public class ComponentMaterial {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public double getWidth() {
+    return width;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setWidth(double width) {
+    this.width = width;
   }
 
-  public double getArea() {
-    return area;
+  public Component getComponent() {
+    return component;
   }
 
-  public void setArea(double area) {
-    this.area = area;
+  public void setComponent(Component component) {
+    this.component = component;
   }
 
-  public Face getFace() {
-    return face;
+  public Material getMaterial() {
+    return material;
   }
 
-  public void setFace(Face face) {
-    this.face = face;
-  }
-
-  public Color getColor() {
-    return color;
-  }
-
-  public void setColor(Color color) {
-    this.color = color;
+  public void setMaterial(Material material) {
+    this.material = material;
   }
 
   @Override
   public String toString() {
-    return "Component{" +
+    return "ComponentMaterial{" +
       "id=" + id +
-      ", name='" + name + '\'' +
-      ", area='" + area + '\'' +
-      ", face_id='" + face.getId() + '\'' +
-      ", color_id='" + color.getId() + '\'' +
+      ", width='" + width + '\'' +
+      ", component_id='" + component.getId() + '\'' +
+      ", material_id='" + material.getId() + '\'' +
       '}';
   }
 

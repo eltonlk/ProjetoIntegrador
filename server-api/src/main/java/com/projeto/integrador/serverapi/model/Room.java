@@ -1,12 +1,17 @@
 package com.projeto.integrador.serverapi.model;
 
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import javax.validation.constraints.NotEmpty;
@@ -31,10 +36,14 @@ public class Room {
   @JoinColumn(name="project_id", nullable=false)
   private Project project;
 
-  public Room(Long id, String name, Project project) {
+  @OneToMany(fetch = FetchType.EAGER, mappedBy="room", cascade = CascadeType.ALL)
+  private Collection<Face> faces;
+
+  public Room(Long id, String name, Project project, Collection<Face> faces) {
     this.id = id;
     this.name = name;
     this.project = project;
+    this.faces = faces;
   }
 
   public Room() {
@@ -62,6 +71,14 @@ public class Room {
 
   public void setProject(Project project) {
     this.project = project;
+  }
+
+  public Collection<Face> getFaces() {
+    return faces;
+  }
+
+  public void setFaces(Collection<Face> faces) {
+    this.faces = faces;
   }
 
   @Override
