@@ -27,6 +27,12 @@ INSERT INTO roles_privileges (role_id, privilege_id) VALUES (5, 2);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (5, 3);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (5, 4);
 
+INSERT INTO roles (id, name) VALUES (6, 'ROLE_PROJECTS');
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (6, 1);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (6, 2);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (6, 3);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (6, 4);
+
 INSERT INTO users (id, name, email, username, password, active)
 VALUES (1, 'Administrador', 'administrador@mail.com', 'admin', '$2a$10$2EJCEa0kr9QFyhm3kguxg.F9jS3rjRRy8Qj0l0.ILBIank0TJoK8G', TRUE),
   (2, 'Colaborador', 'colaborador@mail.com', 'colaborador', '$2a$10$2EJCEa0kr9QFyhm3kguxg.F9jS3rjRRy8Qj0l0.ILBIank0TJoK8G', TRUE),
@@ -44,7 +50,7 @@ VALUES ('Branco', 0.1, TRUE),
   ('Aluminío', 0.55, TRUE),
   ('Verde Rosado', 0.65, FALSE);
 
-INSERT INTO materials (name, active, thermal_conductivity_index)
+INSERT INTO materials (name, thermal_conductivity_index, active)
 VALUES ('Argamassa comum', 1.15, TRUE),
   ('Reboco', 0.87, TRUE),
   ('Concreto', 1.75, TRUE),
