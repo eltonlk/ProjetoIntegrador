@@ -28,6 +28,9 @@ public class ComponentMaterial {
   @NotNull
   private double thermalConductitityIndex;
 
+  @NotNull
+  private double resistance;
+
   @ManyToOne
   @JoinColumn(name="component_id", nullable=false)
   private Component component;
@@ -60,6 +63,22 @@ public class ComponentMaterial {
 
   public void setWidth(double width) {
     this.width = width;
+  }
+
+  public double getThermalConductitityIndex() {
+    return thermalConductitityIndex;
+  }
+
+  public void setThermalConductitityIndex(double thermalConductitityIndex) {
+    this.thermalConductitityIndex = thermalConductitityIndex;
+  }
+
+  public double getResistance() {
+    return resistance;
+  }
+
+  public void setResistance(double resistance) {
+    this.resistance = resistance;
   }
 
   public Component getComponent() {

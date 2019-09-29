@@ -32,6 +32,9 @@ public class Face {
   @NotEmpty
   private String name;
 
+  @NotNull
+  private double heatLoad;
+
   @ManyToOne
   @JoinColumn(name="room_id", nullable=false)
   private Room room;
@@ -65,6 +68,14 @@ public class Face {
     this.name = name;
   }
 
+  public double getHeatLoad() {
+    return heatLoad;
+  }
+
+  public void setHeatLoad(double heatLoad) {
+    this.heatLoad = heatLoad;
+  }
+
   public Room getRoom() {
     return room;
   }
@@ -86,6 +97,7 @@ public class Face {
     return "Face{" +
       "id=" + id +
       ", name='" + name + '\'' +
+      ", heat_load='" + heatLoad + '\'' +
       ", room_id='" + room.getId() + '\'' +
       '}';
   }

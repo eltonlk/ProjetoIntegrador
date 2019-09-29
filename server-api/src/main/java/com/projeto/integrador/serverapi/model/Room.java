@@ -32,6 +32,9 @@ public class Room {
   @NotEmpty
   private String name;
 
+  @NotNull
+  private double heatLoad;
+
   @ManyToOne
   @JoinColumn(name="project_id", nullable=false)
   private Project project;
@@ -65,6 +68,14 @@ public class Room {
     this.name = name;
   }
 
+  public double getHeatLoad() {
+    return heatLoad;
+  }
+
+  public void setHeatLoad(double heatLoad) {
+    this.heatLoad = heatLoad;
+  }
+
   public Project getProject() {
     return project;
   }
@@ -86,6 +97,7 @@ public class Room {
     return "Room{" +
       "id=" + id +
       ", name='" + name + '\'' +
+      ", heat_load='" + heatLoad + '\'' +
       ", project_id='" + project.getId() + '\'' +
       '}';
   }

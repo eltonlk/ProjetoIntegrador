@@ -35,6 +35,9 @@ public class Component {
   @NotNull
   private double area;
 
+  @NotNull
+  private double thermalTransmittance;
+
   @ManyToOne
   @JoinColumn(name="face_id", nullable=false)
   private Face face;
@@ -82,6 +85,14 @@ public class Component {
     this.area = area;
   }
 
+  public double getThermalTransmittance() {
+    return thermalTransmittance;
+  }
+
+  public void setThermalTransmittance(double thermalTransmittance) {
+    this.thermalTransmittance = thermalTransmittance;
+  }
+
   public Face getFace() {
     return face;
   }
@@ -112,6 +123,7 @@ public class Component {
       "id=" + id +
       ", name='" + name + '\'' +
       ", area='" + area + '\'' +
+      ", thermal_transmittance='" + thermalTransmittance + '\'' +
       ", face_id='" + face.getId() + '\'' +
       ", color_id='" + color.getId() + '\'' +
       '}';
