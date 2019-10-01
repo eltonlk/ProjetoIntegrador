@@ -9,10 +9,19 @@ import javax.transaction.Transactional;
 import com.projeto.integrador.serverapi.auditor.BeanUtil;
 import com.projeto.integrador.serverapi.model.Audit;
 import com.projeto.integrador.serverapi.model.Option;
+import com.projeto.integrador.serverapi.repository.AuditsRepository;
+import com.projeto.integrador.serverapi.service.OptionService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static javax.transaction.Transactional.TxType.MANDATORY;
 
 public class AuditListener {
+
+  private OptionService optionService;
+
+  @Autowired
+  private AuditsRepository repository;
 
   @PrePersist
   public void prePersist(Object auditable) {
@@ -31,14 +40,14 @@ public class AuditListener {
 
   @Transactional(MANDATORY)
   private void perform(Object auditable, String action) {
-    EntityManager entityManager = BeanUtil.getBean(EntityManager.class);
+    if (optionService.auditsEnabled() ||
+        auditable.getClass().equals(Option.class)) {
 
-    Long optionId = new Long(1);
+        EntityManager entityManager = BeanUtil.getBean(EntityManager.class);
 
-    Option option = entityManager.find(Option.class, optionId);
+        entityManager.persist(new Audit(auditable, action));
 
-    if ("enabled".equals(option.getValue()) || auditable.getClass().equals(Option.class)) {
-      entityManager.persist(new Audit(auditable, action));
+        // repository.save(new Audit(auditable, action));
     }
   }
 
