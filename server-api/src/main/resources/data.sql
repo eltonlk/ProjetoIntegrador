@@ -5,9 +5,10 @@ INSERT INTO privileges (id, name) VALUES (4, 'DELETE_PRIVILEGE');
 
 INSERT INTO roles (id, name) VALUES (1, 'ROLE_AUDITS');
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1, 1);
-INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1, 3);
 
 INSERT INTO roles (id, name) VALUES (2, 'ROLE_OPTIONS');
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (2, 1);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (2, 3);
 
 INSERT INTO roles (id, name) VALUES (3, 'ROLE_USERS');
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (3, 1);
