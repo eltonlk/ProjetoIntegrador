@@ -33,7 +33,7 @@
         <Button fx:id="createUserButton" onAction="#goToCreate" styleClass="button-primary" text="Adicionar"/>
       </HBox>
 
-      <VBox fx:id="usersList">
+      <VBox fx:id="usersList" spacing="10.0">
         <children>
         </children>
       </VBox>

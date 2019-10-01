@@ -8,7 +8,8 @@
 
 <BorderPane stylesheets="@../../../styles/Styles.css"
             xmlns="http://javafx.com/javafx/12.0.2"
-            xmlns:fx="http://javafx.com/fxml/1">
+            xmlns:fx="http://javafx.com/fxml/1"
+            styleClass="list-item">
 
   <center>
     <VBox>
@@ -18,9 +19,9 @@
   </center>
 
   <right>
-    <HBox>
-      <Button fx:id="updateButton" text="Alterar"/>
-      <Button fx:id="deleteButton" text="Excluir"/>
+    <HBox spacing="5.0">
+      <Button fx:id="updateButton" text="Alterar" styleClass="button-success-sm"/>
+      <Button fx:id="deleteButton" text="Excluir" styleClass="button-danger-sm"/>
     </HBox>
   </right>
 </BorderPane>

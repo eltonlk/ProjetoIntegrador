@@ -18,7 +18,7 @@
             stylesheets="@../../styles/Styles.css"
             xmlns="http://javafx.com/javafx/12.0.2"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.projeto.integrador.clientdesktop.controllers.users.CreateUserController">
+            fx:controller="com.projeto.integrador.clientdesktop.controllers.users.PermissionsController">
 
   <left>
     <fx:include source="../shared/Menu.fxml"/>
