@@ -65,7 +65,7 @@ public class ComponentsController {
       .map(record -> {
         record.setName(component.getName());
         record.setArea(component.getArea());
-        record.setThermalTransmittance(component.getThermalTransmittance());
+        record.setHeatFlow(component.getHeatFlow());
         record.setFace(component.getFace());
         record.setColor(component.getColor());
 

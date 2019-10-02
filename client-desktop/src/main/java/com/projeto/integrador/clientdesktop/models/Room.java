@@ -14,9 +14,10 @@ public class Room {
 
   private Collection<Face> faces;
 
-  public Room(Long id, String name, Project project, Collection<Face> faces) {
+  public Room(Long id, String name, double heatLoad, Project project, Collection<Face> faces) {
     this.id = id;
     this.name = name;
+    this.heatLoad = heatLoad;
     this.project = project;
     this.faces = faces;
   }
@@ -46,6 +47,16 @@ public class Room {
 
   public void setHeatLoad(double heatLoad) {
     this.heatLoad = heatLoad;
+  }
+
+  public double getHeatLoadCalculated() {
+    double heatLoad = 0;
+
+    for (Face face : faces) {
+      heatLoad += face.getHeatFlow();
+    }
+
+    return heatLoad;
   }
 
   public Project getProject() {

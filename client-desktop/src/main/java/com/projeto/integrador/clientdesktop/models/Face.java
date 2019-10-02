@@ -8,15 +8,16 @@ public class Face {
 
   private String name;
 
-  private double heatLoad;
+  private double heatFlow;
 
   private Room room;
 
   private Collection<Component> components;
 
-  public Face(Long id, String name, Room room, Collection<Component> components) {
+  public Face(Long id, String name, double heatFlow, Room room, Collection<Component> components) {
     this.id = id;
     this.name = name;
+    this.heatFlow = heatFlow;
     this.room = room;
     this.components = components;
   }
@@ -40,12 +41,22 @@ public class Face {
     this.name = name;
   }
 
-  public double getHeatLoad() {
-    return heatLoad;
+  public double getHeatFlow() {
+    return heatFlow;
   }
 
-  public void setHeatLoad(double heatLoad) {
-    this.heatLoad = heatLoad;
+  public void setHeatFlow(double heatFlow) {
+    this.heatFlow = heatFlow;
+  }
+
+  public double getHeatFlowCalculated() {
+    double heatFlow = 0;
+
+    for (Component component : components) {
+      heatFlow += component.getHeatFlow();
+    }
+
+    return heatFlow;
   }
 
   public Room getRoom() {

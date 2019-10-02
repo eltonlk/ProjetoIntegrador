@@ -85,17 +85,17 @@ CREATE TABLE rooms (
 CREATE TABLE faces (
   id        SERIAL PRIMARY KEY,
   name      VARCHAR(255) NOT NULL,
-  heat_load NUMERIC(10, 5) NOT NULL DEFAULT 0,
+  heat_flow NUMERIC(10, 5) NOT NULL DEFAULT 0,
   room_id   INTEGER REFERENCES rooms(id)
 );
 
 CREATE TABLE components (
-  id                    SERIAL PRIMARY KEY,
-  name                  VARCHAR(255) NOT NULL,
-  area                  NUMERIC(10, 5) NOT NULL DEFAULT 0,
-  thermal_transmittance NUMERIC(10, 5) NOT NULL DEFAULT 0,
-  face_id               INTEGER REFERENCES faces(id),
-  color_id              INTEGER REFERENCES colors(id)
+  id        SERIAL PRIMARY KEY,
+  name      VARCHAR(255) NOT NULL,
+  area      NUMERIC(10, 5) NOT NULL DEFAULT 0,
+  heat_flow NUMERIC(10, 5) NOT NULL DEFAULT 0,
+  face_id   INTEGER REFERENCES faces(id),
+  color_id  INTEGER REFERENCES colors(id)
 );
 
 CREATE TABLE component_materials (

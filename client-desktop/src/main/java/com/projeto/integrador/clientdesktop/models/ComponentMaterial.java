@@ -14,9 +14,11 @@ public class ComponentMaterial {
 
   private Material material;
 
-  public ComponentMaterial(Long id, double width, Component component, Material material) {
+  public ComponentMaterial(Long id, double width, double thermalConductitityIndex, double resistance, Component component, Material material) {
     this.id = id;
     this.width = width;
+    this.thermalConductitityIndex = thermalConductitityIndex;
+    this.resistance = resistance;
     this.component = component;
     this.material = material;
   }
@@ -54,6 +56,10 @@ public class ComponentMaterial {
 
   public void setResistance(double resistance) {
     this.resistance = resistance;
+  }
+
+  public double setResistanceCalculated() {
+    return getWidth() / getThermalConductitityIndex();
   }
 
   public Component getComponent() {
