@@ -64,7 +64,7 @@ public class FacesController {
     return repository.findById(id)
       .map(record -> {
         record.setName(face.getName());
-        record.setHeatLoad(face.getHeatLoad());
+        record.setHeatFlow(face.getHeatFlow());
         record.setRoom(face.getRoom());
 
         Face updated = repository.save(record);

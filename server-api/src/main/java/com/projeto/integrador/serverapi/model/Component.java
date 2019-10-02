@@ -36,7 +36,7 @@ public class Component {
   private double area;
 
   @NotNull
-  private double thermalTransmittance;
+  private double heatFlow;
 
   @ManyToOne
   @JoinColumn(name="face_id", nullable=false)
@@ -49,10 +49,11 @@ public class Component {
   @OneToMany(fetch = FetchType.EAGER, mappedBy="component", cascade = CascadeType.ALL)
   private Collection<ComponentMaterial> componentMaterials;
 
-  public Component(Long id, String name, double area, Face face, Color color, Collection<ComponentMaterial> componentMaterials) {
+  public Component(Long id, String name, double area, double heatFlow, Face face, Color color, Collection<ComponentMaterial> componentMaterials) {
     this.id = id;
     this.name = name;
     this.area = area;
+    this.heatFlow = heatFlow;
     this.face = face;
     this.color = color;
     this.componentMaterials = componentMaterials;
@@ -85,12 +86,42 @@ public class Component {
     this.area = area;
   }
 
-  public double getThermalTransmittance() {
+  public double getHeatFlow() {
+    return heatFlow;
+  }
+
+  public void setHeatFlow(double heatFlow) {
+    this.heatFlow = heatFlow;
+  }
+
+  public double getHeatFlowCalculated() {
+    double u = getThermalTransmittance();
+    double a = color.getAbsorbabilityIndex();
+    double i = face.getRoom().getProject().getSolarRadiation().getIndex();
+    double rse = 0.04;
+    double te = 30; // TODO: get this value from user;
+    double ti = 23; // TODO: get this value from user;
+
+    return u * ( a * i * rse + te - ti );
+  }
+
+  private double getThermalTransmittance() {
+    double thermalTransmittance = getArea() / getResistance();
+
     return thermalTransmittance;
   }
 
-  public void setThermalTransmittance(double thermalTransmittance) {
-    this.thermalTransmittance = thermalTransmittance;
+  private double getResistance() {
+    // 0.04 = External Surface Resistance;
+    // 0.13 = Internal Surface Resistance; TODO: get this value from user;
+
+    double resistance = 0.04 + 0.13;
+
+    for (ComponentMaterial componentMaterial : componentMaterials) {
+      resistance += componentMaterial.getResistance();
+    }
+
+    return resistance;
   }
 
   public Face getFace() {
@@ -123,7 +154,7 @@ public class Component {
       "id=" + id +
       ", name='" + name + '\'' +
       ", area='" + area + '\'' +
-      ", thermal_transmittance='" + thermalTransmittance + '\'' +
+      ", heat_flow='" + heatFlow + '\'' +
       ", face_id='" + face.getId() + '\'' +
       ", color_id='" + color.getId() + '\'' +
       '}';
