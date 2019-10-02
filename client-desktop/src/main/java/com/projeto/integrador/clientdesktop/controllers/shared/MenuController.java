@@ -48,6 +48,10 @@ public class MenuController implements Initializable {
   private void goToSettings(ActionEvent event) throws IOException {
 	}
 
+  @FXML
+  private void goToSolarRadiations(ActionEvent event) throws IOException {
+  }
+
 	@FXML
   private void goToUsers(ActionEvent event) throws IOException {
 		stageManager.switchScene(new ListUsersFxmlView());

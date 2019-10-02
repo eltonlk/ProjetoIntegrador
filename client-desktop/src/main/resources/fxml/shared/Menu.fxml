@@ -31,6 +31,11 @@
           <FontIcon iconLiteral="fas-swatchbook" iconSize="20"/>
         </graphic>
       </Button>
+      <Button onAction="#goToSolarRadiations" text="Radiações Solar" textAlignment="CENTER" contentDisplay="TOP">
+        <graphic>
+          <FontIcon iconLiteral="fas-sun" iconSize="20"/>
+        </graphic>
+      </Button>
       <Button onAction="#goToAudits" text="Histórico" textAlignment="CENTER" contentDisplay="TOP">
         <graphic>
           <FontIcon iconLiteral="fas-book" iconSize="20"/>
