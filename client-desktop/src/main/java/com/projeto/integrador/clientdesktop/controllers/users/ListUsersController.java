@@ -10,16 +10,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-// import javafx.collections.FXCollections;
-// import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
-// import javafx.scene.control.TableColumn;
-// import javafx.scene.control.TableView;
-// import javafx.scene.control.cell.PropertyValueFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -37,31 +32,21 @@ public class ListUsersController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    // nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-    // usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-    // emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-
-    // usersTable.setItems(loadUsers());
-
     for (User user : userResource.getAll()) {
       try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/users/components/User.fxml"));
-        UserController controller = new UserController(user);
-        loader.setController(controller);
 
         usersList.getChildren().add(loader.load());
+
+        UserController controller = loader.getController();
+        controller.setStageManager(stageManager);
+        controller.setUser(user);
       } catch (IOException e) {
         e.printStackTrace();
       }
     }
 
   }
-
-  // private ObservableList<User> loadUsers() {
-  //   return FXCollections.observableArrayList(
-  //     userResource.getAll()
-  //   );
-  // }
 
   @FXML
   private void goToCreate(ActionEvent event) throws IOException {
@@ -70,20 +55,5 @@ public class ListUsersController implements Initializable {
 
   @FXML
   private Pane usersList;
-
-  // @FXML
-  // private TableView<User> usersTable;
-
-  // @FXML
-  // private TableColumn<User, String> nameColumn;
-
-  // @FXML
-  // private TableColumn<User, String> usernameColumn;
-
-  // @FXML
-  // private TableColumn<User, String> emailColumn;
-
-  // @FXML
-  // private TableColumn actionsColumn;
 
 }

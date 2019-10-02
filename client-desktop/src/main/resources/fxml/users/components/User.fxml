@@ -7,9 +7,10 @@
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane stylesheets="@../../../styles/Styles.css"
+            styleClass="list-item"
             xmlns="http://javafx.com/javafx/12.0.2"
             xmlns:fx="http://javafx.com/fxml/1"
-            styleClass="list-item">
+            fx:controller="com.projeto.integrador.clientdesktop.controllers.users.components.UserController">
 
   <center>
     <VBox>
@@ -20,8 +21,8 @@
 
   <right>
     <HBox spacing="5.0">
-      <Button fx:id="updateButton" text="Alterar" styleClass="button-success-sm"/>
-      <Button fx:id="deleteButton" text="Excluir" styleClass="button-danger-sm"/>
+      <Button fx:id="updateButton" onAction="#goToUpdate" text="Alterar" styleClass="button-success-sm"/>
+      <Button fx:id="deleteButton" onAction="#delete" text="Excluir" styleClass="button-danger-sm"/>
     </HBox>
   </right>
 </BorderPane>
