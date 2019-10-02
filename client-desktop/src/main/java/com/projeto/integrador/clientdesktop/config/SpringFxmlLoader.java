@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 public class SpringFxmlLoader {
 
   private final ApplicationContext context;
+  private FXMLLoader loader;
 
   @Autowired
   public SpringFxmlLoader(ApplicationContext context) {
@@ -19,12 +20,16 @@ public class SpringFxmlLoader {
   }
 
   public Parent load(String fxmlPath) throws IOException {
-    FXMLLoader loader = new FXMLLoader();
+    loader = new FXMLLoader();
 
     loader.setControllerFactory(context::getBean);
     loader.setLocation(getClass().getResource(fxmlPath));
 
     return loader.load();
+  }
+
+  public FXMLLoader getLoader() {
+    return loader;
   }
 
 }

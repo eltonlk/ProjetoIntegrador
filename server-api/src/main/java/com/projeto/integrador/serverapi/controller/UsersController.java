@@ -1,9 +1,11 @@
 package com.projeto.integrador.serverapi.controller;
 
 import com.projeto.integrador.serverapi.model.User;
+import com.projeto.integrador.serverapi.repository.UserRolesRepository;
 import com.projeto.integrador.serverapi.repository.UsersRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -24,10 +27,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @PreAuthorize("hasRole('ROLE_USERS')")
 public class UsersController {
 
+  private UserRolesRepository userRolesRepository;
   private UsersRepository repository;
 
-  UsersController(UsersRepository usersRepository) {
+  UsersController(UsersRepository usersRepository, UserRolesRepository userRolesRepository) {
     this.setRepository(usersRepository);
+    this.setUserRolesRepository(userRolesRepository);
   }
 
   public UsersRepository getRepository() {
@@ -38,9 +43,17 @@ public class UsersController {
     this.repository = repository;
   }
 
+  public UserRolesRepository getUserRolesRepository() {
+    return userRolesRepository;
+  }
+
+  public void setUserRolesRepository(UserRolesRepository userRoleRepository) {
+    this.userRolesRepository = userRoleRepository;
+  }
+
   @GetMapping
   @PreAuthorize("hasAuthority('READ_PRIVILEGE')")
-  public List<User> findAll(){
+  public List<User> findAll() {
     return repository.findAll();
   }
 
@@ -60,7 +73,11 @@ public class UsersController {
 
     user.setPassword(bCrypt.encode(user.getPassword()));
 
-    return repository.save(user);
+    User userCreated = repository.saveAndFlush(user);
+
+    userCreated.setUserRoles(userRolesRepository.findByUserId(userCreated.getId()));
+
+    return userCreated;
   }
 
   @PutMapping(value="/{id}")
@@ -68,10 +85,10 @@ public class UsersController {
   public ResponseEntity<User> update(@PathVariable("id") long id, @RequestBody User user) {
     return repository.findById(id)
       .map(record -> {
+        record.setActive(user.isActive());
         record.setEmail(user.getEmail());
         record.setName(user.getName());
         record.setUsername(user.getUsername());
-        record.setActive(user.isActive());
 
         User updated = repository.save(record);
 

@@ -35,6 +35,7 @@ public class UpdateUserController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    user = new User();
   }
 
   public User getUser() {
@@ -48,33 +49,31 @@ public class UpdateUserController implements Initializable {
   }
 
   private void fillForm() {
+    nameInput.setText(user.getName());
+    emailInput.setText(user.getEmail());
+    usernameInput.setText(user.getUsername());
+    activeCheckBox.setSelected(user.isActive());
   }
 
+  @FXML
+  private void update(ActionEvent event) throws IOException {
+    user.setName(nameInput.getText());
+    user.setEmail(emailInput.getText());
+    user.setUsername(usernameInput.getText());
+    user.setActive(activeCheckBox.isSelected());
 
-  // @FXML
-  // private void update(ActionEvent event) throws IOException {
-  //   User user = new User();
-  //   user.setName(nameInput.getText());
-  //   user.setEmail(emailInput.getText());
-  //   user.setUsername(usernameInput.getText());
-  //   user.setPassword(passwordInput.getText());
-  //   user.setActive(activeCheckBox.isSelected());
+    userResource.update(user);
 
-  //   userResource.update(user);
+		stageManager.switchScene(new ListUsersFxmlView());
+  }
 
-	// 	stageManager.switchScene(new ListUsersFxmlView());
-  // }
-
-  // @FXML
-  // private void goToBack(ActionEvent event) throws IOException {
-	// 	stageManager.switchScene(new ListUsersFxmlView());
-  // }
+  @FXML
+  private void goToBack(ActionEvent event) throws IOException {
+		stageManager.switchScene(new ListUsersFxmlView());
+  }
 
   @FXML
   private Button submitButton;
-
-  @FXML
-  private PasswordField passwordInput;
 
   @FXML
   private TextField emailInput;

@@ -5,6 +5,7 @@ import com.projeto.integrador.clientdesktop.views.AbstractFxmlView;
 import java.io.IOException;
 import java.util.Objects;
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -70,6 +71,10 @@ public class StageManager {
     }
 
     return rootNode;
+  }
+
+  public FXMLLoader getLoader() {
+    return loader.getLoader();
   }
 
 }

@@ -34,12 +34,12 @@ INSERT INTO roles_privileges (role_id, privilege_id) VALUES (6, 2);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (6, 3);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (6, 4);
 
-INSERT INTO users (id, name, email, username, password, active)
-VALUES (1, 'Administrador', 'administrador@mail.com', 'admin', '$2a$10$2EJCEa0kr9QFyhm3kguxg.F9jS3rjRRy8Qj0l0.ILBIank0TJoK8G', TRUE),
-  (2, 'Colaborador', 'colaborador@mail.com', 'colaborador', '$2a$10$2EJCEa0kr9QFyhm3kguxg.F9jS3rjRRy8Qj0l0.ILBIank0TJoK8G', TRUE),
-  (3, 'Estágiario', 'estagiario@mail.com', 'estagiario', '$2a$10$2EJCEa0kr9QFyhm3kguxg.F9jS3rjRRy8Qj0l0.ILBIank0TJoK8G', FALSE);
+INSERT INTO users (name, email, username, password, active)
+VALUES ('Administrador', 'administrador@mail.com', 'admin', '$2a$10$2EJCEa0kr9QFyhm3kguxg.F9jS3rjRRy8Qj0l0.ILBIank0TJoK8G', TRUE),
+  ('Colaborador', 'colaborador@mail.com', 'colaborador', '$2a$10$2EJCEa0kr9QFyhm3kguxg.F9jS3rjRRy8Qj0l0.ILBIank0TJoK8G', TRUE),
+  ('Estágiario', 'estagiario@mail.com', 'estagiario', '$2a$10$2EJCEa0kr9QFyhm3kguxg.F9jS3rjRRy8Qj0l0.ILBIank0TJoK8G', FALSE);
 
-UPDATE user_roles SET enable = TRUE WHERE user_id = 1;
+UPDATE user_roles SET enable = TRUE WHERE user_id IN (SELECT users.id FROM users WHERE username = 'admin');
 
 INSERT INTO options (id, name, value) VALUES (1, 'audits', 'enabled');
 
