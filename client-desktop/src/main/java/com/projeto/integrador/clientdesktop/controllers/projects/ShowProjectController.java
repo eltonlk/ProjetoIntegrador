@@ -13,7 +13,10 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -49,9 +52,14 @@ public class ShowProjectController implements Initializable {
 
   @FXML
   private void delete(ActionEvent event) throws IOException {
-    projectResource.delete(project);
+    Alert alert = new Alert(AlertType.CONFIRMATION, "Deseja excluir o projeto '" + project.getName() + "' ?", ButtonType.YES, ButtonType.NO);
+    alert.showAndWait();
 
-    stageManager.switchScene(new ListProjectsFxmlView());
+    if (alert.getResult() == ButtonType.YES) {
+      projectResource.delete(project);
+
+      stageManager.switchScene(new ListProjectsFxmlView());
+    }
   }
 
   public Project getProject() {
