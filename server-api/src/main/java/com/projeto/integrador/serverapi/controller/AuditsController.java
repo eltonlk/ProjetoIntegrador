@@ -5,6 +5,7 @@ import com.projeto.integrador.serverapi.repository.AuditsRepository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +33,7 @@ public class AuditsController {
   @GetMapping
   @PreAuthorize("hasAuthority('READ_PRIVILEGE')")
   public List<Audit> findAll() {
-    return repository.findAll();
+    return repository.findAll(Sort.by(Sort.Direction.DESC, "modifiedDate"));
   }
 
 }
