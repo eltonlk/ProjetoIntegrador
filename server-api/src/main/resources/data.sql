@@ -34,6 +34,12 @@ INSERT INTO roles_privileges (role_id, privilege_id) VALUES (6, 2);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (6, 3);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (6, 4);
 
+INSERT INTO roles (id, name) VALUES (7, 'ROLE_SOLAR_RADIATIONS');
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (7, 1);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (7, 2);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (7, 3);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (7, 4);
+
 INSERT INTO users (name, email, username, password, active)
 VALUES ('Administrador', 'administrador@mail.com', 'admin', '$2a$10$2EJCEa0kr9QFyhm3kguxg.F9jS3rjRRy8Qj0l0.ILBIank0TJoK8G', TRUE),
   ('Colaborador', 'colaborador@mail.com', 'colaborador', '$2a$10$2EJCEa0kr9QFyhm3kguxg.F9jS3rjRRy8Qj0l0.ILBIank0TJoK8G', TRUE),

@@ -34,11 +34,12 @@ public class ListProjectsController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     for (Project project : projectResource.getAll()) {
       try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/projects/components/Project.fxml"));
-        ProjectController controller = new ProjectController(project);
-        loader.setController(controller);
+        FXMLLoader loader = stageManager.getLoaderComponent("/fxml/projects/components/Project.fxml");
 
         projectsList.getChildren().add(loader.load());
+
+        ProjectController controller = loader.getController();
+        controller.setProject(project);
       } catch (IOException e) {
         e.printStackTrace();
       }
