@@ -1,13 +1,12 @@
-package com.projeto.integrador.clientdesktop.controllers.projects.components;
+package com.projeto.integrador.clientdesktop.controllers.projects;
+
+import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.models.Project;
+import com.projeto.integrador.clientdesktop.views.projects.ListProjectsFxmlView;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import com.projeto.integrador.clientdesktop.config.StageManager;
-import com.projeto.integrador.clientdesktop.controllers.projects.ShowProjectController;
-import com.projeto.integrador.clientdesktop.models.Project;
-import com.projeto.integrador.clientdesktop.views.projects.ShowProjectFxmlView;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +18,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class ProjectController implements Initializable {
+public class ShowProjectController implements Initializable {
 
   @Lazy
   @Autowired
@@ -29,6 +28,11 @@ public class ProjectController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+  }
+
+  @FXML
+  private void goToBack(ActionEvent event) throws IOException {
+		stageManager.switchScene(new ListProjectsFxmlView());
   }
 
   public Project getProject() {
@@ -43,13 +47,6 @@ public class ProjectController implements Initializable {
 
   private void fillContent() {
     nameLabel.setText(project.getName());
-  }
-
-  @FXML
-  private void goToShow(ActionEvent event) throws IOException {
-    stageManager.switchScene(new ShowProjectFxmlView());
-    ShowProjectController controller = stageManager.getLoader().getController();
-    controller.setProject(project);
   }
 
   @FXML

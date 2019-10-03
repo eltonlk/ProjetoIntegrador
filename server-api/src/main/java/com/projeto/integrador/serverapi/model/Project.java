@@ -32,6 +32,7 @@ public class Project {
   @NotEmpty
   private String name;
 
+  @NotNull
   @ManyToOne
   @JoinColumn(name="solar_radiation_id", nullable=false)
   private SolarRadiation solarRadiation;
