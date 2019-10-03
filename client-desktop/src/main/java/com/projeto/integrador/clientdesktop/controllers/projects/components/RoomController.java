@@ -46,8 +46,8 @@ public class RoomController implements Initializable {
   }
 
   private void fillContent() {
-    // nameLabel.setText(room.getName());
-    // heatLoadLabel.setText(room.getHeatLoad());
+    nameLabel.setText(room.getName());
+    heatLoadLabel.setText("" + room.getHeatLoad());
   }
 
   @FXML

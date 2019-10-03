@@ -2,6 +2,7 @@ package com.projeto.integrador.clientdesktop.controllers.projects;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.controllers.projects.components.RoomController;
+import com.projeto.integrador.clientdesktop.controllers.projects.modals.CreateRoomController;
 import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.models.Room;
 import com.projeto.integrador.clientdesktop.resources.ProjectResource;
@@ -44,14 +45,9 @@ public class ShowProjectController implements Initializable {
 
   @FXML
   private void createRoom(ActionEvent event) throws IOException {
-    Room room = new Room();
-
-    FXMLLoader loader = stageManager.getLoaderComponent("/fxml/projects/components/Room.fxml");
-
-    roomsList.getChildren().add(loader.load());
-
-    RoomController controller = loader.getController();
-    controller.setRoom(room);
+    stageManager.showModal();
+    CreateRoomController controller = stageManager.getLoader().getController();
+    controller.setProject(project);
   }
 
   @FXML
@@ -91,6 +87,21 @@ public class ShowProjectController implements Initializable {
   private void fillContent() {
     nameLabel.setText(project.getName());
     solarRadiationLabel.setText(project.getSolarRadiation().getName() + " (" + project.getSolarRadiation().getIndex() + ")");
+
+    if (project.getRooms() != null) {
+      for (Room room : project.getRooms()) {
+        try {
+          FXMLLoader loader = stageManager.getLoaderComponent("/fxml/projects/components/Room.fxml");
+
+          roomsList.getChildren().add(loader.load());
+
+          RoomController controller = loader.getController();
+          controller.setRoom(room);
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+    }
   }
 
   @FXML

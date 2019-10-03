@@ -55,6 +55,11 @@ public class RoomsController {
   @ResponseStatus(HttpStatus.CREATED)
   @PreAuthorize("hasAuthority('CREATE_PRIVILEGE')")
   public Room create(@RequestBody Room room) {
+
+    System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> aqui");
+    System.out.println(room.getProject());
+
+
     return repository.save(room);
   }
 
