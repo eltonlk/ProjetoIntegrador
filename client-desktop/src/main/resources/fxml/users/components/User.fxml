@@ -14,7 +14,7 @@
 
   <center>
     <VBox>
-      <Label fx:id="nameLabel" text="Nome do Usuário"/>
+      <Label fx:id="nameLabel" text="Nome do Usuário" styleClass="label-h6"/>
       <Label fx:id="emailLabel" text="Email"/>
     </VBox>
   </center>

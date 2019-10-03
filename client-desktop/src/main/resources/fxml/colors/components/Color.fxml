@@ -15,7 +15,7 @@
     <center>
       <VBox>
         <children>
-          <Label fx:id="nameLabel" text="Nome da Cor"/>
+          <Label fx:id="nameLabel" text="Nome da Cor" styleClass="label-h6"/>
           <HBox spacing="8">
             <Label text="Absorvidade:"/>
             <Label fx:id="absorbabilityLabel" text="Absorvidade"/>
