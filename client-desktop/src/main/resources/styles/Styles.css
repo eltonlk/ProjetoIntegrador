@@ -98,6 +98,18 @@
 	-fx-padding: 4 10 4 10;
 }
 
+
+.button .ikonli-font-icon,
+.button-sm .ikonli-font-icon,
+.button-primary .ikonli-font-icon,
+.button-primary-sm .ikonli-font-icon,
+.button-danger .ikonli-font-icon,
+.button-danger-sm .ikonli-font-icon,
+.button-success .ikonli-font-icon,
+.button-success-sm .ikonli-font-icon {
+	-fx-icon-color: #FFFFFF;
+}
+
 /* LABELS */
 .label {
   -fx-opacity: 0.7;
@@ -137,6 +149,18 @@
 	-fx-padding: 0 0 10 0;
 	-fx-border-width: 0 0 1 0;
 	-fx-border-color: transparent transparent derive(-fx-theme-border-color, 50%) transparent;
+}
+
+.list-item-card {
+	-fx-background-color: #DDDDDD;
+	-fx-background-radius: 5.0;
+	-fx-padding: 10 10 10 10;
+}
+
+.list-item-card-nested {
+	-fx-background-color: #EEEEEE;
+	-fx-background-radius: 5.0;
+	-fx-padding: 10 10 10 10;
 }
 /* <============ HELPERS ============> */
 

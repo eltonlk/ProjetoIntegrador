@@ -1,7 +1,9 @@
 package com.projeto.integrador.clientdesktop.controllers.projects;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.controllers.projects.components.RoomController;
 import com.projeto.integrador.clientdesktop.models.Project;
+import com.projeto.integrador.clientdesktop.models.Room;
 import com.projeto.integrador.clientdesktop.resources.ProjectResource;
 import com.projeto.integrador.clientdesktop.views.projects.ListProjectsFxmlView;
 import com.projeto.integrador.clientdesktop.views.projects.UpdateProjectFxmlView;
@@ -12,11 +14,13 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.Pane;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -36,6 +40,18 @@ public class ShowProjectController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+  }
+
+  @FXML
+  private void createRoom(ActionEvent event) throws IOException {
+    Room room = new Room();
+
+    FXMLLoader loader = stageManager.getLoaderComponent("/fxml/projects/components/Room.fxml");
+
+    roomsList.getChildren().add(loader.load());
+
+    RoomController controller = loader.getController();
+    controller.setRoom(room);
   }
 
   @FXML
@@ -82,5 +98,8 @@ public class ShowProjectController implements Initializable {
 
   @FXML
   private Label solarRadiationLabel;
+
+  @FXML
+  private Pane roomsList;
 
 }
