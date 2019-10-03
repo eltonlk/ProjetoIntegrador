@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 
@@ -33,12 +34,12 @@ public class ListColorsController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     for (Color color : colorResource.getAll()) {
       try {
-        ColorController colorController = new ColorController();
-        colorController.setColor(color);
-        colorController.setStageManager(stageManager);
-        colorController.setColorResource(colorResource);
+        FXMLLoader loader = stageManager.getLoaderComponent("/fxml/colors/components/Color.fxml");
 
-        colorsList.getChildren().add(colorController);
+        colorsList.getChildren().add(loader.load());
+
+        ColorController controller = loader.getController();
+        controller.setColor(color);
       } catch (Exception e) {
         e.printStackTrace();
       }
