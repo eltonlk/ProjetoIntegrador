@@ -34,6 +34,13 @@ public class CreateColorController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     activeCheckBox.setSelected(true);
+
+    // TODO:
+    absorbabilityIndexInput.textProperty().addListener((observable, oldValue, newValue) -> {
+      if (!newValue.matches("\\d{0,5}([\\,]\\d{0,5})?")) {
+        absorbabilityIndexInput.setText(oldValue);
+      }
+    });
   }
 
   @FXML

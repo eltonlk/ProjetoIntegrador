@@ -8,7 +8,7 @@ import java.util.Date;
 public class DateFormatter {
 
     public static String localized(Date date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // TODO: add time together;
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
         return formatter.format(localDate);

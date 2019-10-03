@@ -36,6 +36,13 @@ public class UpdateColorController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     color = new Color();
+
+    // TODO:
+    absorbabilityIndexInput.textProperty().addListener((observable, oldValue, newValue) -> {
+      if (!newValue.matches("\\d{0,5}([\\,]\\d{0,5})?")) {
+        absorbabilityIndexInput.setText(oldValue);
+      }
+    });
   }
 
   public Color getColor() {
