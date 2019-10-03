@@ -14,13 +14,15 @@
 
   <center>
     <VBox>
-      <children>
-        <Label fx:id="nameLabel" text="Nome da Cor"/>
-        <HBox spacing="8">
-          <Label text="Absorvidade:"/>
-          <Label fx:id="absorbabilityLabel" text="Absorvidade"/>
-        </HBox>
-      </children>
+      <HBox spacing="16">
+        <Label fx:id="nameLabel" text="Nome da Cor" styleClass="label-h6"/>
+        <Label fx:id="inactiveLabel" text="(Inativo)"/>
+      </HBox>
+
+      <HBox spacing="8">
+        <Label text="Absorvidade:"/>
+        <Label fx:id="absorbabilityLabel" text="Absorvidade"/>
+      </HBox>
     </VBox>
   </center>
 

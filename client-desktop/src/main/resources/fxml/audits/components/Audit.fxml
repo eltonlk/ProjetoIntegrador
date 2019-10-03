@@ -13,17 +13,13 @@
 
   <center>
     <VBox>
-      <children>
-        <HBox spacing="16.0">
-          <children>
-            <Label fx:id="modifiedByLabel" text="Usuário"/>
-            <Label fx:id="modifiedDateLabel" text="Data"/>
-            <Label fx:id="actionLabel" text="Ação"/>
-          </children>
-        </HBox>
+      <HBox spacing="16.0">
+        <Label fx:id="modifiedByLabel" text="Usuário"/>
+        <Label fx:id="modifiedDateLabel" text="Data"/>
+        <Label fx:id="actionLabel" text="Ação"/>
+      </HBox>
 
-        <Label fx:id="contentLabel" text="Conteúdo"/>
-      </children>
+      <Label fx:id="contentLabel" text="Conteúdo"/>
     </VBox>
   </center>
 </BorderPane>

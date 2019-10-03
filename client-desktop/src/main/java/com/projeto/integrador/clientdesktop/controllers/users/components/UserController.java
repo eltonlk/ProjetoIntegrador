@@ -52,6 +52,7 @@ public class UserController implements Initializable {
   private void fillContent() {
     nameLabel.setText(user.getName());
     emailLabel.setText(user.getEmail());
+    inactiveLabel.setVisible(!user.isActive());
   }
 
   @FXML
@@ -73,5 +74,8 @@ public class UserController implements Initializable {
 
   @FXML
   private Label emailLabel;
+
+  @FXML
+  private Label inactiveLabel;
 
 }

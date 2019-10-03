@@ -55,6 +55,7 @@ public class ColorController implements Initializable {
 
     nameLabel.setText(color.getName());
     absorbabilityLabel.setText(absorbability);
+    inactiveLabel.setVisible(!color.isActive());
   }
 
   @FXML
@@ -76,5 +77,8 @@ public class ColorController implements Initializable {
 
   @FXML
   private Label absorbabilityLabel;
+
+  @FXML
+  private Label inactiveLabel;
 
 }
