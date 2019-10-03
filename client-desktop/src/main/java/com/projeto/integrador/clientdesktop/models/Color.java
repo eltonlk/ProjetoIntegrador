@@ -51,4 +51,9 @@ public class Color {
     this.active = active;
   }
 
+  @Override
+  public String toString() {
+    return name;
+  }
+
 }
