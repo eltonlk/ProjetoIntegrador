@@ -1,8 +1,6 @@
 package com.projeto.integrador.clientdesktop.controllers.colors.components;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.controllers.colors.UpdateColorController;
@@ -14,27 +12,28 @@ import com.projeto.integrador.clientdesktop.views.colors.UpdateColorFxmlView;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Controller;
-
-@Controller
-public class ColorController implements Initializable {
-
-  @Lazy
-  @Autowired
-  private StageManager stageManager;
-
-  @Autowired
-  private ColorResource colorResource;
+public class ColorController extends VBox {
 
   private Color color;
 
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
+  private StageManager stageManager;
+
+  private ColorResource colorResource;
+
+  public ColorController() {
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/colors/components/Color.fxml"));
+    fxmlLoader.setRoot(this);
+    fxmlLoader.setController(this);
+
+    try {
+        fxmlLoader.load();
+    } catch (IOException exception) {
+        throw new RuntimeException(exception);
+    }
   }
 
   public Color getColor() {
@@ -43,6 +42,26 @@ public class ColorController implements Initializable {
 
   public void setColor(Color color) {
     this.color = color;
+
+    fillContent();
+  }
+
+  public StageManager getStageManager() {
+    return stageManager;
+  }
+
+  public void setStageManager(StageManager stageManager) {
+    this.stageManager = stageManager;
+
+    fillContent();
+  }
+
+  public ColorResource getColorResource() {
+    return colorResource;
+  }
+
+  public void setColorResource(ColorResource colorResource) {
+    this.colorResource = colorResource;
 
     fillContent();
   }
