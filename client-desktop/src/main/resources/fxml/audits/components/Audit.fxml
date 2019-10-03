@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane stylesheets="@../../../styles/Styles.css"
+            styleClass="list-item"
+            xmlns="http://javafx.com/javafx/12.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.projeto.integrador.clientdesktop.controllers.audits.components.AuditController">
+
+  <center>
+    <VBox>
+      <children>
+        <HBox spacing="16.0">
+          <children>
+            <Label fx:id="modifiedByLabel" text="Usuário"/>
+            <Label fx:id="modifiedDateLabel" text="Data"/>
+            <Label fx:id="actionLabel" text="Ação"/>
+          </children>
+        </HBox>
+
+        <Label fx:id="contentLabel" text="Conteúdo"/>
+      </children>
+    </VBox>
+  </center>
+</BorderPane>

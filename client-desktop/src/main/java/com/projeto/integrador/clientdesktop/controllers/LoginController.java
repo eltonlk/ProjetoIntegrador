@@ -1,6 +1,6 @@
 package com.projeto.integrador.clientdesktop.controllers;
 
-import com.projeto.integrador.clientdesktop.components.Flash;
+import com.projeto.integrador.clientdesktop.utils.Flash;
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.views.DashboardFxmlView;
 

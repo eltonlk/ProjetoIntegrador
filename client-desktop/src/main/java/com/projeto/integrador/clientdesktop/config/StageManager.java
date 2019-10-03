@@ -3,7 +3,6 @@ package com.projeto.integrador.clientdesktop.config;
 import com.projeto.integrador.clientdesktop.views.AbstractFxmlView;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Objects;
 
 import javafx.fxml.FXMLLoader;
