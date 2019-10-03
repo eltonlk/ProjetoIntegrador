@@ -5,31 +5,43 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
-import com.projeto.integrador.serverapi.model.Privilege;
+import com.projeto.integrador.serverapi.model.Room;
 
 import java.io.IOException;
 
-public class PrivilegeSerializer extends StdSerializer<Privilege> {
+public class RoomSerializer extends StdSerializer<Room> {
 
   private static final long serialVersionUID = 1L;
 
-  public PrivilegeSerializer() {
+  public RoomSerializer() {
     this(null);
   }
 
-  protected PrivilegeSerializer(Class<Privilege> t) {
+  protected RoomSerializer(Class<Room> t) {
     super(t);
   }
 
   @Override
   public void serialize(
-    Privilege privilege,
+    Room room,
     JsonGenerator generator,
     SerializerProvider provider)
   throws IOException, JsonProcessingException {
     generator.writeStartObject();
-    generator.writeNumberField("id", privilege.getId());
-    generator.writeStringField("name", privilege.getName());
+    generator.writeNumberField("id", room.getId());
+    generator.writeStringField("name", room.getName());
+    generator.writeNumberField("heatLoad", room.getHeatLoad());
+
+    if (room.getFaces() != null) {
+      generator.writeArrayFieldStart("faces");
+
+      for (Object face : room.getFaces()) {
+        generator.writeObject(face);
+      }
+
+      generator.writeEndArray();
+    }
+
     generator.writeEndObject();
   }
 

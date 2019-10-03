@@ -37,7 +37,8 @@ public class AppConfig {
   public RestTemplate restTemplate() {
     RestTemplate restTemplate = new RestTemplate();
 
-    restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory("https://eltonlk-projeto-integrador.herokuapp.com/"));
+    // restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory("https://eltonlk-projeto-integrador.herokuapp.com/"));
+    restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory("http://localhost:8080/"));
 
     List<ClientHttpRequestInterceptor> interceptors = restTemplate.getInterceptors();
 

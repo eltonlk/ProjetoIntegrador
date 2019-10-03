@@ -2,7 +2,9 @@ package com.projeto.integrador.clientdesktop.controllers.projects;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.models.Project;
+import com.projeto.integrador.clientdesktop.resources.ProjectResource;
 import com.projeto.integrador.clientdesktop.views.projects.ListProjectsFxmlView;
+import com.projeto.integrador.clientdesktop.views.projects.UpdateProjectFxmlView;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,6 +26,9 @@ public class ShowProjectController implements Initializable {
   @Autowired
   private StageManager stageManager;
 
+  @Autowired
+  private ProjectResource projectResource;
+
   private Project project;
 
   @Override
@@ -33,6 +38,20 @@ public class ShowProjectController implements Initializable {
   @FXML
   private void goToBack(ActionEvent event) throws IOException {
 		stageManager.switchScene(new ListProjectsFxmlView());
+  }
+
+  @FXML
+  private void goToUpdate(ActionEvent event) throws IOException {
+    stageManager.switchScene(new UpdateProjectFxmlView());
+    UpdateProjectController controller = stageManager.getLoader().getController();
+    controller.setProject(project);
+  }
+
+  @FXML
+  private void delete(ActionEvent event) throws IOException {
+    projectResource.delete(project);
+
+    stageManager.switchScene(new ListProjectsFxmlView());
   }
 
   public Project getProject() {
@@ -47,9 +66,13 @@ public class ShowProjectController implements Initializable {
 
   private void fillContent() {
     nameLabel.setText(project.getName());
+    solarRadiationLabel.setText(project.getSolarRadiation().getName() + " (" + project.getSolarRadiation().getIndex() + ")");
   }
 
   @FXML
   private Label nameLabel;
+
+  @FXML
+  private Label solarRadiationLabel;
 
 }

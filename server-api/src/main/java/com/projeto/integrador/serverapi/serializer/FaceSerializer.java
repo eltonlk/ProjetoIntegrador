@@ -5,38 +5,43 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
-import com.projeto.integrador.serverapi.model.Role;
+import com.projeto.integrador.serverapi.model.Face;
 
 import java.io.IOException;
 
-public class RoleSerializer extends StdSerializer<Role> {
+public class FaceSerializer extends StdSerializer<Face> {
 
   private static final long serialVersionUID = 1L;
 
-  public RoleSerializer() {
+  public FaceSerializer() {
     this(null);
   }
 
-  protected RoleSerializer(Class<Role> t) {
+  protected FaceSerializer(Class<Face> t) {
     super(t);
   }
 
   @Override
   public void serialize(
-    Role role,
+    Face face,
     JsonGenerator generator,
     SerializerProvider provider)
   throws IOException, JsonProcessingException {
     generator.writeStartObject();
-    generator.writeNumberField("id", role.getId());
-    generator.writeStringField("name", role.getName());
-    // generator.writeArrayFieldStart("privileges");
+    generator.writeNumberField("id", face.getId());
+    generator.writeStringField("name", face.getName());
+    generator.writeNumberField("heatFlow", face.getHeatFlow());
 
-    // for (Object privilege : role.getPrivileges()) {
-    //   generator.writeObject(privilege);
-    // }
+    if (face.getComponents() != null) {
+      generator.writeArrayFieldStart("components");
 
-    // generator.writeEndArray();
+      for (Object component : face.getComponents()) {
+        generator.writeObject(component);
+      }
+
+      generator.writeEndArray();
+    }
+
     generator.writeEndObject();
   }
 

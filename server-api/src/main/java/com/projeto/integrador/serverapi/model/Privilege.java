@@ -1,9 +1,5 @@
 package com.projeto.integrador.serverapi.model;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-import com.projeto.integrador.serverapi.serializer.PrivilegeSerializer;
-
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -17,7 +13,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@JsonSerialize(using = PrivilegeSerializer.class)
 @Table(name = "privileges")
 public class Privilege {
 

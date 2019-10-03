@@ -11,10 +11,13 @@ import javax.persistence.Table;
 
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.projeto.integrador.serverapi.model.observer.AuditListener;
+import com.projeto.integrador.serverapi.serializer.ComponentMaterialSerializer;
 
 @Entity
 @EntityListeners(AuditListener.class)
+@JsonSerialize(using = ComponentMaterialSerializer.class)
 @Table(name = "component_materials")
 public class ComponentMaterial {
 
@@ -26,7 +29,7 @@ public class ComponentMaterial {
   private double width;
 
   @NotNull
-  private double thermalConductitityIndex;
+  private double thermalConductivityIndex;
 
   @NotNull
   private double resistance;
@@ -66,12 +69,12 @@ public class ComponentMaterial {
     this.width = width;
   }
 
-  public double getThermalConductitityIndex() {
-    return thermalConductitityIndex;
+  public double getThermalConductivityIndex() {
+    return thermalConductivityIndex;
   }
 
-  public void setThermalConductitityIndex(double thermalConductitityIndex) {
-    this.thermalConductitityIndex = thermalConductitityIndex;
+  public void setThermalConductivityIndex(double thermalConductivityIndex) {
+    this.thermalConductivityIndex = thermalConductivityIndex;
   }
 
   public double getResistance() {
@@ -83,7 +86,7 @@ public class ComponentMaterial {
   }
 
   public double setResistanceCalculated() {
-    return getWidth() / getThermalConductitityIndex();
+    return getWidth() / getThermalConductivityIndex();
   }
 
   public Component getComponent() {
