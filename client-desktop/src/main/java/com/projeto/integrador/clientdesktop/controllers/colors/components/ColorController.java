@@ -21,7 +21,10 @@ import org.springframework.stereotype.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 
 @Controller
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
@@ -67,9 +70,14 @@ public class ColorController implements Initializable {
 
   @FXML
   private void delete(ActionEvent event) throws IOException {
-    colorResource.delete(color);
+    Alert alert = new Alert(AlertType.CONFIRMATION, "Deseja excluir a cor '" + color.getName() + "' ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+    alert.showAndWait();
 
-    stageManager.switchScene(new ListColorsFxmlView());
+    if (alert.getResult() == ButtonType.YES) {
+      colorResource.delete(color);
+
+      stageManager.switchScene(new ListColorsFxmlView());
+    }
   }
 
   @FXML

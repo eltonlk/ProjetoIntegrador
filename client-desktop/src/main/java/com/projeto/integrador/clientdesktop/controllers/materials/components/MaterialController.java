@@ -15,7 +15,10 @@ import com.projeto.integrador.clientdesktop.views.materials.UpdateMaterialFxmlVi
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -65,9 +68,14 @@ public class MaterialController implements Initializable {
 
   @FXML
   private void delete(ActionEvent event) throws IOException {
-    materialResource.delete(material);
+    Alert alert = new Alert(AlertType.CONFIRMATION, "Deseja excluir o material '" + material.getName() + "' ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+    alert.showAndWait();
 
-    stageManager.switchScene(new ListMaterialsFxmlView());
+    if (alert.getResult() == ButtonType.YES) {
+      materialResource.delete(material);
+
+      stageManager.switchScene(new ListMaterialsFxmlView());
+    }
   }
 
   @FXML
