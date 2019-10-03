@@ -98,13 +98,24 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
+        		<artifactId>maven-compiler-plugin</artifactId>
+        		<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
-        </configuration>
-    	</plugin>
+        		</configuration>
+    		</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.0.2</version>
+      			<configuration>
+        			<archive>
+          				<manifest>
+            				<mainClass>com.projeto.integrador.clientdesktop.Main</mainClass>
+          				</manifest>
+        			</archive>
+      			</configuration>
+    		</plugin>
 		</plugins>
 	</build>
-
 </project>
