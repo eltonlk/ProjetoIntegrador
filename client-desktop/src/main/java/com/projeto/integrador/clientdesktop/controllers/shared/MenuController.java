@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.views.projects.ListProjectsFxmlView;
+import com.projeto.integrador.clientdesktop.views.audits.ListAuditsFxmlView;
 import com.projeto.integrador.clientdesktop.views.users.ListUsersFxmlView;
 
 import javafx.event.ActionEvent;
@@ -31,6 +32,7 @@ public class MenuController implements Initializable {
 
   @FXML
   private void goToAudits(ActionEvent event) throws IOException {
+    stageManager.switchScene(new ListAuditsFxmlView());
   }
 
   @FXML

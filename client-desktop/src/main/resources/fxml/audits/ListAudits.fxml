@@ -16,7 +16,7 @@
             stylesheets="@../../styles/Styles.css"
             xmlns="http://javafx.com/javafx/12.0.2"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.projeto.integrador.clientdesktop.controllers.users.ListUsersController">
+            fx:controller="com.projeto.integrador.clientdesktop.controllers.audits.ListAuditsController">
 
   <left>
     <fx:include source="../shared/Menu.fxml"/>
@@ -31,12 +31,11 @@
           </padding>
 
           <HBox styleClass="header-view">
-            <Label text="Usuários" styleClass="label-header"/>
+            <Label text="Histórico" styleClass="label-header"/>
             <Pane HBox.hgrow="ALWAYS"/>
-            <Button fx:id="createUserButton" onAction="#goToCreate" styleClass="button-primary" text="Adicionar"/>
           </HBox>
 
-          <VBox fx:id="usersList" spacing="10.0">
+          <VBox fx:id="auditsList" spacing="10.0">
             <children>
             </children>
           </VBox>

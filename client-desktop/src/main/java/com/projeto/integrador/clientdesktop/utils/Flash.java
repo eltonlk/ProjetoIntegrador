@@ -1,4 +1,4 @@
-package com.projeto.integrador.clientdesktop.components;
+package com.projeto.integrador.clientdesktop.utils;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
