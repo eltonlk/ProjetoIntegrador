@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class StageManager {
@@ -79,6 +80,20 @@ public class StageManager {
 
   public FXMLLoader getLoaderComponent(String fxmlFilePath) {
     return loader.buildLoader(fxmlFilePath);
+  }
+
+  public void showModal() {
+    Stage dialog = new Stage();
+
+    Parent viewRootNodeHierarchy = loadViewNodeHierarchy("/fxml/projects/modals/CreateRoom.fxml");
+
+    Scene scene = new Scene(viewRootNodeHierarchy);
+
+    dialog.setScene(scene);
+
+    dialog.initOwner(stage);
+    dialog.initModality(Modality.APPLICATION_MODAL);
+    dialog.showAndWait();
   }
 
 }

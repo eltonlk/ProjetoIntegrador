@@ -49,15 +49,15 @@ public class Room {
     this.heatLoad = heatLoad;
   }
 
-  public double getHeatLoadCalculated() {
-    double heatLoad = 0;
+  // public double getHeatLoadCalculated() {
+  //   double heatLoad = 0;
 
-    for (Face face : faces) {
-      heatLoad += face.getHeatFlow();
-    }
+  //   for (Face face : faces) {
+  //     heatLoad += face.getHeatFlow();
+  //   }
 
-    return heatLoad;
-  }
+  //   return heatLoad;
+  // }
 
   public Project getProject() {
     return project;
