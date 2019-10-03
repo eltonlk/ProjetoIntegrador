@@ -10,6 +10,7 @@ import com.projeto.integrador.clientdesktop.views.colors.ListColorsFxmlView;
 import com.projeto.integrador.clientdesktop.views.materials.ListMaterialsFxmlView;
 import com.projeto.integrador.clientdesktop.views.projects.ListProjectsFxmlView;
 import com.projeto.integrador.clientdesktop.views.settings.ListSettingsFxmlView;
+import com.projeto.integrador.clientdesktop.views.solarradiations.ListSolarRadiationsFxmlView;
 import com.projeto.integrador.clientdesktop.views.users.ListUsersFxmlView;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,7 @@ public class MenuController implements Initializable {
 
   @FXML
   private void goToSolarRadiations(ActionEvent event) throws IOException {
+    stageManager.switchScene(new ListSolarRadiationsFxmlView());
   }
 
   @FXML
