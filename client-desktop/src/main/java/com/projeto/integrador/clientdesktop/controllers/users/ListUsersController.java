@@ -34,12 +34,11 @@ public class ListUsersController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     for (User user : userResource.getAll()) {
       try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/users/components/User.fxml"));
+        FXMLLoader loader = stageManager.getLoaderComponent("/fxml/users/components/User.fxml");
 
         usersList.getChildren().add(loader.load());
 
         UserController controller = loader.getController();
-        controller.setStageManager(stageManager);
         controller.setUser(user);
       } catch (IOException e) {
         e.printStackTrace();

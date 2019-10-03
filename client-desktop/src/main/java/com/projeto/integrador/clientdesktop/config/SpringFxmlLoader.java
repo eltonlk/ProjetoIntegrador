@@ -20,12 +20,16 @@ public class SpringFxmlLoader {
   }
 
   public Parent load(String fxmlPath) throws IOException {
+    return buildLoader(fxmlPath).load();
+  }
+
+  public FXMLLoader buildLoader(String fxmlPath) {
     loader = new FXMLLoader();
 
     loader.setControllerFactory(context::getBean);
     loader.setLocation(getClass().getResource(fxmlPath));
 
-    return loader.load();
+    return loader;
   }
 
   public FXMLLoader getLoader() {

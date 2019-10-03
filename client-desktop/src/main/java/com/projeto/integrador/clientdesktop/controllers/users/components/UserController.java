@@ -17,28 +17,23 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class UserController implements Initializable {
 
+  @Lazy
+  @Autowired
   private StageManager stageManager;
-
-  private User user;
 
   @Autowired
   private UserResource userResource;
 
+  private User user;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-  }
-
-  public StageManager getStageManager() {
-    return stageManager;
-  }
-
-  public void setStageManager(StageManager stageManager) {
-    this.stageManager = stageManager;
   }
 
   public User getUser() {
@@ -65,8 +60,6 @@ public class UserController implements Initializable {
 
   @FXML
   private void delete(ActionEvent event) throws IOException {
-System.out.println(">>>>>>>>>>>>>>>>>>>>>");
-System.out.println(userResource);
     userResource.delete(user);
 
     stageManager.switchScene(new ListUsersFxmlView());
