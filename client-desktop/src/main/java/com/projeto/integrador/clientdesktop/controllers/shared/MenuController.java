@@ -5,21 +5,22 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
-import com.projeto.integrador.clientdesktop.views.projects.ListProjectsFxmlView;
 import com.projeto.integrador.clientdesktop.views.audits.ListAuditsFxmlView;
 import com.projeto.integrador.clientdesktop.views.colors.ListColorsFxmlView;
 import com.projeto.integrador.clientdesktop.views.materials.ListMaterialsFxmlView;
+import com.projeto.integrador.clientdesktop.views.projects.ListProjectsFxmlView;
+import com.projeto.integrador.clientdesktop.views.settings.ListSettingsFxmlView;
 import com.projeto.integrador.clientdesktop.views.users.ListUsersFxmlView;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.stage.Stage;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Controller;
 
 @Controller
 public class MenuController implements Initializable {
@@ -50,19 +51,20 @@ public class MenuController implements Initializable {
   @FXML
   private void goToProjects(ActionEvent event) throws IOException {
     stageManager.switchScene(new ListProjectsFxmlView());
-	}
+  }
 
 	@FXML
   private void goToSettings(ActionEvent event) throws IOException {
-	}
+    stageManager.switchScene(new ListSettingsFxmlView());
+  }
 
   @FXML
   private void goToSolarRadiations(ActionEvent event) throws IOException {
   }
 
-	@FXML
+  @FXML
   private void goToUsers(ActionEvent event) throws IOException {
-		stageManager.switchScene(new ListUsersFxmlView());
+    stageManager.switchScene(new ListUsersFxmlView());
   }
 
   @FXML
