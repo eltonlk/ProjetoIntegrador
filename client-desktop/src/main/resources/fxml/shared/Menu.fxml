@@ -16,42 +16,42 @@
       fx:controller="com.projeto.integrador.clientdesktop.controllers.shared.MenuController">
 
   <children>
-    <Button onAction="#goToProjects" text="Projetos" textAlignment="CENTER" contentDisplay="TOP">
+    <Button onAction="#goToProjects" text="Projetos" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
         <graphic>
           <FontIcon iconLiteral="fas-project-diagram" iconSize="20"/>
         </graphic>
       </Button>
-      <Button onAction="#goToMaterials" text="Materiais" textAlignment="CENTER" contentDisplay="TOP">
+      <Button onAction="#goToMaterials" text="Materiais" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
         <graphic>
           <FontIcon iconLiteral="fas-puzzle-piece" iconSize="20"/>
         </graphic>
       </Button>
-      <Button onAction="#goToColors" text="Cores" textAlignment="CENTER" contentDisplay="TOP">
+      <Button onAction="#goToColors" text="Cores" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
         <graphic>
           <FontIcon iconLiteral="fas-swatchbook" iconSize="20"/>
         </graphic>
       </Button>
-      <Button onAction="#goToSolarRadiations" text="Radiações Solar" textAlignment="CENTER" contentDisplay="TOP">
+      <Button onAction="#goToSolarRadiations" text="Radiações Solar" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
         <graphic>
           <FontIcon iconLiteral="fas-sun" iconSize="20"/>
         </graphic>
       </Button>
-      <Button onAction="#goToAudits" text="Histórico" textAlignment="CENTER" contentDisplay="TOP">
+      <Button onAction="#goToAudits" text="Histórico" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
         <graphic>
           <FontIcon iconLiteral="fas-book" iconSize="20"/>
         </graphic>
       </Button>
-      <Button onAction="#goToSettings" text="Opções" textAlignment="CENTER" contentDisplay="TOP">
+      <Button onAction="#goToSettings" text="Opções" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
         <graphic>
           <FontIcon iconLiteral="fas-cogs" iconSize="20"/>
         </graphic>
       </Button>
-      <Button onAction="#goToUsers" text="Usuários" textAlignment="CENTER" contentDisplay="TOP">
+      <Button onAction="#goToUsers" text="Usuários" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
         <graphic>
           <FontIcon iconLiteral="fas-users" iconSize="20"/>
         </graphic>
       </Button>
-      <Button onAction="#logout" text="Sair" textAlignment="CENTER" contentDisplay="TOP">
+      <Button onAction="#logout" text="Sair" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
         <graphic>
           <FontIcon iconLiteral="fas-sign-out-alt" iconSize="20"/>
         </graphic>
