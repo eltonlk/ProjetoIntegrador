@@ -33,6 +33,7 @@ public class CreateUserController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    activeCheckBox.setSelected(true);
   }
 
   @FXML
