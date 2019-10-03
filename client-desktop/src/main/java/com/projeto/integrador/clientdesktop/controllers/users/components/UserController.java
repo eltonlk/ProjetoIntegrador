@@ -14,7 +14,10 @@ import com.projeto.integrador.clientdesktop.views.users.UpdateUserFxmlView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -52,6 +55,7 @@ public class UserController implements Initializable {
   private void fillContent() {
     nameLabel.setText(user.getName());
     emailLabel.setText(user.getEmail());
+    inactiveLabel.setVisible(!user.isActive());
   }
 
   @FXML
@@ -63,9 +67,14 @@ public class UserController implements Initializable {
 
   @FXML
   private void delete(ActionEvent event) throws IOException {
-    userResource.delete(user);
+    Alert alert = new Alert(AlertType.CONFIRMATION, "Deseja excluir o usuário '" + user.getName() + "' ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+    alert.showAndWait();
 
-    stageManager.switchScene(new ListUsersFxmlView());
+    if (alert.getResult() == ButtonType.YES) {
+      userResource.delete(user);
+
+      stageManager.switchScene(new ListUsersFxmlView());
+    }
   }
 
   @FXML
@@ -73,5 +82,8 @@ public class UserController implements Initializable {
 
   @FXML
   private Label emailLabel;
+
+  @FXML
+  private Label inactiveLabel;
 
 }

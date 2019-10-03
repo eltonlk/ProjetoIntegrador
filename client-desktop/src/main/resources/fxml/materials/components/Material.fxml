@@ -10,18 +10,18 @@
             styleClass="list-item"
             xmlns="http://javafx.com/javafx/12.0.2"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.projeto.integrador.clientdesktop.controllers.colors.components.ColorController">
+            fx:controller="com.projeto.integrador.clientdesktop.controllers.materials.components.MaterialController">
 
   <center>
     <VBox>
       <HBox spacing="16">
-        <Label fx:id="nameLabel" text="Nome da Cor" styleClass="label-h6"/>
+        <Label fx:id="nameLabel" text="Nome do Material" styleClass="label-h6"/>
         <Label fx:id="inactiveLabel" text="(Inativo)"/>
       </HBox>
 
       <HBox spacing="8">
-        <Label text="Absorvidade:"/>
-        <Label fx:id="absorbabilityLabel" text="Absorvidade"/>
+        <Label text="Índice:"/>
+        <Label fx:id="thermalConductivityIndexLabel" text="Índice de condutividade térmica"/>
       </HBox>
     </VBox>
   </center>

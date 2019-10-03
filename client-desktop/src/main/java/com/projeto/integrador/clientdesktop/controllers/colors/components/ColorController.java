@@ -1,6 +1,8 @@
 package com.projeto.integrador.clientdesktop.controllers.colors.components;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.controllers.colors.UpdateColorController;
@@ -10,30 +12,35 @@ import com.projeto.integrador.clientdesktop.utils.NumberFormatter;
 import com.projeto.integrador.clientdesktop.views.colors.ListColorsFxmlView;
 import com.projeto.integrador.clientdesktop.views.colors.UpdateColorFxmlView;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.Alert.AlertType;
 
-public class ColorController extends VBox {
+@Controller
+@Scope(BeanDefinition.SCOPE_PROTOTYPE)
+public class ColorController implements Initializable {
+
+  @Lazy
+  @Autowired
+  private StageManager stageManager;
+
+  @Autowired
+  private ColorResource colorResource;
 
   private Color color;
 
-  private StageManager stageManager;
-
-  private ColorResource colorResource;
-
-  public ColorController() {
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/colors/components/Color.fxml"));
-    fxmlLoader.setRoot(this);
-    fxmlLoader.setController(this);
-
-    try {
-        fxmlLoader.load();
-    } catch (IOException exception) {
-        throw new RuntimeException(exception);
-    }
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
   }
 
   public Color getColor() {
@@ -46,31 +53,12 @@ public class ColorController extends VBox {
     fillContent();
   }
 
-  public StageManager getStageManager() {
-    return stageManager;
-  }
-
-  public void setStageManager(StageManager stageManager) {
-    this.stageManager = stageManager;
-
-    fillContent();
-  }
-
-  public ColorResource getColorResource() {
-    return colorResource;
-  }
-
-  public void setColorResource(ColorResource colorResource) {
-    this.colorResource = colorResource;
-
-    fillContent();
-  }
-
   private void fillContent() {
     String absorbability = NumberFormatter.localizeFromDouble(color.getAbsorbabilityIndex());
 
     nameLabel.setText(color.getName());
     absorbabilityLabel.setText(absorbability);
+    inactiveLabel.setVisible(!color.isActive());
   }
 
   @FXML
@@ -82,9 +70,14 @@ public class ColorController extends VBox {
 
   @FXML
   private void delete(ActionEvent event) throws IOException {
-    colorResource.delete(color);
+    Alert alert = new Alert(AlertType.CONFIRMATION, "Deseja excluir a cor '" + color.getName() + "' ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+    alert.showAndWait();
 
-    stageManager.switchScene(new ListColorsFxmlView());
+    if (alert.getResult() == ButtonType.YES) {
+      colorResource.delete(color);
+
+      stageManager.switchScene(new ListColorsFxmlView());
+    }
   }
 
   @FXML
@@ -92,5 +85,8 @@ public class ColorController extends VBox {
 
   @FXML
   private Label absorbabilityLabel;
+
+  @FXML
+  private Label inactiveLabel;
 
 }
