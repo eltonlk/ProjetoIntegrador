@@ -5,6 +5,7 @@ import com.projeto.integrador.serverapi.repository.ProjectsRepository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -40,7 +41,7 @@ public class ProjectsController {
   @GetMapping
   @PreAuthorize("hasAuthority('READ_PRIVILEGE')")
   public List<Project> findAll(){
-    return repository.findAll();
+    return repository.findAll(Sort.by(Sort.Direction.ASC, "name"));
   }
 
   @GetMapping(path = {"/{id}"})

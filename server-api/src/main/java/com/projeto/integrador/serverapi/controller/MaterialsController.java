@@ -5,6 +5,7 @@ import com.projeto.integrador.serverapi.repository.MaterialsRepository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -40,7 +41,7 @@ public class MaterialsController {
   @GetMapping
   @PreAuthorize("hasAuthority('READ_PRIVILEGE')")
   public List<Material> findAll(){
-    return repository.findAll();
+    return repository.findAll(Sort.by(Sort.Direction.ASC, "name"));
   }
 
   @GetMapping(path = {"/{id}"})
