@@ -64,7 +64,7 @@ public class ComponentMaterialsController {
     return repository.findById(id)
       .map(record -> {
         record.setWidth(componentMaterial.getWidth());
-        record.setThermalConductitityIndex(componentMaterial.getThermalConductitityIndex());
+        record.setThermalConductivityIndex(componentMaterial.getThermalConductivityIndex());
         record.setResistance(componentMaterial.getResistance());
         record.setComponent(componentMaterial.getComponent());
         record.setMaterial(componentMaterial.getMaterial());

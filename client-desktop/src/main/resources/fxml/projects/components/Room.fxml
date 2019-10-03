@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
+
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane stylesheets="@../../../styles/Styles.css"
+            styleClass="list-item-card"
+            xmlns="http://javafx.com/javafx/12.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.projeto.integrador.clientdesktop.controllers.projects.components.RoomController">
+
+  <center>
+    <VBox>
+      <Label fx:id="nameLabel" text="Nome do Cômodo"/>
+      <Label fx:id="heatLoadLabel" text="Carga de Calor"/>
+    </VBox>
+  </center>
+
+  <right>
+    <HBox spacing="5.0">
+      <Button fx:id="updateButton" styleClass="button-success-sm">
+        <graphic>
+          <FontIcon iconLiteral="fas-edit"/>
+        </graphic>
+      </Button>
+      <Button fx:id="deleteButton" styleClass="button-danger-sm">
+        <graphic>
+          <FontIcon iconLiteral="fas-trash-alt"/>
+        </graphic>
+      </Button>
+    </HBox>
+  </right>
+
+  <bottom>
+    <BorderPane>
+      <left>
+        <HBox spacing="5.0">
+          <padding>
+            <Insets top="0" bottom="0" left="0" right="20" />
+          </padding>
+
+          <Label text="Faces" styleClass="label-h6"/>
+
+          <Button onAction="#createFace" styleClass="button-sm">
+            <graphic>
+              <FontIcon iconLiteral="fas-plus"/>
+            </graphic>
+          </Button>
+        </HBox>
+      </left>
+
+      <center>
+        <VBox fx:id="facesList" spacing="5.0">
+          <children>
+          </children>
+        </VBox>
+      </center>
+    </BorderPane>
+  </bottom>
+</BorderPane>

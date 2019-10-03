@@ -68,7 +68,7 @@ public class MaterialController implements Initializable {
 
   @FXML
   private void delete(ActionEvent event) throws IOException {
-    Alert alert = new Alert(AlertType.CONFIRMATION, "Deseja excluir o material '" + material.getName() + "' ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+    Alert alert = new Alert(AlertType.CONFIRMATION, "Deseja excluir o material '" + material.getName() + "' ?", ButtonType.YES, ButtonType.NO);
     alert.showAndWait();
 
     if (alert.getResult() == ButtonType.YES) {

@@ -5,7 +5,6 @@ import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.models.SolarRadiation;
 import com.projeto.integrador.clientdesktop.resources.ProjectResource;
 import com.projeto.integrador.clientdesktop.resources.SolarRadiationResource;
-import com.projeto.integrador.clientdesktop.views.projects.ListProjectsFxmlView;
 import com.projeto.integrador.clientdesktop.views.projects.ShowProjectFxmlView;
 
 import java.io.IOException;
@@ -26,7 +25,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class CreateProjectController implements Initializable {
+public class UpdateProjectController implements Initializable {
 
   @Lazy
   @Autowired
@@ -40,29 +39,49 @@ public class CreateProjectController implements Initializable {
 
   private ObservableList<SolarRadiation> solarRadiationOptions;
 
+  private Project project;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     solarRadiationOptions = FXCollections.observableArrayList(solarRadiationResource.getAll());
 
     solarRadiationComboBox.setItems(solarRadiationOptions);
+
+    project = new Project();
+  }
+
+  public Project getProject() {
+    return project;
+  }
+
+  public void setProject(Project project) {
+    this.project = project;
+
+    fillForm();
+  }
+
+  private void fillForm() {
+    nameInput.setText(project.getName());
+    solarRadiationComboBox.getSelectionModel().select(project.getSolarRadiation());
   }
 
   @FXML
-  private void create(ActionEvent event) throws IOException {
-    Project project = new Project();
+  private void update(ActionEvent event) throws IOException {
     project.setName(nameInput.getText());
     project.setSolarRadiation(solarRadiationComboBox.getSelectionModel().getSelectedItem());
 
-    Project projectCreated = projectResource.create(project);
+    projectResource.update(project);
 
     stageManager.switchScene(new ShowProjectFxmlView());
     ShowProjectController controller = stageManager.getLoader().getController();
-    controller.setProject(projectCreated);
+    controller.setProject(project);
   }
 
   @FXML
   private void goToBack(ActionEvent event) throws IOException {
-		stageManager.switchScene(new ListProjectsFxmlView());
+    stageManager.switchScene(new ShowProjectFxmlView());
+    ShowProjectController controller = stageManager.getLoader().getController();
+    controller.setProject(project);
   }
 
   @FXML

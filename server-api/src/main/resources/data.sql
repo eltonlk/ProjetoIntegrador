@@ -2,6 +2,7 @@ INSERT INTO privileges (id, name) VALUES (1, 'READ_PRIVILEGE');
 INSERT INTO privileges (id, name) VALUES (2, 'CREATE_PRIVILEGE');
 INSERT INTO privileges (id, name) VALUES (3, 'UPDATE_PRIVILEGE');
 INSERT INTO privileges (id, name) VALUES (4, 'DELETE_PRIVILEGE');
+INSERT INTO privileges (id, name) VALUES (5, 'UPDATE_PERMISSIONS_PRIVILEGE');
 
 INSERT INTO roles (id, name) VALUES (1, 'ROLE_AUDITS');
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (1, 1);
@@ -15,6 +16,7 @@ INSERT INTO roles_privileges (role_id, privilege_id) VALUES (3, 1);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (3, 2);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (3, 3);
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (3, 4);
+INSERT INTO roles_privileges (role_id, privilege_id) VALUES (3, 5);
 
 INSERT INTO roles (id, name) VALUES (4, 'ROLE_COLORS');
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES (4, 1);

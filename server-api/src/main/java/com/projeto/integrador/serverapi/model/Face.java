@@ -17,10 +17,13 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.projeto.integrador.serverapi.model.observer.AuditListener;
+import com.projeto.integrador.serverapi.serializer.FaceSerializer;
 
 @Entity
 @EntityListeners(AuditListener.class)
+@JsonSerialize(using = FaceSerializer.class)
 @Table(name = "faces")
 public class Face {
 

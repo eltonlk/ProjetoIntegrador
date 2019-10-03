@@ -8,6 +8,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
 <BorderPane prefHeight="600.0"
             prefWidth="1000.0"
             maxHeight="-Infinity"
@@ -30,15 +32,51 @@
       <HBox styleClass="header-view">
         <Label text="Projeto" styleClass="label-header"/>
         <Pane HBox.hgrow="ALWAYS"/>
-        <Button onAction="#goToBack" text="Voltar"/>
+        <HBox spacing="5.0">
+          <Button onAction="#goToUpdate" text="Alterar" styleClass="button-success"/>
+          <Button onAction="#delete" text="Excluir" styleClass="button-danger"/>
+          <Button onAction="#goToBack" text="Voltar"/>
+        </HBox>
       </HBox>
 
       <VBox spacing="2.0">
         <children>
           <Label text="Nome"/>
-          <Label fx:id="nameLabel" text="Nome do Projeto"/>
+          <Label fx:id="nameLabel" text="Nome do Projeto" styleClass="label-h6"/>
         </children>
       </VBox>
+
+      <VBox spacing="2.0">
+        <children>
+          <Label text="Índice de Radiação"/>
+          <Label fx:id="solarRadiationLabel" text="Índice de Radiação" styleClass="label-h6"/>
+        </children>
+      </VBox>
+
+      <BorderPane>
+        <left>
+          <HBox spacing="5.0">
+            <padding>
+              <Insets top="0" bottom="0" left="0" right="20" />
+            </padding>
+
+            <Label text="Cômodos" styleClass="label-h6"/>
+
+            <Button onAction="#createRoom" styleClass="button-sm">
+              <graphic>
+                <FontIcon iconLiteral="fas-plus"/>
+              </graphic>
+            </Button>
+          </HBox>
+        </left>
+
+        <center>
+          <VBox fx:id="roomsList" spacing="5.0">
+            <children>
+            </children>
+          </VBox>
+        </center>
+      </BorderPane>
     </VBox>
   </center>
 
