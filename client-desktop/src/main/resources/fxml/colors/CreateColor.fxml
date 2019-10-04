@@ -25,7 +25,7 @@
   </left>
 
   <center>
-    <ScrollPane fitToHeight="true" fitToWidth="true">
+    <ScrollPane styleClass="scroll-pane" fitToHeight="true" fitToWidth="true">
       <content>
         <VBox spacing="20.0">
           <padding>

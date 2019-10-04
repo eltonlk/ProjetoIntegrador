@@ -200,6 +200,12 @@
 
 
 
+/* <============ SCROLL PANE ============> */
+.scroll-pane {
+	-fx-background-color: transparent;
+}
+/* <============ SCROLL PANE ============> */
+
 
 
 
