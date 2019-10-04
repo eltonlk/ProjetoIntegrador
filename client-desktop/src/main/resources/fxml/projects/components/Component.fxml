@@ -17,8 +17,13 @@
 
   <center>
     <VBox>
-      <Label fx:id="nameLabel" text="Nome da Face"/>
+      <Label text="Nome"/>
+      <Label fx:id="nameLabel" text="Nome do Componente"/>
+      <Label text="Área (m²)"/>
       <Label fx:id="areaLabel" text="Área"/>
+      <Label text="Cor"/>
+      <Label fx:id="colorLabel" text="Cor"/>
+      <Label text="Fluxo de Calor"/>
       <Label fx:id="heatFlowLabel" text="Fluxo de Calor"/>
     </VBox>
   </center>

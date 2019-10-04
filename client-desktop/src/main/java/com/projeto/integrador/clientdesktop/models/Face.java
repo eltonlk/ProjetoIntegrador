@@ -49,15 +49,15 @@ public class Face {
     this.heatFlow = heatFlow;
   }
 
-  public double getHeatFlowCalculated() {
-    double heatFlow = 0;
+  // public double getHeatFlowCalculated() {
+  //   double heatFlow = 0;
 
-    for (Component component : components) {
-      heatFlow += component.getHeatFlow();
-    }
+  //   for (Component component : components) {
+  //     heatFlow += component.getHeatFlow();
+  //   }
 
-    return heatFlow;
-  }
+  //   return heatFlow;
+  // }
 
   public Room getRoom() {
     return room;

@@ -6,6 +6,7 @@ import com.projeto.integrador.clientdesktop.controllers.projects.modals.CreateRo
 import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.models.Room;
 import com.projeto.integrador.clientdesktop.resources.ProjectResource;
+import com.projeto.integrador.clientdesktop.utils.NumberFormatter;
 import com.projeto.integrador.clientdesktop.views.projects.ListProjectsFxmlView;
 import com.projeto.integrador.clientdesktop.views.projects.UpdateProjectFxmlView;
 
@@ -22,6 +23,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -45,9 +47,12 @@ public class ShowProjectController implements Initializable {
 
   @FXML
   private void createRoom(ActionEvent event) throws IOException {
-    stageManager.showModal();
+    Stage modal = stageManager.buildModal("/fxml/projects/modals/CreateRoom.fxml");
+
     CreateRoomController controller = stageManager.getLoader().getController();
-    controller.setProject(project);
+    controller.setProject(getProject());
+
+    modal.show();
   }
 
   @FXML
@@ -59,7 +64,7 @@ public class ShowProjectController implements Initializable {
   private void goToUpdate(ActionEvent event) throws IOException {
     stageManager.switchScene(new UpdateProjectFxmlView());
     UpdateProjectController controller = stageManager.getLoader().getController();
-    controller.setProject(project);
+    controller.setProject(getProject());
   }
 
   @FXML
@@ -68,7 +73,7 @@ public class ShowProjectController implements Initializable {
     alert.showAndWait();
 
     if (alert.getResult() == ButtonType.YES) {
-      projectResource.delete(project);
+      projectResource.delete(getProject());
 
       stageManager.switchScene(new ListProjectsFxmlView());
     }
@@ -86,7 +91,7 @@ public class ShowProjectController implements Initializable {
 
   private void fillContent() {
     nameLabel.setText(project.getName());
-    solarRadiationLabel.setText(project.getSolarRadiation().getName() + " (" + project.getSolarRadiation().getIndex() + ")");
+    solarRadiationLabel.setText(project.getSolarRadiation().getName() + " (" + NumberFormatter.localizeFromDouble(project.getSolarRadiation().getIndex()) + ")");
 
     if (project.getRooms() != null) {
       for (Room room : project.getRooms()) {
@@ -96,6 +101,12 @@ public class ShowProjectController implements Initializable {
           roomsList.getChildren().add(loader.load());
 
           RoomController controller = loader.getController();
+
+          System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Render Room");
+          System.out.println(getProject());
+
+
+          controller.setProject(getProject());
           controller.setRoom(room);
         } catch (IOException e) {
           e.printStackTrace();

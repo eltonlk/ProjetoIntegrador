@@ -5,8 +5,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.controllers.projects.modals.CreateComponentController;
 import com.projeto.integrador.clientdesktop.models.Component;
 import com.projeto.integrador.clientdesktop.models.Face;
+import com.projeto.integrador.clientdesktop.models.Project;
+import com.projeto.integrador.clientdesktop.utils.NumberFormatter;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -31,6 +35,8 @@ public class FaceController implements Initializable {
 
   private Face face;
 
+  private Project project;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
   }
@@ -45,21 +51,49 @@ public class FaceController implements Initializable {
     fillContent();
   }
 
+  public Project getProject() {
+    return project;
+  }
+
+  public void setProject(Project project) {
+    this.project = project;
+  }
+
   private void fillContent() {
-    // nameLabel.setText(face.getName());
-    // heatFlowLabel.setText(face.getHeatFlow());
+    nameLabel.setText(face.getName());
+    heatFlowLabel.setText(NumberFormatter.localizeFromDouble(face.getHeatFlow()));
+
+    if (face.getComponents() != null) {
+      for (Component component : face.getComponents()) {
+        try {
+          FXMLLoader loader = stageManager.getLoaderComponent("/fxml/projects/components/Component.fxml");
+
+          componentsList.getChildren().add(loader.load());
+
+          ComponentController controller = loader.getController();
+          controller.setProject(getProject());
+          controller.setComponent(component);
+
+          System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Render Component");
+          System.out.println(getProject());
+
+
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+    }
   }
 
   @FXML
   private void createComponent(ActionEvent event) throws IOException {
-    Component component = new Component();
+    Stage modal = stageManager.buildModal("/fxml/projects/modals/CreateComponent.fxml");
 
-    FXMLLoader loader = stageManager.getLoaderComponent("/fxml/projects/components/Component.fxml");
+    CreateComponentController controller = stageManager.getLoader().getController();
+    controller.setProject(getProject());
+    controller.setFace(getFace());
 
-    componentsList.getChildren().add(loader.load());
-
-    ComponentController controller = loader.getController();
-    controller.setComponent(component);
+    modal.show();
   }
 
   @FXML

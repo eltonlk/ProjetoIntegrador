@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="300.0"
+            prefWidth="600.0"
+            stylesheets="@../../../styles/Styles.css"
+            xmlns="http://javafx.com/javafx/12.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.projeto.integrador.clientdesktop.controllers.projects.modals.CreateComponentMaterialController">
+
+  <top>
+    <VBox spacing="20.0">
+      <padding>
+        <Insets top="20" bottom="20" left="20" right="20" />
+      </padding>
+
+      <Label text="Adicionar Material" styleClass="label-header"/>
+    </VBox>
+  </top>
+
+  <center>
+    <VBox spacing="20.0">
+      <padding>
+        <Insets top="20" bottom="20" left="20" right="20" />
+      </padding>
+
+      <VBox spacing="2.0">
+        <children>
+          <Label fx:id="materialLabel" text="Material"/>
+          <ComboBox fx:id="materialComboBox" promptText="Selecione"/>
+        </children>
+      </VBox>
+
+      <VBox spacing="2.0">
+        <children>
+          <Label fx:id="widthLabel" text="Espessura (m)"/>
+          <TextField fx:id="widthInput" promptText="Espessura"/>
+        </children>
+      </VBox>
+
+      <VBox spacing="2.0">
+        <children>
+          <Label fx:id="thermalConductitityIndexLabel" text="Índice de Condutividade"/>
+          <TextField fx:id="thermalConductitityIndexInput" promptText="Índice de Condutividade"/>
+        </children>
+      </VBox>
+    </VBox>
+  </center>
+
+  <bottom>
+    <HBox>
+      <padding>
+        <Insets top="20" bottom="20" left="20" right="20" />
+      </padding>
+
+      <children>
+        <Button fx:id="submitButton" onAction="#create" styleClass="button-primary" text="Adicionar"/>
+      </children>
+    </HBox>
+  </bottom>
+
+</BorderPane>

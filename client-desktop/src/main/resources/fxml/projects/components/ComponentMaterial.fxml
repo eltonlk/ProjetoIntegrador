@@ -16,9 +16,13 @@
 
   <center>
     <VBox>
+      <Label text="Material"/>
       <Label fx:id="materialLabel" text="Nome do Material"/>
-      <Label fx:id="widthLabel" text="Tamanho"/>
+      <Label text="Espessura"/>
+      <Label fx:id="widthLabel" text="Espessura"/>
+      <Label text="Índice de Condutividade"/>
       <Label fx:id="thermalConductitityIndexLabel" text="Índice de Condutividade"/>
+      <Label text="Resistência"/>
       <Label fx:id="resistanceLabel" text="Resistência"/>
     </VBox>
   </center>

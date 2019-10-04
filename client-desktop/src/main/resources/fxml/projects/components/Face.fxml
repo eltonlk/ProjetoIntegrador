@@ -17,7 +17,9 @@
 
   <center>
     <VBox>
+      <Label text="Nome"/>
       <Label fx:id="nameLabel" text="Nome da Face"/>
+      <Label text="Fluxo de Calor"/>
       <Label fx:id="heatFlowLabel" text="Fluxo de Calor"/>
     </VBox>
   </center>

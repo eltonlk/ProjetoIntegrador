@@ -5,8 +5,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.controllers.projects.modals.CreateFaceController;
 import com.projeto.integrador.clientdesktop.models.Face;
+import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.models.Room;
+import com.projeto.integrador.clientdesktop.utils.NumberFormatter;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -29,10 +33,20 @@ public class RoomController implements Initializable {
   @Autowired
   private StageManager stageManager;
 
+  private Project project;
+
   private Room room;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+  }
+
+  public Project getProject() {
+    return project;
+  }
+
+  public void setProject(Project project) {
+    this.project = project;
   }
 
   public Room getRoom() {
@@ -47,19 +61,39 @@ public class RoomController implements Initializable {
 
   private void fillContent() {
     nameLabel.setText(room.getName());
-    heatLoadLabel.setText("" + room.getHeatLoad());
+    heatLoadLabel.setText(NumberFormatter.localizeFromDouble(room.getHeatLoad()));
+
+    if (room.getFaces() != null) {
+      for (Face face : room.getFaces()) {
+        try {
+          FXMLLoader loader = stageManager.getLoaderComponent("/fxml/projects/components/Face.fxml");
+
+          facesList.getChildren().add(loader.load());
+
+          FaceController controller = loader.getController();
+          controller.setProject(getProject());
+          controller.setFace(face);
+
+          System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Render Face");
+          System.out.println(getProject());
+
+
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+    }
   }
 
   @FXML
   private void createFace(ActionEvent event) throws IOException {
-    Face face = new Face();
+    Stage modal = stageManager.buildModal("/fxml/projects/modals/CreateFace.fxml");
 
-    FXMLLoader loader = stageManager.getLoaderComponent("/fxml/projects/components/Face.fxml");
+    CreateFaceController controller = stageManager.getLoader().getController();
+    controller.setProject(getProject());
+    controller.setRoom(getRoom());
 
-    facesList.getChildren().add(loader.load());
-
-    FaceController controller = loader.getController();
-    controller.setFace(face);
+    modal.show();
   }
 
   @FXML

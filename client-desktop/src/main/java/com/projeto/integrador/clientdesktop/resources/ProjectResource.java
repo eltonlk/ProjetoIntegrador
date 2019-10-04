@@ -26,6 +26,10 @@ public class ProjectResource {
     return projects;
   }
 
+  public Project refresh(Project project) {
+    return restTemplate.getForObject(NAMESPACE + "/{id}", Project.class, project.getId());
+  }
+
   public Project create(Project project) {
     ResponseEntity<Project> responseEntity = restTemplate.postForEntity(NAMESPACE, project, Project.class);
 

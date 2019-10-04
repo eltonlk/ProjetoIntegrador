@@ -82,10 +82,10 @@ public class StageManager {
     return loader.buildLoader(fxmlFilePath);
   }
 
-  public void showModal() {
+  public Stage buildModal(String fxmlFilePath) {
     Stage dialog = new Stage();
 
-    Parent viewRootNodeHierarchy = loadViewNodeHierarchy("/fxml/projects/modals/CreateRoom.fxml");
+    Parent viewRootNodeHierarchy = loadViewNodeHierarchy(fxmlFilePath);
 
     Scene scene = new Scene(viewRootNodeHierarchy);
 
@@ -93,7 +93,8 @@ public class StageManager {
 
     dialog.initOwner(stage);
     dialog.initModality(Modality.APPLICATION_MODAL);
-    dialog.showAndWait();
+
+    return dialog;
   }
 
 }

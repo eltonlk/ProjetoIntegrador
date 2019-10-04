@@ -6,16 +6,23 @@ import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.controllers.projects.ShowProjectController;
+import com.projeto.integrador.clientdesktop.models.Color;
+import com.projeto.integrador.clientdesktop.models.Component;
+import com.projeto.integrador.clientdesktop.models.Face;
 import com.projeto.integrador.clientdesktop.models.Project;
-import com.projeto.integrador.clientdesktop.models.Room;
+import com.projeto.integrador.clientdesktop.resources.ColorResource;
+import com.projeto.integrador.clientdesktop.resources.ComponentResource;
 import com.projeto.integrador.clientdesktop.resources.ProjectResource;
-import com.projeto.integrador.clientdesktop.resources.RoomResource;
+import com.projeto.integrador.clientdesktop.utils.NumberFormatter;
 import com.projeto.integrador.clientdesktop.views.projects.ShowProjectFxmlView;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -27,22 +34,32 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-public class CreateRoomController implements Initializable {
+public class CreateComponentController implements Initializable {
 
   @Lazy
   @Autowired
   private StageManager stageManager;
 
   @Autowired
-  private RoomResource roomResource;
+  private ComponentResource componentResource;
 
   @Autowired
   private ProjectResource projectResource;
 
+  @Autowired
+  private ColorResource colorResource;
+
+  private ObservableList<Color> colorsOptions;
+
   private Project project;
+
+  private Face face;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    colorsOptions = FXCollections.observableArrayList(colorResource.getAll());
+
+    colorComboBox.setItems(colorsOptions);
   }
 
   public Project getProject() {
@@ -53,13 +70,23 @@ public class CreateRoomController implements Initializable {
     this.project = project;
   }
 
+  public Face getFace() {
+    return face;
+  }
+
+  public void setFace(Face face) {
+    this.face = face;
+  }
+
   @FXML
   private void create(ActionEvent event) throws IOException {
-    Room room = new Room();
-    room.setProject(getProject());
-    room.setName(nameInput.getText());
+    Component component = new Component();
+    component.setFace(getFace());
+    component.setName(nameInput.getText());
+    component.setArea(NumberFormatter.parseToDouble(areaInput.getText()));
+    component.setColor(colorComboBox.getSelectionModel().getSelectedItem());
 
-    roomResource.create(room);
+    componentResource.create(component);
 
     Project project = projectResource.refresh(getProject());
 
@@ -75,5 +102,11 @@ public class CreateRoomController implements Initializable {
 
   @FXML
   private TextField nameInput;
+
+  @FXML
+  private TextField areaInput;
+
+  @FXML
+  private ComboBox<Color> colorComboBox;
 
 }

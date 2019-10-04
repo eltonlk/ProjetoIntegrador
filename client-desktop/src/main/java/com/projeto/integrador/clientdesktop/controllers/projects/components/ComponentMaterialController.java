@@ -5,6 +5,8 @@ import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.models.ComponentMaterial;
+import com.projeto.integrador.clientdesktop.models.Project;
+import com.projeto.integrador.clientdesktop.utils.NumberFormatter;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,8 +28,18 @@ public class ComponentMaterialController implements Initializable {
 
   private ComponentMaterial componentMaterial;
 
+  private Project project;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+  }
+
+  public Project getProject() {
+    return project;
+  }
+
+  public void setProject(Project project) {
+    this.project = project;
   }
 
   public ComponentMaterial getComponentMaterial() {
@@ -41,8 +53,10 @@ public class ComponentMaterialController implements Initializable {
   }
 
   private void fillContent() {
-    // nameLabel.setText(face.getName());
-    // heatFlowLabel.setText(face.getHeatFlow());
+    materialLabel.setText(getComponentMaterial().getMaterial().getName());
+    widthLabel.setText(NumberFormatter.localizeFromDouble(getComponentMaterial().getWidth()));
+    thermalConductitityIndexLabel.setText(NumberFormatter.localizeFromDouble(getComponentMaterial().getThermalConductitityIndex()));
+    resistanceLabel.setText(NumberFormatter.localizeFromDouble(getComponentMaterial().getResistance()));
   }
 
   @FXML

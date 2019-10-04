@@ -39,6 +39,8 @@ public class LoginController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    usernameInput.setText("admin");
+    passwordInput.setText("123456789");
   }
 
   public String getPassword() {

@@ -6,10 +6,11 @@ import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.controllers.projects.ShowProjectController;
+import com.projeto.integrador.clientdesktop.models.Face;
 import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.models.Room;
+import com.projeto.integrador.clientdesktop.resources.FaceResource;
 import com.projeto.integrador.clientdesktop.resources.ProjectResource;
-import com.projeto.integrador.clientdesktop.resources.RoomResource;
 import com.projeto.integrador.clientdesktop.views.projects.ShowProjectFxmlView;
 
 import javafx.event.ActionEvent;
@@ -27,19 +28,21 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-public class CreateRoomController implements Initializable {
+public class CreateFaceController implements Initializable {
 
   @Lazy
   @Autowired
   private StageManager stageManager;
 
   @Autowired
-  private RoomResource roomResource;
+  private FaceResource faceResource;
 
   @Autowired
   private ProjectResource projectResource;
 
   private Project project;
+
+  private Room room;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -53,13 +56,21 @@ public class CreateRoomController implements Initializable {
     this.project = project;
   }
 
+  public Room getRoom() {
+    return room;
+  }
+
+  public void setRoom(Room room) {
+    this.room = room;
+  }
+
   @FXML
   private void create(ActionEvent event) throws IOException {
-    Room room = new Room();
-    room.setProject(getProject());
-    room.setName(nameInput.getText());
+    Face face = new Face();
+    face.setRoom(getRoom());
+    face.setName(nameInput.getText());
 
-    roomResource.create(room);
+    faceResource.create(face);
 
     Project project = projectResource.refresh(getProject());
 
