@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.BorderPane?>
@@ -15,16 +17,32 @@
             fx:controller="com.projeto.integrador.clientdesktop.controllers.projects.components.ComponentMaterialController">
 
   <center>
-    <VBox>
-      <Label text="Material"/>
-      <Label fx:id="materialLabel" text="Nome do Material"/>
-      <Label text="Espessura"/>
-      <Label fx:id="widthLabel" text="Espessura"/>
-      <Label text="Índice de Condutividade"/>
-      <Label fx:id="thermalConductitityIndexLabel" text="Índice de Condutividade"/>
-      <Label text="Resistência"/>
-      <Label fx:id="resistanceLabel" text="Resistência"/>
-    </VBox>
+    <GridPane hgap="10" vgap="2">
+      <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS"/>
+        <ColumnConstraints hgrow="ALWAYS"/>
+      </columnConstraints>
+
+      <HBox spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <Label text="Material:"/>
+        <Label fx:id="materialLabel" text="Nome do Material"/>
+      </HBox>
+
+      <HBox spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <Label text="Espessura (m):"/>
+        <Label fx:id="widthLabel" text="Espessura"/>
+      </HBox>
+
+      <HBox spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+        <Label text="Índice de Condutividade:"/>
+        <Label fx:id="thermalConductitityIndexLabel" text="Índice de Condutividade"/>
+      </HBox>
+
+      <HBox spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <Label text="Resistência:"/>
+        <Label fx:id="resistanceLabel" text="Resistência"/>
+      </HBox>
+    </GridPane>
   </center>
 
   <right>
