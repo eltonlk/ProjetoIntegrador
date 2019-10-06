@@ -24,6 +24,10 @@
         <ColumnConstraints hgrow="ALWAYS"/>
       </columnConstraints>
 
+      <padding>
+        <Insets top="0" bottom="10" left="0" right="0"/>
+      </padding>
+
       <HBox spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
         <Label text="Nome:"/>
           <Label fx:id="nameLabel" text="Nome da Face"/>
