@@ -67,12 +67,13 @@ VALUES ('Argamassa comum', 1.15, TRUE),
   ('Vidro', 1, TRUE),
   ('Espaço vazio (AR)', 0.17, FALSE);
 
-INSERT INTO solar_radiations (name, index)
-VALUES ('Sul', 600),
-  ('Sudeste', 700),
-  ('Centro-Oeste', 600),
-  ('Nordeste', 800),
-  ('Norte', 500);
+INSERT INTO solar_radiations (name, north_index, north_east_index, east_index, south_east_index,
+  south_index, south_west_index, west_index, north_west_index)
+VALUES ('Sul', 179, 475, 715, 586, 188, 586, 715, 475),
+  ('Sudeste', 700, 700, 700, 700, 700, 700, 700, 700),
+  ('Centro-Oeste', 600, 600, 600, 600, 600, 600, 600, 600),
+  ('Nordeste', 800, 800, 800, 800, 800, 800, 800, 800),
+  ('Norte', 500, 500, 500, 500, 500, 500, 500, 500);
 
 INSERT INTO "audits"("modified_by", "modified_date", "action", "content")
 VALUES ('admin', '2019-08-23 00:18:22', 'CREATED', 'Option{id=null, name=''audits'', value=''enabled''}'),
@@ -88,8 +89,8 @@ VALUES ('admin', '2019-08-23 00:18:22', 'CREATED', 'Option{id=null, name=''audit
   ('admin', '2019-08-23 00:18:22', 'CREATED', 'Material{id=null, name=''PVC'', thermal_conductivity_index=0.2, active=true}'),
   ('admin', '2019-08-23 00:18:22', 'CREATED', 'Material{id=null, name=''Vidro'', thermal_conductivity_index=1, active=true}'),
   ('admin', '2019-08-23 00:18:22', 'CREATED', 'Material{id=null, name=''Espaço vazio (AR)'', thermal_conductivity_index=0.17, active=false}'),
-  ('admin', '2019-08-23 00:18:22', 'CREATED', 'SolarRadiation{id=null, name=''Sul'', index=600}'),
-  ('admin', '2019-08-23 00:18:22', 'CREATED', 'SolarRadiation{id=null, name=''Sudeste'', index=700}'),
-  ('admin', '2019-08-23 00:18:22', 'CREATED', 'SolarRadiation{id=null, name=''Centro-Oeste'', index=600}'),
-  ('admin', '2019-08-23 00:18:22', 'CREATED', 'SolarRadiation{id=null, name=''Nordeste'', index=800}'),
-  ('admin', '2019-08-23 00:18:22', 'CREATED', 'SolarRadiation{id=null, name=''Norte'', index=500}');
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'SolarRadiation{id=null, name=''Sul'', north_index=179, north_east_index=475, east_index=715, south_east_index=586, south_index=188, south_west_index=586, west_index=715, north_west_index=475}'),
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'SolarRadiation{id=null, name=''Sudeste'', north_index=700, north_east_index=700, east_index=700, south_east_index=700, south_index=700, south_west_index=700, west_index=700, north_west_index=700}'),
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'SolarRadiation{id=null, name=''Centro-Oeste'', north_index=600, north_east_index=600, east_index=600, south_east_index=600, south_index=600, south_west_index=600, west_index=600, north_west_index=600}'),
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'SolarRadiation{id=null, name=''Nordeste'', north_index=800, north_east_index=800, east_index=800, south_east_index=800, south_index=800, south_west_index=800, west_index=800, north_west_index=800}'),
+  ('admin', '2019-08-23 00:18:22', 'CREATED', 'SolarRadiation{id=null, name=''Norte'', north_index=500, north_east_index=500, east_index=500, south_east_index=500, south_index=500, south_west_index=500, west_index=500, north_west_index=500}');

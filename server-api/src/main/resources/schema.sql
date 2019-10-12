@@ -66,13 +66,23 @@ CREATE TABLE materials (
 CREATE TABLE solar_radiations (
   id    SERIAL PRIMARY KEY,
   name  VARCHAR(255) NOT NULL,
-  index INTEGER NOT NULL DEFAULT 0
+  north_index INTEGER NOT NULL DEFAULT 0,
+  north_east_index INTEGER NOT NULL DEFAULT 0,
+  east_index INTEGER NOT NULL DEFAULT 0,
+  south_east_index INTEGER NOT NULL DEFAULT 0,
+  south_index INTEGER NOT NULL DEFAULT 0,
+  south_west_index INTEGER NOT NULL DEFAULT 0,
+  west_index INTEGER NOT NULL DEFAULT 0,
+  north_west_index INTEGER NOT NULL DEFAULT 0
 );
 
 CREATE TABLE projects (
-  id                 SERIAL PRIMARY KEY,
-  name               VARCHAR(255) NOT NULL,
-  solar_radiation_id INTEGER REFERENCES solar_radiations(id)
+  id                   SERIAL PRIMARY KEY,
+  name                 VARCHAR(255) NOT NULL,
+  season               VARCHAR(45) NOT NULL,
+  external_temperature INTEGER NOT NULL,
+  internal_temperature INTEGER NOT NULL,
+  solar_radiation_id   INTEGER REFERENCES solar_radiations(id)
 );
 
 CREATE TABLE rooms (
@@ -83,10 +93,11 @@ CREATE TABLE rooms (
 );
 
 CREATE TABLE faces (
-  id        SERIAL PRIMARY KEY,
-  name      VARCHAR(255) NOT NULL,
-  heat_flow NUMERIC(10, 5) NOT NULL DEFAULT 0,
-  room_id   INTEGER REFERENCES rooms(id)
+  id          SERIAL PRIMARY KEY,
+  name        VARCHAR(255) NOT NULL,
+  orientation VARCHAR(45) NOT NULL,
+  heat_flow   NUMERIC(10, 5) NOT NULL DEFAULT 0,
+  room_id     INTEGER REFERENCES rooms(id)
 );
 
 CREATE TABLE components (
