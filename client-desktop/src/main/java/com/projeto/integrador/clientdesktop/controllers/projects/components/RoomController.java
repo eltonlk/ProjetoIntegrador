@@ -73,11 +73,6 @@ public class RoomController implements Initializable {
           FaceController controller = loader.getController();
           controller.setProject(getProject());
           controller.setFace(face);
-
-          System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Render Face");
-          System.out.println(getProject());
-
-
         } catch (IOException e) {
           e.printStackTrace();
         }

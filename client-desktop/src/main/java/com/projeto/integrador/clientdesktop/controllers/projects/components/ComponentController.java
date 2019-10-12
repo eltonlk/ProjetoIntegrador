@@ -75,11 +75,6 @@ public class ComponentController implements Initializable {
           ComponentMaterialController controller = loader.getController();
           controller.setProject(getProject());
           controller.setComponentMaterial(componentMaterial);
-
-          System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Render Component Material");
-          System.out.println(getProject());
-
-
         } catch (IOException e) {
           e.printStackTrace();
         }
@@ -92,8 +87,6 @@ public class ComponentController implements Initializable {
     Stage modal = stageManager.buildModal("/fxml/projects/modals/CreateComponentMaterial.fxml");
 
     CreateComponentMaterialController controller = stageManager.getLoader().getController();
-System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>1");
-System.out.println(getProject());
 
     controller.setProject(getProject());
     controller.setComponent(getComponent());

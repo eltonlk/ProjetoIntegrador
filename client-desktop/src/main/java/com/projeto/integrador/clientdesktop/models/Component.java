@@ -63,36 +63,6 @@ public class Component {
     this.heatFlow = heatFlow;
   }
 
-  // public double getHeatFlowCalculated() {
-  //   double u = getThermalTransmittance();
-  //   double a = color.getAbsorbabilityIndex();
-  //   double i = face.getRoom().getProject().getSolarRadiation().getIndex();
-  //   double rse = 0.04;
-  //   double te = 30; // TODO: get this value from user;
-  //   double ti = 23; // TODO: get this value from user;
-
-  //   return u * ( a * i * rse + te - ti );
-  // }
-
-  // private double getThermalTransmittance() {
-  //   double thermalTransmittance = getArea() / getResistance();
-
-  //   return thermalTransmittance;
-  // }
-
-  // private double getResistance() {
-  //   // 0.04 = External Surface Resistance;
-  //   // 0.13 = Internal Surface Resistance; TODO: get this value from user;
-
-  //   double resistance = 0.04 + 0.13;
-
-  //   for (ComponentMaterial componentMaterial : componentMaterials) {
-  //     resistance += componentMaterial.getResistance();
-  //   }
-
-  //   return resistance;
-  // }
-
   public Face getFace() {
     return face;
   }

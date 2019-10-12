@@ -58,10 +58,6 @@ public class ComponentMaterial {
     this.resistance = resistance;
   }
 
-  // public double setResistanceCalculated() {
-  //   return getWidth() / getThermalConductitityIndex();
-  // }
-
   public Component getComponent() {
     return component;
   }

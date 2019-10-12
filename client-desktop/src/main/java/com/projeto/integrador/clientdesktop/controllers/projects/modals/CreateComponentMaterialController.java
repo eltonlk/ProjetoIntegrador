@@ -16,8 +16,6 @@ import com.projeto.integrador.clientdesktop.resources.ProjectResource;
 import com.projeto.integrador.clientdesktop.utils.NumberFormatter;
 import com.projeto.integrador.clientdesktop.views.projects.ShowProjectFxmlView;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -93,9 +91,6 @@ public class CreateComponentMaterialController implements Initializable {
     componentMaterial.setThermalConductitityIndex(NumberFormatter.parseToDouble(thermalConductitityIndexInput.getText()));
 
     componentMaterialResource.create(componentMaterial);
-
-    System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>2");
-    System.out.println(getProject());
 
     Project project = projectResource.refresh(getProject());
 

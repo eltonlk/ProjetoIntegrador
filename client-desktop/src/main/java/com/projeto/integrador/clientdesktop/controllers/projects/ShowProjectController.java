@@ -102,10 +102,6 @@ public class ShowProjectController implements Initializable {
 
           RoomController controller = loader.getController();
 
-          System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Render Room");
-          System.out.println(getProject());
-
-
           controller.setProject(getProject());
           controller.setRoom(room);
         } catch (IOException e) {

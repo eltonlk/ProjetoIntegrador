@@ -73,11 +73,6 @@ public class FaceController implements Initializable {
           ComponentController controller = loader.getController();
           controller.setProject(getProject());
           controller.setComponent(component);
-
-          System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Render Component");
-          System.out.println(getProject());
-
-
         } catch (IOException e) {
           e.printStackTrace();
         }
