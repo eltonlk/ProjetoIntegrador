@@ -1,5 +1,6 @@
 package com.projeto.integrador.serverapi.controller;
 
+import com.projeto.integrador.serverapi.model.Component;
 import com.projeto.integrador.serverapi.model.Face;
 import com.projeto.integrador.serverapi.repository.FacesRepository;
 
@@ -55,6 +56,8 @@ public class FacesController {
   @ResponseStatus(HttpStatus.CREATED)
   @PreAuthorize("hasAuthority('CREATE_PRIVILEGE')")
   public Face create(@RequestBody Face face) {
+    // face.setHeatFlow(heatFlowCanculatedFor(face));
+
     return repository.save(face);
   }
 
@@ -66,6 +69,8 @@ public class FacesController {
         record.setName(face.getName());
         record.setHeatFlow(face.getHeatFlow());
         record.setRoom(face.getRoom());
+
+        // record.setHeatFlow(heatFlowCanculatedFor(record));
 
         Face updated = repository.save(record);
 
@@ -82,6 +87,16 @@ public class FacesController {
 
         return ResponseEntity.ok().build();
       }).orElse(ResponseEntity.notFound().build());
+  }
+
+  private double heatFlowCanculatedFor(Face face) {
+    double heatFlow = 0;
+
+    for (Component component : face.getComponents()) {
+      heatFlow += component.getHeatFlow();
+    }
+
+    return heatFlow;
   }
 
 }

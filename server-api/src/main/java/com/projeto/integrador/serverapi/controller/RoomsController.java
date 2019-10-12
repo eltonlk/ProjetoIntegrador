@@ -1,5 +1,6 @@
 package com.projeto.integrador.serverapi.controller;
 
+import com.projeto.integrador.serverapi.model.Face;
 import com.projeto.integrador.serverapi.model.Room;
 import com.projeto.integrador.serverapi.repository.RoomsRepository;
 
@@ -55,11 +56,6 @@ public class RoomsController {
   @ResponseStatus(HttpStatus.CREATED)
   @PreAuthorize("hasAuthority('CREATE_PRIVILEGE')")
   public Room create(@RequestBody Room room) {
-
-    System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>> aqui");
-    System.out.println(room.getProject());
-
-
     return repository.save(room);
   }
 
@@ -71,6 +67,8 @@ public class RoomsController {
         record.setName(room.getName());
         record.setHeatLoad(room.getHeatLoad());
         record.setProject(room.getProject());
+
+        // record.setHeatLoad(heatLoadCalculatedFor(record));
 
         Room updated = repository.save(record);
 
@@ -87,6 +85,18 @@ public class RoomsController {
 
         return ResponseEntity.ok().build();
       }).orElse(ResponseEntity.notFound().build());
+  }
+
+  private double heatLoadCalculatedFor(Room room) {
+    double heatLoad = 0;
+
+    if (room.getFaces() != null) {
+      for (Face face : room.getFaces()) {
+        heatLoad += face.getHeatFlow();
+      }
+    }
+
+    return heatLoad;
   }
 
 }

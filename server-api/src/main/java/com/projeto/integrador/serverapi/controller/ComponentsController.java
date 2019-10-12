@@ -1,6 +1,7 @@
 package com.projeto.integrador.serverapi.controller;
 
 import com.projeto.integrador.serverapi.model.Component;
+import com.projeto.integrador.serverapi.model.ComponentMaterial;
 import com.projeto.integrador.serverapi.repository.ComponentsRepository;
 
 import java.util.List;
@@ -55,6 +56,8 @@ public class ComponentsController {
   @ResponseStatus(HttpStatus.CREATED)
   @PreAuthorize("hasAuthority('CREATE_PRIVILEGE')")
   public Component create(@RequestBody Component component) {
+    // component.setHeatFlow(heatFlowCalculatedFor(component));
+
     return repository.save(component);
   }
 
@@ -68,6 +71,8 @@ public class ComponentsController {
         record.setHeatFlow(component.getHeatFlow());
         record.setFace(component.getFace());
         record.setColor(component.getColor());
+
+        // record.setHeatFlow(heatFlowCalculatedFor(record));
 
         Component updated = repository.save(record);
 
@@ -84,6 +89,29 @@ public class ComponentsController {
 
         return ResponseEntity.ok().build();
       }).orElse(ResponseEntity.notFound().build());
+  }
+
+  private double heatFlowCalculatedFor(Component component) {
+    double resistance = 0;
+    resistance += 0.04; // TODO: External Surface Resistance;
+    resistance += 0.13; // TODO: Internal Surface Resistance;
+
+    if (component.getComponentMaterials() != null) {
+      for (ComponentMaterial componentMaterial : component.getComponentMaterials()) {
+        resistance += componentMaterial.getResistance();
+      }
+    }
+
+    double thermalTransmittance = component.getArea() / resistance;
+
+    double u = thermalTransmittance;
+    double a = component.getColor().getAbsorbabilityIndex();
+    double i = component.getFace().getRoom().getProject().getSolarRadiation().getIndex();
+    double rse = 0.04;
+    double te = 30; // TODO: get this value from user;
+    double ti = 23; // TODO: get this value from user;
+
+    return u * ( a * i * rse + te - ti );
   }
 
 }

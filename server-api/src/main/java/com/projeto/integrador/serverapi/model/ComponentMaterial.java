@@ -42,9 +42,10 @@ public class ComponentMaterial {
   @JoinColumn(name="material_id", nullable=false)
   private Material material;
 
-  public ComponentMaterial(Long id, double width, double resistance, Component component, Material material) {
+  public ComponentMaterial(Long id, double width, double thermalConductivityIndex, double resistance, Component component, Material material) {
     this.id = id;
     this.width = width;
+    this.thermalConductivityIndex = thermalConductivityIndex;
     this.resistance = resistance;
     this.component = component;
     this.material = material;
@@ -85,10 +86,6 @@ public class ComponentMaterial {
     this.resistance = resistance;
   }
 
-  public double setResistanceCalculated() {
-    return getWidth() / getThermalConductivityIndex();
-  }
-
   public Component getComponent() {
     return component;
   }
@@ -110,6 +107,8 @@ public class ComponentMaterial {
     return "ComponentMaterial{" +
       "id=" + id +
       ", width='" + width + '\'' +
+      ", thermal_conductivity_index='" + thermalConductivityIndex + '\'' +
+      ", resistance='" + resistance + '\'' +
       ", component_id='" + component.getId() + '\'' +
       ", material_id='" + material.getId() + '\'' +
       '}';
