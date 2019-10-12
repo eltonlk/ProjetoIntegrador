@@ -56,8 +56,6 @@ public class FacesController {
   @ResponseStatus(HttpStatus.CREATED)
   @PreAuthorize("hasAuthority('CREATE_PRIVILEGE')")
   public Face create(@RequestBody Face face) {
-    // face.setHeatFlow(heatFlowCanculatedFor(face));
-
     return repository.save(face);
   }
 
@@ -67,6 +65,7 @@ public class FacesController {
     return repository.findById(id)
       .map(record -> {
         record.setName(face.getName());
+        record.setOrientation(face.getOrientation());
         record.setHeatFlow(face.getHeatFlow());
         record.setRoom(face.getRoom());
 

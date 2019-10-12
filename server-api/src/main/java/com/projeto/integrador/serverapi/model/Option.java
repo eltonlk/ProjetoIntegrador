@@ -64,9 +64,9 @@ public class Option {
   public String toString() {
     return "Option{" +
       "id=" + id +
-      ", name='" + name + '\'' +
-      ", value='" + value + '\'' +
-      '}';
+      ", name=\'" + name + "\'" +
+      ", value=\'" + value + "\'" +
+      "}";
   }
 
 }

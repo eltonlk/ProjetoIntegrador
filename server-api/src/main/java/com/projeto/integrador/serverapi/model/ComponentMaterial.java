@@ -106,12 +106,12 @@ public class ComponentMaterial {
   public String toString() {
     return "ComponentMaterial{" +
       "id=" + id +
-      ", width='" + width + '\'' +
-      ", thermal_conductivity_index='" + thermalConductivityIndex + '\'' +
-      ", resistance='" + resistance + '\'' +
-      ", component_id='" + component.getId() + '\'' +
-      ", material_id='" + material.getId() + '\'' +
-      '}';
+      ", width=" + width +
+      ", thermal_conductivity_index=" + thermalConductivityIndex +
+      ", resistance=" + resistance +
+      ", component_id=" + component.getId() +
+      ", material_id=" + material.getId() +
+      "}";
   }
 
 }

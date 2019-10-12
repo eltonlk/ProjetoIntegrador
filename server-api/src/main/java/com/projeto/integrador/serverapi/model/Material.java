@@ -77,10 +77,10 @@ public class Material {
   public String toString() {
     return "Material{" +
       "id=" + id +
-      ", name='" + name + '\'' +
-      ", active='" + active + '\'' +
-      ", thermal_conductivity_index='" + thermalConductivityIndex + '\'' +
-      '}';
+      ", name=\'" + name + "\'" +
+      ", active=" + active +
+      ", thermal_conductivity_index=" + thermalConductivityIndex +
+      "}";
   }
 
 }

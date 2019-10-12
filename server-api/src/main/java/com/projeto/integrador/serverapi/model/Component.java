@@ -125,12 +125,12 @@ public class Component {
   public String toString() {
     return "Component{" +
       "id=" + id +
-      ", name='" + name + '\'' +
-      ", area='" + area + '\'' +
-      ", heat_flow='" + heatFlow + '\'' +
-      ", face_id='" + face.getId() + '\'' +
-      ", color_id='" + color.getId() + '\'' +
-      '}';
+      ", name=\'" + name + "\'" +
+      ", area=" + area +
+      ", heat_flow=" + heatFlow +
+      ", face_id=" + face.getId() +
+      ", color_id=" + color.getId() +
+      "}";
   }
 
 }

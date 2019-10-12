@@ -65,6 +65,9 @@ public class ProjectsController {
     return repository.findById(id)
       .map(record -> {
         record.setName(project.getName());
+        record.setSeason(project.getSeason());
+        record.setExternalTemperature(project.getExternalTemperature());
+        record.setInternalTemperature(project.getInternalTemperature());
         record.setSolarRadiation(project.getSolarRadiation());
 
         Project updated = repository.save(record);

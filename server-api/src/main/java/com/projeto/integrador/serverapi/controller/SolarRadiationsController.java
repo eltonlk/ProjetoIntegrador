@@ -65,7 +65,14 @@ public class SolarRadiationsController {
     return repository.findById(id)
       .map(record -> {
         record.setName(solarRadiation.getName());
-        record.setIndex(solarRadiation.getIndex());
+        record.setNorthIndex(solarRadiation.getNorthIndex());
+        record.setNorthEastIndex(solarRadiation.getNorthEastIndex());
+        record.setEastIndex(solarRadiation.getEastIndex());
+        record.setSouthEastIndex(solarRadiation.getSouthEastIndex());
+        record.setSouthIndex(solarRadiation.getSouthIndex());
+        record.setSouthWestIndex(solarRadiation.getSouthWestIndex());
+        record.setWestIndex(solarRadiation.getWestIndex());
+        record.setNorthWestIndex(solarRadiation.getNorthWestIndex());
 
         SolarRadiation updated = repository.save(record);
 

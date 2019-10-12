@@ -77,10 +77,10 @@ public class Color {
   public String toString() {
     return "Color{" +
       "id=" + id +
-      ", name='" + name + '\'' +
-      ", absorbability_index='" + absorbabilityIndex + '\'' +
-      ", active='" + active + '\'' +
-      '}';
+      ", name=\'" + name + "\'" +
+      ", absorbability_index=" + absorbabilityIndex +
+      ", active=" + active +
+      "}";
   }
 
 }

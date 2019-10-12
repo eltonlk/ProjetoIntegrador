@@ -100,10 +100,10 @@ public class Room {
   public String toString() {
     return "Room{" +
       "id=" + id +
-      ", name='" + name + '\'' +
-      ", heat_load='" + heatLoad + '\'' +
-      ", project_id='" + project.getId() + '\'' +
-      '}';
+      ", name=\'" + name + "\'" +
+      ", heat_load=" + heatLoad +
+      ", project_id=" + project.getId() +
+      "}";
   }
 
 }

@@ -36,6 +36,10 @@ public class Face {
   private String name;
 
   @NotNull
+  @NotEmpty
+  private String orientation;
+
+  @NotNull
   private double heatFlow;
 
   @ManyToOne
@@ -45,9 +49,10 @@ public class Face {
   @OneToMany(fetch = FetchType.EAGER, mappedBy="face", cascade = CascadeType.ALL)
   private Collection<Component> components;
 
-  public Face(Long id, String name, double heatFlow, Room room, Collection<Component> components) {
+  public Face(Long id, String name, String orientation, double heatFlow, Room room, Collection<Component> components) {
     this.id = id;
     this.name = name;
+    this.orientation = orientation;
     this.heatFlow = heatFlow;
     this.room = room;
     this.components = components;
@@ -70,6 +75,14 @@ public class Face {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public String getOrientation() {
+    return orientation;
+  }
+
+  public void setOrientation(String orientation) {
+    this.orientation = orientation;
   }
 
   public double getHeatFlow() {
@@ -100,10 +113,11 @@ public class Face {
   public String toString() {
     return "Face{" +
       "id=" + id +
-      ", name='" + name + '\'' +
-      ", heat_flow='" + heatFlow + '\'' +
-      ", room_id='" + room.getId() + '\'' +
-      '}';
+      ", name=\'" + name + "\'" +
+      ", orientation=\'" + orientation + "\'" +
+      ", heat_flow=" + heatFlow +
+      ", room_id=" + room.getId() +
+      "}";
   }
 
 }
