@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.models.Audit;
-import com.projeto.integrador.clientdesktop.utils.DateFormatter;
+import com.projeto.integrador.clientdesktop.utils.DateParser;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,7 +40,7 @@ public class AuditController implements Initializable {
 
   private void fillContent() {
     modifiedByLabel.setText(audit.getModifiedBy());
-    modifiedDateLabel.setText(DateFormatter.localized(audit.getModifiedDate()));
+    modifiedDateLabel.setText(DateParser.localized(audit.getModifiedDate()));
     actionLabel.setText(audit.getAction());
     contentLabel.setText(audit.getContent());
   }

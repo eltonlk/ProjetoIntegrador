@@ -6,12 +6,21 @@ public class SolarRadiation {
 
   private String name;
 
-  private double index;
+  private int northIndex, northEastIndex, eastIndex, southEastIndex, southIndex, southWestIndex, westIndex, northWestIndex;
 
-  public SolarRadiation(Long id, String name, double index) {
+  public SolarRadiation(Long id, String name, int northIndex, int northEastIndex, int eastIndex,
+    int southEastIndex, int southIndex, int southWestIndex, int westIndex, int northWestIndex) {
+
     this.id = id;
     this.name = name;
-    this.index = index;
+    this.northIndex = northIndex;
+    this.northEastIndex = northEastIndex;
+    this.eastIndex = eastIndex;
+    this.southEastIndex = southEastIndex;
+    this.southIndex = southIndex;
+    this.southWestIndex = southWestIndex;
+    this.westIndex = westIndex;
+    this.northWestIndex = northWestIndex;
   }
 
   public SolarRadiation() {
@@ -33,12 +42,68 @@ public class SolarRadiation {
     this.name = name;
   }
 
-  public double getIndex() {
-    return index;
+  public int getNorthIndex() {
+    return northIndex;
   }
 
-  public void setIndex(double index) {
-    this.index = index;
+  public void setNorthIndex(int northIndex) {
+    this.northIndex = northIndex;
+  }
+
+  public int getNorthEastIndex() {
+    return northEastIndex;
+  }
+
+  public void setNorthEastIndex(int northEastIndex) {
+    this.northEastIndex = northEastIndex;
+  }
+
+  public int getEastIndex() {
+    return eastIndex;
+  }
+
+  public void setEastIndex(int eastIndex) {
+    this.eastIndex = eastIndex;
+  }
+
+  public int getSouthEastIndex() {
+    return southEastIndex;
+  }
+
+  public void setSouthEastIndex(int southEastIndex) {
+    this.southEastIndex = southEastIndex;
+  }
+
+  public int getSouthIndex() {
+    return southIndex;
+  }
+
+  public void setSouthIndex(int southIndex) {
+    this.southIndex = southIndex;
+  }
+
+  public int getSouthWestIndex() {
+    return southWestIndex;
+  }
+
+  public void setSouthWestIndex(int southWestIndex) {
+    this.southWestIndex = southWestIndex;
+  }
+
+  public int getWestIndex() {
+    return westIndex;
+  }
+
+  public void setWestIndex(int westIndex) {
+    this.westIndex = westIndex;
+  }
+
+  public int getNorthWestIndex() {
+    return northWestIndex;
+  }
+
+  public void setNorthWestIndex(int northWestIndex) {
+    this.northWestIndex = northWestIndex;
   }
 
   @Override

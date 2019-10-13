@@ -8,7 +8,7 @@ import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.controllers.materials.UpdateMaterialController;
 import com.projeto.integrador.clientdesktop.models.Material;
 import com.projeto.integrador.clientdesktop.resources.MaterialResource;
-import com.projeto.integrador.clientdesktop.utils.NumberFormatter;
+import com.projeto.integrador.clientdesktop.utils.NumberParser;
 import com.projeto.integrador.clientdesktop.views.materials.ListMaterialsFxmlView;
 import com.projeto.integrador.clientdesktop.views.materials.UpdateMaterialFxmlView;
 
@@ -55,7 +55,7 @@ public class MaterialController implements Initializable {
 
   private void fillContent() {
     nameLabel.setText(material.getName());
-    thermalConductivityIndexLabel.setText(NumberFormatter.localizeFromDouble(material.getThermalConductivityIndex()));
+    thermalConductivityIndexLabel.setText(NumberParser.localizeFromDouble(material.getThermalConductivityIndex()));
     inactiveLabel.setVisible(!material.isActive());
   }
 

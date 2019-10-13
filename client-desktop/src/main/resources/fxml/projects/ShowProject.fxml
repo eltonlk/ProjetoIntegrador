@@ -49,6 +49,27 @@
 
       <VBox spacing="2.0">
         <children>
+          <Label text="Estação"/>
+          <Label fx:id="seasonLabel" text="Estação" styleClass="label-h6"/>
+        </children>
+      </VBox>
+
+      <VBox spacing="2.0">
+        <children>
+          <Label text="Temp. Externa"/>
+          <Label fx:id="externalTemperatureLabel" text="Temp. Externa" styleClass="label-h6"/>
+        </children>
+      </VBox>
+
+      <VBox spacing="2.0">
+        <children>
+          <Label text="Temp. Interna"/>
+          <Label fx:id="internalTemperatureLabel" text="Temp. Interna" styleClass="label-h6"/>
+        </children>
+      </VBox>
+
+      <VBox spacing="2.0">
+        <children>
           <Label text="Índice de Radiação"/>
           <Label fx:id="solarRadiationLabel" text="Índice de Radiação" styleClass="label-h6"/>
         </children>

@@ -44,6 +44,27 @@
 
       <VBox spacing="2.0">
         <children>
+          <Label fx:id="seasonLabel" text="Estação"/>
+          <ComboBox fx:id="seasonComboBox" promptText="Selecione"/>
+        </children>
+      </VBox>
+
+      <VBox spacing="2.0">
+        <children>
+          <Label fx:id="externalTemperatureLabel" text="Temperatura Externa (°C)"/>
+          <TextField fx:id="externalTemperatureInput" promptText="Temperatura Externa"/>
+        </children>
+      </VBox>
+
+      <VBox spacing="2.0">
+        <children>
+          <Label fx:id="internalTemperatureLabel" text="Temperatura Interna (°C)"/>
+          <TextField fx:id="internalTemperatureInput" promptText="Temperatura Interna"/>
+        </children>
+      </VBox>
+
+      <VBox spacing="2.0">
+        <children>
           <Label fx:id="solarRadiationLabel" text="Índice de Radiação"/>
           <ComboBox fx:id="solarRadiationComboBox" promptText="Selecione"/>
         </children>

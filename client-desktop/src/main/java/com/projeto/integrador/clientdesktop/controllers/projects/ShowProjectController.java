@@ -6,7 +6,7 @@ import com.projeto.integrador.clientdesktop.controllers.projects.modals.CreateRo
 import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.models.Room;
 import com.projeto.integrador.clientdesktop.resources.ProjectResource;
-import com.projeto.integrador.clientdesktop.utils.NumberFormatter;
+import com.projeto.integrador.clientdesktop.utils.NumberParser;
 import com.projeto.integrador.clientdesktop.views.projects.ListProjectsFxmlView;
 import com.projeto.integrador.clientdesktop.views.projects.UpdateProjectFxmlView;
 
@@ -91,7 +91,10 @@ public class ShowProjectController implements Initializable {
 
   private void fillContent() {
     nameLabel.setText(project.getName());
-    solarRadiationLabel.setText(project.getSolarRadiation().getName() + " (" + NumberFormatter.localizeFromDouble(project.getSolarRadiation().getIndex()) + ")");
+    seasonLabel.setText(project.getSeason());
+    externalTemperatureLabel.setText(NumberParser.localizeFromInt(project.getExternalTemperature()));
+    internalTemperatureLabel.setText(NumberParser.localizeFromInt(project.getInternalTemperature()));
+    solarRadiationLabel.setText(project.getSolarRadiation().getName());
 
     if (project.getRooms() != null) {
       for (Room room : project.getRooms()) {
@@ -113,6 +116,15 @@ public class ShowProjectController implements Initializable {
 
   @FXML
   private Label nameLabel;
+
+  @FXML
+  private Label seasonLabel;
+
+  @FXML
+  private Label externalTemperatureLabel;
+
+  @FXML
+  private Label internalTemperatureLabel;
 
   @FXML
   private Label solarRadiationLabel;

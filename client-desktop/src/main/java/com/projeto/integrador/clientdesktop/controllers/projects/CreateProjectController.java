@@ -42,8 +42,17 @@ public class CreateProjectController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    solarRadiationOptions = FXCollections.observableArrayList(solarRadiationResource.getAll());
+    TextField[] indexTextFieldList = {externalTemperatureInput, internalTemperatureInput};
 
+    for (TextField indexTextField : indexTextFieldList) {
+      indexTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+        if (!newValue.matches("([\\-])?\\d{0,2}")) {
+          indexTextField.setText(oldValue);
+        }
+      });
+    }
+
+    solarRadiationOptions = FXCollections.observableArrayList(solarRadiationResource.getAll());
     solarRadiationComboBox.setItems(solarRadiationOptions);
   }
 
@@ -70,6 +79,15 @@ public class CreateProjectController implements Initializable {
 
   @FXML
   private TextField nameInput;
+
+  @FXML
+  private ComboBox<String> seasonComboBox;
+
+  @FXML
+  private TextField externalTemperatureInput;
+
+  @FXML
+  private TextField internalTemperatureInput;
 
   @FXML
   private ComboBox<SolarRadiation> solarRadiationComboBox;

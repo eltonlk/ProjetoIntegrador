@@ -9,7 +9,7 @@ import com.projeto.integrador.clientdesktop.controllers.projects.modals.CreateFa
 import com.projeto.integrador.clientdesktop.models.Face;
 import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.models.Room;
-import com.projeto.integrador.clientdesktop.utils.NumberFormatter;
+import com.projeto.integrador.clientdesktop.utils.NumberParser;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,7 +61,7 @@ public class RoomController implements Initializable {
 
   private void fillContent() {
     nameLabel.setText(room.getName());
-    heatLoadLabel.setText(NumberFormatter.localizeFromDouble(room.getHeatLoad()));
+    heatLoadLabel.setText(NumberParser.localizeFromDouble(room.getHeatLoad()));
 
     if (room.getFaces() != null) {
       for (Face face : room.getFaces()) {

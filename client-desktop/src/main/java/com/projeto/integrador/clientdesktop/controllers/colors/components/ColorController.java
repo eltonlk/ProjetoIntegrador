@@ -8,7 +8,7 @@ import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.controllers.colors.UpdateColorController;
 import com.projeto.integrador.clientdesktop.models.Color;
 import com.projeto.integrador.clientdesktop.resources.ColorResource;
-import com.projeto.integrador.clientdesktop.utils.NumberFormatter;
+import com.projeto.integrador.clientdesktop.utils.NumberParser;
 import com.projeto.integrador.clientdesktop.views.colors.ListColorsFxmlView;
 import com.projeto.integrador.clientdesktop.views.colors.UpdateColorFxmlView;
 
@@ -54,7 +54,7 @@ public class ColorController implements Initializable {
   }
 
   private void fillContent() {
-    String absorbability = NumberFormatter.localizeFromDouble(color.getAbsorbabilityIndex());
+    String absorbability = NumberParser.localizeFromDouble(color.getAbsorbabilityIndex());
 
     nameLabel.setText(color.getName());
     absorbabilityLabel.setText(absorbability);

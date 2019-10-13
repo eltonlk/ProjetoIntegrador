@@ -9,7 +9,7 @@ import com.projeto.integrador.clientdesktop.controllers.projects.modals.CreateCo
 import com.projeto.integrador.clientdesktop.models.Component;
 import com.projeto.integrador.clientdesktop.models.Face;
 import com.projeto.integrador.clientdesktop.models.Project;
-import com.projeto.integrador.clientdesktop.utils.NumberFormatter;
+import com.projeto.integrador.clientdesktop.utils.NumberParser;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,7 +61,8 @@ public class FaceController implements Initializable {
 
   private void fillContent() {
     nameLabel.setText(face.getName());
-    heatFlowLabel.setText(NumberFormatter.localizeFromDouble(face.getHeatFlow()));
+    orientationLabel.setText(face.getOrientation());
+    heatFlowLabel.setText(NumberParser.localizeFromDouble(face.getHeatFlow()));
 
     if (face.getComponents() != null) {
       for (Component component : face.getComponents()) {
@@ -93,6 +94,9 @@ public class FaceController implements Initializable {
 
   @FXML
   private Label nameLabel;
+
+  @FXML
+  private Label orientationLabel;
 
   @FXML
   private Label heatFlowLabel;

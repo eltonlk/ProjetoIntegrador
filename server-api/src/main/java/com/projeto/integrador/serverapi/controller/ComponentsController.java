@@ -93,7 +93,7 @@ public class ComponentsController {
   private double heatFlowCalculatedFor(Component component) {
     double resistance = 0;
     resistance += 0.04; // TODO: External Surface Resistance;
-    resistance += 0.13; // TODO: Internal Surface Resistance, get flow by user params;
+    resistance += 0.13; // TODO: Internal Surface Resistance, get flow by user params (0.1, 0.13, 0.17);
 
     if (component.getComponentMaterials() != null) {
       for (ComponentMaterial componentMaterial : component.getComponentMaterials()) {

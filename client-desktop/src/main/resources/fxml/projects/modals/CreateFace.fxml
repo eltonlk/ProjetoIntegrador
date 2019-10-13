@@ -37,6 +37,13 @@
           <TextField fx:id="nameInput" promptText="Nome"/>
         </children>
       </VBox>
+
+      <VBox spacing="2.0">
+        <children>
+          <Label fx:id="orientationLabel" text="Orientação"/>
+          <ComboBox fx:id="orientationComboBox" promptText="Selecione"/>
+        </children>
+      </VBox>
     </VBox>
   </center>
 

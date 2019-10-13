@@ -13,7 +13,7 @@ import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.resources.ColorResource;
 import com.projeto.integrador.clientdesktop.resources.ComponentResource;
 import com.projeto.integrador.clientdesktop.resources.ProjectResource;
-import com.projeto.integrador.clientdesktop.utils.NumberFormatter;
+import com.projeto.integrador.clientdesktop.utils.NumberParser;
 import com.projeto.integrador.clientdesktop.views.projects.ShowProjectFxmlView;
 
 import javafx.collections.FXCollections;
@@ -83,7 +83,7 @@ public class CreateComponentController implements Initializable {
     Component component = new Component();
     component.setFace(getFace());
     component.setName(nameInput.getText());
-    component.setArea(NumberFormatter.parseToDouble(areaInput.getText()));
+    component.setArea(NumberParser.parseToDouble(areaInput.getText()));
     component.setColor(colorComboBox.getSelectionModel().getSelectedItem());
 
     componentResource.create(component);

@@ -8,7 +8,7 @@ import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.controllers.solarradiations.UpdateSolarRadiationController;
 import com.projeto.integrador.clientdesktop.models.SolarRadiation;
 import com.projeto.integrador.clientdesktop.resources.SolarRadiationResource;
-import com.projeto.integrador.clientdesktop.utils.NumberFormatter;
+import com.projeto.integrador.clientdesktop.utils.NumberParser;
 import com.projeto.integrador.clientdesktop.views.solarradiations.ListSolarRadiationsFxmlView;
 import com.projeto.integrador.clientdesktop.views.solarradiations.UpdateSolarRadiationFxmlView;
 
@@ -55,7 +55,14 @@ public class SolarRadiationController implements Initializable {
 
   private void fillContent() {
     nameLabel.setText(solarRadiation.getName());
-    indexLabel.setText(NumberFormatter.localizeFromDouble(solarRadiation.getIndex()));
+    northLabel.setText(NumberParser.localizeFromInt(solarRadiation.getNorthIndex()));
+    southLabel.setText(NumberParser.localizeFromInt(solarRadiation.getSouthIndex()));
+    eastLabel.setText(NumberParser.localizeFromInt(solarRadiation.getEastIndex()));
+    westLabel.setText(NumberParser.localizeFromInt(solarRadiation.getWestIndex()));
+    northEastLabel.setText(NumberParser.localizeFromInt(solarRadiation.getNorthEastIndex()));
+    northWestLabel.setText(NumberParser.localizeFromInt(solarRadiation.getNorthWestIndex()));
+    southEastLabel.setText(NumberParser.localizeFromInt(solarRadiation.getSouthEastIndex()));
+    southWestLabel.setText(NumberParser.localizeFromInt(solarRadiation.getSouthWestIndex()));
   }
 
   @FXML
@@ -81,6 +88,27 @@ public class SolarRadiationController implements Initializable {
   private Label nameLabel;
 
   @FXML
-  private Label indexLabel;
+  private Label northLabel;
+
+  @FXML
+  private Label southLabel;
+
+  @FXML
+  private Label eastLabel;
+
+  @FXML
+  private Label westLabel;
+
+  @FXML
+  private Label northEastLabel;
+
+  @FXML
+  private Label northWestLabel;
+
+  @FXML
+  private Label southEastLabel;
+
+  @FXML
+  private Label southWestLabel;
 
 }

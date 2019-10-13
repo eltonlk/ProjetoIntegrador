@@ -2,10 +2,18 @@ package com.projeto.integrador.clientdesktop.utils;
 
 import java.text.DecimalFormat;
 
-public class NumberFormatter {
+public class NumberParser {
+
+    public static int parseToInt(String numberString) {
+        return Integer.parseInt(numberString.replace(",", "."));
+    }
 
     public static Double parseToDouble(String numberString) {
         return Double.parseDouble(numberString.replace(",", "."));
+    }
+
+    public static String localizeFromInt(int number) {
+        return localizeFromDouble(number);
     }
 
     public static String localizeFromDouble(double number) {

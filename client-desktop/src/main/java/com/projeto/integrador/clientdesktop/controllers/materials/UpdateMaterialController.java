@@ -3,7 +3,7 @@ package com.projeto.integrador.clientdesktop.controllers.materials;
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.models.Material;
 import com.projeto.integrador.clientdesktop.resources.MaterialResource;
-import com.projeto.integrador.clientdesktop.utils.NumberFormatter;
+import com.projeto.integrador.clientdesktop.utils.NumberParser;
 import com.projeto.integrador.clientdesktop.views.materials.ListMaterialsFxmlView;
 
 import java.io.IOException;
@@ -37,7 +37,6 @@ public class UpdateMaterialController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     material = new Material();
 
-    // TODO:
     thermalConductivityIndexInput.textProperty().addListener((observable, oldValue, newValue) -> {
       if (!newValue.matches("\\d{0,5}([\\,]\\d{0,5})?")) {
         thermalConductivityIndexInput.setText(oldValue);
@@ -57,14 +56,14 @@ public class UpdateMaterialController implements Initializable {
 
   private void fillForm() {
     nameInput.setText(material.getName());
-    thermalConductivityIndexInput.setText(NumberFormatter.localizeFromDouble(material.getThermalConductivityIndex()));
+    thermalConductivityIndexInput.setText(NumberParser.localizeFromDouble(material.getThermalConductivityIndex()));
     activeCheckBox.setSelected(material.isActive());
   }
 
   @FXML
   private void update(ActionEvent event) throws IOException {
     material.setName(nameInput.getText());
-    material.setThermalConductivityIndex(NumberFormatter.parseToDouble(thermalConductivityIndexInput.getText()));
+    material.setThermalConductivityIndex(NumberParser.parseToDouble(thermalConductivityIndexInput.getText()));
     material.setActive(activeCheckBox.isSelected());
 
     materialResource.update(material);

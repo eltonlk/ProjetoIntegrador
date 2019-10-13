@@ -13,7 +13,7 @@ import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.resources.ComponentMaterialResource;
 import com.projeto.integrador.clientdesktop.resources.MaterialResource;
 import com.projeto.integrador.clientdesktop.resources.ProjectResource;
-import com.projeto.integrador.clientdesktop.utils.NumberFormatter;
+import com.projeto.integrador.clientdesktop.utils.NumberParser;
 import com.projeto.integrador.clientdesktop.views.projects.ShowProjectFxmlView;
 
 import javafx.collections.FXCollections;
@@ -62,7 +62,7 @@ public class CreateComponentMaterialController implements Initializable {
     materialComboBox.setItems(materialsOptions);
 
     materialComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-      thermalConductitityIndexInput.setText(NumberFormatter.localizeFromDouble(newValue.getThermalConductivityIndex()));
+      thermalConductitityIndexInput.setText(NumberParser.localizeFromDouble(newValue.getThermalConductivityIndex()));
     });
   }
 
@@ -87,8 +87,8 @@ public class CreateComponentMaterialController implements Initializable {
     ComponentMaterial componentMaterial = new ComponentMaterial();
     componentMaterial.setComponent(getComponent());
     componentMaterial.setMaterial(materialComboBox.getSelectionModel().getSelectedItem());
-    componentMaterial.setWidth(NumberFormatter.parseToDouble(widthInput.getText()));
-    componentMaterial.setThermalConductitityIndex(NumberFormatter.parseToDouble(thermalConductitityIndexInput.getText()));
+    componentMaterial.setWidth(NumberParser.parseToDouble(widthInput.getText()));
+    componentMaterial.setThermalConductitityIndex(NumberParser.parseToDouble(thermalConductitityIndexInput.getText()));
 
     componentMaterialResource.create(componentMaterial);
 

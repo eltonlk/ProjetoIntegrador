@@ -9,7 +9,7 @@ import com.projeto.integrador.clientdesktop.controllers.projects.modals.CreateCo
 import com.projeto.integrador.clientdesktop.models.Component;
 import com.projeto.integrador.clientdesktop.models.ComponentMaterial;
 import com.projeto.integrador.clientdesktop.models.Project;
-import com.projeto.integrador.clientdesktop.utils.NumberFormatter;
+import com.projeto.integrador.clientdesktop.utils.NumberParser;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,9 +61,9 @@ public class ComponentController implements Initializable {
 
   private void fillContent() {
     nameLabel.setText(component.getName());
-    areaLabel.setText(NumberFormatter.localizeFromDouble(component.getArea()));
+    areaLabel.setText(NumberParser.localizeFromDouble(component.getArea()));
     colorLabel.setText(component.getColor().getName());
-    heatFlowLabel.setText(NumberFormatter.localizeFromDouble(component.getHeatFlow()));
+    heatFlowLabel.setText(NumberParser.localizeFromDouble(component.getHeatFlow()));
 
     if (getComponent().getComponentMaterials() != null) {
       for (ComponentMaterial componentMaterial : getComponent().getComponentMaterials()) {

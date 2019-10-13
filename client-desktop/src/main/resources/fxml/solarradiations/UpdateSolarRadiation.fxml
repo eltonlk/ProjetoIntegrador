@@ -6,9 +6,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane prefHeight="600.0"
@@ -45,12 +49,61 @@
             </children>
           </VBox>
 
-          <VBox spacing="2.0">
-            <children>
-              <Label fx:id="indexLabel" text="Índice"/>
-              <TextField fx:id="indexInput" promptText="Índice"/>
-            </children>
-          </VBox>
+          <GridPane hgap="10" vgap="10">
+            <columnConstraints>
+              <ColumnConstraints hgrow="ALWAYS"/>
+              <ColumnConstraints hgrow="ALWAYS"/>
+              <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+              <Label fx:id="northWestIndexLabel" text="Noroeste"/>
+              <TextField fx:id="northWestIndexInput" promptText="Índice"/>
+            </VBox>
+
+            <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+              <Label fx:id="northIndexLabel" text="Norte"/>
+              <TextField fx:id="northIndexInput" promptText="Índice"/>
+            </VBox>
+
+            <VBox spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+              <Label fx:id="northEastIndexLabel" text="Nordeste"/>
+              <TextField fx:id="northEastIndexInput" promptText="Índice"/>
+            </VBox>
+
+            <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+              <Label fx:id="westIndexLabel" text="Oeste"/>
+              <TextField fx:id="westIndexInput" promptText="Índice"/>
+            </VBox>
+
+            <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+              <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                  <Image url="@../../images/wind_rose.png"/>
+                </image>
+              </ImageView>
+            </VBox>
+
+            <VBox spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+              <Label fx:id="eastIndexLabel" text="Leste"/>
+              <TextField fx:id="eastIndexInput" promptText="Índice"/>
+            </VBox>
+
+            <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+              <Label fx:id="southWestIndexLabel" text="Sudoeste"/>
+              <TextField fx:id="southWestIndexInput" promptText="Índice"/>
+            </VBox>
+
+            <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+              <Label fx:id="southIndexLabel" text="Sul"/>
+              <TextField fx:id="southIndexInput" promptText="Índice"/>
+            </VBox>
+
+            <VBox spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+              <Label fx:id="southEastIndexLabel" text="Sudeste"/>
+              <TextField fx:id="southEastIndexInput" promptText="Índice"/>
+            </VBox>
+          </GridPane>
 
           <HBox>
             <children>

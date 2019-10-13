@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.BorderPane?>
@@ -13,12 +15,57 @@
             fx:controller="com.projeto.integrador.clientdesktop.controllers.solarradiations.components.SolarRadiationController">
 
   <center>
-    <VBox>
+    <VBox spacing="8.0">
       <Label fx:id="nameLabel" text="Radiação Solar" styleClass="label-h6"/>
-      <HBox spacing="8">
-        <Label text="Índice:"/>
-        <Label fx:id="indexLabel" text="Índice"/>
-      </HBox>
+
+      <GridPane hgap="10" vgap="2">
+        <columnConstraints>
+          <ColumnConstraints hgrow="ALWAYS"/>
+          <ColumnConstraints hgrow="ALWAYS"/>
+          <ColumnConstraints hgrow="ALWAYS"/>
+          <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+
+        <HBox spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+          <Label text="N:"/>
+          <Label fx:id="northLabel" text="Índice"/>
+        </HBox>
+
+        <HBox spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+          <Label text="S:"/>
+          <Label fx:id="southLabel" text="Índice"/>
+        </HBox>
+
+        <HBox spacing="8.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+          <Label text="L:"/>
+          <Label fx:id="eastLabel" text="Índice"/>
+        </HBox>
+
+        <HBox spacing="8.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+          <Label text="O:"/>
+          <Label fx:id="westLabel" text="Índice"/>
+        </HBox>
+
+        <HBox spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+          <Label text="NE:"/>
+          <Label fx:id="northEastLabel" text="Índice"/>
+        </HBox>
+
+        <HBox spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+          <Label text="NO:"/>
+          <Label fx:id="northWestLabel" text="Índice"/>
+        </HBox>
+
+        <HBox spacing="8.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+          <Label text="SE:"/>
+          <Label fx:id="southEastLabel" text="Índice"/>
+        </HBox>
+
+        <HBox spacing="8.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+          <Label text="SO:"/>
+          <Label fx:id="southWestLabel" text="Índice"/>
+        </HBox>
+      </GridPane>
     </VBox>
   </center>
 

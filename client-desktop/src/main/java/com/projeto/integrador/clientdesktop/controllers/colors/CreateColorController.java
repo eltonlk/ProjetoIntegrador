@@ -3,7 +3,7 @@ package com.projeto.integrador.clientdesktop.controllers.colors;
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.models.Color;
 import com.projeto.integrador.clientdesktop.resources.ColorResource;
-import com.projeto.integrador.clientdesktop.utils.NumberFormatter;
+import com.projeto.integrador.clientdesktop.utils.NumberParser;
 import com.projeto.integrador.clientdesktop.views.colors.ListColorsFxmlView;
 
 import java.io.IOException;
@@ -35,7 +35,6 @@ public class CreateColorController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     activeCheckBox.setSelected(true);
 
-    // TODO:
     absorbabilityIndexInput.textProperty().addListener((observable, oldValue, newValue) -> {
       if (!newValue.matches("\\d{0,5}([\\,]\\d{0,5})?")) {
         absorbabilityIndexInput.setText(oldValue);
@@ -47,7 +46,7 @@ public class CreateColorController implements Initializable {
   private void create(ActionEvent event) throws IOException {
     Color color = new Color();
     color.setName(nameInput.getText());
-    color.setAbsorbabilityIndex(NumberFormatter.parseToDouble(absorbabilityIndexInput.getText()));
+    color.setAbsorbabilityIndex(NumberParser.parseToDouble(absorbabilityIndexInput.getText()));
     color.setActive(activeCheckBox.isSelected());
 
     colorResource.create(color);
