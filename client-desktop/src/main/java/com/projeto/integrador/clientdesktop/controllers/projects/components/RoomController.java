@@ -5,17 +5,24 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.controllers.projects.ShowProjectController;
 import com.projeto.integrador.clientdesktop.controllers.projects.modals.CreateFaceController;
 import com.projeto.integrador.clientdesktop.models.Face;
 import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.models.Room;
+import com.projeto.integrador.clientdesktop.resources.ProjectResource;
+import com.projeto.integrador.clientdesktop.resources.RoomResource;
 import com.projeto.integrador.clientdesktop.utils.NumberParser;
+import com.projeto.integrador.clientdesktop.views.projects.ShowProjectFxmlView;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -33,12 +40,39 @@ public class RoomController implements Initializable {
   @Autowired
   private StageManager stageManager;
 
+  @Autowired
+  private RoomResource roomResource;
+
+  @Autowired
+  private ProjectResource projectResource;
+
   private Project project;
 
   private Room room;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+  }
+
+  @FXML
+  private void update(ActionEvent event) throws IOException {
+    // TODO: add update modal
+  }
+
+  @FXML
+  private void delete(ActionEvent event) throws IOException {
+    Alert alert = new Alert(AlertType.CONFIRMATION, "Deseja excluir o cômodo '" + room.getName() + "' ?", ButtonType.YES, ButtonType.NO);
+    alert.showAndWait();
+
+    if (alert.getResult() == ButtonType.YES) {
+      // TODO: check on server-api why is not deleting the room
+      roomResource.delete(room);
+
+      stageManager.switchScene(new ShowProjectFxmlView());
+      ShowProjectController controller = stageManager.getLoader().getController();
+      Project project = projectResource.refresh(getProject());
+      controller.setProject(project);
+    }
   }
 
   public Project getProject() {

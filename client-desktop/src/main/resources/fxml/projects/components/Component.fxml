@@ -52,12 +52,12 @@
 
   <right>
     <HBox spacing="5.0">
-      <Button fx:id="updateButton" styleClass="button-success-sm">
+      <Button fx:id="updateButton" onAction="#update" styleClass="button-success-sm">
         <graphic>
           <FontIcon iconLiteral="fas-edit"/>
         </graphic>
       </Button>
-      <Button fx:id="deleteButton" styleClass="button-danger-sm">
+      <Button fx:id="deleteButton" onAction="#delete" styleClass="button-danger-sm">
         <graphic>
           <FontIcon iconLiteral="fas-trash-alt"/>
         </graphic>

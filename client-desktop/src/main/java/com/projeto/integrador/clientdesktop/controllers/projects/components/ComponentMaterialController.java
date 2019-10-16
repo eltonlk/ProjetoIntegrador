@@ -1,16 +1,25 @@
 package com.projeto.integrador.clientdesktop.controllers.projects.components;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.controllers.projects.ShowProjectController;
 import com.projeto.integrador.clientdesktop.models.ComponentMaterial;
 import com.projeto.integrador.clientdesktop.models.Project;
+import com.projeto.integrador.clientdesktop.resources.ComponentMaterialResource;
+import com.projeto.integrador.clientdesktop.resources.ProjectResource;
 import com.projeto.integrador.clientdesktop.utils.NumberParser;
+import com.projeto.integrador.clientdesktop.views.projects.ShowProjectFxmlView;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -26,12 +35,39 @@ public class ComponentMaterialController implements Initializable {
   @Autowired
   private StageManager stageManager;
 
+  @Autowired
+  private ComponentMaterialResource componentMaterialResource;
+
+  @Autowired
+  private ProjectResource projectResource;
+
   private ComponentMaterial componentMaterial;
 
   private Project project;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+  }
+
+  @FXML
+  private void update(ActionEvent event) throws IOException {
+    // TODO: add update modal
+  }
+
+  @FXML
+  private void delete(ActionEvent event) throws IOException {
+    Alert alert = new Alert(AlertType.CONFIRMATION, "Deseja excluir o material '" + componentMaterial.getMaterial().getName() + "' ?", ButtonType.YES, ButtonType.NO);
+    alert.showAndWait();
+
+    if (alert.getResult() == ButtonType.YES) {
+      // TODO: check on server-api why is not deleting the component material
+      componentMaterialResource.delete(componentMaterial);
+
+      stageManager.switchScene(new ShowProjectFxmlView());
+      ShowProjectController controller = stageManager.getLoader().getController();
+      Project project = projectResource.refresh(getProject());
+      controller.setProject(project);
+    }
   }
 
   public Project getProject() {
