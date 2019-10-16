@@ -28,7 +28,7 @@
   <center>
     <VBox spacing="20.0">
       <padding>
-        <Insets top="20" bottom="20" left="20" right="20" />
+        <Insets top="0" bottom="20" left="20" right="20" />
       </padding>
 
       <VBox spacing="2.0">
@@ -43,7 +43,7 @@
   <bottom>
     <HBox>
       <padding>
-        <Insets top="20" bottom="20" left="20" right="20" />
+        <Insets top="0" bottom="20" left="20" right="20" />
       </padding>
 
       <children>

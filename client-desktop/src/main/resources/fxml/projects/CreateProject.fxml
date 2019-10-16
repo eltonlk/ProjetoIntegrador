@@ -6,8 +6,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane prefHeight="600.0"
@@ -35,40 +37,39 @@
         <Button onAction="#goToBack" text="Voltar"/>
       </HBox>
 
-      <VBox spacing="2.0">
-        <children>
+      <GridPane hgap="20" vgap="20">
+        <columnConstraints>
+          <ColumnConstraints hgrow="ALWAYS"/>
+          <ColumnConstraints hgrow="ALWAYS"/>
+          <ColumnConstraints hgrow="ALWAYS"/>
+          <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+
+        <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="0">
           <Label fx:id="nameLabel" text="Nome"/>
           <TextField fx:id="nameInput" promptText="Nome"/>
-        </children>
-      </VBox>
+        </VBox>
 
-      <VBox spacing="2.0">
-        <children>
+        <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
           <Label fx:id="seasonLabel" text="Estação"/>
           <ComboBox fx:id="seasonComboBox" promptText="Selecione"/>
-        </children>
-      </VBox>
+        </VBox>
 
-      <VBox spacing="2.0">
-        <children>
+        <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
           <Label fx:id="externalTemperatureLabel" text="Temperatura Externa (°C)"/>
           <TextField fx:id="externalTemperatureInput" promptText="Temperatura Externa"/>
-        </children>
-      </VBox>
+        </VBox>
 
-      <VBox spacing="2.0">
-        <children>
+        <VBox spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
           <Label fx:id="internalTemperatureLabel" text="Temperatura Interna (°C)"/>
           <TextField fx:id="internalTemperatureInput" promptText="Temperatura Interna"/>
-        </children>
-      </VBox>
+        </VBox>
 
-      <VBox spacing="2.0">
-        <children>
+        <VBox spacing="2.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
           <Label fx:id="solarRadiationLabel" text="Índice de Radiação"/>
           <ComboBox fx:id="solarRadiationComboBox" promptText="Selecione"/>
-        </children>
-      </VBox>
+        </VBox>
+      </GridPane>
 
       <HBox>
         <children>

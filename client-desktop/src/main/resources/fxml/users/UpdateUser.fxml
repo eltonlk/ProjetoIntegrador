@@ -7,8 +7,10 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane prefHeight="600.0"
@@ -38,32 +40,31 @@
             <Button onAction="#goToBack" text="Voltar"/>
           </HBox>
 
-          <VBox spacing="2.0">
-            <children>
+          <GridPane hgap="20" vgap="20">
+            <columnConstraints>
+              <ColumnConstraints hgrow="ALWAYS"/>
+              <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
               <Label fx:id="nameLabel" text="Nome"/>
               <TextField fx:id="nameInput" promptText="Nome"/>
-            </children>
-          </VBox>
+            </VBox>
 
-          <VBox spacing="2.0">
-            <children>
+            <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
               <Label fx:id="emailLabel" text="E-mail"/>
               <TextField fx:id="emailInput" promptText="E-mail"/>
-            </children>
-          </VBox>
+            </VBox>
 
-          <VBox spacing="2.0">
-            <children>
+            <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
               <Label fx:id="usernameLabel" text="Usuário"/>
               <TextField fx:id="usernameInput" promptText="Usuário"/>
-            </children>
-          </VBox>
+            </VBox>
 
-          <VBox spacing="2.0">
-            <children>
+            <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
               <CheckBox fx:id="activeCheckBox" text="Ativo"/>
-            </children>
-          </VBox>
+            </VBox>
+          </GridPane>
 
           <HBox>
             <children>
