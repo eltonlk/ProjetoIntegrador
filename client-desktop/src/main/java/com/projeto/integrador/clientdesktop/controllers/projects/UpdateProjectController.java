@@ -1,5 +1,9 @@
 package com.projeto.integrador.clientdesktop.controllers.projects;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.models.SolarRadiation;
@@ -8,9 +12,9 @@ import com.projeto.integrador.clientdesktop.resources.SolarRadiationResource;
 import com.projeto.integrador.clientdesktop.utils.NumberParser;
 import com.projeto.integrador.clientdesktop.views.projects.ShowProjectFxmlView;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,10 +24,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Controller;
 
 @Controller
 public class UpdateProjectController implements Initializable {
@@ -80,6 +80,7 @@ public class UpdateProjectController implements Initializable {
   @FXML
   private void update(ActionEvent event) throws IOException {
     project.setName(nameInput.getText());
+    project.setSeason("summer"); // TODO: get value from combobox
     project.setExternalTemperature(NumberParser.parseToInt(externalTemperatureInput.getText()));
     project.setInternalTemperature(NumberParser.parseToInt(internalTemperatureInput.getText()));
     project.setSolarRadiation(solarRadiationComboBox.getSelectionModel().getSelectedItem());
