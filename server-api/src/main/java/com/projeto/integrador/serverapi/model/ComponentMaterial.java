@@ -1,5 +1,6 @@
 package com.projeto.integrador.serverapi.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -8,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -29,6 +29,7 @@ public class ComponentMaterial {
   private double width;
 
   @NotNull
+  @Column(name = "thermal_conductivity_index")
   private double thermalConductivityIndex;
 
   @NotNull

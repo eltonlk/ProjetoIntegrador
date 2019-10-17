@@ -3,6 +3,7 @@ package com.projeto.integrador.serverapi.model;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
@@ -13,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -39,6 +39,7 @@ public class Component {
   private double area;
 
   @NotNull
+  @Column(name = "heat_flow")
   private double heatFlow;
 
   @ManyToOne

@@ -26,8 +26,8 @@ public class Color {
   @NotEmpty
   private String name;
 
-  @Column(name = "absorbability_index")
   @NotNull
+  @Column(name = "absorbability_index")
   private double absorbabilityIndex;
 
   private boolean active;

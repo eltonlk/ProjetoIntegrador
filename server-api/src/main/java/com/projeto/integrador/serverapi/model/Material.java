@@ -27,8 +27,8 @@ public class Material {
 
   private boolean active;
 
-  @Column(name = "thermal_conductivity_index")
   @NotNull
+  @Column(name = "thermal_conductivity_index")
   private double thermalConductivityIndex;
 
   public Material(Long id, String name, boolean active, double thermalConductivityIndex) {

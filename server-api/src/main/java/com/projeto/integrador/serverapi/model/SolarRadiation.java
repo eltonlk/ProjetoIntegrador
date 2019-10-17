@@ -1,12 +1,12 @@
 package com.projeto.integrador.serverapi.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -26,7 +26,36 @@ public class SolarRadiation {
   private String name;
 
   @NotNull
-  private int northIndex, northEastIndex, eastIndex, southEastIndex, southIndex, southWestIndex, westIndex, northWestIndex;
+  @Column(name = "north_index")
+  private int northIndex;
+
+  @NotNull
+  @Column(name = "north_east_index")
+  private int northEastIndex;
+
+  @NotNull
+  @Column(name = "east_index")
+  private int eastIndex;
+
+  @NotNull
+  @Column(name = "south_east_index")
+  private int southEastIndex;
+
+  @NotNull
+  @Column(name = "south_index")
+  private int southIndex;
+
+  @NotNull
+  @Column(name = "south_west_index")
+  private int southWestIndex;
+
+  @NotNull
+  @Column(name = "west_index")
+  private int westIndex;
+
+  @NotNull
+  @Column(name = "north_west_index")
+  private int northWestIndex;
 
   public SolarRadiation(Long id, String name, int northIndex, int northEastIndex, int eastIndex, int southEastIndex,
     int southIndex, int southWestIndex, int westIndex, int northWestIndex) {
