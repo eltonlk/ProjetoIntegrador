@@ -7,7 +7,7 @@ services:
   api:
     container_name: api
     restart: always
-    build: ./server-api
+    build: .
     working_dir: /server-api
     volumes:
       - ./server-api:/server-api
