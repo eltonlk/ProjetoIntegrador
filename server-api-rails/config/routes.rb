@@ -1,3 +1,21 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  post :login, action: :create, controller: :login
+
+  resources :projects, only: [ :index, :show, :create, :update, :destroy ]
+  resources :rooms, only: [ :create, :update, :destroy ]
+  resources :faces, only: [ :create, :update, :destroy ]
+  resources :components, only: [ :create, :update, :destroy ]
+  resources :component_materials, only: [ :create, :update, :destroy ]
+
+  resources :materials, only: [ :index, :create, :update, :destroy ]
+  resources :colors, only: [ :index, :create, :update, :destroy ]
+  resources :solar_radiations, only: [ :index, :create, :update, :destroy ]
+
+  resources :users, only: [ :index, :show, :create, :update, :destroy ]
+  resources :roles, only: [ :index ]
+
+  resources :audits, only: [ :index ]
+  resources :options, only: [ :index, :update ]
+
 end
