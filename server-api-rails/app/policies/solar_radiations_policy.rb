@@ -1,0 +1,2 @@
+class SolarRadiationsPolicy < ApplicationPolicy
+end

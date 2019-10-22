@@ -1,0 +1,2 @@
+class AuditsPolicy < ApplicationPolicy
+end

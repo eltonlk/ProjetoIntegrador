@@ -5,7 +5,7 @@ development:
   username: postgres
   password:
   pool: 5
-  database: projeto-integrador
+  database: projeto_integrador
 
 test:
   adapter: postgresql
@@ -14,7 +14,7 @@ test:
   username: postgres
   password:
   pool: 5
-  database: projeto-integrador
+  database: projeto_integrador
 
 production:
   adapter: postgresql
