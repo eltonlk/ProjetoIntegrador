@@ -3,7 +3,7 @@ class SolarRadiation < ApplicationRecord
 
   has_many :projects
 
-  validates_presence_of :name
+  validates :name, presence: true
   validates_numericality_of :north_index     , greater_than: 0
   validates_numericality_of :north_east_index, greater_than: 0
   validates_numericality_of :north_west_index, greater_than: 0
