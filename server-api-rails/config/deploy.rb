@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.11.2"
 
-set :application, "projeto-integrador"
+set :application, "projeto_integrador"
 set :repo_url, "git@github.com:eltonlk/ProjetoIntegrador.git"
 set :repo_tree, 'server-api-rails'
 

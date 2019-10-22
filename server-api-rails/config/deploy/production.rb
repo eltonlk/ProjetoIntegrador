@@ -21,9 +21,9 @@
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
-role :app, %w{projeto-integrador@jules.zanshinsoftware.com}
-role :web, %w{projeto-integrador@jules.zanshinsoftware.com}
-role :db,  %w{projeto-integrador@jules.zanshinsoftware.com}
+role :app, %w{projeto_integrador@jules.zanshinsoftware.com}
+role :web, %w{projeto_integrador@jules.zanshinsoftware.com}
+role :db,  %w{projeto_integrador@jules.zanshinsoftware.com}
 
 # Configuration
 # =============
@@ -63,6 +63,6 @@ role :db,  %w{projeto-integrador@jules.zanshinsoftware.com}
 #   }
 
 set :rails_env, 'production'
-set :deploy_to, '/home/projeto-integrador/projeto-integrador'
+set :deploy_to, '/home/projeto_integrador/production'
 set :branch, "master"
-set :tmp_dir, '/home/projeto-integrador/tmp'
+set :tmp_dir, '/home/projeto_integrador/tmp'
