@@ -1,16 +1,25 @@
-default: &default
+development:
   adapter: postgresql
   encoding: unicode
   host: db
   username: postgres
   password:
   pool: 5
-
-development:
-  <<: *default
   database: projeto-integrador
-
 
 test:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: postgres
+  password:
+  pool: 5
   database: projeto-integrador
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  username: projeto_integrador
+  password: 123456789
+  pool: 5
+  database: projeto_integrador
