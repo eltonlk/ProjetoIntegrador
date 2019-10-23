@@ -1,5 +1,5 @@
 class Component < ApplicationRecord
-  auditedter
+  audited
 
   belongs_to :face
   belongs_to :color
