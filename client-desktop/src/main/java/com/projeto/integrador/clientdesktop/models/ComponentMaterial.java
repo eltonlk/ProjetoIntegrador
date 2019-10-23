@@ -1,11 +1,14 @@
 package com.projeto.integrador.clientdesktop.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ComponentMaterial {
 
   private Long id;
 
   private double width;
 
+  @JsonProperty("thermal_conductitity_index")
   private double thermalConductitityIndex;
 
   private double resistance;

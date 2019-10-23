@@ -1,5 +1,7 @@
 package com.projeto.integrador.clientdesktop.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Material {
 
   private Long id;
@@ -8,6 +10,7 @@ public class Material {
 
   private boolean active;
 
+  @JsonProperty("thermal_conductivity_index")
   private double thermalConductivityIndex;
 
   public Material(Long id, String name, boolean active, double thermalConductivityIndex) {

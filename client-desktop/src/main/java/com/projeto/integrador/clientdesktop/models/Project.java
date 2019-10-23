@@ -2,6 +2,8 @@ package com.projeto.integrador.clientdesktop.models;
 
 import java.util.Collection;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Project {
 
   private Long id;
@@ -10,10 +12,13 @@ public class Project {
 
   private String season;
 
+  @JsonProperty("external_temperature")
   private int externalTemperature;
 
+  @JsonProperty("internal_temperature")
   private int internalTemperature;
 
+  @JsonProperty("solar_radiation")
   private SolarRadiation solarRadiation;
 
   private Collection<Room> rooms;
