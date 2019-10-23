@@ -3,11 +3,9 @@ class CreateRooms < ActiveRecord::Migration[6.0]
     create_table :rooms do |t|
       t.string     :name     , null: false
       t.decimal    :heat_load, default: 0, precision: 10, scale: 5
-      t.references :project
+      t.references :project  , null: false, foreign_key: true
 
       t.timestamps null: false
     end
-
-    add_foreign_key :rooms, :projects, column: :project_id
   end
 end

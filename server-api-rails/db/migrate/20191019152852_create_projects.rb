@@ -5,11 +5,9 @@ class CreateProjects < ActiveRecord::Migration[6.0]
       t.integer    :season              , null: false
       t.integer    :external_temperature, default: 0
       t.integer    :internal_temperature, default: 0
-      t.references :solar_radiation
+      t.references :solar_radiation     , null: false, foreign_key: true
 
       t.timestamps null: false
     end
-
-    add_foreign_key :projects, :solar_radiations, column: :solar_radiation_id
   end
 end
