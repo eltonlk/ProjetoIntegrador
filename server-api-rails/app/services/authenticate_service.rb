@@ -1,4 +1,4 @@
-require 'json_web_token'
+require 'jwt'
 
 class AuthenticateService
   prepend SimpleCommand
@@ -9,7 +9,7 @@ class AuthenticateService
   end
 
   def call
-    JsonWebToken.encode(user_id: user.id) if user
+    JWT.encode({ user_id: user.id }, nil, 'none') if user
   end
 
   private

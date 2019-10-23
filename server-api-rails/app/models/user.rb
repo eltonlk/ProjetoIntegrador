@@ -9,8 +9,4 @@ class User < ApplicationRecord
   validates :name    , presence: true
   validates :password, presence: true
   validates :username, presence: true
-
-  trigger.after(:insert) do
-    "INSERT INTO user_roles(user_id, role_id, privilege_id) SELECT NEW.id, role_id, privilege_id FROM roles_privileges;"
-  end
 end

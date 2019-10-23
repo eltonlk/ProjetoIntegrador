@@ -5,7 +5,7 @@ class SessionController < ApplicationController
     service = AuthenticateService.call(params[:username], params[:password])
 
     if service.success?
-      render json: { auth_token: service.result }
+      render json: { token: service.result }
     else
       render json: { error: service.errors }, status: :unauthorized
     end

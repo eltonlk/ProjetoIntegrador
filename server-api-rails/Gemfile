@@ -49,6 +49,4 @@ gem 'simple_command'
 
 gem 'audited'
 
-gem 'hairtrigger'
-
 gem "pundit"
