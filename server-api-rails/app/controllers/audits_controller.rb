@@ -5,7 +5,7 @@ class AuditsController < ApplicationController
 
   # GET /audits
   def index
-    @audits = Audit.all
+    @audits = Audited::Audit.all
 
     render json: @audits
   end
