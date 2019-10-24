@@ -22,7 +22,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -34,7 +36,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-public class CreateComponentController implements Initializable {
+public class FormComponentController implements Initializable {
 
   @Lazy
   @Autowired
@@ -55,40 +57,60 @@ public class CreateComponentController implements Initializable {
 
   private Face face;
 
+  private Component component;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    component = new Component();
+
     colorsOptions = FXCollections.observableArrayList(colorResource.getAll());
 
     colorComboBox.setItems(colorsOptions);
-  }
-
-  public Project getProject() {
-    return project;
   }
 
   public void setProject(Project project) {
     this.project = project;
   }
 
-  public Face getFace() {
-    return face;
-  }
-
   public void setFace(Face face) {
     this.face = face;
   }
 
+  public void setComponent(Component component) {
+    this.component = component;
+
+    fillForm();
+  }
+
+  private void fillForm() {
+    nameInput.setText(component.getName());
+    areaInput.setText(NumberParser.localizeFromDouble(component.getArea()));
+    colorComboBox.getSelectionModel().select(component.getColor());
+
+    if (component.getId() != null && component.getId() > 0) {
+      titleLabel.setText("Alterar Componente");
+      submitButton.setText("Atualizar");
+    }
+  }
+
   @FXML
-  private void create(ActionEvent event) throws IOException {
-    Component component = new Component();
-    component.setFace(getFace());
-    component.setName(nameInput.getText());
-    component.setArea(NumberParser.parseToDouble(areaInput.getText()));
-    component.setColor(colorComboBox.getSelectionModel().getSelectedItem());
+  private void save(ActionEvent event) throws IOException {
+    this.component.setFace(this.face);
+    this.component.setName(nameInput.getText());
+    this.component.setArea(NumberParser.parseToDouble(areaInput.getText()));
+    this.component.setColor(colorComboBox.getSelectionModel().getSelectedItem());
 
-    componentResource.create(component);
+    if (component.getId() != null && component.getId() > 0) {
+      componentResource.update(component);
+    } else {
+      componentResource.create(component);
+    }
 
-    Project project = projectResource.refresh(getProject());
+    close(event);
+  }
+
+  private void close(ActionEvent event) {
+    Project project = projectResource.refresh(this.project);
 
     stageManager.switchScene(new ShowProjectFxmlView());
     ShowProjectController controller = stageManager.getLoader().getController();
@@ -101,6 +123,9 @@ public class CreateComponentController implements Initializable {
   }
 
   @FXML
+  private Label titleLabel;
+
+  @FXML
   private TextField nameInput;
 
   @FXML
@@ -108,5 +133,8 @@ public class CreateComponentController implements Initializable {
 
   @FXML
   private ComboBox<Color> colorComboBox;
+
+  @FXML
+  private Button submitButton;
 
 }

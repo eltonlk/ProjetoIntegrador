@@ -6,7 +6,8 @@ import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.controllers.projects.ShowProjectController;
-import com.projeto.integrador.clientdesktop.controllers.projects.modals.CreateFaceController;
+import com.projeto.integrador.clientdesktop.controllers.projects.modals.FormFaceController;
+import com.projeto.integrador.clientdesktop.controllers.projects.modals.FormRoomController;
 import com.projeto.integrador.clientdesktop.models.Face;
 import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.models.Room;
@@ -19,10 +20,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -56,7 +57,13 @@ public class RoomController implements Initializable {
 
   @FXML
   private void update(ActionEvent event) throws IOException {
-    // TODO: add update modal
+    Stage modal = stageManager.buildModal("/fxml/projects/modals/FormRoom.fxml");
+
+    FormRoomController controller = stageManager.getLoader().getController();
+    controller.setProject(getProject());
+    controller.setRoom(room);
+
+    modal.show();
   }
 
   @FXML
@@ -65,7 +72,6 @@ public class RoomController implements Initializable {
     alert.showAndWait();
 
     if (alert.getResult() == ButtonType.YES) {
-      // TODO: check on server-api why is not deleting the room
       roomResource.delete(room);
 
       stageManager.switchScene(new ShowProjectFxmlView());
@@ -116,9 +122,9 @@ public class RoomController implements Initializable {
 
   @FXML
   private void createFace(ActionEvent event) throws IOException {
-    Stage modal = stageManager.buildModal("/fxml/projects/modals/CreateFace.fxml");
+    Stage modal = stageManager.buildModal("/fxml/projects/modals/FormFace.fxml");
 
-    CreateFaceController controller = stageManager.getLoader().getController();
+    FormFaceController controller = stageManager.getLoader().getController();
     controller.setProject(getProject());
     controller.setRoom(getRoom());
 

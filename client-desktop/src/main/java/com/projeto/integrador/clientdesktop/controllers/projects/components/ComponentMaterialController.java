@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.controllers.projects.ShowProjectController;
+import com.projeto.integrador.clientdesktop.controllers.projects.modals.FormComponentMaterialController;
 import com.projeto.integrador.clientdesktop.models.ComponentMaterial;
 import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.resources.ComponentMaterialResource;
@@ -16,10 +17,11 @@ import com.projeto.integrador.clientdesktop.views.projects.ShowProjectFxmlView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -51,7 +53,13 @@ public class ComponentMaterialController implements Initializable {
 
   @FXML
   private void update(ActionEvent event) throws IOException {
-    // TODO: add update modal
+    Stage modal = stageManager.buildModal("/fxml/projects/modals/FormComponentMaterial.fxml");
+
+    FormComponentMaterialController controller = stageManager.getLoader().getController();
+    controller.setProject(getProject());
+    controller.setComponentMaterial(componentMaterial);
+
+    modal.show();
   }
 
   @FXML
@@ -60,7 +68,6 @@ public class ComponentMaterialController implements Initializable {
     alert.showAndWait();
 
     if (alert.getResult() == ButtonType.YES) {
-      // TODO: check on server-api why is not deleting the component material
       componentMaterialResource.delete(componentMaterial);
 
       stageManager.switchScene(new ShowProjectFxmlView());

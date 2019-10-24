@@ -2,6 +2,7 @@ package com.projeto.integrador.clientdesktop.models;
 
 import java.util.Collection;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Face {
@@ -15,6 +16,7 @@ public class Face {
   @JsonProperty("heat_flow")
   private double heatFlow;
 
+  @JsonIgnore
   private Room room;
 
   @JsonProperty("room_id")

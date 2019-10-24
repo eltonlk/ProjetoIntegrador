@@ -16,7 +16,7 @@
             stylesheets="@../../../styles/Styles.css"
             xmlns="http://javafx.com/javafx/12.0.2"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.projeto.integrador.clientdesktop.controllers.projects.modals.CreateFaceController">
+            fx:controller="com.projeto.integrador.clientdesktop.controllers.projects.modals.FormComponentController">
 
   <top>
     <VBox spacing="20.0">
@@ -24,7 +24,7 @@
         <Insets top="20" bottom="20" left="20" right="20" />
       </padding>
 
-      <Label text="Adicionar Face" styleClass="label-header"/>
+      <Label fx:id="titleLabel" text="Adicionar Componente" styleClass="label-header"/>
     </VBox>
   </top>
 
@@ -40,14 +40,19 @@
           <ColumnConstraints hgrow="ALWAYS"/>
         </columnConstraints>
 
-        <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-          <Label fx:id="orientationLabel" text="Orientação"/>
-          <ComboBox fx:id="orientationComboBox" promptText="Selecione"/>
-        </VBox>
-
-        <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0">
           <Label fx:id="nameLabel" text="Nome"/>
           <TextField fx:id="nameInput" promptText="Nome"/>
+        </VBox>
+
+        <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+          <Label fx:id="areaLabel" text="Área (m²)"/>
+          <TextField fx:id="areaInput" promptText="Tamanho"/>
+        </VBox>
+
+        <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+          <Label fx:id="colorLabel" text="Cor"/>
+          <ComboBox fx:id="colorComboBox" promptText="Selecione"/>
         </VBox>
       </GridPane>
     </VBox>
@@ -60,7 +65,7 @@
       </padding>
 
       <children>
-        <Button fx:id="submitButton" onAction="#create" styleClass="button-primary" text="Adicionar"/>
+        <Button fx:id="submitButton" onAction="#save" styleClass="button-primary" text="Adicionar"/>
       </children>
     </HBox>
   </bottom>

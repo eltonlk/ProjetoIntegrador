@@ -2,9 +2,12 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -13,7 +16,7 @@
             stylesheets="@../../../styles/Styles.css"
             xmlns="http://javafx.com/javafx/12.0.2"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.projeto.integrador.clientdesktop.controllers.projects.modals.CreateRoomController">
+            fx:controller="com.projeto.integrador.clientdesktop.controllers.projects.modals.FormFaceController">
 
   <top>
     <VBox spacing="20.0">
@@ -21,7 +24,7 @@
         <Insets top="20" bottom="20" left="20" right="20" />
       </padding>
 
-      <Label text="Adicionar Cômodo" styleClass="label-header"/>
+      <Label fx:id="titleLabel" text="Adicionar Face" styleClass="label-header"/>
     </VBox>
   </top>
 
@@ -31,12 +34,22 @@
         <Insets top="0" bottom="20" left="20" right="20" />
       </padding>
 
-      <VBox spacing="2.0">
-        <children>
+      <GridPane hgap="20" vgap="20">
+        <columnConstraints>
+          <ColumnConstraints hgrow="ALWAYS"/>
+          <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+
+        <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+          <Label fx:id="orientationLabel" text="Orientação"/>
+          <ComboBox fx:id="orientationComboBox" promptText="Selecione"/>
+        </VBox>
+
+        <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
           <Label fx:id="nameLabel" text="Nome"/>
           <TextField fx:id="nameInput" promptText="Nome"/>
-        </children>
-      </VBox>
+        </VBox>
+      </GridPane>
     </VBox>
   </center>
 
@@ -47,7 +60,7 @@
       </padding>
 
       <children>
-        <Button fx:id="submitButton" onAction="#create" styleClass="button-primary" text="Adicionar"/>
+        <Button fx:id="submitButton" onAction="#save" styleClass="button-primary" text="Adicionar"/>
       </children>
     </HBox>
   </bottom>
