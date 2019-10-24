@@ -62,7 +62,7 @@ public class CreateComponentMaterialController implements Initializable {
     materialComboBox.setItems(materialsOptions);
 
     materialComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-      thermalConductitityIndexInput.setText(NumberParser.localizeFromDouble(newValue.getThermalConductivityIndex()));
+      thermalConductivityIndexInput.setText(NumberParser.localizeFromDouble(newValue.getThermalConductivityIndex()));
     });
   }
 
@@ -88,7 +88,7 @@ public class CreateComponentMaterialController implements Initializable {
     componentMaterial.setComponent(getComponent());
     componentMaterial.setMaterial(materialComboBox.getSelectionModel().getSelectedItem());
     componentMaterial.setWidth(NumberParser.parseToDouble(widthInput.getText()));
-    componentMaterial.setThermalConductitityIndex(NumberParser.parseToDouble(thermalConductitityIndexInput.getText()));
+    componentMaterial.setThermalConductivityIndex(NumberParser.parseToDouble(thermalConductivityIndexInput.getText()));
 
     componentMaterialResource.create(componentMaterial);
 
@@ -111,6 +111,6 @@ public class CreateComponentMaterialController implements Initializable {
   private TextField widthInput;
 
   @FXML
-  private TextField thermalConductitityIndexInput;
+  private TextField thermalConductivityIndexInput;
 
 }

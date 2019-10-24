@@ -8,8 +8,8 @@ public class ComponentMaterial {
 
   private double width;
 
-  @JsonProperty("thermal_conductitity_index")
-  private double thermalConductitityIndex;
+  @JsonProperty("thermal_conductivity_index")
+  private double thermalConductivityIndex;
 
   private double resistance;
 
@@ -17,10 +17,10 @@ public class ComponentMaterial {
 
   private Material material;
 
-  public ComponentMaterial(Long id, double width, double thermalConductitityIndex, double resistance, Component component, Material material) {
+  public ComponentMaterial(Long id, double width, double thermalConductivityIndex, double resistance, Component component, Material material) {
     this.id = id;
     this.width = width;
-    this.thermalConductitityIndex = thermalConductitityIndex;
+    this.thermalConductivityIndex = thermalConductivityIndex;
     this.resistance = resistance;
     this.component = component;
     this.material = material;
@@ -45,12 +45,12 @@ public class ComponentMaterial {
     this.width = width;
   }
 
-  public double getThermalConductitityIndex() {
-    return thermalConductitityIndex;
+  public double getThermalConductivityIndex() {
+    return thermalConductivityIndex;
   }
 
-  public void setThermalConductitityIndex(double thermalConductitityIndex) {
-    this.thermalConductitityIndex = thermalConductitityIndex;
+  public void setThermalConductivityIndex(double thermalConductivityIndex) {
+    this.thermalConductivityIndex = thermalConductivityIndex;
   }
 
   public double getResistance() {
