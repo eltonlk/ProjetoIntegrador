@@ -5,7 +5,7 @@ class Project < ApplicationRecord
 
   belongs_to :solar_radiation
 
-  has_many :rooms
+  has_many :rooms, dependent: :destroy
 
   validates :name  , presence: true
   validates :season, presence: true
