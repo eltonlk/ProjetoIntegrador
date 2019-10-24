@@ -1,5 +1,6 @@
 package com.projeto.integrador.clientdesktop.controllers.projects;
 
+import com.projeto.integrador.clientdesktop.collections.ProjectSeasonCollection;
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.controllers.projects.components.RoomController;
 import com.projeto.integrador.clientdesktop.controllers.projects.modals.FormRoomController;
@@ -91,7 +92,7 @@ public class ShowProjectController implements Initializable {
 
   private void fillContent() {
     nameLabel.setText(project.getName());
-    seasonLabel.setText(project.getSeason());
+    seasonLabel.setText(ProjectSeasonCollection.findByValue(project.getSeason()).toString());
     externalTemperatureLabel.setText(NumberParser.localizeFromInt(project.getExternalTemperature()));
     internalTemperatureLabel.setText(NumberParser.localizeFromInt(project.getInternalTemperature()));
     solarRadiationLabel.setText(project.getSolarRadiation().getName());

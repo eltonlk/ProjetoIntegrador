@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.projeto.integrador.clientdesktop.collections.FaceOrientationCollection;
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.controllers.projects.ShowProjectController;
 import com.projeto.integrador.clientdesktop.models.Face;
@@ -19,6 +20,8 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -52,6 +55,9 @@ public class FormFaceController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     face = new Face();
+
+    ObservableList<FaceOrientationCollection> orientationOptions = FXCollections.observableArrayList(FaceOrientationCollection.collection());
+    orientationComboBox.setItems(orientationOptions);
   }
 
   public void setProject(Project project) {
@@ -70,7 +76,7 @@ public class FormFaceController implements Initializable {
 
   private void fillForm() {
     nameInput.setText(face.getName());
-    orientationComboBox.getSelectionModel().select(face.getOrientation());
+    orientationComboBox.getSelectionModel().select(FaceOrientationCollection.findByValue(face.getOrientation()));
 
     if (face.getId() != null && face.getId() > 0) {
       titleLabel.setText("Alterar Face");
@@ -82,7 +88,7 @@ public class FormFaceController implements Initializable {
   private void save(ActionEvent event) throws IOException {
     this.face.setRoom(this.room);
     this.face.setName(nameInput.getText());
-    this.face.setOrientation("north"); // TODO: get value from combobox
+    this.face.setOrientation(orientationComboBox.getSelectionModel().getSelectedItem().getValue());
 
     if (face.getId() != null && face.getId() > 0) {
       faceResource.update(face);
@@ -113,7 +119,7 @@ public class FormFaceController implements Initializable {
   private TextField nameInput;
 
   @FXML
-  private ComboBox<String> orientationComboBox;
+  private ComboBox<FaceOrientationCollection> orientationComboBox;
 
   @FXML
   private Button submitButton;

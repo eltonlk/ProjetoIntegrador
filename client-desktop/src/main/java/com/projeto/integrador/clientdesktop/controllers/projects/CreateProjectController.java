@@ -2,8 +2,11 @@ package com.projeto.integrador.clientdesktop.controllers.projects;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import com.projeto.integrador.clientdesktop.collections.ProjectSeasonCollection;
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.models.SolarRadiation;
@@ -39,8 +42,6 @@ public class CreateProjectController implements Initializable {
   @Autowired
   private SolarRadiationResource solarRadiationResource;
 
-  private ObservableList<SolarRadiation> solarRadiationOptions;
-
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     TextField[] indexTextFieldList = {externalTemperatureInput, internalTemperatureInput};
@@ -53,7 +54,10 @@ public class CreateProjectController implements Initializable {
       });
     }
 
-    solarRadiationOptions = FXCollections.observableArrayList(solarRadiationResource.getAll());
+    ObservableList<ProjectSeasonCollection> seasonOptions = FXCollections.observableArrayList(ProjectSeasonCollection.collection());
+    seasonComboBox.setItems(seasonOptions);
+
+    ObservableList<SolarRadiation> solarRadiationOptions = FXCollections.observableArrayList(solarRadiationResource.getAll());
     solarRadiationComboBox.setItems(solarRadiationOptions);
   }
 
@@ -61,7 +65,7 @@ public class CreateProjectController implements Initializable {
   private void create(ActionEvent event) throws IOException {
     Project project = new Project();
     project.setName(nameInput.getText());
-    project.setSeason("summer"); // TODO: get value from combobox
+    project.setSeason(seasonComboBox.getSelectionModel().getSelectedItem().getValue());
     project.setExternalTemperature(NumberParser.parseToInt(externalTemperatureInput.getText()));
     project.setInternalTemperature(NumberParser.parseToInt(internalTemperatureInput.getText()));
     project.setSolarRadiation(solarRadiationComboBox.getSelectionModel().getSelectedItem());
@@ -85,7 +89,7 @@ public class CreateProjectController implements Initializable {
   private TextField nameInput;
 
   @FXML
-  private ComboBox<String> seasonComboBox;
+  private ComboBox<ProjectSeasonCollection> seasonComboBox;
 
   @FXML
   private TextField externalTemperatureInput;

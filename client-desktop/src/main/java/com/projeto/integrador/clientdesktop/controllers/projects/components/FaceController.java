@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.projeto.integrador.clientdesktop.collections.FaceOrientationCollection;
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.controllers.projects.ShowProjectController;
 import com.projeto.integrador.clientdesktop.controllers.projects.modals.FormComponentController;
@@ -101,7 +102,7 @@ public class FaceController implements Initializable {
 
   private void fillContent() {
     nameLabel.setText(face.getName());
-    orientationLabel.setText(face.getOrientation());
+    orientationLabel.setText(FaceOrientationCollection.findByValue(face.getOrientation()).toString());
     heatFlowLabel.setText(NumberParser.localizeFromDouble(face.getHeatFlow()));
 
     if (face.getComponents() != null) {
