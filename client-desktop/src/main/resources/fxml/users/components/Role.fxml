@@ -15,7 +15,7 @@
     <VBox spacing="5.0">
       <children>
         <Label fx:id="roleLabel" text="Role"/>
-        <HBox fx:id="privilegesList" spacing="5.0">
+        <HBox fx:id="privilegesList" spacing="30.0">
         </HBox>
       </children>
     </VBox>

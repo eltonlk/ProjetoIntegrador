@@ -37,8 +37,8 @@ public class AppConfig {
   public RestTemplate restTemplate() {
     RestTemplate restTemplate = new RestTemplate();
 
-    // restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory("http://teste.zanshinsoftware.com/"));
-    restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory("http://localhost:3000/"));
+    restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory("http://teste.zanshinsoftware.com/"));
+    // restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory("http://localhost:3000/"));
 
     List<ClientHttpRequestInterceptor> interceptors = restTemplate.getInterceptors();
 

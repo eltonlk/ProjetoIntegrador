@@ -5,6 +5,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
@@ -31,15 +32,24 @@
       </padding>
 
       <HBox styleClass="header-view">
-        <Label text="Usuário" styleClass="label-header"/>
+        <VBox spacing="5.0">
+          <children>
+            <Label text="Usuário: Permissões"/>
+            <Label fx:id="nameLabel" text="Nome do Usuário" styleClass="label-header"/>
+          </children>
+        </VBox>
         <Pane HBox.hgrow="ALWAYS"/>
         <Button onAction="#goToBack" text="Voltar"/>
       </HBox>
 
-      <VBox fx:id="rolesList" spacing="20.0">
-        <children>
-        </children>
-      </VBox>
+      <ScrollPane styleClass="scroll-pane" fitToHeight="true" fitToWidth="true">
+        <content>
+          <VBox fx:id="rolesList" spacing="20.0">
+            <children>
+            </children>
+          </VBox>
+        </content>
+      </ScrollPane>
     </VBox>
   </center>
 
