@@ -16,11 +16,11 @@ SolarRadiation.create! name: "Sul", north_index: 179, north_east_index: 475, eas
   south_index: 188, south_west_index: 586, west_index: 715, north_west_index: 475
 SolarRadiation.create! name: "Sudeste", north_index: 700, north_east_index: 700, east_index: 700, south_east_index: 700,
   south_index: 700, south_west_index: 700, west_index: 700, north_west_index: 700
-SolarRadiation.create! name: "Sudeste", north_index: 600, north_east_index: 600, east_index: 600, south_east_index: 600,
+SolarRadiation.create! name: "Norte", north_index: 600, north_east_index: 600, east_index: 600, south_east_index: 600,
   south_index: 600, south_west_index: 600, west_index: 600, north_west_index: 600
-SolarRadiation.create! name: "Sudeste", north_index: 800, north_east_index: 800, east_index: 800, south_east_index: 800,
+SolarRadiation.create! name: "Nordeste", north_index: 800, north_east_index: 800, east_index: 800, south_east_index: 800,
   south_index: 800, south_west_index: 800, west_index: 800, north_west_index: 800
-SolarRadiation.create! name: "Sudeste", north_index: 500, north_east_index: 500, east_index: 500, south_east_index: 500,
+SolarRadiation.create! name: "Centro-Oeste", north_index: 500, north_east_index: 500, east_index: 500, south_east_index: 500,
   south_index: 500, south_west_index: 500, west_index: 500, north_west_index: 500
 
 read_privilege   = Privilege.create! name: 'READ_PRIVILEGE'
