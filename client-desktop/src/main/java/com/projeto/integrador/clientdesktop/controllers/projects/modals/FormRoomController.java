@@ -16,6 +16,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -27,7 +29,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-public class CreateRoomController implements Initializable {
+public class FormRoomController implements Initializable {
 
   @Lazy
   @Autowired
@@ -41,27 +43,48 @@ public class CreateRoomController implements Initializable {
 
   private Project project;
 
+  private Room room;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-  }
-
-  public Project getProject() {
-    return project;
+    this.room = new Room();
   }
 
   public void setProject(Project project) {
     this.project = project;
   }
 
+  public void setRoom(Room room) {
+    this.room = room;
+
+    fillForm();
+  }
+
+  private void fillForm() {
+    nameInput.setText(room.getName());
+
+    if (room.getId() != null && room.getId() > 0) {
+      titleLabel.setText("Alterar Cômodo");
+      submitButton.setText("Atualizar");
+    }
+  }
+
   @FXML
-  private void create(ActionEvent event) throws IOException {
-    Room room = new Room();
-    room.setProject(getProject());
-    room.setName(nameInput.getText());
+  private void save(ActionEvent event) throws IOException {
+    this.room.setProject(this.project);
+    this.room.setName(nameInput.getText());
 
-    roomResource.create(room);
+    if (room.getId() != null && room.getId() > 0) {
+      roomResource.update(room);
+    } else {
+      roomResource.create(room);
+    }
 
-    Project project = projectResource.refresh(getProject());
+    close(event);
+  }
+
+  private void close(ActionEvent event) {
+    Project project = projectResource.refresh(this.project);
 
     stageManager.switchScene(new ShowProjectFxmlView());
     ShowProjectController controller = stageManager.getLoader().getController();
@@ -74,6 +97,12 @@ public class CreateRoomController implements Initializable {
   }
 
   @FXML
+  private Label titleLabel;
+
+  @FXML
   private TextField nameInput;
+
+  @FXML
+  private Button submitButton;
 
 }

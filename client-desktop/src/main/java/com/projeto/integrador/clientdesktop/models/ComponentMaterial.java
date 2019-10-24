@@ -1,5 +1,6 @@
 package com.projeto.integrador.clientdesktop.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ComponentMaterial {
@@ -13,6 +14,7 @@ public class ComponentMaterial {
 
   private double resistance;
 
+  @JsonIgnore
   private Component component;
 
   @JsonProperty("component_id")

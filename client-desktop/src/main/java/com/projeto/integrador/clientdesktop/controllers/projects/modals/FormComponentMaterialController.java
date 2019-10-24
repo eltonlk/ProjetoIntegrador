@@ -22,7 +22,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -34,7 +36,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-public class CreateComponentMaterialController implements Initializable {
+public class FormComponentMaterialController implements Initializable {
 
   @Lazy
   @Autowired
@@ -55,8 +57,12 @@ public class CreateComponentMaterialController implements Initializable {
 
   private Component component;
 
+  private ComponentMaterial componentMaterial;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    componentMaterial = new ComponentMaterial();
+
     materialsOptions = FXCollections.observableArrayList(materialResource.getAll());
 
     materialComboBox.setItems(materialsOptions);
@@ -66,33 +72,49 @@ public class CreateComponentMaterialController implements Initializable {
     });
   }
 
-  public Project getProject() {
-    return project;
-  }
-
   public void setProject(Project project) {
     this.project = project;
-  }
-
-  public Component getComponent() {
-    return component;
   }
 
   public void setComponent(Component component) {
     this.component = component;
   }
 
+  public void setComponentMaterial(ComponentMaterial componentMaterial) {
+    this.componentMaterial = componentMaterial;
+
+    fillForm();
+  }
+
+  private void fillForm() {
+    materialComboBox.getSelectionModel().select(componentMaterial.getMaterial());
+    widthInput.setText(NumberParser.localizeFromDouble(componentMaterial.getWidth()));
+    thermalConductivityIndexInput.setText(NumberParser.localizeFromDouble(componentMaterial.getThermalConductivityIndex()));
+
+    if (componentMaterial.getId() != null && componentMaterial.getId() > 0) {
+      titleLabel.setText("Alterar Material");
+      submitButton.setText("Atualizar");
+    }
+  }
+
   @FXML
-  private void create(ActionEvent event) throws IOException {
-    ComponentMaterial componentMaterial = new ComponentMaterial();
-    componentMaterial.setComponent(getComponent());
+  private void save(ActionEvent event) throws IOException {
+    componentMaterial.setComponent(this.component);
     componentMaterial.setMaterial(materialComboBox.getSelectionModel().getSelectedItem());
     componentMaterial.setWidth(NumberParser.parseToDouble(widthInput.getText()));
     componentMaterial.setThermalConductivityIndex(NumberParser.parseToDouble(thermalConductivityIndexInput.getText()));
 
-    componentMaterialResource.create(componentMaterial);
+    if (componentMaterial.getId() != null && componentMaterial.getId() > 0) {
+      componentMaterialResource.update(componentMaterial);
+    } else {
+      componentMaterialResource.create(componentMaterial);
+    }
 
-    Project project = projectResource.refresh(getProject());
+    close(event);
+  }
+
+  private void close(ActionEvent event) {
+    Project project = projectResource.refresh(this.project);
 
     stageManager.switchScene(new ShowProjectFxmlView());
     ShowProjectController controller = stageManager.getLoader().getController();
@@ -105,6 +127,9 @@ public class CreateComponentMaterialController implements Initializable {
   }
 
   @FXML
+  private Label titleLabel;
+
+  @FXML
   private ComboBox<Material> materialComboBox;
 
   @FXML
@@ -112,5 +137,8 @@ public class CreateComponentMaterialController implements Initializable {
 
   @FXML
   private TextField thermalConductivityIndexInput;
+
+  @FXML
+  private Button submitButton;
 
 }

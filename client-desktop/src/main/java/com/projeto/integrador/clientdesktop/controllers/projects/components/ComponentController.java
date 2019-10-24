@@ -6,7 +6,8 @@ import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.controllers.projects.ShowProjectController;
-import com.projeto.integrador.clientdesktop.controllers.projects.modals.CreateComponentMaterialController;
+import com.projeto.integrador.clientdesktop.controllers.projects.modals.FormComponentController;
+import com.projeto.integrador.clientdesktop.controllers.projects.modals.FormComponentMaterialController;
 import com.projeto.integrador.clientdesktop.models.Component;
 import com.projeto.integrador.clientdesktop.models.ComponentMaterial;
 import com.projeto.integrador.clientdesktop.models.Project;
@@ -56,7 +57,13 @@ public class ComponentController implements Initializable {
 
   @FXML
   private void update(ActionEvent event) throws IOException {
-    // TODO: add update modal
+    Stage modal = stageManager.buildModal("/fxml/projects/modals/FormComponent.fxml");
+
+    FormComponentController controller = stageManager.getLoader().getController();
+    controller.setProject(getProject());
+    controller.setComponent(component);
+
+    modal.show();
   }
 
   @FXML
@@ -65,7 +72,6 @@ public class ComponentController implements Initializable {
     alert.showAndWait();
 
     if (alert.getResult() == ButtonType.YES) {
-      // TODO: check on server-api why is not deleting the component
       componentResource.delete(component);
 
       stageManager.switchScene(new ShowProjectFxmlView());
@@ -118,9 +124,9 @@ public class ComponentController implements Initializable {
 
   @FXML
   private void createComponentMaterial(ActionEvent event) throws IOException {
-    Stage modal = stageManager.buildModal("/fxml/projects/modals/CreateComponentMaterial.fxml");
+    Stage modal = stageManager.buildModal("/fxml/projects/modals/FormComponentMaterial.fxml");
 
-    CreateComponentMaterialController controller = stageManager.getLoader().getController();
+    FormComponentMaterialController controller = stageManager.getLoader().getController();
 
     controller.setProject(getProject());
     controller.setComponent(getComponent());
