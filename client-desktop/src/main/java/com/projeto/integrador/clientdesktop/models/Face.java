@@ -2,6 +2,8 @@ package com.projeto.integrador.clientdesktop.models;
 
 import java.util.Collection;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Face {
 
   private Long id;
@@ -10,6 +12,7 @@ public class Face {
 
   private String orientation;
 
+  @JsonProperty("heat_flow")
   private double heatFlow;
 
   private Room room;

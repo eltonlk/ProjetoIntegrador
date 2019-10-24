@@ -14,12 +14,15 @@
   <center>
     <VBox>
       <HBox spacing="16.0">
-        <Label fx:id="modifiedByLabel" text="Usuário"/>
+        <Label fx:id="usernameLabel" text="Usuário"/>
         <Label fx:id="modifiedDateLabel" text="Data"/>
         <Label fx:id="actionLabel" text="Ação"/>
       </HBox>
 
-      <Label fx:id="contentLabel" text="Conteúdo"/>
+      <HBox spacing="16.0">
+        <Label fx:id="auditableTypeLabel" text="Registro"/>
+        <Label fx:id="auditedChangesLabel" text="Conteúdo"/>
+      </HBox>
     </VBox>
   </center>
 </BorderPane>

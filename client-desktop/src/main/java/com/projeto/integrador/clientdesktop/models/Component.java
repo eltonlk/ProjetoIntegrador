@@ -2,6 +2,8 @@ package com.projeto.integrador.clientdesktop.models;
 
 import java.util.Collection;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Component {
 
   private Long id;
@@ -10,12 +12,14 @@ public class Component {
 
   private double area;
 
+  @JsonProperty("heat_flow")
   private double heatFlow;
 
   private Face face;
 
   private Color color;
 
+  @JsonProperty("component_materials")
   private Collection<ComponentMaterial> componentMaterials;
 
   public Component(Long id, String name, double area, double heatFlow, Face face, Color color, Collection<ComponentMaterial> componentMaterials) {

@@ -3,7 +3,7 @@ class Face < ApplicationRecord
 
   belongs_to :room
 
-  has_many :components
+  has_many :components, dependent: :destroy
 
   validates :name       , presence: true
   validates :orientation, presence: true

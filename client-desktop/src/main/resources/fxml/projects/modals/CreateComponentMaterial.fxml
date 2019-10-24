@@ -51,8 +51,8 @@
         </VBox>
 
         <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-          <Label fx:id="thermalConductitityIndexLabel" text="Índice de Condutividade"/>
-          <TextField fx:id="thermalConductitityIndexInput" promptText="Índice de Condutividade"/>
+          <Label fx:id="thermalConductivityIndexLabel" text="Índice de Condutividade"/>
+          <TextField fx:id="thermalConductivityIndexInput" promptText="Índice de Condutividade"/>
         </VBox>
       </GridPane>
     </VBox>

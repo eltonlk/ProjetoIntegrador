@@ -1,11 +1,14 @@
 package com.projeto.integrador.clientdesktop.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Color {
 
   private Long id;
 
   private String name;
 
+  @JsonProperty("absorbability_index")
   private double absorbabilityIndex;
 
   private boolean active;

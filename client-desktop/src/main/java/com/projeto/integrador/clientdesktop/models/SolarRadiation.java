@@ -1,12 +1,36 @@
 package com.projeto.integrador.clientdesktop.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class SolarRadiation {
 
   private Long id;
 
   private String name;
 
-  private int northIndex, northEastIndex, eastIndex, southEastIndex, southIndex, southWestIndex, westIndex, northWestIndex;
+  @JsonProperty("north_index")
+  private int northIndex;
+
+  @JsonProperty("north_east_index")
+  private int northEastIndex;
+
+  @JsonProperty("east_index")
+  private int eastIndex;
+
+  @JsonProperty("south_east_index")
+  private int southEastIndex;
+
+  @JsonProperty("south_index")
+  private int southIndex;
+
+  @JsonProperty("south_west_index")
+  private int southWestIndex;
+
+  @JsonProperty("west_index")
+  private int westIndex;
+
+  @JsonProperty("north_west_index")
+  private int northWestIndex;
 
   public SolarRadiation(Long id, String name, int northIndex, int northEastIndex, int eastIndex,
     int southEastIndex, int southIndex, int southWestIndex, int westIndex, int northWestIndex) {

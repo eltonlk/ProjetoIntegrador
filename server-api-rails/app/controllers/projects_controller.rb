@@ -9,12 +9,12 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.all
 
-    render json: @projects
+    render json: @projects, include: [ :solar_radiation, rooms: { include: { faces: { include: { components: { include: [ :color, component_materials: { include: :material } ] } } } } } ]
   end
 
   # GET /projects/1
   def show
-    render json: @project
+    render json: @project, include: [ :solar_radiation, rooms: { include: { faces: { include: { components: { include: [ :color, component_materials: { include: :material } ] } } } } } ]
   end
 
   # POST /projects

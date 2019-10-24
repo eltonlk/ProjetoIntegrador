@@ -50,6 +50,6 @@ class ColorsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def color_params
-      params.permit(:name, :absorbability_index)
+      params.permit(:name, :absorbability_index, :active)
     end
 end

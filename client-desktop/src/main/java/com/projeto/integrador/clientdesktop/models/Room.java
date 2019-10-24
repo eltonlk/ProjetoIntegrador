@@ -2,12 +2,15 @@ package com.projeto.integrador.clientdesktop.models;
 
 import java.util.Collection;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Room {
 
   private Long id;
 
   private String name;
 
+  @JsonProperty("heat_load")
   private double heatLoad;
 
   private Project project;
