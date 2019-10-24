@@ -15,6 +15,9 @@ public class Room {
 
   private Project project;
 
+  @JsonProperty("project_id")
+  private Long projectId;
+
   private Collection<Face> faces;
 
   public Room(Long id, String name, double heatLoad, Project project, Collection<Face> faces) {
@@ -22,6 +25,7 @@ public class Room {
     this.name = name;
     this.heatLoad = heatLoad;
     this.project = project;
+    if (project != null) { this.projectId = project.getId(); }
     this.faces = faces;
   }
 
@@ -57,6 +61,7 @@ public class Room {
   }
 
   public void setProject(Project project) {
+    if (project != null) { this.projectId = project.getId(); }
     this.project = project;
   }
 

@@ -17,6 +17,9 @@ public class Face {
 
   private Room room;
 
+  @JsonProperty("room_id")
+  private Long roomId;
+
   private Collection<Component> components;
 
   public Face(Long id, String name, String orientation, double heatFlow, Room room, Collection<Component> components) {
@@ -25,6 +28,7 @@ public class Face {
     this.orientation = orientation;
     this.heatFlow = heatFlow;
     this.room = room;
+    if (room != null) { this.roomId = room.getId(); }
     this.components = components;
   }
 
@@ -68,6 +72,7 @@ public class Face {
   }
 
   public void setRoom(Room room) {
+    if (room != null) { this.roomId = room.getId(); }
     this.room = room;
   }
 
