@@ -22,18 +22,18 @@ class ProjectsController < ApplicationController
     @project = Project.new project_params
 
     if @project.save
-      render json: @project, status: :created, location: @project
+      render json: @project, include: [ :solar_radiation, :rooms ], status: :created, location: @project
     else
-      render json: @project.errors, status: :unprocessable_entity
+      render json: @project.errors, include: [ :solar_radiation, :rooms ], status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /projects/1
   def update
     if @project.update project_params
-      render json: @project
+      render json: @project, include: [ :solar_radiation, rooms: { include: { faces: { include: { components: { include: [ :color, component_materials: { include: :material } ] } } } } } ]
     else
-      render json: @project.errors, status: :unprocessable_entity
+      render json: @project.errors, include: [ :solar_radiation, rooms: { include: { faces: { include: { components: { include: [ :color, component_materials: { include: :material } ] } } } } } ], status: :unprocessable_entity
     end
   end
 

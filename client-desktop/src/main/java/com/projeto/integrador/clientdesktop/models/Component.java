@@ -17,7 +17,13 @@ public class Component {
 
   private Face face;
 
+  @JsonProperty("face_id")
+  private Long faceId;
+
   private Color color;
+
+  @JsonProperty("color_id")
+  private Long colorId;
 
   @JsonProperty("component_materials")
   private Collection<ComponentMaterial> componentMaterials;
@@ -28,7 +34,9 @@ public class Component {
     this.area = area;
     this.heatFlow = heatFlow;
     this.face = face;
+    if (face != null) { this.faceId = face.getId(); }
     this.color = color;
+    if (color != null) { this.colorId = color.getId(); }
     this.componentMaterials = componentMaterials;
   }
 
@@ -72,6 +80,7 @@ public class Component {
   }
 
   public void setFace(Face face) {
+    if (face != null) { this.faceId = face.getId(); }
     this.face = face;
   }
 
@@ -80,6 +89,7 @@ public class Component {
   }
 
   public void setColor(Color color) {
+    if (color != null) { this.colorId = color.getId(); }
     this.color = color;
   }
 

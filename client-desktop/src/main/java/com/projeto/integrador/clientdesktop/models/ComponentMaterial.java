@@ -15,7 +15,13 @@ public class ComponentMaterial {
 
   private Component component;
 
+  @JsonProperty("component_id")
+  private Long componentId;
+
   private Material material;
+
+  @JsonProperty("material_id")
+  private Long materialId;
 
   public ComponentMaterial(Long id, double width, double thermalConductivityIndex, double resistance, Component component, Material material) {
     this.id = id;
@@ -23,7 +29,9 @@ public class ComponentMaterial {
     this.thermalConductivityIndex = thermalConductivityIndex;
     this.resistance = resistance;
     this.component = component;
+    if (component != null) { this.componentId = component.getId(); }
     this.material = material;
+    if (material != null) { this.materialId = material.getId(); }
   }
 
   public ComponentMaterial() {
@@ -66,6 +74,7 @@ public class ComponentMaterial {
   }
 
   public void setComponent(Component component) {
+    if (component != null) { this.componentId = component.getId(); }
     this.component = component;
   }
 
@@ -74,6 +83,7 @@ public class ComponentMaterial {
   }
 
   public void setMaterial(Material material) {
+    if (material != null) { this.materialId = material.getId(); }
     this.material = material;
   }
 

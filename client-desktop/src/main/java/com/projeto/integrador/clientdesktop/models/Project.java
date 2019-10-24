@@ -21,6 +21,9 @@ public class Project {
   @JsonProperty("solar_radiation")
   private SolarRadiation solarRadiation;
 
+  @JsonProperty("solar_radiation_id")
+  private Long solarRadiationId;
+
   private Collection<Room> rooms;
 
   public Project(Long id, String name, String season, int externalTemperature, int internalTemperature, SolarRadiation solarRadiation, Collection<Room> rooms) {
@@ -30,6 +33,7 @@ public class Project {
     this.externalTemperature = externalTemperature;
     this.internalTemperature = internalTemperature;
     this.solarRadiation = solarRadiation;
+    if (solarRadiation != null) { this.solarRadiationId = solarRadiation.getId(); }
     this.rooms = rooms;
   }
 
@@ -81,6 +85,7 @@ public class Project {
   }
 
   public void setSolarRadiation(SolarRadiation solarRadiation) {
+    if (solarRadiation != null) { this.solarRadiationId = solarRadiation.getId(); }
     this.solarRadiation = solarRadiation;
   }
 
