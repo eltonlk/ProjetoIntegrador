@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane stylesheets="@../../../styles/Styles.css"
+            styleClass="list-item"
+            xmlns="http://javafx.com/javafx/12.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.projeto.integrador.clientdesktop.controllers.users.components.RoleController">
+
+  <center>
+    <VBox spacing="5.0">
+      <children>
+        <Label fx:id="roleLabel" text="Role"/>
+        <HBox fx:id="privilegesList" spacing="5.0">
+        </HBox>
+      </children>
+    </VBox>
+  </center>
+</BorderPane>

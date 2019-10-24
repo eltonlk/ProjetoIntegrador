@@ -5,10 +5,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.controllers.users.PermissionsController;
 import com.projeto.integrador.clientdesktop.controllers.users.UpdateUserController;
 import com.projeto.integrador.clientdesktop.models.User;
 import com.projeto.integrador.clientdesktop.resources.UserResource;
 import com.projeto.integrador.clientdesktop.views.users.ListUsersFxmlView;
+import com.projeto.integrador.clientdesktop.views.users.PermissionsFxmlView;
 import com.projeto.integrador.clientdesktop.views.users.UpdateUserFxmlView;
 
 import javafx.event.ActionEvent;
@@ -63,6 +65,14 @@ public class UserController implements Initializable {
     stageManager.switchScene(new UpdateUserFxmlView());
     UpdateUserController controller = stageManager.getLoader().getController();
     controller.setUser(user);
+  }
+
+  @FXML
+  private void goToPermissions(ActionEvent event) throws IOException {
+    stageManager.switchScene(new PermissionsFxmlView());
+    PermissionsController controller = stageManager.getLoader().getController();
+    controller.setUser(user);
+    controller.render();
   }
 
   @FXML

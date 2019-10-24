@@ -44,7 +44,6 @@ public class ListUsersController implements Initializable {
         e.printStackTrace();
       }
     }
-
   }
 
   @FXML
