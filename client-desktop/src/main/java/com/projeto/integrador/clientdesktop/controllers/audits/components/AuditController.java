@@ -7,13 +7,13 @@ import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.models.Audit;
 import com.projeto.integrador.clientdesktop.utils.DateParser;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
+
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 @Controller
 public class AuditController implements Initializable {
@@ -39,14 +39,15 @@ public class AuditController implements Initializable {
   }
 
   private void fillContent() {
-    modifiedByLabel.setText(audit.getModifiedBy());
+    usernameLabel.setText(audit.getUsername());
     modifiedDateLabel.setText(DateParser.localized(audit.getModifiedDate()));
     actionLabel.setText(audit.getAction());
-    contentLabel.setText(audit.getContent());
+    auditableTypeLabel.setText(audit.getAuditableType());
+    auditedChangesLabel.setText(audit.getAuditedChanges());
   }
 
   @FXML
-  private Label modifiedByLabel;
+  private Label usernameLabel;
 
   @FXML
   private Label modifiedDateLabel;
@@ -55,6 +56,9 @@ public class AuditController implements Initializable {
   private Label actionLabel;
 
   @FXML
-  private Label contentLabel;
+  private Label auditedChangesLabel;
+
+  @FXML
+  private Label auditableTypeLabel;
 
 }
