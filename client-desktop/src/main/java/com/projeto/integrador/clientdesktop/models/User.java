@@ -16,9 +16,9 @@ public class User {
 
   private boolean active;
 
-  private Collection<Role> roles;
+  private Collection<UserRole> roles;
 
-  public User(Long id, String name, String email, String username, String password, boolean active, Collection<Role> roles) {
+  public User(Long id, String name, String email, String username, String password, boolean active, Collection<UserRole> roles) {
     this.id = id;
     this.name = name;
     this.email = email;
@@ -86,11 +86,11 @@ public class User {
     this.active = active;
   }
 
-  public Collection<Role> getRoles() {
+  public Collection<UserRole> getRoles() {
     return roles;
   }
 
-  public void setRoles(Collection<Role> roles) {
+  public void setRoles(Collection<UserRole> roles) {
     this.roles = roles;
   }
 

@@ -31,50 +31,15 @@
       </padding>
 
       <HBox styleClass="header-view">
-        <Label text="Adicionar Usuário" styleClass="label-header"/>
+        <Label text="Usuário" styleClass="label-header"/>
         <Pane HBox.hgrow="ALWAYS"/>
         <Button onAction="#goToBack" text="Voltar"/>
       </HBox>
 
-      <VBox spacing="2.0">
+      <VBox fx:id="rolesList" spacing="20.0">
         <children>
-          <Label fx:id="nameLabel" text="Nome"/>
-          <TextField fx:id="nameInput" promptText="Nome"/>
         </children>
       </VBox>
-
-      <VBox spacing="2.0">
-        <children>
-          <Label fx:id="emailLabel" text="E-mail"/>
-          <TextField fx:id="emailInput" promptText="E-mail"/>
-        </children>
-      </VBox>
-
-      <VBox spacing="2.0">
-        <children>
-          <Label fx:id="usernameLabel" text="Usuário"/>
-          <TextField fx:id="usernameInput" promptText="Usuário"/>
-        </children>
-      </VBox>
-
-      <VBox spacing="2.0">
-        <children>
-          <Label fx:id="passwordLabel" text="Senha"/>
-          <PasswordField fx:id="passwordInput" promptText="Senha"/>
-        </children>
-      </VBox>
-
-      <VBox spacing="2.0">
-        <children>
-          <CheckBox fx:id="activeCheckBox" text="Ativo"/>
-        </children>
-      </VBox>
-
-      <HBox>
-        <children>
-          <Button fx:id="submitButton" onAction="#create" styleClass="button-primary" text="Adicionar"/>
-        </children>
-      </HBox>
     </VBox>
   </center>
 
