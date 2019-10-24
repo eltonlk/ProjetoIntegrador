@@ -6,7 +6,8 @@ import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.controllers.projects.ShowProjectController;
-import com.projeto.integrador.clientdesktop.controllers.projects.modals.CreateComponentController;
+import com.projeto.integrador.clientdesktop.controllers.projects.modals.FormComponentController;
+import com.projeto.integrador.clientdesktop.controllers.projects.modals.FormFaceController;
 import com.projeto.integrador.clientdesktop.models.Component;
 import com.projeto.integrador.clientdesktop.models.Face;
 import com.projeto.integrador.clientdesktop.models.Project;
@@ -56,7 +57,13 @@ public class FaceController implements Initializable {
 
   @FXML
   private void update(ActionEvent event) throws IOException {
-    // TODO: add update modal
+    Stage modal = stageManager.buildModal("/fxml/projects/modals/FormFace.fxml");
+
+    FormFaceController controller = stageManager.getLoader().getController();
+    controller.setProject(getProject());
+    controller.setFace(face);
+
+    modal.show();
   }
 
   @FXML
@@ -65,7 +72,6 @@ public class FaceController implements Initializable {
     alert.showAndWait();
 
     if (alert.getResult() == ButtonType.YES) {
-      // TODO: check on server-api why is not deleting the face
       faceResource.delete(face);
 
       stageManager.switchScene(new ShowProjectFxmlView());
@@ -117,9 +123,9 @@ public class FaceController implements Initializable {
 
   @FXML
   private void createComponent(ActionEvent event) throws IOException {
-    Stage modal = stageManager.buildModal("/fxml/projects/modals/CreateComponent.fxml");
+    Stage modal = stageManager.buildModal("/fxml/projects/modals/FormComponent.fxml");
 
-    CreateComponentController controller = stageManager.getLoader().getController();
+    FormComponentController controller = stageManager.getLoader().getController();
     controller.setProject(getProject());
     controller.setFace(getFace());
 

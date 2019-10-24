@@ -23,13 +23,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 @Controller
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-public class CreateFaceController implements Initializable {
+public class FormFaceController implements Initializable {
 
   @Lazy
   @Autowired
@@ -45,36 +47,54 @@ public class CreateFaceController implements Initializable {
 
   private Room room;
 
+  private Face face;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-  }
-
-  public Project getProject() {
-    return project;
+    face = new Face();
   }
 
   public void setProject(Project project) {
     this.project = project;
   }
 
-  public Room getRoom() {
-    return room;
-  }
-
   public void setRoom(Room room) {
     this.room = room;
   }
 
+  public void setFace(Face face) {
+    this.face = face;
+
+    fillForm();
+  }
+
+  private void fillForm() {
+    nameInput.setText(face.getName());
+    orientationComboBox.getSelectionModel().select(face.getOrientation());
+
+    if (face.getId() != null && face.getId() > 0) {
+      titleLabel.setText("Alterar Face");
+      submitButton.setText("Atualizar");
+    }
+  }
+
   @FXML
-  private void create(ActionEvent event) throws IOException {
-    Face face = new Face();
-    face.setRoom(getRoom());
-    face.setName(nameInput.getText());
-    face.setOrientation("north"); // TODO: get value from combobox
+  private void save(ActionEvent event) throws IOException {
+    this.face.setRoom(this.room);
+    this.face.setName(nameInput.getText());
+    this.face.setOrientation("north"); // TODO: get value from combobox
 
-    faceResource.create(face);
+    if (face.getId() != null && face.getId() > 0) {
+      faceResource.update(face);
+    } else {
+      faceResource.create(face);
+    }
 
-    Project project = projectResource.refresh(getProject());
+    close(event);
+  }
+
+  private void close(ActionEvent event) {
+    Project project = projectResource.refresh(this.project);
 
     stageManager.switchScene(new ShowProjectFxmlView());
     ShowProjectController controller = stageManager.getLoader().getController();
@@ -87,9 +107,15 @@ public class CreateFaceController implements Initializable {
   }
 
   @FXML
+  private Label titleLabel;
+
+  @FXML
   private TextField nameInput;
 
   @FXML
   private ComboBox<String> orientationComboBox;
+
+  @FXML
+  private Button submitButton;
 
 }

@@ -72,6 +72,7 @@ public class UpdateProjectController implements Initializable {
 
   private void fillForm() {
     nameInput.setText(project.getName());
+    seasonComboBox.getSelectionModel().select(project.getSeason());
     externalTemperatureInput.setText(NumberParser.localizeFromInt(project.getExternalTemperature()));
     internalTemperatureInput.setText(NumberParser.localizeFromInt(project.getInternalTemperature()));
     solarRadiationComboBox.getSelectionModel().select(project.getSolarRadiation());

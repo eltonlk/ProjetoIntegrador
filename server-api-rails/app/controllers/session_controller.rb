@@ -1,6 +1,4 @@
-class SessionController < ApplicationController
-  skip_before_action :authenticate_request
-
+class SessionController < ActionController::API
   def create
     service = AuthenticateService.call(params[:username], params[:password])
 

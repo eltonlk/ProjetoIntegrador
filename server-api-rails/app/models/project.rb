@@ -13,6 +13,8 @@ class Project < ApplicationRecord
   validates_numericality_of :internal_temperature
   validates :season, inclusion: { in: %w(summer winter)  }
 
+  default_scope -> { order :name }
+
   after_update :save_components
 
   private

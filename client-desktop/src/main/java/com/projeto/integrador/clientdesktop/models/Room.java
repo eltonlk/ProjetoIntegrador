@@ -2,6 +2,7 @@ package com.projeto.integrador.clientdesktop.models;
 
 import java.util.Collection;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Room {
@@ -13,6 +14,7 @@ public class Room {
   @JsonProperty("heat_load")
   private double heatLoad;
 
+  @JsonIgnore
   private Project project;
 
   @JsonProperty("project_id")

@@ -2,7 +2,7 @@ package com.projeto.integrador.clientdesktop.controllers.projects;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.controllers.projects.components.RoomController;
-import com.projeto.integrador.clientdesktop.controllers.projects.modals.CreateRoomController;
+import com.projeto.integrador.clientdesktop.controllers.projects.modals.FormRoomController;
 import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.models.Room;
 import com.projeto.integrador.clientdesktop.resources.ProjectResource;
@@ -47,9 +47,9 @@ public class ShowProjectController implements Initializable {
 
   @FXML
   private void createRoom(ActionEvent event) throws IOException {
-    Stage modal = stageManager.buildModal("/fxml/projects/modals/CreateRoom.fxml");
+    Stage modal = stageManager.buildModal("/fxml/projects/modals/FormRoom.fxml");
 
-    CreateRoomController controller = stageManager.getLoader().getController();
+    FormRoomController controller = stageManager.getLoader().getController();
     controller.setProject(getProject());
 
     modal.show();
