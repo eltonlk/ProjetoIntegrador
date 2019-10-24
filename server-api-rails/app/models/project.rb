@@ -1,6 +1,8 @@
 class Project < ApplicationRecord
   audited
 
+  enum season: [ :summer, :winter ]
+
   belongs_to :solar_radiation
 
   has_many :rooms
