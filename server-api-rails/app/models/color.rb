@@ -5,4 +5,6 @@ class Color < ApplicationRecord
 
   validates :name, presence: true
   validates_numericality_of :absorbability_index, greater_than: 0
+
+  default_scope -> { order :name }
 end

@@ -25,10 +25,6 @@ role :app, %w{teste@jules.zanshinsoftware.com}
 role :web, %w{teste@jules.zanshinsoftware.com}
 role :db,  %w{teste@jules.zanshinsoftware.com}
 
-# role :app, %w{deploy@jules.zanshinsoftware.com}
-# role :web, %w{deploy@jules.zanshinsoftware.com}
-# role :db,  %w{deploy@jules.zanshinsoftware.com}
-
 # Configuration
 # =============
 # You can set any configuration variable like in config/deploy.rb
@@ -67,11 +63,6 @@ role :db,  %w{teste@jules.zanshinsoftware.com}
 #   }
 
 set :rails_env, 'production'
-set :deploy_to, '/home/teste/staging'
+set :deploy_to, '/home/teste/production'
 set :branch, "master"
 set :tmp_dir, '/home/teste/tmp'
-
-# set :rails_env, 'production'
-# set :deploy_to, '/home/deploy/teste'
-# set :branch, "master"
-# set :tmp_dir, '/home/deploy/tmp'

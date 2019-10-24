@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  root to: 'welcome#index'
+
+  resource :welcome, only: [ :index ]
 
   resource :login, only: [ :create ], controller: 'session'
 
