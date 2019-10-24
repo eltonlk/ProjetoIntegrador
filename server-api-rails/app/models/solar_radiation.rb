@@ -12,4 +12,6 @@ class SolarRadiation < ApplicationRecord
   validates_numericality_of :south_west_index, greater_than: 0
   validates_numericality_of :east_index      , greater_than: 0
   validates_numericality_of :west_index      , greater_than: 0
+
+  default_scope -> { order :name }
 end
