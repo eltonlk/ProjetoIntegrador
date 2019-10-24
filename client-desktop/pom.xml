@@ -93,6 +93,12 @@
 			<artifactId>ikonli-fontawesome5-pack</artifactId>
 			<version>11.3.4</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -102,24 +108,24 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-        		<artifactId>maven-compiler-plugin</artifactId>
-        		<configuration>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
-        		</configuration>
-    		</plugin>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>3.0.2</version>
-      			<configuration>
-        			<archive>
-          				<manifest>
-            				<mainClass>com.projeto.integrador.clientdesktop.Main</mainClass>
-          				</manifest>
-        			</archive>
-      			</configuration>
-    		</plugin>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>com.projeto.integrador.clientdesktop.Main</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 </project>

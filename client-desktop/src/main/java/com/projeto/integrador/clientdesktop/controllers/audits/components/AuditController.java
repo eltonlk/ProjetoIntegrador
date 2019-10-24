@@ -40,10 +40,10 @@ public class AuditController implements Initializable {
 
   private void fillContent() {
     usernameLabel.setText(audit.getUsername());
-    modifiedDateLabel.setText(DateParser.localized(audit.getModifiedDate()));
+    modifiedDateLabel.setText(DateParser.localized(audit.getCreatedAt()));
     actionLabel.setText(audit.getAction());
     auditableTypeLabel.setText(audit.getAuditableType());
-    auditedChangesLabel.setText(audit.getAuditedChanges());
+    auditedChangesLabel.setText(audit.getAuditedChanges().toString());
   }
 
   @FXML
