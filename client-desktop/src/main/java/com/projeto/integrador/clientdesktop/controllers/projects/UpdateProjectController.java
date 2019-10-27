@@ -90,6 +90,8 @@ public class UpdateProjectController implements Initializable {
 
     projectResource.update(project);
 
+    project = projectResource.refresh(project);
+
     stageManager.switchScene(new ShowProjectFxmlView());
     ShowProjectController controller = stageManager.getLoader().getController();
     controller.setProject(project);
