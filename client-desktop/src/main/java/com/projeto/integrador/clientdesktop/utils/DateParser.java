@@ -1,17 +1,16 @@
 package com.projeto.integrador.clientdesktop.utils;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateParser {
 
-  public static String localized(Date date) {
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // TODO: add time together;
-    LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+  private static final String DATE_TIME_PATTERN = "dd/MM/yyyy HH:mm:ss";
 
-    return formatter.format(localDate);
+  public static String localized(Date date) {
+    SimpleDateFormat formatter = new SimpleDateFormat(DATE_TIME_PATTERN);
+
+    return formatter.format(date);
   }
 
 }
