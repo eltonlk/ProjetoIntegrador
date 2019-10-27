@@ -55,8 +55,6 @@ public class ComponentMaterialsController {
   @ResponseStatus(HttpStatus.CREATED)
   @PreAuthorize("hasAuthority('CREATE_PRIVILEGE')")
   public ComponentMaterial create(@RequestBody ComponentMaterial componentMaterial) {
-    // componentMaterial.setResistance(resistanceCalculatedFor(componentMaterial));
-
     return repository.save(componentMaterial);
   }
 
@@ -70,8 +68,6 @@ public class ComponentMaterialsController {
         record.setResistance(componentMaterial.getResistance());
         record.setComponent(componentMaterial.getComponent());
         record.setMaterial(componentMaterial.getMaterial());
-
-        // record.setResistance(resistanceCalculatedFor(record));
 
         ComponentMaterial updated = repository.save(record);
 
@@ -88,15 +84,6 @@ public class ComponentMaterialsController {
 
         return ResponseEntity.ok().build();
       }).orElse(ResponseEntity.notFound().build());
-  }
-
-  private double resistanceCalculatedFor(ComponentMaterial componentMaterial) {
-    double l = componentMaterial.getWidth();
-    double i = componentMaterial.getThermalConductivityIndex();
-
-    System.out.println("\r\n\r\n\r\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> l = " + l + ", i = " + i + "\r\n\r\n\r\n");
-
-    return l / i;
   }
 
 }

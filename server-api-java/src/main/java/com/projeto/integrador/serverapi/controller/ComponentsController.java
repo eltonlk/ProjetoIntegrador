@@ -1,8 +1,6 @@
 package com.projeto.integrador.serverapi.controller;
 
 import com.projeto.integrador.serverapi.model.Component;
-import com.projeto.integrador.serverapi.model.ComponentMaterial;
-import com.projeto.integrador.serverapi.model.Face;
 import com.projeto.integrador.serverapi.repository.ComponentsRepository;
 
 import java.util.List;
@@ -71,8 +69,6 @@ public class ComponentsController {
         record.setFace(component.getFace());
         record.setColor(component.getColor());
 
-        // record.setHeatFlow(heatFlowCalculatedFor(record));
-
         Component updated = repository.save(record);
 
         return ResponseEntity.ok().body(updated);
@@ -88,63 +84,6 @@ public class ComponentsController {
 
         return ResponseEntity.ok().build();
       }).orElse(ResponseEntity.notFound().build());
-  }
-
-  private double heatFlowCalculatedFor(Component component) {
-    double resistance = 0;
-    resistance += 0.04; // TODO: External Surface Resistance;
-    resistance += 0.13; // TODO: Internal Surface Resistance, get flow by user params (0.1, 0.13, 0.17);
-
-    if (component.getComponentMaterials() != null) {
-      for (ComponentMaterial componentMaterial : component.getComponentMaterials()) {
-        resistance += componentMaterial.getResistance();
-      }
-    }
-
-    double thermalTransmittance = component.getArea() / resistance;
-
-    double u = thermalTransmittance;
-    double a = component.getColor().getAbsorbabilityIndex();
-    double i = getSolarRadiationOrientationIndex(component.getFace());
-    double rse = 0.04;
-    double te = component.getFace().getRoom().getProject().getExternalTemperature();
-    double ti = component.getFace().getRoom().getProject().getInternalTemperature();
-
-    String season = component.getFace().getRoom().getProject().getSeason();
-
-    // TODO: check if it is a glass;
-    // u * ( te - ti ) + fs * i;
-
-    if ("winter".equals(season)) {
-      return  u * ( te - ti );
-    } else if ("summer".equals(season)) {
-      return u * ( a * i * rse + te - ti );
-    } else {
-      return 0;
-    }
-  }
-
-  private int getSolarRadiationOrientationIndex(Face face) {
-    switch(face.getOrientation()) {
-      case "north":
-        return face.getRoom().getProject().getSolarRadiation().getNorthIndex();
-      case "north_east":
-        return face.getRoom().getProject().getSolarRadiation().getNorthEastIndex();
-      case "east":
-        return face.getRoom().getProject().getSolarRadiation().getEastIndex();
-      case "south_east":
-        return face.getRoom().getProject().getSolarRadiation().getSouthEastIndex();
-      case "south":
-        return face.getRoom().getProject().getSolarRadiation().getSouthIndex();
-      case "south_west":
-        return face.getRoom().getProject().getSolarRadiation().getSouthWestIndex();
-      case "west":
-        return face.getRoom().getProject().getSolarRadiation().getWestIndex();
-      case "north_west":
-        return face.getRoom().getProject().getSolarRadiation().getNorthWestIndex();
-      default:
-        return 0;
-    }
   }
 
 }

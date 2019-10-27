@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.models.UserRole;
-import com.projeto.integrador.clientdesktop.resources.OptionResource;
 import com.projeto.integrador.clientdesktop.resources.UserRoleResource;
 import com.projeto.integrador.clientdesktop.utils.ToggleSwitch;
 

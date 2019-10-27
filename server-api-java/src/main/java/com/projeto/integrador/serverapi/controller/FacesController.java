@@ -1,6 +1,5 @@
 package com.projeto.integrador.serverapi.controller;
 
-import com.projeto.integrador.serverapi.model.Component;
 import com.projeto.integrador.serverapi.model.Face;
 import com.projeto.integrador.serverapi.repository.FacesRepository;
 
@@ -69,8 +68,6 @@ public class FacesController {
         record.setHeatFlow(face.getHeatFlow());
         record.setRoom(face.getRoom());
 
-        // record.setHeatFlow(heatFlowCanculatedFor(record));
-
         Face updated = repository.save(record);
 
         return ResponseEntity.ok().body(updated);
@@ -86,16 +83,6 @@ public class FacesController {
 
         return ResponseEntity.ok().build();
       }).orElse(ResponseEntity.notFound().build());
-  }
-
-  private double heatFlowCanculatedFor(Face face) {
-    double heatFlow = 0;
-
-    for (Component component : face.getComponents()) {
-      heatFlow += component.getHeatFlow();
-    }
-
-    return heatFlow;
   }
 
 }

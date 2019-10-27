@@ -9,19 +9,11 @@ import javax.transaction.Transactional;
 import com.projeto.integrador.serverapi.auditor.BeanUtil;
 import com.projeto.integrador.serverapi.model.Audit;
 import com.projeto.integrador.serverapi.model.Option;
-// import com.projeto.integrador.serverapi.repository.AuditsRepository; // TODO:
 import com.projeto.integrador.serverapi.service.OptionService;
-
-// import org.springframework.beans.factory.annotation.Autowired; // TODO:
 
 import static javax.transaction.Transactional.TxType.MANDATORY;
 
 public class AuditListener {
-
-  // private OptionService optionService; // TODO:
-
-  // @Autowired
-  // private AuditsRepository repository; // TODO:
 
   @PrePersist
   public void prePersist(Object auditable) {
@@ -45,8 +37,6 @@ public class AuditListener {
         EntityManager entityManager = BeanUtil.getBean(EntityManager.class);
 
         entityManager.persist(new Audit(auditable, action));
-
-        // repository.save(new Audit(auditable, action));
     }
   }
 
