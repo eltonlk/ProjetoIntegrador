@@ -50,9 +50,19 @@
           <TextField fx:id="widthInput" promptText="Espessura"/>
         </VBox>
 
-        <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <VBox fx:id="thermalConductivityIndexWrapper" spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
           <Label fx:id="thermalConductivityIndexLabel" text="Índice de Condutividade"/>
           <TextField fx:id="thermalConductivityIndexInput" promptText="Índice de Condutividade"/>
+        </VBox>
+
+        <VBox fx:id="solarFactorWrapper" spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+          <Label fx:id="solarFactorLabel" text="Fator Solar"/>
+          <TextField fx:id="solarFactorInput" promptText="Fator Solar"/>
+        </VBox>
+
+        <VBox fx:id="resistanceWrapper" spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+          <Label fx:id="resistanceLabel" text="Resistência"/>
+          <TextField fx:id="resistanceInput" promptText="Resistência"/>
         </VBox>
       </GridPane>
     </VBox>

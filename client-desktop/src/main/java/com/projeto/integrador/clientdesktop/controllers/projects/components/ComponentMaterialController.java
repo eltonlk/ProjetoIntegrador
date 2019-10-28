@@ -98,7 +98,6 @@ public class ComponentMaterialController implements Initializable {
   private void fillContent() {
     materialLabel.setText(getComponentMaterial().getMaterial().getName());
     widthLabel.setText(NumberParser.localizeFromDouble(getComponentMaterial().getWidth()));
-    thermalConductivityIndexLabel.setText(NumberParser.localizeFromDouble(getComponentMaterial().getThermalConductivityIndex()));
     resistanceLabel.setText(NumberParser.localizeFromDouble(getComponentMaterial().getResistance()));
   }
 
@@ -107,9 +106,6 @@ public class ComponentMaterialController implements Initializable {
 
   @FXML
   private Label widthLabel;
-
-  @FXML
-  private Label thermalConductivityIndexLabel;
 
   @FXML
   private Label resistanceLabel;

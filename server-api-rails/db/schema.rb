@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_23_184409) do
+ActiveRecord::Schema.define(version: 2019_10_27_163532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 2019_10_23_184409) do
     t.bigint "material_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "kind", default: 0, null: false
+    t.decimal "solar_factor", precision: 10, scale: 5, default: "0.0"
     t.index ["component_id"], name: "index_component_materials_on_component_id"
     t.index ["material_id"], name: "index_component_materials_on_material_id"
   end
@@ -85,6 +87,9 @@ ActiveRecord::Schema.define(version: 2019_10_23_184409) do
     t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "kind", default: 0, null: false
+    t.decimal "solar_factor", precision: 10, scale: 5, default: "0.0"
+    t.decimal "resistance", precision: 10, scale: 5, default: "0.0"
   end
 
   create_table "options", force: :cascade do |t|

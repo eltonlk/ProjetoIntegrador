@@ -3,6 +3,7 @@ package com.projeto.integrador.clientdesktop.controllers.solarradiations;
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.models.SolarRadiation;
 import com.projeto.integrador.clientdesktop.resources.SolarRadiationResource;
+import com.projeto.integrador.clientdesktop.utils.Mask;
 import com.projeto.integrador.clientdesktop.utils.NumberParser;
 import com.projeto.integrador.clientdesktop.views.solarradiations.ListSolarRadiationsFxmlView;
 
@@ -36,11 +37,7 @@ public class CreateSolarRadiationController implements Initializable {
       northEastIndexInput, northWestIndexInput, southEastIndexInput, southWestIndexInput};
 
     for (TextField indexTextField : indexTextFieldList) {
-      indexTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-        if (!newValue.matches("\\d{0,5}")) {
-          indexTextField.setText(oldValue);
-        }
-      });
+      Mask.addTo(indexTextField, "\\d{0,5}");
     }
   }
 

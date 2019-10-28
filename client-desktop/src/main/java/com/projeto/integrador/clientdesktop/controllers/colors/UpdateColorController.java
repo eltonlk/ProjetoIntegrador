@@ -3,6 +3,7 @@ package com.projeto.integrador.clientdesktop.controllers.colors;
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.models.Color;
 import com.projeto.integrador.clientdesktop.resources.ColorResource;
+import com.projeto.integrador.clientdesktop.utils.Mask;
 import com.projeto.integrador.clientdesktop.utils.NumberParser;
 import com.projeto.integrador.clientdesktop.views.colors.ListColorsFxmlView;
 
@@ -37,11 +38,7 @@ public class UpdateColorController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     color = new Color();
 
-    absorbabilityIndexInput.textProperty().addListener((observable, oldValue, newValue) -> {
-      if (!newValue.matches("\\d{0,5}([\\,]\\d{0,5})?")) {
-        absorbabilityIndexInput.setText(oldValue);
-      }
-    });
+    Mask.addTo(absorbabilityIndexInput, Mask.DECIMAL_5_X_5);
   }
 
   public Color getColor() {

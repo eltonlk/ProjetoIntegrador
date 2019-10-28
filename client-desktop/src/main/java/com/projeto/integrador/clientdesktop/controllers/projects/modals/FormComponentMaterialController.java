@@ -26,6 +26,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,9 +68,33 @@ public class FormComponentMaterialController implements Initializable {
 
     materialComboBox.setItems(materialsOptions);
 
-    materialComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-      thermalConductivityIndexInput.setText(NumberParser.localizeFromDouble(newValue.getThermalConductivityIndex()));
+    materialComboBox.setOnAction((e) -> {
+      Material material = materialComboBox.getSelectionModel().getSelectedItem();
+      String kind = "";
+
+      if (material != null) {
+        thermalConductivityIndexInput.setText(NumberParser.localizeFromDouble(material.getThermalConductivityIndex()));
+        solarFactorInput.setText(NumberParser.localizeFromDouble(material.getSolarFactor()));
+        resistanceInput.setText(NumberParser.localizeFromDouble(material.getResistance()));
+
+        kind = material.getKind();
+      }
+
+      thermalConductivityIndexWrapper.setVisible(false);
+      solarFactorWrapper.setVisible(false);
+      resistanceWrapper.setVisible(false);
+
+      if ("translucent".equals(kind)) {
+        thermalConductivityIndexWrapper.setVisible(true);
+        solarFactorWrapper.setVisible(true);
+      } else if ("air".equals(kind)) {
+        resistanceWrapper.setVisible(true);
+      } else {
+        thermalConductivityIndexWrapper.setVisible(true);
+      }
     });
+
+    materialComboBox.fireEvent(new ActionEvent());
   }
 
   public void setProject(Project project) {
@@ -90,6 +115,10 @@ public class FormComponentMaterialController implements Initializable {
     materialComboBox.getSelectionModel().select(componentMaterial.getMaterial());
     widthInput.setText(NumberParser.localizeFromDouble(componentMaterial.getWidth()));
     thermalConductivityIndexInput.setText(NumberParser.localizeFromDouble(componentMaterial.getThermalConductivityIndex()));
+    solarFactorInput.setText(NumberParser.localizeFromDouble(componentMaterial.getSolarFactor()));
+    resistanceInput.setText(NumberParser.localizeFromDouble(componentMaterial.getResistance()));
+
+    materialComboBox.fireEvent(new ActionEvent());
 
     if (componentMaterial.getId() != null && componentMaterial.getId() > 0) {
       titleLabel.setText("Alterar Material");
@@ -103,6 +132,8 @@ public class FormComponentMaterialController implements Initializable {
     componentMaterial.setMaterial(materialComboBox.getSelectionModel().getSelectedItem());
     componentMaterial.setWidth(NumberParser.parseToDouble(widthInput.getText()));
     componentMaterial.setThermalConductivityIndex(NumberParser.parseToDouble(thermalConductivityIndexInput.getText()));
+    componentMaterial.setSolarFactor(NumberParser.parseToDouble(solarFactorInput.getText()));
+    componentMaterial.setResistance(NumberParser.parseToDouble(resistanceInput.getText()));
 
     if (componentMaterial.getId() != null && componentMaterial.getId() > 0) {
       componentMaterialResource.update(componentMaterial);
@@ -136,7 +167,22 @@ public class FormComponentMaterialController implements Initializable {
   private TextField widthInput;
 
   @FXML
+  private VBox thermalConductivityIndexWrapper;
+
+  @FXML
   private TextField thermalConductivityIndexInput;
+
+  @FXML
+  private VBox solarFactorWrapper;
+
+  @FXML
+  private TextField solarFactorInput;
+
+  @FXML
+  private VBox resistanceWrapper;
+
+  @FXML
+  private TextField resistanceInput;
 
   @FXML
   private Button submitButton;

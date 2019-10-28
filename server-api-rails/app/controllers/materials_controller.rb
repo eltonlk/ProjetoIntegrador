@@ -50,6 +50,6 @@ class MaterialsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def material_params
-      params.permit(:name, :thermal_conductivity_index, :active)
+      params.permit(:name, :kind, :thermal_conductivity_index, :solar_factor, :resistance, :active)
     end
 end

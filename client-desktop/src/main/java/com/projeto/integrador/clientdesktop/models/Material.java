@@ -8,16 +8,26 @@ public class Material {
 
   private String name;
 
+  private String kind;
+
   private boolean active;
 
   @JsonProperty("thermal_conductivity_index")
   private double thermalConductivityIndex;
 
-  public Material(Long id, String name, boolean active, double thermalConductivityIndex) {
+  @JsonProperty("solar_factor")
+  private double solarFactor;
+
+  private double resistance;
+
+  public Material(Long id, String name, String kind, boolean active, double thermalConductivityIndex, double solarFactor, double resistance) {
     this.id = id;
     this.name = name;
+    this.kind = kind;
     this.active = active;
     this.thermalConductivityIndex = thermalConductivityIndex;
+    this.solarFactor = solarFactor;
+    this.resistance = resistance;
   }
 
   public Material() {
@@ -39,6 +49,14 @@ public class Material {
     this.name = name;
   }
 
+  public String getKind() {
+    return kind;
+  }
+
+  public void setKind(String kind) {
+    this.kind = kind;
+  }
+
   public boolean isActive() {
     return active;
   }
@@ -53,6 +71,22 @@ public class Material {
 
   public void setThermalConductivityIndex(double thermalConductivityIndex) {
     this.thermalConductivityIndex = thermalConductivityIndex;
+  }
+
+  public double getSolarFactor() {
+    return solarFactor;
+  }
+
+  public void setSolarFactor(double solarFactor) {
+    this.solarFactor = solarFactor;
+  }
+
+  public double getResistance() {
+    return resistance;
+  }
+
+  public void setResistance(double resistance) {
+    this.resistance = resistance;
   }
 
   @Override

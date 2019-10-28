@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.BorderPane?>
@@ -19,10 +21,27 @@
         <Label fx:id="inactiveLabel" text="(Inativo)"/>
       </HBox>
 
-      <HBox spacing="8">
-        <Label text="Índice:"/>
-        <Label fx:id="thermalConductivityIndexLabel" text="Índice de condutividade térmica"/>
-      </HBox>
+      <GridPane hgap="32" vgap="8">
+        <columnConstraints>
+          <ColumnConstraints />
+          <ColumnConstraints />
+        </columnConstraints>
+
+        <HBox fx:id="thermalConductivityIndexWrapper" spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+          <Label text="Índice de condutividade térmica:"/>
+          <Label fx:id="thermalConductivityIndexLabel" text="Índice de condutividade térmica"/>
+        </HBox>
+
+        <HBox fx:id="solarFactorWrapper" spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+          <Label text="Fator Solar:"/>
+          <Label fx:id="solarFactorLabel" text="Fator Solar"/>
+        </HBox>
+
+        <HBox fx:id="resistanceWrapper" spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+          <Label text="Resistência:"/>
+          <Label fx:id="resistanceLabel" text="Resistência"/>
+        </HBox>
+      </GridPane>
     </VBox>
   </center>
 

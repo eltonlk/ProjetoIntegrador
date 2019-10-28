@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -51,12 +52,27 @@
               <TextField fx:id="nameInput" promptText="Nome"/>
             </VBox>
 
-            <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <VBox fx:id="kindWrapper" spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+              <Label fx:id="kindLabel" text="Tipo de Material"/>
+              <ComboBox fx:id="kindComboBox" promptText="Selecione"/>
+            </VBox>
+
+            <VBox fx:id="thermalConductivityIndexWrapper" spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
               <Label fx:id="thermalConductivityIndexLabel" text="Índice de condutividade térmica"/>
               <TextField fx:id="thermalConductivityIndexInput" promptText="Índice de condutividade térmica"/>
             </VBox>
 
-            <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <VBox fx:id="solarFactorWrapper" spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+              <Label fx:id="solarFactorLabel" text="Fator Solar"/>
+              <TextField fx:id="solarFactorInput" promptText="Fator Solar"/>
+            </VBox>
+
+            <VBox fx:id="resistanceWrapper" spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+              <Label fx:id="resistanceLabel" text="Resistência"/>
+              <TextField fx:id="resistanceInput" promptText="Resistência"/>
+            </VBox>
+
+            <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
               <CheckBox fx:id="activeCheckBox" text="Ativo"/>
             </VBox>
           </GridPane>

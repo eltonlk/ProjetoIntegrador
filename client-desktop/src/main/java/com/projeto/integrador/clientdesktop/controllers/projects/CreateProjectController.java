@@ -10,6 +10,7 @@ import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.models.SolarRadiation;
 import com.projeto.integrador.clientdesktop.resources.ProjectResource;
 import com.projeto.integrador.clientdesktop.resources.SolarRadiationResource;
+import com.projeto.integrador.clientdesktop.utils.Mask;
 import com.projeto.integrador.clientdesktop.utils.NumberParser;
 import com.projeto.integrador.clientdesktop.views.projects.ListProjectsFxmlView;
 import com.projeto.integrador.clientdesktop.views.projects.ShowProjectFxmlView;
@@ -42,15 +43,8 @@ public class CreateProjectController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    TextField[] indexTextFieldList = {externalTemperatureInput, internalTemperatureInput};
-
-    for (TextField indexTextField : indexTextFieldList) {
-      indexTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-        if (!newValue.matches("([\\-])?\\d{0,2}")) {
-          indexTextField.setText(oldValue);
-        }
-      });
-    }
+    Mask.addTo(externalTemperatureInput, "([\\-])?\\d{0,2}");
+    Mask.addTo(internalTemperatureInput, "([\\-])?\\d{0,2}");
 
     ObservableList<ProjectSeasonCollection> seasonOptions = FXCollections.observableArrayList(ProjectSeasonCollection.collection());
     seasonComboBox.setItems(seasonOptions);

@@ -5,27 +5,47 @@ import java.text.DecimalFormat;
 public class NumberParser {
 
   public static int parseToInt(String numberString) {
-    return Integer.parseInt(numberString.replace(",", "."));
+    try {
+      return Integer.parseInt(numberString.replace(",", "."));
+    } catch(Exception e) {
+      return 0;
+    }
   }
 
   public static Double parseToDouble(String numberString) {
-    return Double.parseDouble(numberString.replace(",", "."));
+    try {
+      return Double.parseDouble(numberString.replace(",", "."));
+    } catch(Exception e) {
+      return 0.0;
+    }
   }
 
   public static String localizeFromInt(int number) {
-    return localizeFromDouble(number);
+    try {
+      return localizeFromDouble(number);
+    } catch(Exception e) {
+      return "";
+    }
   }
 
   public static String localizeFromDouble(double number) {
     DecimalFormat formatter = new DecimalFormat();
 
-    return formatter.format(number);
+    try {
+      return formatter.format(number);
+    } catch(Exception e) {
+      return "";
+    }
   }
 
   public static String localizeFromDouble(double number, String mask) {
     DecimalFormat formatter = new DecimalFormat(mask);
 
-    return formatter.format(number);
+    try {
+      return formatter.format(number);
+    } catch(Exception e) {
+      return "";
+    }
   }
 
 }
