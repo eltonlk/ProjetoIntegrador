@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_27_163532) do
+ActiveRecord::Schema.define(version: 2019_10_31_020207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,12 +72,12 @@ ActiveRecord::Schema.define(version: 2019_10_27_163532) do
   end
 
   create_table "faces", force: :cascade do |t|
-    t.string "name", null: false
     t.string "orientation", null: false
     t.decimal "heat_flow", precision: 10, scale: 5, default: "0.0"
     t.bigint "room_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "kind", default: 0, null: false
     t.index ["room_id"], name: "index_faces_on_room_id"
   end
 
@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(version: 2019_10_27_163532) do
     t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "perpendicular_index", default: 0, null: false
   end
 
   create_table "user_roles", force: :cascade do |t|

@@ -101,6 +101,11 @@
               <Label fx:id="southEastIndexLabel" text="Sudeste"/>
               <TextField fx:id="southEastIndexInput" promptText="Índice"/>
             </VBox>
+
+            <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="4">
+              <Label fx:id="perpendicularIndexLabel" text="Perpendicular"/>
+              <TextField fx:id="perpendicularIndexInput" promptText="Índice"/>
+            </VBox>
           </GridPane>
 
           <HBox>

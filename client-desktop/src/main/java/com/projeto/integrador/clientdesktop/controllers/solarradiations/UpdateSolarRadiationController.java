@@ -38,7 +38,7 @@ public class UpdateSolarRadiationController implements Initializable {
     solarRadiation = new SolarRadiation();
 
     TextField[] indexTextFieldList = {northIndexInput, southIndexInput, eastIndexInput, westIndexInput,
-      northEastIndexInput, northWestIndexInput, southEastIndexInput, southWestIndexInput};
+      northEastIndexInput, northWestIndexInput, southEastIndexInput, southWestIndexInput, perpendicularIndexInput};
 
     for (TextField indexTextField : indexTextFieldList) {
       Mask.addTo(indexTextField, "\\d{0,5}");
@@ -65,6 +65,7 @@ public class UpdateSolarRadiationController implements Initializable {
     northWestIndexInput.setText(NumberParser.localizeFromInt(solarRadiation.getNorthWestIndex()));
     southEastIndexInput.setText(NumberParser.localizeFromInt(solarRadiation.getSouthEastIndex()));
     southWestIndexInput.setText(NumberParser.localizeFromInt(solarRadiation.getSouthWestIndex()));
+    perpendicularIndexInput.setText(NumberParser.localizeFromInt(solarRadiation.getPerpendicularIndex()));
   }
 
   @FXML
@@ -78,6 +79,7 @@ public class UpdateSolarRadiationController implements Initializable {
     solarRadiation.setNorthWestIndex(NumberParser.parseToInt(northWestIndexInput.getText()));
     solarRadiation.setSouthEastIndex(NumberParser.parseToInt(southEastIndexInput.getText()));
     solarRadiation.setSouthWestIndex(NumberParser.parseToInt(southWestIndexInput.getText()));
+    solarRadiation.setPerpendicularIndex(NumberParser.parseToInt(perpendicularIndexInput.getText()));
 
     solarRadiationResource.update(solarRadiation);
 
@@ -118,5 +120,8 @@ public class UpdateSolarRadiationController implements Initializable {
 
   @FXML
   private TextField southWestIndexInput;
+
+  @FXML
+  private TextField perpendicularIndexInput;
 
 }

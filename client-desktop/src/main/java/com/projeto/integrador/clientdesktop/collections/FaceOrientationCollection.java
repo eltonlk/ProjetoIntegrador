@@ -8,7 +8,8 @@ public enum FaceOrientationCollection {
   NORTH_EAST("north_east", "Nordeste"),
   NORHT_WEST("north_west", "Noroeste"),
   SOUTH_EAST("south_east", "Sudeste"),
-  SOUTH_WEST("south_west", "Sudoeste");
+  SOUTH_WEST("south_west", "Sudoeste"),
+  PERPENDICULAR("perpendicular", "Perpendicular");
 
   private final String value, text;
 
@@ -26,22 +27,23 @@ public enum FaceOrientationCollection {
       FaceOrientationCollection.NORTH_EAST,
       FaceOrientationCollection.NORHT_WEST,
       FaceOrientationCollection.SOUTH_EAST,
-      FaceOrientationCollection.SOUTH_WEST
+      FaceOrientationCollection.SOUTH_WEST,
+      FaceOrientationCollection.PERPENDICULAR
     };
 
     return options;
   }
 
   public static FaceOrientationCollection findByValue(String value) {
-    FaceOrientationCollection season = null;
+    FaceOrientationCollection orientation = null;
 
-    for (FaceOrientationCollection _season : collection()) {
-      if (_season.getValue().equals(value)) {
-        season = _season;
+    for (FaceOrientationCollection _orientation : collection()) {
+      if (_orientation.getValue().equals(value)) {
+        orientation = _orientation;
       }
     }
 
-    return season;
+    return orientation;
   }
 
   public String getValue() {

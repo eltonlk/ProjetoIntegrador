@@ -1,7 +1,7 @@
 class Project < ApplicationRecord
   audited
 
-  enum season: [ :summer, :winter ]
+  enum season: %w( summer winter )
 
   belongs_to :solar_radiation
 
@@ -11,7 +11,7 @@ class Project < ApplicationRecord
   validates :season, presence: true
   validates_numericality_of :external_temperature
   validates_numericality_of :internal_temperature
-  validates :season, inclusion: { in: %w(summer winter)  }
+  validates :season, inclusion: { in: %w( summer winter )  }
 
   default_scope -> { order :name }
 

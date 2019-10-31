@@ -51,6 +51,7 @@ class SolarRadiationsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def solar_radiation_params
       params.permit(:name, :north_index, :north_east_index, :north_west_index,
-        :south_index, :south_east_index, :south_west_index, :east_index, :west_index)
+        :south_index, :south_east_index, :south_west_index, :east_index, :west_index,
+        :perpendicular_index)
     end
 end

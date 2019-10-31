@@ -63,6 +63,7 @@ public class SolarRadiationController implements Initializable {
     northWestLabel.setText(NumberParser.localizeFromInt(solarRadiation.getNorthWestIndex()));
     southEastLabel.setText(NumberParser.localizeFromInt(solarRadiation.getSouthEastIndex()));
     southWestLabel.setText(NumberParser.localizeFromInt(solarRadiation.getSouthWestIndex()));
+    perpendicularLabel.setText(NumberParser.localizeFromInt(solarRadiation.getPerpendicularIndex()));
   }
 
   @FXML
@@ -110,5 +111,8 @@ public class SolarRadiationController implements Initializable {
 
   @FXML
   private Label southWestLabel;
+
+  @FXML
+  private Label perpendicularLabel;
 
 }

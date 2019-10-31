@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.projeto.integrador.clientdesktop.collections.FaceKindCollection;
 import com.projeto.integrador.clientdesktop.collections.FaceOrientationCollection;
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.controllers.projects.ShowProjectController;
@@ -69,7 +70,8 @@ public class FaceController implements Initializable {
 
   @FXML
   private void delete(ActionEvent event) throws IOException {
-    Alert alert = new Alert(AlertType.CONFIRMATION, "Deseja excluir a face '" + face.getName() + "' ?", ButtonType.YES, ButtonType.NO);
+    String message = "Deseja excluir a face '" + FaceOrientationCollection.findByValue(face.getOrientation()).toString() + "' ?";
+    Alert alert = new Alert(AlertType.CONFIRMATION, message, ButtonType.YES, ButtonType.NO);
     alert.showAndWait();
 
     if (alert.getResult() == ButtonType.YES) {
@@ -101,7 +103,7 @@ public class FaceController implements Initializable {
   }
 
   private void fillContent() {
-    nameLabel.setText(face.getName());
+    kindLabel.setText(FaceKindCollection.findByValue(face.getKind()).toString());
     orientationLabel.setText(FaceOrientationCollection.findByValue(face.getOrientation()).toString());
     heatFlowLabel.setText(NumberParser.localizeFromDouble(face.getHeatFlow()));
 
@@ -134,7 +136,7 @@ public class FaceController implements Initializable {
   }
 
   @FXML
-  private Label nameLabel;
+  private Label kindLabel;
 
   @FXML
   private Label orientationLabel;

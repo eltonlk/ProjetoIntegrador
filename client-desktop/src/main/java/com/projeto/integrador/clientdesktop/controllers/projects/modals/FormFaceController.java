@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.projeto.integrador.clientdesktop.collections.FaceKindCollection;
 import com.projeto.integrador.clientdesktop.collections.FaceOrientationCollection;
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.controllers.projects.ShowProjectController;
@@ -29,7 +30,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 @Controller
@@ -56,6 +56,9 @@ public class FormFaceController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     face = new Face();
 
+    ObservableList<FaceKindCollection> kindOptions = FXCollections.observableArrayList(FaceKindCollection.collection());
+    kindComboBox.setItems(kindOptions);
+
     ObservableList<FaceOrientationCollection> orientationOptions = FXCollections.observableArrayList(FaceOrientationCollection.collection());
     orientationComboBox.setItems(orientationOptions);
   }
@@ -75,7 +78,7 @@ public class FormFaceController implements Initializable {
   }
 
   private void fillForm() {
-    nameInput.setText(face.getName());
+    kindComboBox.getSelectionModel().select(FaceKindCollection.findByValue(face.getKind()));
     orientationComboBox.getSelectionModel().select(FaceOrientationCollection.findByValue(face.getOrientation()));
 
     if (face.getId() != null && face.getId() > 0) {
@@ -87,7 +90,7 @@ public class FormFaceController implements Initializable {
   @FXML
   private void save(ActionEvent event) throws IOException {
     this.face.setRoom(this.room);
-    this.face.setName(nameInput.getText());
+    this.face.setKind(kindComboBox.getSelectionModel().getSelectedItem().getValue());
     this.face.setOrientation(orientationComboBox.getSelectionModel().getSelectedItem().getValue());
 
     if (face.getId() != null && face.getId() > 0) {
@@ -116,7 +119,7 @@ public class FormFaceController implements Initializable {
   private Label titleLabel;
 
   @FXML
-  private TextField nameInput;
+  private ComboBox<FaceKindCollection> kindComboBox;
 
   @FXML
   private ComboBox<FaceOrientationCollection> orientationComboBox;

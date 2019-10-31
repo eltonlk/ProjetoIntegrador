@@ -54,9 +54,15 @@ class Component < ApplicationRecord
 
     def resistance
       resistance = 0
-      resistance += 0.04 # TODO: External Surface Resistance
+      resistance += 0.04 # External Surface Resistance
       resistance += component_materials.sum(:resistance)
-      resistance += 0.13 # TODO: Internal Surface Resistance, get flow by user params (0.1, 0.13, 0.17)
+      resistance += if face.slab? and face.room.project.winter?
+        0.1 # Internal Surface Resistance for slab in winter;
+      elsif face.slab? and face.room.project.summer?
+        0.17 # Internal Surface Resistance for slab in summer;
+      else
+        0.13 # Internal Surface Resistance for wall;
+      end
       resistance
     end
 end

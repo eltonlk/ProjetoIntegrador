@@ -34,7 +34,7 @@ public class CreateSolarRadiationController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     TextField[] indexTextFieldList = {northIndexInput, southIndexInput, eastIndexInput, westIndexInput,
-      northEastIndexInput, northWestIndexInput, southEastIndexInput, southWestIndexInput};
+      northEastIndexInput, northWestIndexInput, southEastIndexInput, southWestIndexInput, perpendicularIndexInput};
 
     for (TextField indexTextField : indexTextFieldList) {
       Mask.addTo(indexTextField, "\\d{0,5}");
@@ -53,6 +53,7 @@ public class CreateSolarRadiationController implements Initializable {
     solarRadiation.setNorthWestIndex(NumberParser.parseToInt(northWestIndexInput.getText()));
     solarRadiation.setSouthEastIndex(NumberParser.parseToInt(southEastIndexInput.getText()));
     solarRadiation.setSouthWestIndex(NumberParser.parseToInt(southWestIndexInput.getText()));
+    solarRadiation.setPerpendicularIndex(NumberParser.parseToInt(perpendicularIndexInput.getText()));
 
     solarRadiationResource.create(solarRadiation);
 
@@ -93,5 +94,8 @@ public class CreateSolarRadiationController implements Initializable {
 
   @FXML
   private TextField southWestIndexInput;
+
+  @FXML
+  private TextField perpendicularIndexInput;
 
 }

@@ -32,8 +32,11 @@ public class SolarRadiation {
   @JsonProperty("north_west_index")
   private int northWestIndex;
 
+  @JsonProperty("perpendicular_index")
+  private int perpendicularIndex;
+
   public SolarRadiation(Long id, String name, int northIndex, int northEastIndex, int eastIndex,
-    int southEastIndex, int southIndex, int southWestIndex, int westIndex, int northWestIndex) {
+    int southEastIndex, int southIndex, int southWestIndex, int westIndex, int northWestIndex, int perpendicularIndex) {
 
     this.id = id;
     this.name = name;
@@ -45,6 +48,7 @@ public class SolarRadiation {
     this.southWestIndex = southWestIndex;
     this.westIndex = westIndex;
     this.northWestIndex = northWestIndex;
+    this.perpendicularIndex = perpendicularIndex;
   }
 
   public SolarRadiation() {
@@ -128,6 +132,14 @@ public class SolarRadiation {
 
   public void setNorthWestIndex(int northWestIndex) {
     this.northWestIndex = northWestIndex;
+  }
+
+  public int getPerpendicularIndex() {
+    return perpendicularIndex;
+  }
+
+  public void setPerpendicularIndex(int perpendicularIndex) {
+    this.perpendicularIndex = perpendicularIndex;
   }
 
   @Override

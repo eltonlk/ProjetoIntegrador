@@ -1,14 +1,17 @@
 class Face < ApplicationRecord
   audited
 
+  enum kind: %w( wall slab )
+
   belongs_to :room
 
   has_many :components, dependent: :destroy
 
-  validates :name       , presence: true
+  validates :kind       , presence: true
   validates :orientation, presence: true
 
-  validates :orientation, inclusion: { in: %w(north north_east north_west south south_east south_west east west)  }
+  validates :kind, inclusion: { in: %w( wall slab )  }
+  validates :orientation, inclusion: { in: %w( north north_east north_west south south_east south_west east west perpendicular )  }
 
   before_save :set_heat_flow
   after_update :save_components

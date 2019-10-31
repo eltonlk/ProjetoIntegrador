@@ -65,6 +65,11 @@
           <Label text="SO:"/>
           <Label fx:id="southWestLabel" text="Índice"/>
         </HBox>
+
+        <HBox spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+          <Label text="H:"/>
+          <Label fx:id="perpendicularLabel" text="Índice"/>
+        </HBox>
       </GridPane>
     </VBox>
   </center>

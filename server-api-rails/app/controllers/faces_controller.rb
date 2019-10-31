@@ -46,6 +46,6 @@ class FacesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def face_params
-      params.permit(:name, :orientation, :room_id)
+      params.permit(:kind, :orientation, :room_id)
     end
 end

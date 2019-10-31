@@ -9,7 +9,7 @@ public class Face {
 
   private Long id;
 
-  private String name;
+  private String kind;
 
   private String orientation;
 
@@ -24,9 +24,9 @@ public class Face {
 
   private Collection<Component> components;
 
-  public Face(Long id, String name, String orientation, double heatFlow, Room room, Collection<Component> components) {
+  public Face(Long id, String kind, String orientation, double heatFlow, Room room, Collection<Component> components) {
     this.id = id;
-    this.name = name;
+    this.kind = kind;
     this.orientation = orientation;
     this.heatFlow = heatFlow;
     this.room = room;
@@ -45,12 +45,12 @@ public class Face {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public String getKind() {
+    return kind;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setKind(String kind) {
+    this.kind = kind;
   }
 
   public String getOrientation() {
