@@ -16,9 +16,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,7 +82,15 @@ public class FormRoomController implements Initializable {
       roomResource.create(room);
     }
 
-    close(event);
+    if (room.getErrors() == null) {
+      close(event);
+    } else {
+      Alert alert = new Alert(AlertType.ERROR);
+      alert.setTitle("Erros");
+      alert.setHeaderText("Foram encontrados alguns erros, por favor dê uma olhada:");
+      alert.setContentText(room.getErrors().toJSONString());
+      alert.showAndWait();
+    }
   }
 
   private void close(ActionEvent event) {

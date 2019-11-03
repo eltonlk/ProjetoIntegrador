@@ -5,6 +5,8 @@ import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import org.json.simple.JSONObject;
+
 public class Face {
 
   private Long id;
@@ -23,6 +25,9 @@ public class Face {
   private Long roomId;
 
   private Collection<Component> components;
+
+  @JsonIgnore
+  private JSONObject errors;
 
   public Face(Long id, String kind, String orientation, double heatFlow, Room room, Collection<Component> components) {
     this.id = id;
@@ -84,6 +89,14 @@ public class Face {
 
   public void setComponents(Collection<Component> components) {
     this.components = components;
+  }
+
+  public JSONObject getErrors() {
+    return errors;
+  }
+
+  public void setErrors(JSONObject errors) {
+    this.errors = errors;
   }
 
 }

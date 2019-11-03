@@ -2,7 +2,10 @@ package com.projeto.integrador.clientdesktop.models;
 
 import java.util.Collection;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import org.json.simple.JSONObject;
 
 public class Project {
 
@@ -25,6 +28,9 @@ public class Project {
   private Long solarRadiationId;
 
   private Collection<Room> rooms;
+
+  @JsonIgnore
+  private JSONObject errors;
 
   public Project(Long id, String name, String season, int externalTemperature, int internalTemperature, SolarRadiation solarRadiation, Collection<Room> rooms) {
     this.id = id;
@@ -95,6 +101,14 @@ public class Project {
 
   public void setRooms(Collection<Room> rooms) {
     this.rooms = rooms;
+  }
+
+  public JSONObject getErrors() {
+    return errors;
+  }
+
+  public void setErrors(JSONObject errors) {
+    this.errors = errors;
   }
 
 }

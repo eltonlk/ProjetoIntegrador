@@ -3,6 +3,8 @@ package com.projeto.integrador.clientdesktop.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import org.json.simple.JSONObject;
+
 public class ComponentMaterial {
 
   private Long id;
@@ -27,6 +29,9 @@ public class ComponentMaterial {
 
   @JsonProperty("material_id")
   private Long materialId;
+
+  @JsonIgnore
+  private JSONObject errors;
 
   public ComponentMaterial(Long id, double width, double thermalConductivityIndex, double solarFactor, double resistance, Component component, Material material) {
     this.id = id;
@@ -99,6 +104,14 @@ public class ComponentMaterial {
   public void setMaterial(Material material) {
     if (material != null) { this.materialId = material.getId(); }
     this.material = material;
+  }
+
+  public JSONObject getErrors() {
+    return errors;
+  }
+
+  public void setErrors(JSONObject errors) {
+    this.errors = errors;
   }
 
 }

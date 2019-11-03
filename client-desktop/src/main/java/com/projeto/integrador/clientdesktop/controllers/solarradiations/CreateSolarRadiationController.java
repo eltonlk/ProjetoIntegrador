@@ -14,8 +14,10 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -57,7 +59,15 @@ public class CreateSolarRadiationController implements Initializable {
 
     solarRadiationResource.create(solarRadiation);
 
-		stageManager.switchScene(new ListSolarRadiationsFxmlView());
+    if (solarRadiation.getErrors() == null) {
+      stageManager.switchScene(new ListSolarRadiationsFxmlView());
+    } else {
+      Alert alert = new Alert(AlertType.ERROR);
+      alert.setTitle("Erros");
+      alert.setHeaderText("Foram encontrados alguns erros, por favor dê uma olhada:");
+      alert.setContentText(solarRadiation.getErrors().toJSONString());
+      alert.showAndWait();
+    }
   }
 
   @FXML

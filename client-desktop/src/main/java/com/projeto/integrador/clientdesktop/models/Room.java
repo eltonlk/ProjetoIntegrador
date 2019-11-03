@@ -5,6 +5,8 @@ import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import org.json.simple.JSONObject;
+
 public class Room {
 
   private Long id;
@@ -21,6 +23,9 @@ public class Room {
   private Long projectId;
 
   private Collection<Face> faces;
+
+  @JsonIgnore
+  private JSONObject errors;
 
   public Room(Long id, String name, double heatLoad, Project project, Collection<Face> faces) {
     this.id = id;
@@ -73,6 +78,14 @@ public class Room {
 
   public void setFaces(Collection<Face> faces) {
     this.faces = faces;
+  }
+
+  public JSONObject getErrors() {
+    return errors;
+  }
+
+  public void setErrors(JSONObject errors) {
+    this.errors = errors;
   }
 
 }

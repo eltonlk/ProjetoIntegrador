@@ -1,6 +1,9 @@
 package com.projeto.integrador.clientdesktop.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import org.json.simple.JSONObject;
 
 public class SolarRadiation {
 
@@ -34,6 +37,9 @@ public class SolarRadiation {
 
   @JsonProperty("perpendicular_index")
   private int perpendicularIndex;
+
+  @JsonIgnore
+  private JSONObject errors;
 
   public SolarRadiation(Long id, String name, int northIndex, int northEastIndex, int eastIndex,
     int southEastIndex, int southIndex, int southWestIndex, int westIndex, int northWestIndex, int perpendicularIndex) {
@@ -145,6 +151,14 @@ public class SolarRadiation {
   @Override
   public String toString() {
     return name;
+  }
+
+  public JSONObject getErrors() {
+    return errors;
+  }
+
+  public void setErrors(JSONObject errors) {
+    this.errors = errors;
   }
 
 }

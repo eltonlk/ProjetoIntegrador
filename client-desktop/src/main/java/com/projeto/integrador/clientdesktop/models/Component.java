@@ -5,6 +5,8 @@ import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import org.json.simple.JSONObject;
+
 public class Component {
 
   private Long id;
@@ -29,6 +31,9 @@ public class Component {
 
   @JsonProperty("component_materials")
   private Collection<ComponentMaterial> componentMaterials;
+
+  @JsonIgnore
+  private JSONObject errors;
 
   public Component(Long id, String name, double area, double heatFlow, Face face, Color color, Collection<ComponentMaterial> componentMaterials) {
     this.id = id;
@@ -101,6 +106,14 @@ public class Component {
 
   public void setComponentMaterials(Collection<ComponentMaterial> componentMaterials) {
     this.componentMaterials = componentMaterials;
+  }
+
+  public JSONObject getErrors() {
+    return errors;
+  }
+
+  public void setErrors(JSONObject errors) {
+    this.errors = errors;
   }
 
 }

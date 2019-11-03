@@ -1,5 +1,6 @@
 package com.projeto.integrador.clientdesktop.resources;
 
+import com.projeto.integrador.clientdesktop.config.RestTemplateResponseErrorHandler;
 import com.projeto.integrador.clientdesktop.models.Face;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,30 +15,42 @@ public class FaceResource {
   final static String NAMESPACE = "/faces";
 
   private RestTemplate restTemplate;
+  private RestTemplateResponseErrorHandler errorHandler;
 
   @Autowired
   public FaceResource(RestTemplate restTemplate) {
     this.restTemplate = restTemplate;
+    this.errorHandler = new RestTemplateResponseErrorHandler();
+
+    this.restTemplate.setErrorHandler(errorHandler);
   }
 
   public Face create(Face face) {
     ResponseEntity<Face> responseEntity = restTemplate.postForEntity(NAMESPACE, face, Face.class);
 
-    Face createdFace = null;
-
     if (responseEntity.getStatusCode() == HttpStatus.CREATED) {
-      createdFace = responseEntity.getBody();
-    }
+      return responseEntity.getBody();
+    } else {
+      face.setErrors(errorHandler.getErrors());
 
-    return createdFace;
+      return face;
+    }
   }
 
   public void update(Face face) {
     restTemplate.put(NAMESPACE + "/{id}", face, face.getId());
+
+    if (errorHandler.getErrors() != null) {
+      face.setErrors(errorHandler.getErrors());
+    }
   }
 
   public void delete(Face face) {
     restTemplate.delete(NAMESPACE + "/{id}", face.getId());
+
+    if (errorHandler.getErrors() != null) {
+      face.setErrors(errorHandler.getErrors());
+    }
   }
 
 }

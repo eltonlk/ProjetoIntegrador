@@ -1,5 +1,6 @@
 package com.projeto.integrador.clientdesktop.resources;
 
+import com.projeto.integrador.clientdesktop.config.RestTemplateResponseErrorHandler;
 import com.projeto.integrador.clientdesktop.models.Color;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,14 @@ public class ColorResource {
   final static String NAMESPACE = "/colors";
 
   private RestTemplate restTemplate;
+  private RestTemplateResponseErrorHandler errorHandler;
 
   @Autowired
   public ColorResource(RestTemplate restTemplate) {
     this.restTemplate = restTemplate;
+    this.errorHandler = new RestTemplateResponseErrorHandler();
+
+    this.restTemplate.setErrorHandler(errorHandler);
   }
 
   public Color[] getAll() {
@@ -29,21 +34,29 @@ public class ColorResource {
   public Color create(Color color) {
     ResponseEntity<Color> responseEntity = restTemplate.postForEntity(NAMESPACE, color, Color.class);
 
-    Color createdColor = null;
-
     if (responseEntity.getStatusCode() == HttpStatus.CREATED) {
-      createdColor = responseEntity.getBody();
-    }
+      return responseEntity.getBody();
+    } else {
+      color.setErrors(errorHandler.getErrors());
 
-    return createdColor;
+      return color;
+    }
   }
 
   public void update(Color color) {
     restTemplate.put(NAMESPACE + "/{id}", color, color.getId());
+
+    if (errorHandler.getErrors() != null) {
+      color.setErrors(errorHandler.getErrors());
+    }
   }
 
   public void delete(Color color) {
     restTemplate.delete(NAMESPACE + "/{id}", color.getId());
+
+    if (errorHandler.getErrors() != null) {
+      color.setErrors(errorHandler.getErrors());
+    }
   }
 
 }

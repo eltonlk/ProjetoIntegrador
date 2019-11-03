@@ -23,9 +23,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 @Controller
 public class UpdateProjectController implements Initializable {
@@ -84,11 +86,20 @@ public class UpdateProjectController implements Initializable {
 
     projectResource.update(project);
 
-    project = projectResource.refresh(project);
+    if (project.getErrors() == null) {
+      project = projectResource.refresh(project);
 
-    stageManager.switchScene(new ShowProjectFxmlView());
-    ShowProjectController controller = stageManager.getLoader().getController();
-    controller.setProject(project);
+      stageManager.switchScene(new ShowProjectFxmlView());
+      ShowProjectController controller = stageManager.getLoader().getController();
+      controller.setProject(project);
+    } else {
+      Alert alert = new Alert(AlertType.ERROR);
+      alert.setTitle("Erros");
+      alert.setHeaderText("Foram encontrados alguns erros, por favor dê uma olhada:");
+      alert.setContentText(project.getErrors().toJSONString());
+      alert.showAndWait();
+    }
+
   }
 
   @FXML

@@ -1,5 +1,9 @@
 package com.projeto.integrador.clientdesktop.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.json.simple.JSONObject;
+
 public class Option {
 
   private Long id;
@@ -7,6 +11,9 @@ public class Option {
   private String name;
 
   private String value;
+
+  @JsonIgnore
+  private JSONObject errors;
 
   public Option(Long id, String name, String value) {
     this.id = id;
@@ -39,6 +46,14 @@ public class Option {
 
   public void setValue(String value) {
     this.value = value;
+  }
+
+  public JSONObject getErrors() {
+    return errors;
+  }
+
+  public void setErrors(JSONObject errors) {
+    this.errors = errors;
   }
 
 }

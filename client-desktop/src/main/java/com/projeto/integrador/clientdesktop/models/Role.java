@@ -2,6 +2,10 @@ package com.projeto.integrador.clientdesktop.models;
 
 import java.util.Collection;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.json.simple.JSONObject;
+
 public class Role {
 
   private Long id;
@@ -11,6 +15,9 @@ public class Role {
   private Collection<User> users;
 
   private Collection<Privilege> privileges;
+
+  @JsonIgnore
+  private JSONObject errors;
 
   public Role(Long id, String name, Collection<Privilege> privileges) {
     this.id = id;
@@ -51,6 +58,14 @@ public class Role {
 
   public void setPrivileges(Collection<Privilege> privileges) {
     this.privileges = privileges;
+  }
+
+  public JSONObject getErrors() {
+    return errors;
+  }
+
+  public void setErrors(JSONObject errors) {
+    this.errors = errors;
   }
 
 }

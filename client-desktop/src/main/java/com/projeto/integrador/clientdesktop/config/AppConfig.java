@@ -46,7 +46,7 @@ public class AppConfig {
       interceptors = new ArrayList<>();
     }
 
-    interceptors.add(new RestTemplateAuthenticationInterceptor());
+    interceptors.add(new RestTemplateInterceptor());
 
     restTemplate.setInterceptors(interceptors);
 

@@ -1,6 +1,10 @@
 package com.projeto.integrador.clientdesktop.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import org.json.simple.JSONObject;
+
 
 public class Color {
 
@@ -12,6 +16,9 @@ public class Color {
   private double absorbabilityIndex;
 
   private boolean active;
+
+  @JsonIgnore
+  private JSONObject errors;
 
   public Color(Long id, String name, double absorbabilityIndex) {
     this.id = id;
@@ -54,9 +61,16 @@ public class Color {
     this.active = active;
   }
 
+  public JSONObject getErrors() {
+    return errors;
+  }
+
+  public void setErrors(JSONObject errors) {
+    this.errors = errors;
+  }
+
   @Override
   public String toString() {
     return name;
   }
-
 }

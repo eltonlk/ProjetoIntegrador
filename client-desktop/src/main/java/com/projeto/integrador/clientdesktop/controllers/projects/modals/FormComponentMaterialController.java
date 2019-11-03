@@ -22,10 +22,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -141,7 +143,15 @@ public class FormComponentMaterialController implements Initializable {
       componentMaterialResource.create(componentMaterial);
     }
 
-    close(event);
+    if (componentMaterial.getErrors() == null) {
+      close(event);
+    } else {
+      Alert alert = new Alert(AlertType.ERROR);
+      alert.setTitle("Erros");
+      alert.setHeaderText("Foram encontrados alguns erros, por favor dê uma olhada:");
+      alert.setContentText(componentMaterial.getErrors().toJSONString());
+      alert.showAndWait();
+    }
   }
 
   private void close(ActionEvent event) {

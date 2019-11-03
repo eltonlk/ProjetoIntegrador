@@ -17,10 +17,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,7 +110,15 @@ public class UpdateMaterialController implements Initializable {
 
     materialResource.update(material);
 
-		stageManager.switchScene(new ListMaterialsFxmlView());
+    if (material.getErrors() == null) {
+      stageManager.switchScene(new ListMaterialsFxmlView());
+    } else {
+      Alert alert = new Alert(AlertType.ERROR);
+      alert.setTitle("Erros");
+      alert.setHeaderText("Foram encontrados alguns erros, por favor dê uma olhada:");
+      alert.setContentText(material.getErrors().toJSONString());
+      alert.showAndWait();
+    }
   }
 
   @FXML

@@ -1,5 +1,6 @@
 package com.projeto.integrador.clientdesktop.resources;
 
+import com.projeto.integrador.clientdesktop.config.RestTemplateResponseErrorHandler;
 import com.projeto.integrador.clientdesktop.models.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,14 @@ public class UserResource {
   final static String NAMESPACE = "/users";
 
   private RestTemplate restTemplate;
+  private RestTemplateResponseErrorHandler errorHandler;
 
   @Autowired
   public UserResource(RestTemplate restTemplate) {
     this.restTemplate = restTemplate;
+    this.errorHandler = new RestTemplateResponseErrorHandler();
+
+    this.restTemplate.setErrorHandler(errorHandler);
   }
 
   public User[] getAll() {
@@ -29,21 +34,29 @@ public class UserResource {
   public User create(User user) {
     ResponseEntity<User> responseEntity = restTemplate.postForEntity(NAMESPACE, user, User.class);
 
-    User createdUser = null;
-
     if (responseEntity.getStatusCode() == HttpStatus.CREATED) {
-      createdUser = responseEntity.getBody();
-    }
+      return responseEntity.getBody();
+    } else {
+      user.setErrors(errorHandler.getErrors());
 
-    return createdUser;
+      return user;
+    }
   }
 
   public void update(User user) {
     restTemplate.put(NAMESPACE + "/{id}", user, user.getId());
+
+    if (errorHandler.getErrors() != null) {
+      user.setErrors(errorHandler.getErrors());
+    }
   }
 
   public void delete(User user) {
     restTemplate.delete(NAMESPACE + "/{id}", user.getId());
+
+    if (errorHandler.getErrors() != null) {
+      user.setErrors(errorHandler.getErrors());
+    }
   }
 
 }

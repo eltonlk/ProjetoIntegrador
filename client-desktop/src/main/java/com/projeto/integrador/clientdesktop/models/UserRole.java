@@ -1,7 +1,10 @@
 package com.projeto.integrador.clientdesktop.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+import org.json.simple.JSONObject;
 
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class UserRole {
@@ -19,6 +22,9 @@ public class UserRole {
   private Role role;
 
   private Privilege privilege;
+
+  @JsonIgnore
+  private JSONObject errors;
 
   public UserRole() {
   }
@@ -85,6 +91,14 @@ public class UserRole {
 
   public void setPrivilege(Privilege privilege) {
     this.privilege = privilege;
+  }
+
+  public JSONObject getErrors() {
+    return errors;
+  }
+
+  public void setErrors(JSONObject errors) {
+    this.errors = errors;
   }
 
 }

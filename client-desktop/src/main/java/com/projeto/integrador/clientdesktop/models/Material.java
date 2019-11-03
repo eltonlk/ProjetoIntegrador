@@ -1,6 +1,9 @@
 package com.projeto.integrador.clientdesktop.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import org.json.simple.JSONObject;
 
 public class Material {
 
@@ -19,6 +22,9 @@ public class Material {
   private double solarFactor;
 
   private double resistance;
+
+  @JsonIgnore
+  private JSONObject errors;
 
   public Material(Long id, String name, String kind, boolean active, double thermalConductivityIndex, double solarFactor, double resistance) {
     this.id = id;
@@ -92,6 +98,14 @@ public class Material {
   @Override
   public String toString() {
     return name;
+  }
+
+  public JSONObject getErrors() {
+    return errors;
+  }
+
+  public void setErrors(JSONObject errors) {
+    this.errors = errors;
   }
 
 }

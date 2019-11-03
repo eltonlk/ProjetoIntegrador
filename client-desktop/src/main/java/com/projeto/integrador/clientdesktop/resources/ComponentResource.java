@@ -1,5 +1,6 @@
 package com.projeto.integrador.clientdesktop.resources;
 
+import com.projeto.integrador.clientdesktop.config.RestTemplateResponseErrorHandler;
 import com.projeto.integrador.clientdesktop.models.Component;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,30 +15,42 @@ public class ComponentResource {
   final static String NAMESPACE = "/components";
 
   private RestTemplate restTemplate;
+  private RestTemplateResponseErrorHandler errorHandler;
 
   @Autowired
   public ComponentResource(RestTemplate restTemplate) {
     this.restTemplate = restTemplate;
+    this.errorHandler = new RestTemplateResponseErrorHandler();
+
+    this.restTemplate.setErrorHandler(errorHandler);
   }
 
   public Component create(Component component) {
     ResponseEntity<Component> responseEntity = restTemplate.postForEntity(NAMESPACE, component, Component.class);
 
-    Component createdComponent = null;
-
     if (responseEntity.getStatusCode() == HttpStatus.CREATED) {
-      createdComponent = responseEntity.getBody();
-    }
+      return responseEntity.getBody();
+    } else {
+      component.setErrors(errorHandler.getErrors());
 
-    return createdComponent;
+      return component;
+    }
   }
 
   public void update(Component component) {
     restTemplate.put(NAMESPACE + "/{id}", component, component.getId());
+
+    if (errorHandler.getErrors() != null) {
+      component.setErrors(errorHandler.getErrors());
+    }
   }
 
   public void delete(Component component) {
     restTemplate.delete(NAMESPACE + "/{id}", component.getId());
+
+    if (errorHandler.getErrors() != null) {
+      component.setErrors(errorHandler.getErrors());
+    }
   }
 
 }

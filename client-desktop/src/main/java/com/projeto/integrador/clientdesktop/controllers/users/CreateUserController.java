@@ -12,10 +12,12 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -47,7 +49,15 @@ public class CreateUserController implements Initializable {
 
     userResource.create(user);
 
-		stageManager.switchScene(new ListUsersFxmlView());
+    if (user.getErrors() == null) {
+      stageManager.switchScene(new ListUsersFxmlView());
+    } else {
+      Alert alert = new Alert(AlertType.ERROR);
+      alert.setTitle("Erros");
+      alert.setHeaderText("Foram encontrados alguns erros, por favor dê uma olhada:");
+      alert.setContentText(user.getErrors().toJSONString());
+      alert.showAndWait();
+    }
   }
 
   @FXML

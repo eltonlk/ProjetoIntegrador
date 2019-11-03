@@ -14,9 +14,11 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -40,7 +42,7 @@ public class CreateColorController implements Initializable {
   }
 
   @FXML
-  private void create(ActionEvent event) throws IOException {
+  private void create(ActionEvent event) {
     Color color = new Color();
     color.setName(nameInput.getText());
     color.setAbsorbabilityIndex(NumberParser.parseToDouble(absorbabilityIndexInput.getText()));
@@ -48,16 +50,21 @@ public class CreateColorController implements Initializable {
 
     colorResource.create(color);
 
-		stageManager.switchScene(new ListColorsFxmlView());
+    if (color.getErrors() == null) {
+      stageManager.switchScene(new ListColorsFxmlView());
+    } else {
+      Alert alert = new Alert(AlertType.ERROR);
+      alert.setTitle("Erros");
+      alert.setHeaderText("Foram encontrados alguns erros, por favor dê uma olhada:");
+      alert.setContentText(color.getErrors().toJSONString());
+      alert.showAndWait();
+    }
   }
 
   @FXML
   private void goToBack(ActionEvent event) throws IOException {
 		stageManager.switchScene(new ListColorsFxmlView());
   }
-
-  @FXML
-  private Button submitButton;
 
   @FXML
   private TextField nameInput;
@@ -67,5 +74,8 @@ public class CreateColorController implements Initializable {
 
   @FXML
   private CheckBox activeCheckBox;
+
+  @FXML
+  private Button submitButton;
 
 }

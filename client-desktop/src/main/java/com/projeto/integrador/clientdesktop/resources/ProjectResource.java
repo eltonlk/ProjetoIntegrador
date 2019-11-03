@@ -1,5 +1,6 @@
 package com.projeto.integrador.clientdesktop.resources;
 
+import com.projeto.integrador.clientdesktop.config.RestTemplateResponseErrorHandler;
 import com.projeto.integrador.clientdesktop.models.Project;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,14 @@ public class ProjectResource {
   final static String NAMESPACE = "/projects";
 
   private RestTemplate restTemplate;
+  private RestTemplateResponseErrorHandler errorHandler;
 
   @Autowired
   public ProjectResource(RestTemplate restTemplate) {
     this.restTemplate = restTemplate;
+    this.errorHandler = new RestTemplateResponseErrorHandler();
+
+    this.restTemplate.setErrorHandler(errorHandler);
   }
 
   public Project[] getAll() {
@@ -33,21 +38,29 @@ public class ProjectResource {
   public Project create(Project project) {
     ResponseEntity<Project> responseEntity = restTemplate.postForEntity(NAMESPACE, project, Project.class);
 
-    Project createdProject = null;
-
     if (responseEntity.getStatusCode() == HttpStatus.CREATED) {
-      createdProject = responseEntity.getBody();
-    }
+      return responseEntity.getBody();
+    } else {
+      project.setErrors(errorHandler.getErrors());
 
-    return createdProject;
+      return project;
+    }
   }
 
   public void update(Project project) {
     restTemplate.put(NAMESPACE + "/{id}", project, project.getId());
+
+    if (errorHandler.getErrors() != null) {
+      project.setErrors(errorHandler.getErrors());
+    }
   }
 
   public void delete(Project project) {
     restTemplate.delete(NAMESPACE + "/{id}", project.getId());
+
+    if (errorHandler.getErrors() != null) {
+      project.setErrors(errorHandler.getErrors());
+    }
   }
 
 }
