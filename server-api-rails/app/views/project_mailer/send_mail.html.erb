@@ -1,0 +1,34 @@
+<h1>Projeto <%= @project.name%></h1>
+
+<p>
+  <strong>Estação:</strong>
+  <%= @project.season %>
+</p>
+
+<p>
+  <strong>Temp. Externa:</strong>
+  <%= @project.external_temperature %>
+</p>
+
+<p>
+  <strong>Temp. Interna:</strong>
+  <%= @project.internal_temperature %>
+</p>
+
+<p>
+  <strong>Radiação Solar:</strong>
+  <%= @project.solar_radiation.name %>
+</p>
+
+<p>
+  <strong>Cômodos:</strong>
+</p>
+
+<%- @project.rooms.each do |room| %>
+  <p>
+    <strong><%= room.name %></strong>
+    \-
+    carga de calor
+    <%= room.heat_load %>
+  </p>
+<% end %>

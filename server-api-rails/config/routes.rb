@@ -12,7 +12,9 @@ Rails.application.routes.draw do
 
   resources :options, only: [ :index, :show, :update ]
 
-  resources :projects, only: [ :index, :show, :create, :update, :destroy ]
+  resources :projects, only: [ :index, :show, :create, :update, :destroy ] do
+    post :send_mail, on: :member
+  end
   resources :rooms, only: [ :create, :update, :destroy ]
   resources :faces, only: [ :create, :update, :destroy ]
   resources :components, only: [ :create, :update, :destroy ]

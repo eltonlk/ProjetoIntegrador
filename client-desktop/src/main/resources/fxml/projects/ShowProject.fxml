@@ -36,6 +36,7 @@
         <Label text="Projeto" styleClass="label-header"/>
         <Pane HBox.hgrow="ALWAYS"/>
         <HBox spacing="5.0">
+          <Button onAction="#sendMail" text="Enviar E-Mail"/>
           <Button onAction="#goToUpdate" text="Alterar" styleClass="button-success"/>
           <Button onAction="#delete" text="Excluir" styleClass="button-danger"/>
           <Button onAction="#goToBack" text="Voltar"/>

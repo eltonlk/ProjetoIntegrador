@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
     authorize :projects
   end
 
-  before_action :set_project, only: [ :show, :update, :destroy ]
+  before_action :set_project, only: [ :show, :update, :destroy, :send_mail ]
 
   # GET /projects
   def index
@@ -40,6 +40,13 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   def destroy
     @project.destroy
+  end
+
+  # POST /projects/1/send_mail
+  def send_mail
+    ProjectMailer.send_mail(@project, params.require(:email)).deliver_now
+
+    render json: {}, status: :ok
   end
 
   private

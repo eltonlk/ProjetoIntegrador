@@ -4,6 +4,7 @@ import com.projeto.integrador.clientdesktop.collections.ProjectSeasonCollection;
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.controllers.projects.components.RoomController;
 import com.projeto.integrador.clientdesktop.controllers.projects.modals.FormRoomController;
+import com.projeto.integrador.clientdesktop.controllers.projects.modals.ProjectSendMailController;
 import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.models.Room;
 import com.projeto.integrador.clientdesktop.resources.ProjectResource;
@@ -78,6 +79,16 @@ public class ShowProjectController implements Initializable {
 
       stageManager.switchScene(new ListProjectsFxmlView());
     }
+  }
+
+  @FXML
+  private void sendMail(ActionEvent event) throws IOException {
+    Stage modal = stageManager.buildModal("/fxml/projects/modals/ProjectSendMail.fxml");
+
+    ProjectSendMailController controller = stageManager.getLoader().getController();
+    controller.setProject(getProject());
+
+    modal.show();
   }
 
   public Project getProject() {

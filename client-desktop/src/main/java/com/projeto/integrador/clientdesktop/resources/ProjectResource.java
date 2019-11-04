@@ -3,6 +3,7 @@ package com.projeto.integrador.clientdesktop.resources;
 import com.projeto.integrador.clientdesktop.models.Project;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -48,6 +49,12 @@ public class ProjectResource {
 
   public void delete(Project project) {
     restTemplate.delete(NAMESPACE + "/{id}", project.getId());
+  }
+
+  public void sendMail(Project project, String email) {
+    String uri = NAMESPACE + "/" + project.getId() + "/send_mail?email=" + email;
+
+    restTemplate.execute(uri, HttpMethod.POST, null, null);
   }
 
 }
