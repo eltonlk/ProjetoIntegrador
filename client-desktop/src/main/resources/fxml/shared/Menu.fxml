@@ -36,6 +36,11 @@
           <FontIcon iconLiteral="fas-sun" iconSize="20"/>
         </graphic>
       </Button>
+      <Button onAction="#goToReports" text="Relatórios" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
+        <graphic>
+          <FontIcon iconLiteral="fas-chart-pie" iconSize="20"/>
+        </graphic>
+      </Button>
       <Button onAction="#goToAudits" text="Histórico" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
         <graphic>
           <FontIcon iconLiteral="fas-book" iconSize="20"/>

@@ -9,6 +9,7 @@ import com.projeto.integrador.clientdesktop.views.audits.ListAuditsFxmlView;
 import com.projeto.integrador.clientdesktop.views.colors.ListColorsFxmlView;
 import com.projeto.integrador.clientdesktop.views.materials.ListMaterialsFxmlView;
 import com.projeto.integrador.clientdesktop.views.projects.ListProjectsFxmlView;
+import com.projeto.integrador.clientdesktop.views.reports.ListReportsFxmlView;
 import com.projeto.integrador.clientdesktop.views.settings.ListSettingsFxmlView;
 import com.projeto.integrador.clientdesktop.views.solarradiations.ListSolarRadiationsFxmlView;
 import com.projeto.integrador.clientdesktop.views.users.ListUsersFxmlView;
@@ -52,6 +53,11 @@ public class MenuController implements Initializable {
   @FXML
   private void goToProjects(ActionEvent event) throws IOException {
     stageManager.switchScene(new ListProjectsFxmlView());
+  }
+
+  @FXML
+  private void goToReports(ActionEvent event) throws IOException {
+    stageManager.switchScene(new ListReportsFxmlView());
   }
 
 	@FXML
