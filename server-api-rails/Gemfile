@@ -50,3 +50,5 @@ gem 'simple_command'
 gem 'audited'
 
 gem "pundit"
+
+gem "active_attr"

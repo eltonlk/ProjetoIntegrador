@@ -24,4 +24,6 @@ Rails.application.routes.draw do
   resources :colors, only: [ :index, :create, :update, :destroy ]
   resources :solar_radiations, only: [ :index, :create, :update, :destroy ]
 
+  resources :reports, only: [ :index ]
+
 end
