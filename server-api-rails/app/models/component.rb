@@ -14,11 +14,11 @@ class Component < ApplicationRecord
 
   private
     def set_heat_flow
-      # TODO: check if this component is a glass, caculate ( u * ( te - ti ) + fs * i )
-
       project = face.room.project
 
-      self.heat_flow = if project.summer?
+      self.heat_flow = if component_materials.translucent.exists?
+        glass_heat_flow_calculate
+      elsif project.summer?
         summer_heat_flow_calculate
       elsif project.winter?
         witer_heat_flow_calculate
@@ -50,6 +50,18 @@ class Component < ApplicationRecord
       ti = face.room.project.internal_temperature
 
       u * ( te - ti )
+    end
+
+    def glass_heat_flow_calculate
+      thermalTransmittance = area / resistance
+
+      u = thermalTransmittance
+      te = face.room.project.external_temperature
+      ti = face.room.project.internal_temperature
+      fs = component_materials.translucent.first.solar_factor
+      i = face.room.project.solar_radiation.send "#{face.orientation}_index"
+
+      u * ( te - ti ) + fs * i
     end
 
     def resistance
