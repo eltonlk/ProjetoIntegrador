@@ -52,3 +52,5 @@ gem 'audited'
 gem "pundit"
 
 gem "active_attr"
+
+gem 'prawn'
