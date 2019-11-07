@@ -1,5 +1,6 @@
 package com.projeto.integrador.clientdesktop.controllers.reports;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -9,13 +10,17 @@ import java.util.Map.Entry;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.projeto.integrador.clientdesktop.collections.ProjectSeasonCollection;
+import com.projeto.integrador.clientdesktop.models.SolarRadiation;
 import com.projeto.integrador.clientdesktop.resources.ReportResource;
+import com.projeto.integrador.clientdesktop.resources.SolarRadiationResource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.CategoryAxis;
@@ -25,6 +30,9 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.PieChart.Data;
 import javafx.scene.chart.XYChart.Series;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.layout.StackPane;
 
 @Controller
@@ -33,21 +41,56 @@ public class ListReportsController implements Initializable {
   @Autowired
   private ReportResource reportResource;
 
+  @Autowired
+  private SolarRadiationResource solarRadiationResource;
+
   private JsonNode reportJsonData;
 
-  private LocalDate start_at;
-  private LocalDate end_at;
+  private LocalDate startAt;
+  private LocalDate endAt;
+  private SolarRadiation solarRadiation;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    start_at = LocalDate.parse("2019-06-25").withDayOfMonth(1);
-    end_at = LocalDate.parse("2019-11-10").withDayOfMonth(28);
+    endAt = LocalDate.now();
+    endAt = endAt.withDayOfMonth(endAt.lengthOfMonth());
+    startAt = endAt.minusMonths(5).withDayOfMonth(1);
 
-    reportJsonData = reportResource.getAll(start_at, end_at, null);
+    setFilterFields();
+    getReportData();
+    buildCharts();
+  }
 
+  private void setFilterFields() {
+    startAtInput.setValue(startAt);
+    endAtInput.setValue(endAt);
+
+    ObservableList<SolarRadiation> solarRadiationOptions = FXCollections.observableArrayList(solarRadiationResource.getAll());
+    solarRadiationOptions.add(0, null);
+    solarRadiationComboBox.setItems(solarRadiationOptions);
+  }
+
+  private void getReportData() {
+    reportJsonData = reportResource.getAll(startAt, endAt, solarRadiation);
+  }
+
+  private void buildCharts() {
+    pane1.getChildren().clear();
     pane1.getChildren().add(projectsByRoomsPieChart());
+    pane2.getChildren().clear();
     pane2.getChildren().add(projectsBySeasonPieChart());
+    pane3.getChildren().clear();
     pane3.getChildren().add(projectsByMonthLineChart());
+  }
+
+  @FXML
+  private void submit(ActionEvent event) throws IOException {
+    startAt = startAtInput.getValue();
+    endAt = endAtInput.getValue();
+    solarRadiation = (SolarRadiation) solarRadiationComboBox.getSelectionModel().getSelectedItem();
+
+    getReportData();
+    buildCharts();
   }
 
   private PieChart projectsByRoomsPieChart() {
@@ -58,18 +101,27 @@ public class ListReportsController implements Initializable {
 
     JsonNode projectsByRoomsJsonData = reportJsonData.get("projects_by_rooms");
 
-    if (projectsByRoomsJsonData != null) {
-      Iterator<Entry<String, JsonNode>> iterator = projectsByRoomsJsonData.fields();
+    Iterator<Entry<String, JsonNode>> iterator = projectsByRoomsJsonData.fields();
 
-      while (iterator.hasNext()) {
-        Entry<String, JsonNode> entry = iterator.next();
-        String key = entry.getKey();
-        int value = entry.getValue().asInt();
+    while (iterator.hasNext()) {
+      Entry<String, JsonNode> entry = iterator.next();
+      String key = entry.getKey();
+      int value = entry.getValue().asInt();
 
-        Data data = new PieChart.Data(key + " cômodo (" + value + " projetos)", value);
+      Data data = new PieChart.Data(key, value);
 
-        pieData.addAll(data);
-      }
+      pieData.addAll(data);
+    }
+
+    if (projectsByRoomsJsonData.size() == 0) {
+      Data data = new PieChart.Data("Nenhum projeto foi encontrado", 0);
+      pieData.addAll(data);
+    } else {
+      pieData.forEach(data ->
+        data.nameProperty().bind(
+          Bindings.concat(data.getName(), " cômodo: ", data.pieValueProperty().getValue().intValue(), " projetos")
+        )
+      );
     }
 
     pie.setData(pieData);
@@ -83,22 +135,31 @@ public class ListReportsController implements Initializable {
 
     ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
 
-    JsonNode projectsByRoomsJsonData = reportJsonData.get("projects_by_season");
+    JsonNode projectsBySeasonJsonData = reportJsonData.get("projects_by_season");
 
-    if (projectsByRoomsJsonData != null) {
-      Iterator<Entry<String, JsonNode>> iterator = projectsByRoomsJsonData.fields();
+    Iterator<Entry<String, JsonNode>> iterator = projectsBySeasonJsonData.fields();
 
-      while (iterator.hasNext()) {
-        Entry<String, JsonNode> entry = iterator.next();
-        String key = entry.getKey();
-        int value = entry.getValue().asInt();
+    while (iterator.hasNext()) {
+      Entry<String, JsonNode> entry = iterator.next();
+      String key = entry.getKey();
+      int value = entry.getValue().asInt();
 
-        ProjectSeasonCollection season = ProjectSeasonCollection.findByValue(key);
+      ProjectSeasonCollection season = ProjectSeasonCollection.findByValue(key);
 
-        Data data = new PieChart.Data(season.toString() + " (" + value + " projetos)", value);
+      Data data = new PieChart.Data(season.toString(), value);
 
-        pieData.addAll(data);
-      }
+      pieData.addAll(data);
+    }
+
+    if (projectsBySeasonJsonData.size() == 0) {
+      Data data = new PieChart.Data("Nenhum projeto foi encontrado", 0);
+      pieData.addAll(data);
+    } else {
+      pieData.forEach(data ->
+        data.nameProperty().bind(
+          Bindings.concat(data.getName(), ": ", data.pieValueProperty().getValue().intValue(), " projetos")
+        )
+      );
     }
 
     pie.setData(pieData);
@@ -117,25 +178,25 @@ public class ListReportsController implements Initializable {
     return line;
   }
 
-  private ObservableList<XYChart.Series<String, Double>> projectsByMonthLineChartData(JsonNode projectsByRoomsJsonData) {
-    ObservableList<XYChart.Series<String, Double>> data = FXCollections.observableArrayList();
+  private ObservableList<Series<String, Integer>> projectsByMonthLineChartData(JsonNode projectsByMonthsJsonData) {
+    ObservableList<Series<String, Integer>> data = FXCollections.observableArrayList();
 
-    Series<String, Double> serie = new Series<>();
+    Series<String, Integer> serie = new Series<>();
 
     serie.setName("Projetos");
 
-    LocalDate date = start_at;
+    LocalDate date = startAt;
 
-    while(date.isBefore(end_at)) {
-      double value = 0;
+    while(date.isBefore(endAt)) {
+      int value = 0;
 
       String key = date.format(DateTimeFormatter.ofPattern("YYYY-MM"));
 
-      if (projectsByRoomsJsonData.has(key)) {
-        value = projectsByRoomsJsonData.get(key).asDouble();
+      if (projectsByMonthsJsonData.has(key)) {
+        value = projectsByMonthsJsonData.get(key).asInt();
       }
 
-      serie.getData().add(new XYChart.Data<> (date.getMonth().name(), value));
+      serie.getData().add(new XYChart.Data<String, Integer> (date.getMonth().name(), value));
 
       date = date.plusMonths(1);
     }
@@ -144,6 +205,15 @@ public class ListReportsController implements Initializable {
 
     return data;
   }
+
+  @FXML
+  private DatePicker startAtInput, endAtInput;
+
+  @FXML
+  private ComboBox<SolarRadiation> solarRadiationComboBox;
+
+  @FXML
+  private Button submitButton;
 
   @FXML
   private StackPane pane1, pane2, pane3;
