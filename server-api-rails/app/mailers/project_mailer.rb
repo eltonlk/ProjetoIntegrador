@@ -7,7 +7,7 @@ class ProjectMailer < ApplicationMailer
 
     attachments['Projeto.pdf'] = {
       mime_type: 'application/pdf',
-      content: project.render
+      content: pdf.render
     }
 
     mail to: email, subject: "Dados do Projeto #{@project.name}"

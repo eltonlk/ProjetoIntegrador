@@ -10,7 +10,6 @@ class ProjectPdf
   end
 
   def content
-    text "Hello World!"
     text "Projeto: #{project.name}"
     text "Estação: #{project.season}"
     text "Temperatura Externa: #{project.external_temperature}"
