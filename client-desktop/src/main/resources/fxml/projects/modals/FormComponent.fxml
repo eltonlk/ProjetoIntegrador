@@ -52,7 +52,7 @@
 
         <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
           <Label fx:id="colorLabel" text="Cor"/>
-          <ComboBox fx:id="colorComboBox" promptText="Selecione"/>
+          <ComboBox fx:id="colorComboBox" promptText="Sem cor"/>
         </VBox>
       </GridPane>
     </VBox>

@@ -52,8 +52,6 @@ public class FormComponentController implements Initializable {
   @Autowired
   private ColorResource colorResource;
 
-  private ObservableList<Color> colorsOptions;
-
   private Project project;
 
   private Face face;
@@ -66,8 +64,8 @@ public class FormComponentController implements Initializable {
 
     component = new Component();
 
-    colorsOptions = FXCollections.observableArrayList(colorResource.getAll());
-
+    ObservableList<Color> colorsOptions = FXCollections.observableArrayList(colorResource.getAll());
+    colorsOptions.add(0, null);
     colorComboBox.setItems(colorsOptions);
   }
 

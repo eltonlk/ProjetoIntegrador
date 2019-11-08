@@ -2,7 +2,7 @@ class Component < ApplicationRecord
   audited
 
   belongs_to :face
-  belongs_to :color
+  belongs_to :color, optional: true
 
   has_many :component_materials, dependent: :destroy
 
@@ -38,7 +38,7 @@ class Component < ApplicationRecord
       thermalTransmittance = area / resistance
 
       u = thermalTransmittance
-      a = color.absorbability_index
+      a = color.try(:absorbability_index) || 0
       i = face.room.project.solar_radiation.send "#{face.orientation}_index"
       rse = 0.04
       te = face.room.project.external_temperature

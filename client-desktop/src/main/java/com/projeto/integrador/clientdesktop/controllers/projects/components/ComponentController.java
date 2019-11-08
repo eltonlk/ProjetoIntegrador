@@ -102,7 +102,11 @@ public class ComponentController implements Initializable {
   private void fillContent() {
     nameLabel.setText(component.getName());
     areaLabel.setText(NumberParser.localizeFromDouble(component.getArea()) + " m²");
-    colorLabel.setText(component.getColor().getName());
+    if (component.getColor() == null) {
+      colorLabel.setText("Sem cor");
+    } else {
+      colorLabel.setText(component.getColor().getName());
+    }
     heatFlowLabel.setText(NumberParser.localizeFromDouble(component.getHeatFlow(), "#.##") + " W");
 
     if (getComponent().getComponentMaterials() != null) {

@@ -91,7 +91,12 @@ public class Component {
   }
 
   public void setColor(Color color) {
-    if (color != null) { this.colorId = color.getId(); }
+    if (color == null) {
+      this.colorId = null;
+    } else {
+      this.colorId = color.getId();
+    }
+
     this.color = color;
   }
 
