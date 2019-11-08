@@ -29,7 +29,7 @@
       </HBox>
 
       <HBox spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-        <Label text="Espessura (m):"/>
+        <Label text="Espessura:"/>
         <Label fx:id="widthLabel" text="Espessura"/>
       </HBox>
 

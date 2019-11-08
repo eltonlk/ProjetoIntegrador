@@ -97,7 +97,7 @@ public class ComponentMaterialController implements Initializable {
 
   private void fillContent() {
     materialLabel.setText(getComponentMaterial().getMaterial().getName());
-    widthLabel.setText(NumberParser.localizeFromDouble(getComponentMaterial().getWidth()));
+    widthLabel.setText(NumberParser.localizeFromDouble(getComponentMaterial().getWidth()) + " m");
     resistanceLabel.setText(NumberParser.localizeFromDouble(getComponentMaterial().getResistance()));
   }
 

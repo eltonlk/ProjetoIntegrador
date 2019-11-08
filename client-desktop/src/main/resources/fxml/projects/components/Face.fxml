@@ -29,16 +29,11 @@
       </padding>
 
       <HBox spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-        <Label text="Tipo:"/>
         <Label fx:id="kindLabel" text="Tipo de Face"/>
-      </HBox>
-
-      <HBox spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-        <Label text="Orientação:"/>
         <Label fx:id="orientationLabel" text="Orientação"/>
       </HBox>
 
-      <HBox spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+      <HBox spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <Label text="Fluxo de Calor:"/>
         <Label fx:id="heatFlowLabel" text="Fluxo de Calor"/>
       </HBox>

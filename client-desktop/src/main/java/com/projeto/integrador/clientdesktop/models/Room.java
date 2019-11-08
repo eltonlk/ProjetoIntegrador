@@ -58,6 +58,10 @@ public class Room {
     this.heatLoad = heatLoad;
   }
 
+  public double getBTUCalculated() {
+    return heatLoad * 3.412;
+  }
+
   public Project getProject() {
     return project;
   }

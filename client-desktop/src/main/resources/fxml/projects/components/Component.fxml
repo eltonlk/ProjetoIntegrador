@@ -29,12 +29,11 @@
       </padding>
 
       <HBox spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-        <Label text="Nome:"/>
         <Label fx:id="nameLabel" text="Nome do Componente"/>
       </HBox>
 
       <HBox spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-        <Label text="Área (m²):"/>
+        <Label text="Área:"/>
         <Label fx:id="areaLabel" text="Área"/>
       </HBox>
 

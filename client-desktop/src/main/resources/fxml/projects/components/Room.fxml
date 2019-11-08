@@ -29,14 +29,19 @@
         <Insets top="0" bottom="10" left="0" right="0"/>
       </padding>
 
-      <HBox spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-        <Label text="Nome:"/>
+      <HBox spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <Label text="Cômodo:"/>
         <Label fx:id="nameLabel" text="Nome do Cômodo"/>
       </HBox>
 
-      <HBox spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <HBox spacing="8.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
         <Label text="Carga de Calor:"/>
         <Label fx:id="heatLoadLabel" text="Carga de Calor"/>
+      </HBox>
+
+      <HBox spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <Label text="BTU:"/>
+        <Label fx:id="btuLabel" text="BTU"/>
       </HBox>
     </GridPane>
   </center>
