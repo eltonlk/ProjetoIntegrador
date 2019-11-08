@@ -16,6 +16,9 @@ class ComponentMaterial < ApplicationRecord
 
   before_save :set_resistance
   after_save :save_component
+  after_destroy :save_component
+
+  default_scope -> { order id: :desc }
 
   private
     def set_kind

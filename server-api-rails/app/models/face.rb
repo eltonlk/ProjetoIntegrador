@@ -16,6 +16,9 @@ class Face < ApplicationRecord
   before_save :set_heat_flow
   after_update :save_components
   after_save :save_room
+  after_destroy :save_room
+
+  default_scope -> { order id: :desc }
 
   private
     def set_heat_flow

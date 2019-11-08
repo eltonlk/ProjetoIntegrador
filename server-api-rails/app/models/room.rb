@@ -9,6 +9,8 @@ class Room < ApplicationRecord
 
   before_save :set_heat_load
 
+  default_scope -> { order id: :desc }
+
   private
     def set_heat_load
       self.heat_load = faces.sum(:heat_flow)

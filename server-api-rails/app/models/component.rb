@@ -11,12 +11,17 @@ class Component < ApplicationRecord
 
   before_save :set_heat_flow
   after_save :save_face
+  after_destroy :save_face
+
+  default_scope -> { order id: :desc }
 
   private
     def set_heat_flow
       project = face.room.project
 
-      self.heat_flow = if component_materials.translucent.exists?
+      self.heat_flow = if component_materials.none?
+        0
+      elsif component_materials.translucent.exists?
         glass_heat_flow_calculate
       elsif project.summer?
         summer_heat_flow_calculate
