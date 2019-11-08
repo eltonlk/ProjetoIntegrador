@@ -13,7 +13,7 @@
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <BorderPane stylesheets="@../../../styles/Styles.css"
-            styleClass="list-item-card"
+            styleClass="list-item-card, room-item-card"
             xmlns="http://javafx.com/javafx/12.0.2"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.projeto.integrador.clientdesktop.controllers.projects.components.RoomController">

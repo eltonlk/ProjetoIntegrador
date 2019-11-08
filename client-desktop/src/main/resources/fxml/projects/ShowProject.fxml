@@ -97,7 +97,7 @@
         <center>
           <ScrollPane styleClass="scroll-pane" fitToHeight="true" fitToWidth="true">
             <content>
-              <VBox fx:id="roomsList" spacing="5.0">
+              <VBox fx:id="roomsList" spacing="30.0">
                 <children>
                 </children>
               </VBox>

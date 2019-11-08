@@ -162,6 +162,22 @@
 	-fx-background-radius: 5.0;
 	-fx-padding: 10 10 10 10;
 }
+
+.room-item-card {
+	-fx-background-color: #c2e6ff;
+}
+
+.face-item-card {
+	-fx-background-color: #d9cbf9;
+}
+
+.component-item-card {
+	-fx-background-color: #c1f8f1;
+}
+
+.component-material-item-card {
+	-fx-background-color: #DDDDDD;
+}
 /* <============ HELPERS ============> */
 
 
