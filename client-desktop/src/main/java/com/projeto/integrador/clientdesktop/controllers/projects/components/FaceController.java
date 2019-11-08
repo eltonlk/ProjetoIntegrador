@@ -105,7 +105,7 @@ public class FaceController implements Initializable {
   private void fillContent() {
     kindLabel.setText(FaceKindCollection.findByValue(face.getKind()).toString());
     orientationLabel.setText(FaceOrientationCollection.findByValue(face.getOrientation()).toString());
-    heatFlowLabel.setText(NumberParser.localizeFromDouble(face.getHeatFlow()) + " W");
+    heatFlowLabel.setText(NumberParser.localizeFromDouble(face.getHeatFlow(), "#.##") + " W");
 
     if (face.getComponents() != null) {
       for (Component component : face.getComponents()) {

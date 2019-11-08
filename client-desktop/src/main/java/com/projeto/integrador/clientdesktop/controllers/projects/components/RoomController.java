@@ -101,8 +101,8 @@ public class RoomController implements Initializable {
 
   private void fillContent() {
     nameLabel.setText(room.getName());
-    heatLoadLabel.setText(NumberParser.localizeFromDouble(room.getHeatLoad()) + " W");
-    btuLabel.setText(NumberParser.localizeFromDouble(room.getBTUCalculated()) + " BTU/H");
+    heatLoadLabel.setText(NumberParser.localizeFromDouble(room.getHeatLoad(), "#.##") + " W");
+    btuLabel.setText(NumberParser.localizeFromDouble((int) room.getBTUCalculated()) + " BTU/H");
 
     if (room.getFaces() != null) {
       for (Face face : room.getFaces()) {
