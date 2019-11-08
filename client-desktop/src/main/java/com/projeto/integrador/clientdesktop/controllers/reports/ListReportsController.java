@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Map.Entry;
 
@@ -196,7 +198,7 @@ public class ListReportsController implements Initializable {
         value = projectsByMonthsJsonData.get(key).asInt();
       }
 
-      serie.getData().add(new XYChart.Data<String, Integer> (date.getMonth().name(), value));
+      serie.getData().add(new XYChart.Data<String, Integer> (getMonthTranslated(date.getMonth().name()), value));
 
       date = date.plusMonths(1);
     }
@@ -204,6 +206,24 @@ public class ListReportsController implements Initializable {
     data.addAll(serie);
 
     return data;
+  }
+
+  private String getMonthTranslated(String month) {
+    Map <String, String> i18n = new HashMap<String, String>();
+    i18n.put("january", "Janeiro");
+    i18n.put("february", "Fevereiro");
+    i18n.put("march", "Março");
+    i18n.put("april", "Abril");
+    i18n.put("may", "Maio");
+    i18n.put("june", "Junho");
+    i18n.put("july", "Julho");
+    i18n.put("august", "Agosto");
+    i18n.put("september", "Setembro");
+    i18n.put("october", "Outubro");
+    i18n.put("november", "Novembro");
+    i18n.put("december", "Dezembro");
+
+    return i18n.get(month.toLowerCase());
   }
 
   @FXML
