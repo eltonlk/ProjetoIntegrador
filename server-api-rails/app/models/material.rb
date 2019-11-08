@@ -9,7 +9,7 @@ class Material < ApplicationRecord
 
   validates :name, presence: true
   validates_numericality_of :thermal_conductivity_index, greater_than: 0, unless: :air?
-  validates_numericality_of :solar_factor              , greater_than: 0, if: :translucent?
+  validates_numericality_of :solar_factor              , greater_than: 0, less_than_or_equal_to: 1, if: :translucent?
   validates_numericality_of :resistance                , greater_than: 0, if: :air?
 
   default_scope -> { order :name }

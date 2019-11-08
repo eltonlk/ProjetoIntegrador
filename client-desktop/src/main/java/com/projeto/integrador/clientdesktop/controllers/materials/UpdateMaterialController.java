@@ -51,7 +51,7 @@ public class UpdateMaterialController implements Initializable {
     kindComboBox.fireEvent(new ActionEvent());
 
     Mask.addTo(thermalConductivityIndexInput, Mask.DECIMAL_5_X_5);
-    Mask.addTo(solarFactorInput, Mask.DECIMAL_5_X_5);
+    Mask.addTo(solarFactorInput, Mask.DECIMAL_1_X_5);
     Mask.addTo(resistanceInput, Mask.DECIMAL_5_X_5);
   }
 

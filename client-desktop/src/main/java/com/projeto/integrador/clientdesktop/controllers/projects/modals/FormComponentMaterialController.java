@@ -13,6 +13,7 @@ import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.resources.ComponentMaterialResource;
 import com.projeto.integrador.clientdesktop.resources.MaterialResource;
 import com.projeto.integrador.clientdesktop.resources.ProjectResource;
+import com.projeto.integrador.clientdesktop.utils.Mask;
 import com.projeto.integrador.clientdesktop.utils.NumberParser;
 import com.projeto.integrador.clientdesktop.views.projects.ShowProjectFxmlView;
 
@@ -62,6 +63,11 @@ public class FormComponentMaterialController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    Mask.addTo(widthInput, Mask.DECIMAL_5_X_5);
+    Mask.addTo(thermalConductivityIndexInput, Mask.DECIMAL_5_X_5);
+    Mask.addTo(solarFactorInput, Mask.DECIMAL_1_X_5);
+    Mask.addTo(resistanceInput, Mask.DECIMAL_5_X_5);
+
     componentMaterial = new ComponentMaterial();
 
     materialsOptions = FXCollections.observableArrayList(materialResource.getAll());

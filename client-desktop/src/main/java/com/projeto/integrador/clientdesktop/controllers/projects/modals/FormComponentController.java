@@ -13,6 +13,7 @@ import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.resources.ColorResource;
 import com.projeto.integrador.clientdesktop.resources.ComponentResource;
 import com.projeto.integrador.clientdesktop.resources.ProjectResource;
+import com.projeto.integrador.clientdesktop.utils.Mask;
 import com.projeto.integrador.clientdesktop.utils.NumberParser;
 import com.projeto.integrador.clientdesktop.views.projects.ShowProjectFxmlView;
 
@@ -61,6 +62,8 @@ public class FormComponentController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    Mask.addTo(areaInput, Mask.DECIMAL_5_X_5);
+
     component = new Component();
 
     colorsOptions = FXCollections.observableArrayList(colorResource.getAll());
