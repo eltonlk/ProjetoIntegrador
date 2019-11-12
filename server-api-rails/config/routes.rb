@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resource :login, only: [ :create ], controller: 'session'
 
+  resources :user, only: [ :show ]
+
   resources :users, only: [ :index, :show, :create, :update, :destroy ]
   resources :user_roles, only: [ :index, :show, :update ]
 
