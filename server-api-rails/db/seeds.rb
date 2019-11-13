@@ -37,6 +37,7 @@ Role.create! name: 'ROLE_USERS'           , privileges: [ read_privilege, create
 Role.create! name: 'ROLE_COLORS'          , privileges: [ read_privilege, create_privilege, update_privilege, delete_privilege ]
 Role.create! name: 'ROLE_MATERIALS'       , privileges: [ read_privilege, create_privilege, update_privilege, delete_privilege ]
 Role.create! name: 'ROLE_PROJECTS'        , privileges: [ read_privilege, create_privilege, update_privilege, delete_privilege, show_privilege, send_mail_privilege ]
+Role.create! name: 'ROLE_REPORTS'         , privileges: [ read_privilege ]
 Role.create! name: 'ROLE_SOLAR_RADIATIONS', privileges: [ read_privilege, create_privilege, update_privilege, delete_privilege ]
 
 User.create! name: 'Administrador', email: 'administrador@mail.com', username: 'admin'      , password: '123456789', active: true
