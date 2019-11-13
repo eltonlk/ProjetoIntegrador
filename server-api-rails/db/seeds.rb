@@ -23,18 +23,20 @@ SolarRadiation.create! name: "Nordeste", north_index: 800, north_east_index: 800
 SolarRadiation.create! name: "Centro-Oeste", north_index: 500, north_east_index: 500, east_index: 500, south_east_index: 500,
   south_index: 500, south_west_index: 500, west_index: 500, north_west_index: 500
 
-read_privilege   = Privilege.create! name: 'READ_PRIVILEGE'
-create_privilege = Privilege.create! name: 'CREATE_PRIVILEGE'
-update_privilege = Privilege.create! name: 'UPDATE_PRIVILEGE'
-delete_privilege = Privilege.create! name: 'DELETE_PRIVILEGE'
+read_privilege        = Privilege.create! name: 'READ_PRIVILEGE'
+create_privilege      = Privilege.create! name: 'CREATE_PRIVILEGE'
+update_privilege      = Privilege.create! name: 'UPDATE_PRIVILEGE'
+delete_privilege      = Privilege.create! name: 'DELETE_PRIVILEGE'
+show_privilege        = Privilege.create! name: 'SHOW_PRIVILEGE'
+send_mail_privilege   = Privilege.create! name: 'SEND_MAIL_PRIVILEGE'
+permissions_privilege = Privilege.create! name: 'PERMISSIONS_PRIVILEGE'
 
 Role.create! name: 'ROLE_AUDITS'          , privileges: [ read_privilege ]
 Role.create! name: 'ROLE_OPTIONS'         , privileges: [ read_privilege, update_privilege ]
-Role.create! name: 'ROLE_USERS'           , privileges: [ read_privilege, create_privilege, update_privilege, delete_privilege ]
-Role.create! name: 'ROLE_USER_ROLES'      , privileges: [ read_privilege, update_privilege ]
+Role.create! name: 'ROLE_USERS'           , privileges: [ read_privilege, create_privilege, update_privilege, delete_privilege, permissions_privilege ]
 Role.create! name: 'ROLE_COLORS'          , privileges: [ read_privilege, create_privilege, update_privilege, delete_privilege ]
 Role.create! name: 'ROLE_MATERIALS'       , privileges: [ read_privilege, create_privilege, update_privilege, delete_privilege ]
-Role.create! name: 'ROLE_PROJECTS'        , privileges: [ read_privilege, create_privilege, update_privilege, delete_privilege ]
+Role.create! name: 'ROLE_PROJECTS'        , privileges: [ read_privilege, create_privilege, update_privilege, delete_privilege, show_privilege, send_mail_privilege ]
 Role.create! name: 'ROLE_SOLAR_RADIATIONS', privileges: [ read_privilege, create_privilege, update_privilege, delete_privilege ]
 
 User.create! name: 'Administrador', email: 'administrador@mail.com', username: 'admin'      , password: '123456789', active: true

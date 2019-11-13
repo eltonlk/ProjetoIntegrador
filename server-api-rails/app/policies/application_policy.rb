@@ -1,11 +1,9 @@
 class ApplicationPolicy
-  attr_reader :user, :record, :role
+  attr_reader :user, :record
 
   def initialize user, record
     @user = user
     @record = record
-
-    @role = Role.find_by name: "ROLE_#{record.to_s.upcase}"
   end
 
   def index?
@@ -30,11 +28,16 @@ class ApplicationPolicy
 
   private
     def can? privilege_name
+      role = Role.find_by name: role_name
       privilege = Privilege.find_by name: privilege_name
 
-      user_role = user.roles.find_by role_id: @role, privilege_id: privilege
+      user_role = user.roles.find_by role_id: role, privilege_id: privilege
 
       user_role.present? and user_role.enable?
+    end
+
+    def role_name
+      "ROLE_#{record.to_s.upcase}"
     end
 
   class Scope
