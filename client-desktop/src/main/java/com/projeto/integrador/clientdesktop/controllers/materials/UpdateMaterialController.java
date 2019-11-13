@@ -143,7 +143,4 @@ public class UpdateMaterialController implements Initializable {
   @FXML
   private CheckBox activeCheckBox;
 
-  @FXML
-  private Button submitButton;
-
 }

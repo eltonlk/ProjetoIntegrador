@@ -233,9 +233,6 @@ public class ListReportsController implements Initializable {
   private ComboBox<SolarRadiation> solarRadiationComboBox;
 
   @FXML
-  private Button submitButton;
-
-  @FXML
   private StackPane pane1, pane2, pane3;
 
 }

@@ -57,9 +57,6 @@ public class CreateColorController implements Initializable {
   }
 
   @FXML
-  private Button submitButton;
-
-  @FXML
   private TextField nameInput;
 
   @FXML

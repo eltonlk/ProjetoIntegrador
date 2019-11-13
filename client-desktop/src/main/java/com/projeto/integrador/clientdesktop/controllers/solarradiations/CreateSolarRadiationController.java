@@ -66,9 +66,6 @@ public class CreateSolarRadiationController implements Initializable {
   }
 
   @FXML
-  private Button submitButton;
-
-  @FXML
   private TextField nameInput;
 
   @FXML

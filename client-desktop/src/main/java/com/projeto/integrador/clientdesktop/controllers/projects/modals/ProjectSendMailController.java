@@ -66,7 +66,4 @@ public class ProjectSendMailController implements Initializable {
   @FXML
   private TextField emailInput;
 
-  @FXML
-  private Button submitButton;
-
 }

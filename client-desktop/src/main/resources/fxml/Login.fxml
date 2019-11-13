@@ -57,7 +57,7 @@
 
             <HBox alignment="TOP_RIGHT">
               <children>
-                <Button fx:id="submitButton" onAction="#login" styleClass="button-primary" text="ENTRAR"/>
+                <Button onAction="#login" styleClass="button-primary" text="ENTRAR"/>
               </children>
             </HBox>
           </children>

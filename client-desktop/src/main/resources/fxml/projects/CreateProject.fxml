@@ -73,7 +73,7 @@
 
       <HBox>
         <children>
-          <Button fx:id="submitButton" onAction="#create" styleClass="button-primary" text="Adicionar"/>
+          <Button onAction="#create" styleClass="button-primary" text="Adicionar"/>
         </children>
       </HBox>
     </VBox>
