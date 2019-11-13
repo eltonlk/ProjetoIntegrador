@@ -2,11 +2,8 @@ package com.projeto.integrador.clientdesktop.controllers.shared;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 
-import com.projeto.integrador.clientdesktop.config.Policy;
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.views.audits.ListAuditsFxmlView;
 import com.projeto.integrador.clientdesktop.views.colors.ListColorsFxmlView;
@@ -25,7 +22,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 @Controller
@@ -35,34 +31,9 @@ public class MenuController implements Initializable {
   @Autowired
   private StageManager stageManager;
 
-  // @Autowired
-  // private Policy policy;
-
-  private Boolean policy = Boolean.TRUE;
-
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    System.out.println(">>>>>>>>>>>>>>>>>>>>> aqui!");
-    // System.out.println(policy);
-    // System.out.println(policy.can());
-
-    goToMaterialsButton.setDisable(true);
   }
-
-  // private Map<String, String> policies() {
-  //   Map<String, String> policies = new HashMap<String, String>();
-
-  //   policies.put("goToProjectsButton", "ROLE_PROJECTS_READ_PRIVILEGE");
-  //   policies.put("goToMaterialsButton", "ROLE_PROJECTS_READ_PRIVILEGE");
-  //   policies.put("goToColorsButton", "ROLE_PROJECTS_READ_PRIVILEGE");
-  //   policies.put("goToSolarRadiationsButton", "ROLE_PROJECTS_READ_PRIVILEGE");
-  //   policies.put("goToReportsButton", "ROLE_PROJECTS_READ_PRIVILEGE");
-  //   policies.put("goToAuditsButton", "ROLE_PROJECTS_READ_PRIVILEGE");
-  //   policies.put("goToSettingsButton", "ROLE_PROJECTS_READ_PRIVILEGE");
-  //   policies.put("goToUsersButton", "ROLE_PROJECTS_READ_PRIVILEGE");
-
-  //   return policies;
-  // }
 
   @FXML
   private void goToAudits(ActionEvent event) throws IOException {
@@ -111,29 +82,5 @@ public class MenuController implements Initializable {
 
     stage.close();
   }
-
-  // @FXML
-  // private Button goToProjectsButton;
-
-  @FXML
-  private Button goToMaterialsButton;
-
-  // @FXML
-  // private Button goToColorsButton;
-
-  // @FXML
-  // private Button goToSolarRadiationsButton;
-
-  // @FXML
-  // private Button goToReportsButton;
-
-  // @FXML
-  // private Button goToAuditsButton;
-
-  // @FXML
-  // private Button goToSettingsButton;
-
-  // @FXML
-  // private Button goToUsersButton;
 
 }

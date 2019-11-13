@@ -39,9 +39,9 @@ public class StageManager {
   }
 
   public void switchScene(AbstractFxmlView view) {
-    Parent viewRootNodeHierarchy = loadViewNodeHierarchy(view.getFxmlFile());
-
     loadAuthorities();
+
+    Parent viewRootNodeHierarchy = loadViewNodeHierarchy(view.getFxmlFile());
 
     show(viewRootNodeHierarchy, view);
   }
@@ -137,8 +137,10 @@ public class StageManager {
     List<GrantedAuthority> authorities = new ArrayList<>();
 
     for (UserRole userRole: userRoles) {
-      String authority = userRole.getRole().getName() + "_" + userRole.getPrivilege().getName();
-      authorities.add(new SimpleGrantedAuthority(authority));
+      if (userRole.isEnable()) {
+        String authority = userRole.getRole().getName() + "_" + userRole.getPrivilege().getName();
+        authorities.add(new SimpleGrantedAuthority(authority));
+      }
     }
 
     return authorities;

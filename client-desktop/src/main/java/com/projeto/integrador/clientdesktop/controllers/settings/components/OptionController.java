@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import com.projeto.integrador.clientdesktop.config.PolicyHelper;
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.models.Option;
 import com.projeto.integrador.clientdesktop.resources.OptionResource;
@@ -50,9 +51,14 @@ public class OptionController implements Initializable {
   }
 
   private void fillContent() {
+    PolicyHelper policyHelper = new PolicyHelper();
+
     row.setAlignment(Pos.CENTER_LEFT);
 
     ToggleSwitch toggle = new ToggleSwitch("enabled".equals(option.getValue()));
+
+    toggle.setDisable(policyHelper.cannot("ROLE_OPTIONS_UPDATE_PRIVILEGE"));
+
     toggle.setCallback(new Runnable(){
       @Override
       public void run() {

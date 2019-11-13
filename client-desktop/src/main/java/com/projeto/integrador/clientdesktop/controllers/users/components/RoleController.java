@@ -86,6 +86,9 @@ public class RoleController implements Initializable {
       case "ROLE_PROJECTS":
         return "Projetos";
 
+      case "ROLE_REPORTS":
+        return "Relatórios";
+
       case "ROLE_SOLAR_RADIATIONS":
         return "Radiação Solar";
 

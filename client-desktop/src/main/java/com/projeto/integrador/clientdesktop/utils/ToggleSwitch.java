@@ -32,6 +32,8 @@ public class ToggleSwitch extends Parent {
 
     getChildren().addAll(background, trigger);
 
+    getStyleClass().add("toggle-switch");
+
     switchedOn.addListener((obs, oldState, newState) -> {
       if (callback != null) {
         callback.run();

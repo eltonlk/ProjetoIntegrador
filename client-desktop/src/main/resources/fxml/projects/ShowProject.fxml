@@ -88,11 +88,11 @@
 
             <Label text="Cômodos" styleClass="label-h6"/>
 
-            <Button onAction="#createRoom" styleClass="button-sm">
+            <ButtonCan policy="ROLE_PROJECTS_CREATE_PRIVILEGE" onAction="#createRoom" styleClass="button-sm">
               <graphic>
                 <FontIcon iconLiteral="fas-plus"/>
               </graphic>
-            </Button>
+            </ButtonCan>
           </HBox>
         </top>
 
