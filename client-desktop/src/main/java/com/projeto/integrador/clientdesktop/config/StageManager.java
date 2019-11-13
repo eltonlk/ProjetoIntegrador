@@ -1,8 +1,21 @@
 package com.projeto.integrador.clientdesktop.config;
 
+import com.projeto.integrador.clientdesktop.models.User;
+import com.projeto.integrador.clientdesktop.models.UserRole;
+import com.projeto.integrador.clientdesktop.resources.CurrentUserResource;
 import com.projeto.integrador.clientdesktop.views.AbstractFxmlView;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 import javafx.fxml.FXMLLoader;
@@ -17,6 +30,9 @@ public class StageManager {
   private final Stage stage;
   private final SpringFxmlLoader loader;
 
+  @Autowired
+  private CurrentUserResource currentUserResource;
+
   public StageManager(SpringFxmlLoader loader, Stage stage) {
     this.loader = loader;
     this.stage = stage;
@@ -24,6 +40,8 @@ public class StageManager {
 
   public void switchScene(AbstractFxmlView view) {
     Parent viewRootNodeHierarchy = loadViewNodeHierarchy(view.getFxmlFile());
+
+    loadAuthorities();
 
     show(viewRootNodeHierarchy, view);
   }
@@ -95,6 +113,35 @@ public class StageManager {
     dialog.initModality(Modality.APPLICATION_MODAL);
 
     return dialog;
+  }
+
+  private void loadAuthorities() {
+    if (SecurityContextHolder.getContext().getAuthentication() != null &&
+      SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
+
+      Authentication currentAuth = SecurityContextHolder.getContext().getAuthentication();
+
+      User currentUser = currentUserResource.get();
+
+      Authentication newAuth = new UsernamePasswordAuthenticationToken(
+        currentAuth.getPrincipal(),
+        currentAuth.getCredentials(),
+        getAuthorities(currentUser.getRoles())
+      );
+
+      SecurityContextHolder.getContext().setAuthentication(newAuth);
+    }
+  }
+
+  private Collection<? extends GrantedAuthority> getAuthorities(Collection<UserRole> userRoles) {
+    List<GrantedAuthority> authorities = new ArrayList<>();
+
+    for (UserRole userRole: userRoles) {
+      String authority = userRole.getRole().getName() + "_" + userRole.getPrivilege().getName();
+      authorities.add(new SimpleGrantedAuthority(authority));
+    }
+
+    return authorities;
   }
 
 }

@@ -16,42 +16,42 @@
       fx:controller="com.projeto.integrador.clientdesktop.controllers.shared.MenuController">
 
   <children>
-    <Button onAction="#goToProjects" text="Projetos" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
+    <Button fx:id="goToProjectsButton" disable="${policy}" onAction="#goToProjects" text="Projetos" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
         <graphic>
           <FontIcon iconLiteral="fas-project-diagram" iconSize="20"/>
         </graphic>
       </Button>
-      <Button onAction="#goToMaterials" text="Materiais" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
+      <Button fx:id="goToMaterialsButton" onAction="#goToMaterials" text="Materiais" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
         <graphic>
           <FontIcon iconLiteral="fas-puzzle-piece" iconSize="20"/>
         </graphic>
       </Button>
-      <Button onAction="#goToColors" text="Cores" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
+      <Button fx:id="goToColorsButton" disable="${Boolean.TRUE}" onAction="#goToColors" text="Cores" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
         <graphic>
           <FontIcon iconLiteral="fas-swatchbook" iconSize="20"/>
         </graphic>
       </Button>
-      <Button onAction="#goToSolarRadiations" text="Radiações Solar" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
+      <Button fx:id="goToSolarRadiationsButton" onAction="#goToSolarRadiations" text="Radiações Solar" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
         <graphic>
           <FontIcon iconLiteral="fas-sun" iconSize="20"/>
         </graphic>
       </Button>
-      <Button onAction="#goToReports" text="Relatórios" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
+      <Button fx:id="goToReportsButton" onAction="#goToReports" text="Relatórios" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
         <graphic>
           <FontIcon iconLiteral="fas-chart-pie" iconSize="20"/>
         </graphic>
       </Button>
-      <Button onAction="#goToAudits" text="Histórico" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
+      <Button fx:id="goToAuditsButton" onAction="#goToAudits" text="Histórico" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
         <graphic>
           <FontIcon iconLiteral="fas-book" iconSize="20"/>
         </graphic>
       </Button>
-      <Button onAction="#goToSettings" text="Opções" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
+      <Button fx:id="goToSettingsButton" onAction="#goToSettings" text="Opções" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
         <graphic>
           <FontIcon iconLiteral="fas-cogs" iconSize="20"/>
         </graphic>
       </Button>
-      <Button onAction="#goToUsers" text="Usuários" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
+      <Button fx:id="goToUsersButton" onAction="#goToUsers" text="Usuários" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
         <graphic>
           <FontIcon iconLiteral="fas-users" iconSize="20"/>
         </graphic>

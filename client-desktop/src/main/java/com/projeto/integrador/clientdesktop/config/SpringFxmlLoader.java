@@ -27,6 +27,7 @@ public class SpringFxmlLoader {
     loader = new FXMLLoader();
 
     loader.setControllerFactory(context::getBean);
+
     loader.setLocation(getClass().getResource(fxmlPath));
 
     return loader;
