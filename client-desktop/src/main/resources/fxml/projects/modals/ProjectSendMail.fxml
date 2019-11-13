@@ -47,7 +47,7 @@
       </padding>
 
       <children>
-        <Button fx:id="submitButton" onAction="#send" styleClass="button-primary" text="Enviar"/>
+        <Button onAction="#send" styleClass="button-primary" text="Enviar"/>
       </children>
     </HBox>
   </bottom>

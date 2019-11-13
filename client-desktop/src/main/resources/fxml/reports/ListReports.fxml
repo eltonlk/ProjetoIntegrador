@@ -56,7 +56,7 @@
             </VBox>
 
             <VBox alignment="BOTTOM_CENTER">
-              <Button fx:id="submitButton" onAction="#submit" styleClass="button-secondary" text="Gerar"/>
+              <Button onAction="#submit" styleClass="button-secondary" text="Gerar"/>
             </VBox>
           </HBox>
 

@@ -3,6 +3,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.VBox?>
 
+<?import com.projeto.integrador.clientdesktop.controls.ButtonCan?>
+
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <VBox prefHeight="600.0"
@@ -16,50 +18,50 @@
       fx:controller="com.projeto.integrador.clientdesktop.controllers.shared.MenuController">
 
   <children>
-    <Button onAction="#goToProjects" text="Projetos" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
-        <graphic>
-          <FontIcon iconLiteral="fas-project-diagram" iconSize="20"/>
-        </graphic>
-      </Button>
-      <Button onAction="#goToMaterials" text="Materiais" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
-        <graphic>
-          <FontIcon iconLiteral="fas-puzzle-piece" iconSize="20"/>
-        </graphic>
-      </Button>
-      <Button onAction="#goToColors" text="Cores" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
-        <graphic>
-          <FontIcon iconLiteral="fas-swatchbook" iconSize="20"/>
-        </graphic>
-      </Button>
-      <Button onAction="#goToSolarRadiations" text="Radiações Solar" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
-        <graphic>
-          <FontIcon iconLiteral="fas-sun" iconSize="20"/>
-        </graphic>
-      </Button>
-      <Button onAction="#goToReports" text="Relatórios" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
-        <graphic>
-          <FontIcon iconLiteral="fas-chart-pie" iconSize="20"/>
-        </graphic>
-      </Button>
-      <Button onAction="#goToAudits" text="Histórico" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
-        <graphic>
-          <FontIcon iconLiteral="fas-book" iconSize="20"/>
-        </graphic>
-      </Button>
-      <Button onAction="#goToSettings" text="Opções" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
-        <graphic>
-          <FontIcon iconLiteral="fas-cogs" iconSize="20"/>
-        </graphic>
-      </Button>
-      <Button onAction="#goToUsers" text="Usuários" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
-        <graphic>
-          <FontIcon iconLiteral="fas-users" iconSize="20"/>
-        </graphic>
-      </Button>
-      <Button onAction="#logout" text="Sair" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
-        <graphic>
-          <FontIcon iconLiteral="fas-sign-out-alt" iconSize="20"/>
-        </graphic>
-      </Button>
+    <ButtonCan policy="ROLE_PROJECTS_READ_PRIVILEGE" onAction="#goToProjects" text="Projetos" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
+      <graphic>
+        <FontIcon iconLiteral="fas-project-diagram" iconSize="20"/>
+      </graphic>
+    </ButtonCan>
+    <ButtonCan policy="ROLE_MATERIALS_READ_PRIVILEGE" onAction="#goToMaterials" text="Materiais" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
+      <graphic>
+        <FontIcon iconLiteral="fas-puzzle-piece" iconSize="20"/>
+      </graphic>
+    </ButtonCan>
+    <ButtonCan policy="ROLE_COLORS_READ_PRIVILEGE" onAction="#goToColors" text="Cores" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
+      <graphic>
+        <FontIcon iconLiteral="fas-swatchbook" iconSize="20"/>
+      </graphic>
+    </ButtonCan>
+    <ButtonCan policy="ROLE_SOLAR_RADIATIONS_READ_PRIVILEGE" onAction="#goToSolarRadiations" text="Radiações Solar" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
+      <graphic>
+        <FontIcon iconLiteral="fas-sun" iconSize="20"/>
+      </graphic>
+    </ButtonCan>
+    <ButtonCan policy="ROLE_REPORTS_READ_PRIVILEGE" onAction="#goToReports" text="Relatórios" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
+      <graphic>
+        <FontIcon iconLiteral="fas-chart-pie" iconSize="20"/>
+      </graphic>
+    </ButtonCan>
+    <ButtonCan policy="ROLE_AUDITS_READ_PRIVILEGE" onAction="#goToAudits" text="Histórico" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
+      <graphic>
+        <FontIcon iconLiteral="fas-book" iconSize="20"/>
+      </graphic>
+    </ButtonCan>
+    <ButtonCan policy="ROLE_OPTIONS_READ_PRIVILEGE" onAction="#goToSettings" text="Opções" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
+      <graphic>
+        <FontIcon iconLiteral="fas-cogs" iconSize="20"/>
+      </graphic>
+    </ButtonCan>
+    <ButtonCan policy="ROLE_USERS_READ_PRIVILEGE" onAction="#goToUsers" text="Usuários" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
+      <graphic>
+        <FontIcon iconLiteral="fas-users" iconSize="20"/>
+      </graphic>
+    </ButtonCan>
+    <Button onAction="#logout" text="Sair" textAlignment="CENTER" contentDisplay="TOP" wrapText="true">
+      <graphic>
+        <FontIcon iconLiteral="fas-sign-out-alt" iconSize="20"/>
+      </graphic>
+    </Button>
   </children>
 </VBox>

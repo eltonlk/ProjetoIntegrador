@@ -72,9 +72,6 @@ public class UpdateUserController implements Initializable {
   }
 
   @FXML
-  private Button submitButton;
-
-  @FXML
   private TextField emailInput;
 
   @FXML

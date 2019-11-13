@@ -121,7 +121,4 @@ public class CreateMaterialController implements Initializable {
   @FXML
   private CheckBox activeCheckBox;
 
-  @FXML
-  private Button submitButton;
-
 }

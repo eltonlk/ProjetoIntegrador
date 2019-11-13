@@ -74,9 +74,6 @@ public class UpdateColorController implements Initializable {
   }
 
   @FXML
-  private Button submitButton;
-
-  @FXML
   private TextField nameInput;
 
   @FXML

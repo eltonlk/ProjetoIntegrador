@@ -56,9 +56,6 @@ public class CreateUserController implements Initializable {
   }
 
   @FXML
-  private Button submitButton;
-
-  @FXML
   private PasswordField passwordInput;
 
   @FXML

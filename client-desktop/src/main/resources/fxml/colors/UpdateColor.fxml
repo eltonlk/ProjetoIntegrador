@@ -63,7 +63,7 @@
 
           <HBox>
             <children>
-              <Button fx:id="submitButton" onAction="#update" styleClass="button-primary" text="Alterar"/>
+              <Button onAction="#update" styleClass="button-primary" text="Alterar"/>
             </children>
           </HBox>
         </VBox>

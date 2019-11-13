@@ -11,6 +11,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import com.projeto.integrador.clientdesktop.controls.ButtonCan?>
+
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <BorderPane prefHeight="600.0"
@@ -36,9 +38,9 @@
         <Label text="Projeto" styleClass="label-header"/>
         <Pane HBox.hgrow="ALWAYS"/>
         <HBox spacing="5.0">
-          <Button onAction="#sendMail" text="Enviar E-Mail"/>
-          <Button onAction="#goToUpdate" text="Alterar" styleClass="button-success"/>
-          <Button onAction="#delete" text="Excluir" styleClass="button-danger"/>
+          <ButtonCan policy="ROLE_PROJECTS_SEND_MAIL_PRIVILEGE" onAction="#sendMail" text="Enviar E-Mail"/>
+          <ButtonCan policy="ROLE_PROJECTS_UPDATE_PRIVILEGE" onAction="#goToUpdate" text="Alterar" styleClass="button-success"/>
+          <ButtonCan policy="ROLE_PROJECTS_DELETE_PRIVILEGE" onAction="#delete" text="Excluir" styleClass="button-danger"/>
           <Button onAction="#goToBack" text="Voltar"/>
         </HBox>
       </HBox>
