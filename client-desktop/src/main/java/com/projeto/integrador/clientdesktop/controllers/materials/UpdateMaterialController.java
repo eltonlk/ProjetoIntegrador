@@ -2,6 +2,8 @@ package com.projeto.integrador.clientdesktop.controllers.materials;
 
 import com.projeto.integrador.clientdesktop.collections.MaterialKindCollection;
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
+import com.projeto.integrador.clientdesktop.config.ValidatorHelper;
 import com.projeto.integrador.clientdesktop.models.Material;
 import com.projeto.integrador.clientdesktop.resources.MaterialResource;
 import com.projeto.integrador.clientdesktop.utils.Mask;
@@ -37,6 +39,8 @@ public class UpdateMaterialController implements Initializable {
   private MaterialResource materialResource;
 
   private Material material;
+
+  private ValidatorHelper validator = new ValidatorHelper();
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -105,9 +109,13 @@ public class UpdateMaterialController implements Initializable {
     material.setResistance(NumberParser.parseToDouble(resistanceInput.getText()));
     material.setActive(activeCheckBox.isSelected());
 
-    materialResource.update(material);
+    if (validator.valid(material)) {
+      materialResource.update(material);
 
-		stageManager.switchScene(new ListMaterialsFxmlView());
+      stageManager.switchScene(new ListMaterialsFxmlView());
+
+      ToastHelper.success(String.format("Material \"%s\" alterado", material.getName()));
+    }
   }
 
   @FXML

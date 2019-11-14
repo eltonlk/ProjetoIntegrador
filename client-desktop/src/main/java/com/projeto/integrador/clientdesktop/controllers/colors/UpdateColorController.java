@@ -1,6 +1,8 @@
 package com.projeto.integrador.clientdesktop.controllers.colors;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
+import com.projeto.integrador.clientdesktop.config.ValidatorHelper;
 import com.projeto.integrador.clientdesktop.models.Color;
 import com.projeto.integrador.clientdesktop.resources.ColorResource;
 import com.projeto.integrador.clientdesktop.utils.Mask;
@@ -33,6 +35,8 @@ public class UpdateColorController implements Initializable {
 
   private Color color;
 
+  private ValidatorHelper validator = new ValidatorHelper();
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     color = new Color();
@@ -62,9 +66,13 @@ public class UpdateColorController implements Initializable {
     color.setAbsorbabilityIndex(NumberParser.parseToDouble(absorbabilityIndexInput.getText()));
     color.setActive(activeCheckBox.isSelected());
 
-    colorResource.update(color);
+    if (validator.valid(color)) {
+      colorResource.update(color);
 
-		stageManager.switchScene(new ListColorsFxmlView());
+      stageManager.switchScene(new ListColorsFxmlView());
+
+      ToastHelper.success(String.format("Cor \"%s\" alterada", color.getName()));
+    }
   }
 
   @FXML

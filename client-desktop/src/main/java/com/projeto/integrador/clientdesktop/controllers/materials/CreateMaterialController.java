@@ -2,6 +2,8 @@ package com.projeto.integrador.clientdesktop.controllers.materials;
 
 import com.projeto.integrador.clientdesktop.collections.MaterialKindCollection;
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
+import com.projeto.integrador.clientdesktop.config.ValidatorHelper;
 import com.projeto.integrador.clientdesktop.models.Material;
 import com.projeto.integrador.clientdesktop.resources.MaterialResource;
 import com.projeto.integrador.clientdesktop.utils.Mask;
@@ -35,6 +37,8 @@ public class CreateMaterialController implements Initializable {
 
   @Autowired
   private MaterialResource materialResource;
+
+  private ValidatorHelper validator = new ValidatorHelper();
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -77,15 +81,23 @@ public class CreateMaterialController implements Initializable {
   private void create(ActionEvent event) throws IOException {
     Material material = new Material();
     material.setName(nameInput.getText());
-    material.setKind(kindComboBox.getSelectionModel().getSelectedItem().getValue());
+
+    if (kindComboBox.getSelectionModel().getSelectedItem() != null) {
+      material.setKind(kindComboBox.getSelectionModel().getSelectedItem().getValue());
+    }
+
     material.setThermalConductivityIndex(NumberParser.parseToDouble(thermalConductivityIndexInput.getText()));
     material.setSolarFactor(NumberParser.parseToDouble(solarFactorInput.getText()));
     material.setResistance(NumberParser.parseToDouble(resistanceInput.getText()));
     material.setActive(activeCheckBox.isSelected());
 
-    materialResource.create(material);
+    if (validator.valid(material)) {
+      materialResource.create(material);
 
-		stageManager.switchScene(new ListMaterialsFxmlView());
+      stageManager.switchScene(new ListMaterialsFxmlView());
+
+      ToastHelper.success(String.format("Material \"%s\" adicionado", material.getName()));
+    }
   }
 
   @FXML

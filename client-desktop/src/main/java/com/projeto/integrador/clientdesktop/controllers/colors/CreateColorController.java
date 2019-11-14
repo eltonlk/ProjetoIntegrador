@@ -1,6 +1,8 @@
 package com.projeto.integrador.clientdesktop.controllers.colors;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
+import com.projeto.integrador.clientdesktop.config.ValidatorHelper;
 import com.projeto.integrador.clientdesktop.models.Color;
 import com.projeto.integrador.clientdesktop.resources.ColorResource;
 import com.projeto.integrador.clientdesktop.utils.Mask;
@@ -16,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -31,6 +34,8 @@ public class CreateColorController implements Initializable {
   @Autowired
   private ColorResource colorResource;
 
+  private ValidatorHelper validator = new ValidatorHelper();
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     activeCheckBox.setSelected(true);
@@ -45,9 +50,13 @@ public class CreateColorController implements Initializable {
     color.setAbsorbabilityIndex(NumberParser.parseToDouble(absorbabilityIndexInput.getText()));
     color.setActive(activeCheckBox.isSelected());
 
-    colorResource.create(color);
+    if (validator.valid(color)) {
+      colorResource.create(color);
 
-		stageManager.switchScene(new ListColorsFxmlView());
+      stageManager.switchScene(new ListColorsFxmlView());
+
+      ToastHelper.success(String.format("Cor \"%s\" adicionada", color.getName()));
+    }
   }
 
   @FXML
@@ -63,5 +72,8 @@ public class CreateColorController implements Initializable {
 
   @FXML
   private CheckBox activeCheckBox;
+
+  @FXML
+  private Text flash;
 
 }

@@ -1,13 +1,18 @@
 package com.projeto.integrador.clientdesktop.models;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Material {
 
   private Long id;
 
+  @NotBlank(message="Nome não pode ficar em branco.")
   private String name;
 
+  @NotBlank(message="Tipo de Material não pode ficar em branco.")
   private String kind;
 
   private boolean active;

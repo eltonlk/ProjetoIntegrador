@@ -1,14 +1,19 @@
 package com.projeto.integrador.clientdesktop.models;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Color {
 
   private Long id;
 
+  @NotBlank(message="Nome não pode ficar em branco.")
   private String name;
 
   @JsonProperty("absorbability_index")
+  @DecimalMin(value = "0.1", message = "Absorvidade deve ser maior que zero.")
   private double absorbabilityIndex;
 
   private boolean active;
