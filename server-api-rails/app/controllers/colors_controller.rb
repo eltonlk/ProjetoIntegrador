@@ -48,7 +48,7 @@ class ColorsController < ApplicationController
   def import
     @colors = []
 
-    CSV.foreach(params.require(:file).path, headers: true).with_index do |linha, index|
+    CSV.foreach(params.require(:file).path, headers: true).with_index do |row, index|
       next if index.zero?
 
       @colors << Color.create(name: row[0], absorbability_index: row[1])
