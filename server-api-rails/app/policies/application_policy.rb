@@ -26,6 +26,10 @@ class ApplicationPolicy
     can? "DELETE_PRIVILEGE"
   end
 
+  def import?
+    can? "IMPORT_PRIVILEGE"
+  end
+
   private
     def can? privilege_name
       role = Role.find_by name: role_name

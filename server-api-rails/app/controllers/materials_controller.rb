@@ -1,3 +1,5 @@
+require 'csv'
+
 class MaterialsController < ApplicationController
   before_action do
     authorize :materials
@@ -40,6 +42,18 @@ class MaterialsController < ApplicationController
   # DELETE /materials/1
   def destroy
     @material.destroy
+  end
+
+  # POST /materials/import
+  def import
+    @materials = []
+
+    CSV.foreach(params.require(:file).path, headers: true).with_index do |row, index|
+      @materials << Material.create(name: row[0], kind: row[1], thermal_conductivity_index: row[2],
+        solar_factor: row[3], resistance: row[4])
+    end
+
+    render json: @materials.select(&:persisted?)
   end
 
   private

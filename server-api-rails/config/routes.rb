@@ -17,15 +17,26 @@ Rails.application.routes.draw do
   resources :projects, only: [ :index, :show, :create, :update, :destroy ] do
     post :send_mail, on: :member
   end
+
   resources :rooms, only: [ :create, :update, :destroy ]
+
   resources :faces, only: [ :create, :update, :destroy ]
+
   resources :components, only: [ :create, :update, :destroy ]
+
   resources :component_materials, only: [ :create, :update, :destroy ]
 
-  resources :materials, only: [ :index, :create, :update, :destroy ]
-  resources :colors, only: [ :index, :create, :update, :destroy ]
-  resources :solar_radiations, only: [ :index, :create, :update, :destroy ]
+  resources :materials, only: [ :index, :create, :update, :destroy ] do
+    post :import, on: :collection
+  end
+
+  resources :colors, only: [ :index, :create, :update, :destroy ] do
+    post :import, on: :collection
+  end
+
+  resources :solar_radiations, only: [ :index, :create, :update, :destroy ] do
+    post :import, on: :collection
+  end
 
   resources :reports, only: [ :index ]
-
 end

@@ -1,3 +1,5 @@
+require 'csv'
+
 class ColorsController < ApplicationController
   before_action do
     authorize :colors
@@ -40,6 +42,17 @@ class ColorsController < ApplicationController
   # DELETE /colors/1
   def destroy
     @color.destroy
+  end
+
+  # POST /colors/import
+  def import
+    @colors = []
+
+    CSV.foreach(params.require(:file).path, headers: true).with_index do |row, index|
+      @colors << Color.create(name: row[0], absorbability_index: row[1])
+    end
+
+    render json: @colors.select(&:persisted?)
   end
 
   private
