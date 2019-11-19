@@ -1,3 +1,5 @@
+require 'csv'
+
 class SolarRadiationsController < ApplicationController
   before_action do
     authorize :solar_radiations
@@ -40,6 +42,21 @@ class SolarRadiationsController < ApplicationController
   # DELETE /solar_radiations/1
   def destroy
     @solar_radiation.destroy
+  end
+
+  # POST /solar_radiations/import
+  def import
+    @solar_radiations = []
+
+    CSV.foreach(params.require(:file).path, headers: true).with_index do |linha, index|
+      next if index.zero?
+
+      @solar_radiations << SolarRadiation.create(name: row[0], north_index: row[1], north_east_index: row[2],
+        north_west_index: row[3], south_index: row[4], south_east_index: row[5], south_west_index: row[6],
+        east_index: row[7], west_index: row[8], perpendicular_index: row[9])
+    end
+
+    render json: @solar_radiations.select(&:persisted?)
   end
 
   private

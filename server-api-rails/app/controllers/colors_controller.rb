@@ -1,3 +1,5 @@
+require 'csv'
+
 class ColorsController < ApplicationController
   before_action do
     authorize :colors
