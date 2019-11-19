@@ -49,8 +49,6 @@ class SolarRadiationsController < ApplicationController
     @solar_radiations = []
 
     CSV.foreach(params.require(:file).path, headers: true).with_index do |row, index|
-      next if index.zero?
-
       @solar_radiations << SolarRadiation.create(name: row[0], north_index: row[1], north_east_index: row[2],
         north_west_index: row[3], south_index: row[4], south_east_index: row[5], south_west_index: row[6],
         east_index: row[7], west_index: row[8], perpendicular_index: row[9])
