@@ -49,7 +49,7 @@ class ColorsController < ApplicationController
     CSV.foreach(params.require(:file).path, headers: true).with_index do |linha, index|
       next if index.zero?
 
-      @colors << Color.create name: row[0], absorbability_index: row[1]
+      @colors << Color.create(name: row[0], absorbability_index: row[1])
     end
 
     render json: @colors.select(&:persisted?)
