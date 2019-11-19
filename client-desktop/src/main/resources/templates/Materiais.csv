@@ -1,0 +1,4 @@
+Nome,Tipo,Índice de condutivade Térmica,Fator solar,Resistência
+Tijolo 6 furos,opaque,0.9,0.0,0.0
+Vidro Duplo,translucent,1.0,0.25,0.0
+Ar maior que 5 cm,air,0.0,0.0,0.14

@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
@@ -9,6 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import com.projeto.integrador.clientdesktop.controls.ButtonCan?>
+<?import com.projeto.integrador.clientdesktop.controls.MenuButtonCan?>
 
 <BorderPane prefHeight="600.0"
             prefWidth="1000.0"
@@ -34,7 +36,15 @@
           <HBox styleClass="header-view">
             <Label text="Materiais" styleClass="label-header"/>
             <Pane HBox.hgrow="ALWAYS"/>
-            <ButtonCan policy="ROLE_MATERIALS_CREATE_PRIVILEGE" onAction="#goToCreate" styleClass="button-primary" text="Adicionar"/>
+            <HBox spacing="5.0">
+              <MenuButtonCan policy="ROLE_MATERIALS_IMPORT_PRIVILEGE" mnemonicParsing="false" text="Importar">
+                <items>
+                  <MenuItem mnemonicParsing="false" onAction="#goToImport" text="Enviar Arquivo" />
+                  <MenuItem mnemonicParsing="false" onAction="#goToDownloadTemplate" text="Baixar Modelo CSV" />
+                </items>
+              </MenuButtonCan>
+              <ButtonCan policy="ROLE_MATERIALS_CREATE_PRIVILEGE" onAction="#goToCreate" styleClass="button-primary" text="Adicionar"/>
+            </HBox>
           </HBox>
 
           <VBox fx:id="materialsList" spacing="10.0">

@@ -139,6 +139,31 @@
 .toggle-switch:disabled {
 	-fx-opacity: 0.3;
 }
+
+/* MENU BUTTON */
+.menu-button {
+	-fx-padding: 2 10 2 10;
+	-fx-text-fill: -fx-default-text-color;
+	-fx-background-color:-fx-default-color;
+}
+
+.menu-button:disabled {
+	-fx-opacity: 0.4;
+}
+
+.menu-button:hover,
+.menu-button:pressed {
+	-fx-background-color: derive(-fx-default-color, 20%);
+}
+
+.menu-button > .label {
+	-fx-text-fill: -fx-default-text-color;
+	-fx-opacity: 1;
+}
+
+.menu-button > .arrow-button > .arrow {
+	-fx-background-color: -fx-default-text-color;
+}
 /* <============ DEFAULT ============> */
 
 

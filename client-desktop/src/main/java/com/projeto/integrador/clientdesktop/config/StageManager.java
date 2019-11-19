@@ -146,4 +146,8 @@ public class StageManager {
     return authorities;
   }
 
+  public Stage getStage() {
+    return stage;
+  }
+
 }

@@ -1,6 +1,5 @@
 package com.projeto.integrador.clientdesktop.models;
 
-import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
