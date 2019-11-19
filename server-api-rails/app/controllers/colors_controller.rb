@@ -42,6 +42,19 @@ class ColorsController < ApplicationController
     @color.destroy
   end
 
+  # POST /colors/import
+  def import
+    @colors = []
+
+    CSV.foreach(params.require(:file).path, headers: true).with_index do |linha, index|
+      next if index.zero?
+
+      @colors << Color.create name: row[0], absorbability_index: row[1]
+    end
+
+    render json: @colors.select(&:persisted?)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_color
