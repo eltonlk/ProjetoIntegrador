@@ -29,11 +29,7 @@
   </left>
 
   <center>
-    <VBox spacing="20.0">
-      <padding>
-        <Insets top="20" bottom="20" left="20" right="20" />
-      </padding>
-
+    <VBox>
       <HBox styleClass="header-view">
         <Label text="Projeto" styleClass="label-header"/>
         <Pane HBox.hgrow="ALWAYS"/>
@@ -45,68 +41,70 @@
         </HBox>
       </HBox>
 
-      <GridPane hgap="20" vgap="20">
-        <columnConstraints>
-          <ColumnConstraints hgrow="ALWAYS"/>
-          <ColumnConstraints hgrow="ALWAYS"/>
-          <ColumnConstraints hgrow="ALWAYS"/>
-          <ColumnConstraints hgrow="ALWAYS"/>
-        </columnConstraints>
+      <ScrollPane styleClass="scroll-pane-view" fitToHeight="true" fitToWidth="true">
+        <content>
+          <VBox spacing="20.0">
+            <GridPane hgap="20" vgap="20">
+              <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+              </columnConstraints>
 
-        <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="0">
-          <Label text="Nome"/>
-          <Label fx:id="nameLabel" text="Nome do Projeto" styleClass="label-h6"/>
-        </VBox>
-
-        <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-          <Label text="Estação"/>
-          <Label fx:id="seasonLabel" text="Estação" styleClass="label-h6"/>
-        </VBox>
-
-        <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-          <Label text="Temp. Externa (°C)"/>
-          <Label fx:id="externalTemperatureLabel" text="Temp. Externa" styleClass="label-h6"/>
-        </VBox>
-
-        <VBox spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-          <Label text="Temp. Interna (°C)"/>
-          <Label fx:id="internalTemperatureLabel" text="Temp. Interna" styleClass="label-h6"/>
-        </VBox>
-
-        <VBox spacing="2.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
-          <Label text="Índice de Radiação"/>
-          <Label fx:id="solarRadiationLabel" text="Índice de Radiação" styleClass="label-h6"/>
-        </VBox>
-      </GridPane>
-
-      <BorderPane>
-        <top>
-          <HBox spacing="5.0">
-            <padding>
-              <Insets top="0" bottom="5" left="0" right="0" />
-            </padding>
-
-            <Label text="Cômodos" styleClass="label-h6"/>
-
-            <ButtonCan policy="ROLE_PROJECTS_CREATE_PRIVILEGE" onAction="#createRoom" styleClass="button-sm">
-              <graphic>
-                <FontIcon iconLiteral="fas-plus"/>
-              </graphic>
-            </ButtonCan>
-          </HBox>
-        </top>
-
-        <center>
-          <ScrollPane styleClass="scroll-pane" fitToHeight="true" fitToWidth="true">
-            <content>
-              <VBox fx:id="roomsList" spacing="30.0">
-                <children>
-                </children>
+              <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="0">
+                <Label text="Nome"/>
+                <Label fx:id="nameLabel" text="Nome do Projeto" styleClass="label-h6"/>
               </VBox>
-            </content>
-          </ScrollPane>
-        </center>
-      </BorderPane>
+
+              <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <Label text="Estação"/>
+                <Label fx:id="seasonLabel" text="Estação" styleClass="label-h6"/>
+              </VBox>
+
+              <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Label text="Temp. Externa (°C)"/>
+                <Label fx:id="externalTemperatureLabel" text="Temp. Externa" styleClass="label-h6"/>
+              </VBox>
+
+              <VBox spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <Label text="Temp. Interna (°C)"/>
+                <Label fx:id="internalTemperatureLabel" text="Temp. Interna" styleClass="label-h6"/>
+              </VBox>
+
+              <VBox spacing="2.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                <Label text="Índice de Radiação"/>
+                <Label fx:id="solarRadiationLabel" text="Índice de Radiação" styleClass="label-h6"/>
+              </VBox>
+            </GridPane>
+
+            <BorderPane>
+              <top>
+                <HBox spacing="5.0">
+                  <padding>
+                    <Insets top="0" bottom="5" left="0" right="0" />
+                  </padding>
+
+                  <Label text="Cômodos" styleClass="label-h6"/>
+
+                  <ButtonCan policy="ROLE_PROJECTS_CREATE_PRIVILEGE" onAction="#createRoom" styleClass="button-sm">
+                    <graphic>
+                      <FontIcon iconLiteral="fas-plus"/>
+                    </graphic>
+                  </ButtonCan>
+                </HBox>
+              </top>
+
+              <center>
+                <VBox fx:id="roomsList" spacing="30.0">
+                  <children>
+                  </children>
+                </VBox>
+              </center>
+            </BorderPane>
+          </VBox>
+        </content>
+      </ScrollPane>
     </VBox>
   </center>
 

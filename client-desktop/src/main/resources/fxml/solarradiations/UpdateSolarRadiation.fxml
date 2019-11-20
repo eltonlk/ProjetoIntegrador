@@ -29,93 +29,91 @@
   </left>
 
   <center>
-    <ScrollPane styleClass="scroll-pane" fitToHeight="true" fitToWidth="true">
-      <content>
-        <VBox spacing="20.0">
-          <padding>
-            <Insets top="20" bottom="20" left="20" right="20" />
-          </padding>
+    <VBox>
+      <HBox styleClass="header-view">
+        <Label text="Alterar Radiação Solar" styleClass="label-header"/>
+        <Pane HBox.hgrow="ALWAYS"/>
+        <Button onAction="#goToBack" text="Voltar"/>
+      </HBox>
 
-          <HBox styleClass="header-view">
-            <Label text="Alterar Radiação Solar" styleClass="label-header"/>
-            <Pane HBox.hgrow="ALWAYS"/>
-            <Button onAction="#goToBack" text="Voltar"/>
-          </HBox>
+      <ScrollPane styleClass="scroll-pane-view" fitToHeight="true" fitToWidth="true">
+        <content>
+          <VBox spacing="20.0">
+            <GridPane hgap="20" vgap="20">
+              <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+              </columnConstraints>
 
-          <GridPane hgap="20" vgap="20">
-            <columnConstraints>
-              <ColumnConstraints hgrow="ALWAYS"/>
-              <ColumnConstraints hgrow="ALWAYS"/>
-              <ColumnConstraints hgrow="ALWAYS"/>
-            </columnConstraints>
+              <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="0">
+                <Label fx:id="nameLabel" text="Nome"/>
+                <TextField fx:id="nameInput" promptText="Nome"/>
+              </VBox>
 
-            <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="0">
-              <Label fx:id="nameLabel" text="Nome"/>
-              <TextField fx:id="nameInput" promptText="Nome"/>
-            </VBox>
+              <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <Label fx:id="northWestIndexLabel" text="Noroeste"/>
+                <TextField fx:id="northWestIndexInput" promptText="Índice"/>
+              </VBox>
 
-            <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-              <Label fx:id="northWestIndexLabel" text="Noroeste"/>
-              <TextField fx:id="northWestIndexInput" promptText="Índice"/>
-            </VBox>
+              <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Label fx:id="northIndexLabel" text="Norte"/>
+                <TextField fx:id="northIndexInput" promptText="Índice"/>
+              </VBox>
 
-            <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-              <Label fx:id="northIndexLabel" text="Norte"/>
-              <TextField fx:id="northIndexInput" promptText="Índice"/>
-            </VBox>
+              <VBox spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <Label fx:id="northEastIndexLabel" text="Nordeste"/>
+                <TextField fx:id="northEastIndexInput" promptText="Índice"/>
+              </VBox>
 
-            <VBox spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-              <Label fx:id="northEastIndexLabel" text="Nordeste"/>
-              <TextField fx:id="northEastIndexInput" promptText="Índice"/>
-            </VBox>
+              <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <Label fx:id="westIndexLabel" text="Oeste"/>
+                <TextField fx:id="westIndexInput" promptText="Índice"/>
+              </VBox>
 
-            <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
-              <Label fx:id="westIndexLabel" text="Oeste"/>
-              <TextField fx:id="westIndexInput" promptText="Índice"/>
-            </VBox>
+              <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@../../images/wind_rose.png"/>
+                  </image>
+                </ImageView>
+              </VBox>
 
-            <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
-              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                <image>
-                  <Image url="@../../images/wind_rose.png"/>
-                </image>
-              </ImageView>
-            </VBox>
+              <VBox spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                <Label fx:id="eastIndexLabel" text="Leste"/>
+                <TextField fx:id="eastIndexInput" promptText="Índice"/>
+              </VBox>
 
-            <VBox spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-              <Label fx:id="eastIndexLabel" text="Leste"/>
-              <TextField fx:id="eastIndexInput" promptText="Índice"/>
-            </VBox>
+              <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                <Label fx:id="southWestIndexLabel" text="Sudoeste"/>
+                <TextField fx:id="southWestIndexInput" promptText="Índice"/>
+              </VBox>
 
-            <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
-              <Label fx:id="southWestIndexLabel" text="Sudoeste"/>
-              <TextField fx:id="southWestIndexInput" promptText="Índice"/>
-            </VBox>
+              <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <Label fx:id="southIndexLabel" text="Sul"/>
+                <TextField fx:id="southIndexInput" promptText="Índice"/>
+              </VBox>
 
-            <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-              <Label fx:id="southIndexLabel" text="Sul"/>
-              <TextField fx:id="southIndexInput" promptText="Índice"/>
-            </VBox>
+              <VBox spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                <Label fx:id="southEastIndexLabel" text="Sudeste"/>
+                <TextField fx:id="southEastIndexInput" promptText="Índice"/>
+              </VBox>
 
-            <VBox spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
-              <Label fx:id="southEastIndexLabel" text="Sudeste"/>
-              <TextField fx:id="southEastIndexInput" promptText="Índice"/>
-            </VBox>
+              <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                <Label fx:id="perpendicularIndexLabel" text="Perpendicular"/>
+                <TextField fx:id="perpendicularIndexInput" promptText="Índice"/>
+              </VBox>
+            </GridPane>
 
-            <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="4">
-              <Label fx:id="perpendicularIndexLabel" text="Perpendicular"/>
-              <TextField fx:id="perpendicularIndexInput" promptText="Índice"/>
-            </VBox>
-          </GridPane>
-
-          <HBox>
-            <children>
-              <Button onAction="#update" styleClass="button-primary" text="Alterar"/>
-            </children>
-          </HBox>
-        </VBox>
-      </content>
-    </ScrollPane>
+            <HBox>
+              <children>
+                <Button onAction="#update" styleClass="button-primary" text="Alterar"/>
+              </children>
+            </HBox>
+          </VBox>
+        </content>
+      </ScrollPane>
+    </VBox>
   </center>
 
 </BorderPane>

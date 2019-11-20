@@ -28,58 +28,56 @@
   </left>
 
   <center>
-    <ScrollPane styleClass="scroll-pane" fitToHeight="true" fitToWidth="true">
-      <content>
-        <VBox spacing="20.0">
-          <padding>
-            <Insets top="20" bottom="20" left="20" right="20" />
-          </padding>
+    <VBox>
+      <HBox styleClass="header-view">
+        <Label text="Adicionar Usuário" styleClass="label-header"/>
+        <Pane HBox.hgrow="ALWAYS"/>
+        <Button onAction="#goToBack" text="Voltar"/>
+      </HBox>
 
-          <HBox styleClass="header-view">
-            <Label text="Adicionar Usuário" styleClass="label-header"/>
-            <Pane HBox.hgrow="ALWAYS"/>
-            <Button onAction="#goToBack" text="Voltar"/>
-          </HBox>
+      <ScrollPane styleClass="scroll-pane-view" fitToHeight="true" fitToWidth="true">
+        <content>
+          <VBox spacing="20.0">
+            <GridPane hgap="20" vgap="20">
+              <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+              </columnConstraints>
 
-          <GridPane hgap="20" vgap="20">
-            <columnConstraints>
-              <ColumnConstraints hgrow="ALWAYS"/>
-              <ColumnConstraints hgrow="ALWAYS"/>
-            </columnConstraints>
+              <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Label fx:id="nameLabel" text="Nome"/>
+                <TextField fx:id="nameInput" promptText="Nome"/>
+              </VBox>
 
-            <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-              <Label fx:id="nameLabel" text="Nome"/>
-              <TextField fx:id="nameInput" promptText="Nome"/>
-            </VBox>
+              <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Label fx:id="emailLabel" text="E-mail"/>
+                <TextField fx:id="emailInput" promptText="E-mail"/>
+              </VBox>
 
-            <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-              <Label fx:id="emailLabel" text="E-mail"/>
-              <TextField fx:id="emailInput" promptText="E-mail"/>
-            </VBox>
+              <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <Label fx:id="usernameLabel" text="Usuário"/>
+                <TextField fx:id="usernameInput" promptText="Usuário"/>
+              </VBox>
 
-            <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-              <Label fx:id="usernameLabel" text="Usuário"/>
-              <TextField fx:id="usernameInput" promptText="Usuário"/>
-            </VBox>
+              <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Label fx:id="passwordLabel" text="Senha"/>
+                <PasswordField fx:id="passwordInput" promptText="Senha"/>
+              </VBox>
 
-            <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-              <Label fx:id="passwordLabel" text="Senha"/>
-              <PasswordField fx:id="passwordInput" promptText="Senha"/>
-            </VBox>
+              <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <CheckBox fx:id="activeCheckBox" text="Ativo"/>
+              </VBox>
+            </GridPane>
 
-            <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
-              <CheckBox fx:id="activeCheckBox" text="Ativo"/>
-            </VBox>
-          </GridPane>
-
-          <HBox>
-            <children>
-              <Button onAction="#create" styleClass="button-primary" text="Adicionar"/>
-            </children>
-          </HBox>
-        </VBox>
-      </content>
-    </ScrollPane>
+            <HBox>
+              <children>
+                <Button onAction="#create" styleClass="button-primary" text="Adicionar"/>
+              </children>
+            </HBox>
+          </VBox>
+        </content>
+      </ScrollPane>
+    </VBox>
   </center>
 
 </BorderPane>

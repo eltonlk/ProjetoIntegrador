@@ -54,7 +54,9 @@ public class StageManager {
     stage.setResizable(view.isResizable());
     stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/logo.png")));
 
-    if (!view.isResizable()) {
+    if (view.isResizable()) {
+      stage.setMaximized(true);
+    } else {
       stage.sizeToScene();
       stage.centerOnScreen();
     }

@@ -1,6 +1,7 @@
 package com.projeto.integrador.clientdesktop.controllers.users;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
 import com.projeto.integrador.clientdesktop.models.User;
 import com.projeto.integrador.clientdesktop.resources.UserResource;
 import com.projeto.integrador.clientdesktop.views.users.ListUsersFxmlView;
@@ -46,7 +47,9 @@ public class CreateUserController implements Initializable {
 
     userResource.create(user);
 
-		stageManager.switchScene(new ListUsersFxmlView());
+    stageManager.switchScene(new ListUsersFxmlView());
+
+    ToastHelper.success(String.format("Usuário \"%s\" foi atualizado.", user.getName()));
   }
 
   @FXML

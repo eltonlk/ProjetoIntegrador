@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.HBox?>
@@ -23,21 +24,21 @@
   </left>
 
   <center>
-    <VBox spacing="20.0">
-      <padding>
-        <Insets top="20" bottom="20" left="20" right="20" />
-      </padding>
-
+    <VBox>
       <HBox styleClass="header-view">
         <Label text="Projetos" styleClass="label-header"/>
         <Pane HBox.hgrow="ALWAYS"/>
         <ButtonCan policy="ROLE_PROJECTS_CREATE_PRIVILEGE" onAction="#goToCreate" styleClass="button-primary" text="Adicionar"/>
       </HBox>
 
-      <VBox fx:id="projectsList" spacing="10.0">
-        <children>
-        </children>
-      </VBox>
+      <ScrollPane styleClass="scroll-pane-view" fitToHeight="true" fitToWidth="true">
+        <content>
+          <VBox fx:id="projectsList" spacing="10.0">
+            <children>
+            </children>
+          </VBox>
+        </content>
+      </ScrollPane>
     </VBox>
   </center>
 

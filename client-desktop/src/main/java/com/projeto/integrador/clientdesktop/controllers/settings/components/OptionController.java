@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.PolicyHelper;
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
 import com.projeto.integrador.clientdesktop.models.Option;
 import com.projeto.integrador.clientdesktop.resources.OptionResource;
 import com.projeto.integrador.clientdesktop.utils.ToggleSwitch;
@@ -67,6 +68,8 @@ public class OptionController implements Initializable {
         option.setValue(isOn ? "enabled" : "disabled");
 
         optionResource.update(option);
+
+        ToastHelper.success(String.format("Opção \"%s\" foi atualizada.", humanName(option)));
       }
     });
 

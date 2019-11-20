@@ -1,19 +1,21 @@
 package com.projeto.integrador.clientdesktop.controllers.solarradiations;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
 import com.projeto.integrador.clientdesktop.controllers.solarradiations.components.SolarRadiationController;
 import com.projeto.integrador.clientdesktop.models.SolarRadiation;
 import com.projeto.integrador.clientdesktop.resources.SolarRadiationResource;
 import com.projeto.integrador.clientdesktop.views.solarradiations.CreateSolarRadiationFxmlView;
+import com.projeto.integrador.clientdesktop.views.solarradiations.ListSolarRadiationsFxmlView;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -73,6 +75,10 @@ public class ListSolarRadiationsController implements Initializable {
 
     if (file != null) {
       solarRadiationResource.importFile(file);
+
+      stageManager.switchScene(new ListSolarRadiationsFxmlView());
+
+      ToastHelper.success("CSV importado.");
     }
   }
 
@@ -88,9 +94,14 @@ public class ListSolarRadiationsController implements Initializable {
 
     if(file != null){
       templateBuffer = new BufferedReader(new InputStreamReader(
-        new FileInputStream(getClass().getResource("/templates/Radiacoes_Solar.csv").getPath()), "UTF-8"));
+        getClass().getResourceAsStream("/templates/Radiacoes_Solar.csv"),
+        StandardCharsets.UTF_8
+      ));
 
-      FileWriter fileWriter = new FileWriter(file);
+      OutputStreamWriter fileWriter = new OutputStreamWriter(
+        new FileOutputStream(file),
+        StandardCharsets.UTF_8
+      );
 
       String line;
       while ((line = templateBuffer.readLine()) != null) {

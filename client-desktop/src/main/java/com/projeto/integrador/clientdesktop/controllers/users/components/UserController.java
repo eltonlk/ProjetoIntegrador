@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
 import com.projeto.integrador.clientdesktop.controllers.users.PermissionsController;
 import com.projeto.integrador.clientdesktop.controllers.users.UpdateUserController;
 import com.projeto.integrador.clientdesktop.models.User;
@@ -84,6 +85,8 @@ public class UserController implements Initializable {
       userResource.delete(user);
 
       stageManager.switchScene(new ListUsersFxmlView());
+
+      ToastHelper.success(String.format("Usuário \"%s\" foi removido.", user.getName()));
     }
   }
 

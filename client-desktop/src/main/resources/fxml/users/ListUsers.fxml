@@ -24,26 +24,22 @@
   </left>
 
   <center>
-    <ScrollPane styleClass="scroll-pane" fitToHeight="true" fitToWidth="true">
-      <content>
-        <VBox spacing="20.0">
-          <padding>
-            <Insets top="20" bottom="20" left="20" right="20" />
-          </padding>
+    <VBox>
+      <HBox styleClass="header-view">
+        <Label text="Usuários" styleClass="label-header"/>
+        <Pane HBox.hgrow="ALWAYS"/>
+        <ButtonCan policy="ROLE_USERS_CREATE_PRIVILEGE" fx:id="createUserButton" onAction="#goToCreate" styleClass="button-primary" text="Adicionar"/>
+      </HBox>
 
-          <HBox styleClass="header-view">
-            <Label text="Usuários" styleClass="label-header"/>
-            <Pane HBox.hgrow="ALWAYS"/>
-            <ButtonCan policy="ROLE_USERS_CREATE_PRIVILEGE" fx:id="createUserButton" onAction="#goToCreate" styleClass="button-primary" text="Adicionar"/>
-          </HBox>
-
+      <ScrollPane styleClass="scroll-pane-view" fitToHeight="true" fitToWidth="true">
+        <content>
           <VBox fx:id="usersList" spacing="10.0">
             <children>
             </children>
           </VBox>
-        </VBox>
-      </content>
-    </ScrollPane>
+        </content>
+      </ScrollPane>
+    </VBox>
   </center>
 
 </BorderPane>

@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.collections.ProjectSeasonCollection;
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
 import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.models.SolarRadiation;
 import com.projeto.integrador.clientdesktop.resources.ProjectResource;
@@ -66,6 +67,8 @@ public class CreateProjectController implements Initializable {
     stageManager.switchScene(new ShowProjectFxmlView());
     ShowProjectController controller = stageManager.getLoader().getController();
     controller.setProject(projectCreated);
+
+    ToastHelper.success(String.format("Projeto \"%s\" foi adicionado.", project.getName()));
   }
 
   @FXML

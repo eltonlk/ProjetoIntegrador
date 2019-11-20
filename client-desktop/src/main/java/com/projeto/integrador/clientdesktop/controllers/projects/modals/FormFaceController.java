@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import com.projeto.integrador.clientdesktop.collections.FaceKindCollection;
 import com.projeto.integrador.clientdesktop.collections.FaceOrientationCollection;
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
 import com.projeto.integrador.clientdesktop.controllers.projects.ShowProjectController;
 import com.projeto.integrador.clientdesktop.models.Face;
 import com.projeto.integrador.clientdesktop.models.Project;
@@ -95,8 +96,12 @@ public class FormFaceController implements Initializable {
 
     if (face.getId() != null && face.getId() > 0) {
       faceResource.update(face);
+
+      ToastHelper.success(String.format("Face \"%s\" foi atualizado.", face.getOrientation()));
     } else {
       faceResource.create(face);
+
+      ToastHelper.success(String.format("Face \"%s\" foi atualizado.", face.getOrientation()));
     }
 
     close(event);

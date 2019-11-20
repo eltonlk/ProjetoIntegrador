@@ -24,25 +24,21 @@
   </left>
 
   <center>
-    <ScrollPane styleClass="scroll-pane" fitToHeight="true" fitToWidth="true">
-      <content>
-        <VBox spacing="20.0">
-          <padding>
-            <Insets top="20" bottom="20" left="20" right="20" />
-          </padding>
+    <VBox>
+      <HBox styleClass="header-view">
+        <Label text="Opções do Sistema" styleClass="label-header"/>
+        <Pane HBox.hgrow="ALWAYS"/>
+      </HBox>
 
-          <HBox styleClass="header-view">
-            <Label text="Opções do Sistema" styleClass="label-header"/>
-            <Pane HBox.hgrow="ALWAYS"/>
-          </HBox>
-
+      <ScrollPane styleClass="scroll-pane-view" fitToHeight="true" fitToWidth="true">
+        <content>
           <VBox fx:id="optionsList" spacing="20.0">
             <children>
             </children>
           </VBox>
-        </VBox>
-      </content>
-    </ScrollPane>
+        </content>
+      </ScrollPane>
+    </VBox>
   </center>
 
 </BorderPane>

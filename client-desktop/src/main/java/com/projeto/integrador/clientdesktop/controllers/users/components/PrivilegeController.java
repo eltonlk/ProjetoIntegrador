@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.PolicyHelper;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
 import com.projeto.integrador.clientdesktop.models.UserRole;
 import com.projeto.integrador.clientdesktop.resources.UserRoleResource;
 import com.projeto.integrador.clientdesktop.utils.ToggleSwitch;
@@ -49,6 +50,8 @@ public class PrivilegeController implements Initializable {
         userRole.setEnable(isOn);
 
         userRoleResource.update(userRole);
+
+        ToastHelper.success(String.format("Permissão de \"%s\" foi alterado.", getHumanPrivilegeName(userRole)));
       }
     });
 

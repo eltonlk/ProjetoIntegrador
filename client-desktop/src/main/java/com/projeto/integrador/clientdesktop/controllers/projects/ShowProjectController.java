@@ -2,6 +2,7 @@ package com.projeto.integrador.clientdesktop.controllers.projects;
 
 import com.projeto.integrador.clientdesktop.collections.ProjectSeasonCollection;
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
 import com.projeto.integrador.clientdesktop.controllers.projects.components.RoomController;
 import com.projeto.integrador.clientdesktop.controllers.projects.modals.FormRoomController;
 import com.projeto.integrador.clientdesktop.controllers.projects.modals.ProjectSendMailController;
@@ -78,6 +79,8 @@ public class ShowProjectController implements Initializable {
       projectResource.delete(getProject());
 
       stageManager.switchScene(new ListProjectsFxmlView());
+
+      ToastHelper.success(String.format("Projeto \"%s\" foi removido.", project.getName()));
     }
   }
 

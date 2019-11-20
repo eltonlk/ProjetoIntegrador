@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
 import com.projeto.integrador.clientdesktop.controllers.projects.ShowProjectController;
 import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.models.Room;
@@ -76,8 +77,12 @@ public class FormRoomController implements Initializable {
 
     if (room.getId() != null && room.getId() > 0) {
       roomResource.update(room);
+
+      ToastHelper.success(String.format("Cômodo \"%s\" foi atualizado.", room.getName()));
     } else {
       roomResource.create(room);
+
+      ToastHelper.success(String.format("Cômodo \"%s\" foi adicionado.", room.getName()));
     }
 
     close(event);

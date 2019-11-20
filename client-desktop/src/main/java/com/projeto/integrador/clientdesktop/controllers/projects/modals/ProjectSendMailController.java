@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
 import com.projeto.integrador.clientdesktop.models.Project;
 import com.projeto.integrador.clientdesktop.resources.ProjectResource;
 
@@ -50,6 +51,8 @@ public class ProjectSendMailController implements Initializable {
     projectResource.sendMail(project, email);
 
     close(event);
+
+    ToastHelper.success(String.format("Projeto \"%s\" foi enviado por e-mail.", project.getName()));
   }
 
   private void close(ActionEvent event) {

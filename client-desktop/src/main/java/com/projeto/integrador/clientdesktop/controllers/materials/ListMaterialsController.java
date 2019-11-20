@@ -1,18 +1,21 @@
 package com.projeto.integrador.clientdesktop.controllers.materials;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
 import com.projeto.integrador.clientdesktop.controllers.materials.components.MaterialController;
 import com.projeto.integrador.clientdesktop.models.Material;
 import com.projeto.integrador.clientdesktop.resources.MaterialResource;
 import com.projeto.integrador.clientdesktop.views.materials.CreateMaterialFxmlView;
+import com.projeto.integrador.clientdesktop.views.materials.ListMaterialsFxmlView;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -72,6 +75,10 @@ public class ListMaterialsController implements Initializable {
 
     if (file != null) {
       materialResource.importFile(file);
+
+      stageManager.switchScene(new ListMaterialsFxmlView());
+
+      ToastHelper.success("CSV importado.");
     }
   }
 
@@ -87,9 +94,14 @@ public class ListMaterialsController implements Initializable {
 
     if(file != null){
       templateBuffer = new BufferedReader(new InputStreamReader(
-        new FileInputStream(getClass().getResource("/templates/Materiais.csv").getPath()), "UTF-8"));
+        getClass().getResourceAsStream("/templates/Materiais.csv"),
+        StandardCharsets.UTF_8
+      ));
 
-      FileWriter fileWriter = new FileWriter(file);
+      OutputStreamWriter fileWriter = new OutputStreamWriter(
+        new FileOutputStream(file),
+        StandardCharsets.UTF_8
+      );
 
       String line;
       while ((line = templateBuffer.readLine()) != null) {

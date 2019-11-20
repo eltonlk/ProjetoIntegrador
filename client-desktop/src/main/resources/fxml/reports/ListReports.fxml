@@ -29,59 +29,57 @@
   </left>
 
   <center>
-    <ScrollPane styleClass="scroll-pane" fitToHeight="true" fitToWidth="true">
-      <content>
-        <VBox spacing="20.0">
-          <padding>
-            <Insets top="20" bottom="20" left="20" right="20" />
-          </padding>
+    <VBox>
+      <HBox styleClass="header-view">
+        <Label text="Relatório" styleClass="label-header"/>
+      </HBox>
 
-          <HBox styleClass="header-view">
-            <Label text="Relatório" styleClass="label-header"/>
-          </HBox>
+      <ScrollPane styleClass="scroll-pane-view" fitToHeight="true" fitToWidth="true">
+        <content>
+          <VBox spacing="20.0">
+            <HBox spacing="20.0">
+              <VBox spacing="2.0">
+                <Label fx:id="startAtLabel" text="Inicio"/>
+                <DatePicker fx:id="startAtInput" promptText="Inicio"/>
+              </VBox>
 
-          <HBox spacing="20.0">
-            <VBox spacing="2.0">
-              <Label fx:id="startAtLabel" text="Inicio"/>
-              <DatePicker fx:id="startAtInput" promptText="Inicio"/>
-            </VBox>
+              <VBox spacing="2.0">
+                <Label fx:id="endAtLabel" text="Fim"/>
+                <DatePicker fx:id="endAtInput" promptText="Fim"/>
+              </VBox>
 
-            <VBox spacing="2.0">
-              <Label fx:id="endAtLabel" text="Fim"/>
-              <DatePicker fx:id="endAtInput" promptText="Fim"/>
-            </VBox>
+              <VBox spacing="2.0">
+                <Label fx:id="solarRadiationLabel" text="Radiação Solar"/>
+                <ComboBox fx:id="solarRadiationComboBox" promptText="Nenhum"/>
+              </VBox>
 
-            <VBox spacing="2.0">
-              <Label fx:id="solarRadiationLabel" text="Radiação Solar"/>
-              <ComboBox fx:id="solarRadiationComboBox" promptText="Nenhum"/>
-            </VBox>
+              <VBox alignment="BOTTOM_CENTER">
+                <ButtonCan policy="ROLE_REPORTS_GENERATE_PRIVILEGE" onAction="#submit" styleClass="button-secondary" text="Gerar"/>
+              </VBox>
+            </HBox>
 
-            <VBox alignment="BOTTOM_CENTER">
-              <ButtonCan policy="ROLE_REPORTS_GENERATE_PRIVILEGE" onAction="#submit" styleClass="button-secondary" text="Gerar"/>
-            </VBox>
-          </HBox>
+            <GridPane hgap="20" vgap="20">
+              <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+              </columnConstraints>
 
-          <GridPane hgap="20" vgap="20">
-            <columnConstraints>
-              <ColumnConstraints hgrow="ALWAYS"/>
-              <ColumnConstraints hgrow="ALWAYS"/>
-            </columnConstraints>
+              <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <StackPane fx:id="pane1"/>
+              </VBox>
 
-            <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-              <StackPane fx:id="pane1"/>
-            </VBox>
+              <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <StackPane fx:id="pane2"/>
+              </VBox>
 
-            <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-              <StackPane fx:id="pane2"/>
-            </VBox>
-
-            <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
-              <StackPane fx:id="pane3"/>
-            </VBox>
-          </GridPane>
-        </VBox>
-      </content>
-    </ScrollPane>
+              <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                <StackPane fx:id="pane3"/>
+              </VBox>
+            </GridPane>
+          </VBox>
+        </content>
+      </ScrollPane>
+    </VBox>
   </center>
 
 </BorderPane>

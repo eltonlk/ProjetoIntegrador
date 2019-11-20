@@ -26,34 +26,30 @@
   </left>
 
   <center>
-    <ScrollPane styleClass="scroll-pane" fitToHeight="true" fitToWidth="true">
-      <content>
-        <VBox spacing="20.0">
-          <padding>
-            <Insets top="20" bottom="20" left="20" right="20" />
-          </padding>
+    <VBox>
+      <HBox styleClass="header-view">
+        <Label text="Radiações Solar" styleClass="label-header"/>
+        <Pane HBox.hgrow="ALWAYS"/>
+        <HBox spacing="5.0">
+          <MenuButtonCan policy="ROLE_SOLAR_RADIATIONS_IMPORT_PRIVILEGE" mnemonicParsing="false" text="Importar">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#goToImport" text="Enviar Arquivo" />
+              <MenuItem mnemonicParsing="false" onAction="#goToDownloadTemplate" text="Baixar Modelo CSV" />
+            </items>
+          </MenuButtonCan>
+          <ButtonCan policy="ROLE_SOLAR_RADIATIONS_CREATE_PRIVILEGE" onAction="#goToCreate" styleClass="button-primary" text="Adicionar"/>
+        </HBox>
+      </HBox>
 
-          <HBox styleClass="header-view">
-            <Label text="Radiações Solar" styleClass="label-header"/>
-            <Pane HBox.hgrow="ALWAYS"/>
-            <HBox spacing="5.0">
-              <MenuButtonCan policy="ROLE_SOLAR_RADIATIONS_IMPORT_PRIVILEGE" mnemonicParsing="false" text="Importar">
-                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#goToImport" text="Enviar Arquivo" />
-                  <MenuItem mnemonicParsing="false" onAction="#goToDownloadTemplate" text="Baixar Modelo CSV" />
-                </items>
-              </MenuButtonCan>
-              <ButtonCan policy="ROLE_SOLAR_RADIATIONS_CREATE_PRIVILEGE" onAction="#goToCreate" styleClass="button-primary" text="Adicionar"/>
-            </HBox>
-          </HBox>
-
+      <ScrollPane styleClass="scroll-pane-view" fitToHeight="true" fitToWidth="true">
+        <content>
           <VBox fx:id="solarRadiationsList" spacing="10.0">
             <children>
             </children>
           </VBox>
-        </VBox>
-      </content>
-    </ScrollPane>
+        </content>
+      </ScrollPane>
+    </VBox>
   </center>
 
 </BorderPane>

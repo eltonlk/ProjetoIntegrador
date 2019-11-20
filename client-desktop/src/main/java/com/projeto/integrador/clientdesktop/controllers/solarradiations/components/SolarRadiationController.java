@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
 import com.projeto.integrador.clientdesktop.controllers.solarradiations.UpdateSolarRadiationController;
 import com.projeto.integrador.clientdesktop.models.SolarRadiation;
 import com.projeto.integrador.clientdesktop.resources.SolarRadiationResource;
@@ -82,6 +83,8 @@ public class SolarRadiationController implements Initializable {
       solarRadiationResource.delete(solarRadiation);
 
       stageManager.switchScene(new ListSolarRadiationsFxmlView());
+
+      ToastHelper.success(String.format("Radiação Solar \"%s\" foi removida.", solarRadiation.getName()));
     }
   }
 

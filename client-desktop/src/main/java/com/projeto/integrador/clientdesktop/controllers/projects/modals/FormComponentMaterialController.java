@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
 import com.projeto.integrador.clientdesktop.controllers.projects.ShowProjectController;
 import com.projeto.integrador.clientdesktop.models.Component;
 import com.projeto.integrador.clientdesktop.models.ComponentMaterial;
@@ -143,8 +144,12 @@ public class FormComponentMaterialController implements Initializable {
 
     if (componentMaterial.getId() != null && componentMaterial.getId() > 0) {
       componentMaterialResource.update(componentMaterial);
+
+      ToastHelper.success(String.format("Material \"%s\" foi atualizado.", componentMaterial.getMaterial().getName()));
     } else {
       componentMaterialResource.create(componentMaterial);
+
+      ToastHelper.success(String.format("Material \"%s\" foi atualizado.", componentMaterial.getMaterial().getName()));
     }
 
     close(event);

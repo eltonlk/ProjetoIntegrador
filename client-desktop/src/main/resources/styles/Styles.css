@@ -116,8 +116,8 @@
 }
 
 .label-header {
-	-fx-font-size: 28px;
-	-fx-opacity: 1;
+	-fx-font-size: 25px;
+	-fx-opacity: 0.7;
 }
 
 .label-h6 {
@@ -170,9 +170,10 @@
 
 /* <============ HELPERS ============> */
 .header-view {
-	-fx-padding: 0 0 16 0;
+	-fx-padding: 20 20 15 20;
 	-fx-border-width: 0 0 2 0;
 	-fx-border-color: transparent transparent -fx-theme-border-color transparent;
+	-fx-background-color: #EEEEEE;
 }
 
 .list-item {
@@ -247,10 +248,17 @@
 
 
 /* <============ SCROLL PANE ============> */
-.scroll-pane {
+.scroll-pane,
+.scroll-pane-view {
 	-fx-background-color: transparent;
 }
-.scroll-pane > .viewport {
+.scroll-pane > .viewport,
+.scroll-pane-view > .viewport {
   -fx-background-color: transparent;
 }
+
+.scroll-pane-view {
+	-fx-padding: 20 20 20 20;
+}
+
 /* <============ SCROLL PANE ============> */

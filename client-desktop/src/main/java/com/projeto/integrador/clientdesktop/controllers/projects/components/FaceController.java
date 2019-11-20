@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import com.projeto.integrador.clientdesktop.collections.FaceKindCollection;
 import com.projeto.integrador.clientdesktop.collections.FaceOrientationCollection;
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
 import com.projeto.integrador.clientdesktop.controllers.projects.ShowProjectController;
 import com.projeto.integrador.clientdesktop.controllers.projects.modals.FormComponentController;
 import com.projeto.integrador.clientdesktop.controllers.projects.modals.FormFaceController;
@@ -81,6 +82,8 @@ public class FaceController implements Initializable {
       ShowProjectController controller = stageManager.getLoader().getController();
       Project project = projectResource.refresh(getProject());
       controller.setProject(project);
+
+      ToastHelper.success(String.format("Face \"%s\" foi removida.", face.getOrientation()));
     }
   }
 

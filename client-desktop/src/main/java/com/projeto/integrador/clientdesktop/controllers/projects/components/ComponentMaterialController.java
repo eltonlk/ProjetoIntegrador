@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
 import com.projeto.integrador.clientdesktop.controllers.projects.ShowProjectController;
 import com.projeto.integrador.clientdesktop.controllers.projects.modals.FormComponentMaterialController;
 import com.projeto.integrador.clientdesktop.models.ComponentMaterial;
@@ -74,6 +75,8 @@ public class ComponentMaterialController implements Initializable {
       ShowProjectController controller = stageManager.getLoader().getController();
       Project project = projectResource.refresh(getProject());
       controller.setProject(project);
+
+      ToastHelper.success(String.format("Material \"%s\" foi removido.", componentMaterial.getMaterial().getName()));
     }
   }
 

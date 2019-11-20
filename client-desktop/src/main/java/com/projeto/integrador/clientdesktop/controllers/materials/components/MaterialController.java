@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
 import com.projeto.integrador.clientdesktop.controllers.materials.UpdateMaterialController;
 import com.projeto.integrador.clientdesktop.models.Material;
 import com.projeto.integrador.clientdesktop.resources.MaterialResource;
@@ -91,6 +92,8 @@ public class MaterialController implements Initializable {
       materialResource.delete(material);
 
       stageManager.switchScene(new ListMaterialsFxmlView());
+
+      ToastHelper.success(String.format("Material \"%s\" foi removida.", material.getName()));
     }
   }
 

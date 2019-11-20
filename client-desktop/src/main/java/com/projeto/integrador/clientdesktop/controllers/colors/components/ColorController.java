@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
 import com.projeto.integrador.clientdesktop.controllers.colors.UpdateColorController;
 import com.projeto.integrador.clientdesktop.models.Color;
 import com.projeto.integrador.clientdesktop.resources.ColorResource;
@@ -77,6 +78,8 @@ public class ColorController implements Initializable {
       colorResource.delete(color);
 
       stageManager.switchScene(new ListColorsFxmlView());
+
+      ToastHelper.success(String.format("Cor \"%s\" foi removida.", color.getName()));
     }
   }
 

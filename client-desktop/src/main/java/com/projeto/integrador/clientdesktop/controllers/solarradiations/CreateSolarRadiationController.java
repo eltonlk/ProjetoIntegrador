@@ -1,6 +1,7 @@
 package com.projeto.integrador.clientdesktop.controllers.solarradiations;
 
 import com.projeto.integrador.clientdesktop.config.StageManager;
+import com.projeto.integrador.clientdesktop.config.ToastHelper;
 import com.projeto.integrador.clientdesktop.models.SolarRadiation;
 import com.projeto.integrador.clientdesktop.resources.SolarRadiationResource;
 import com.projeto.integrador.clientdesktop.utils.Mask;
@@ -56,7 +57,9 @@ public class CreateSolarRadiationController implements Initializable {
 
     solarRadiationResource.create(solarRadiation);
 
-		stageManager.switchScene(new ListSolarRadiationsFxmlView());
+    stageManager.switchScene(new ListSolarRadiationsFxmlView());
+
+    ToastHelper.success(String.format("Radiação Solar \"%s\" foi adicionada.", solarRadiation.getName()));
   }
 
   @FXML

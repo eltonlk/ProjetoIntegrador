@@ -26,11 +26,7 @@
   </left>
 
   <center>
-    <VBox spacing="20.0">
-      <padding>
-        <Insets top="20" bottom="20" left="20" right="20" />
-      </padding>
-
+    <VBox>
       <HBox styleClass="header-view">
         <VBox spacing="5.0">
           <children>
@@ -42,7 +38,7 @@
         <Button onAction="#goToBack" text="Voltar"/>
       </HBox>
 
-      <ScrollPane styleClass="scroll-pane" fitToHeight="true" fitToWidth="true">
+      <ScrollPane styleClass="scroll-pane-view" fitToHeight="true" fitToWidth="true">
         <content>
           <VBox fx:id="rolesList" spacing="20.0">
             <children>
