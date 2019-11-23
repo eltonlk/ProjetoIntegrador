@@ -2,10 +2,9 @@ package com.projeto.integrador.clientdesktop.models;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-
-import org.json.simple.JSONObject;
 
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class Audit {
@@ -28,7 +27,7 @@ public class Audit {
 
   private String action;
 
-  private JSONObject auditedChanges;
+  private JsonNode auditedChanges;
 
   private Long version;
 
@@ -41,7 +40,7 @@ public class Audit {
   private Date createdAt;
 
   public Audit(Long id, Long auditableId, String auditableType, Long associatedId, String associatedType, Long userId,
-    String userType, String username, String action, JSONObject auditedChanges, Long version, String comment,
+    String userType, String username, String action, JsonNode auditedChanges, Long version, String comment,
     String remoteAddress, String requestUuid, Date createdAt) {
 
     this.id = id;
@@ -136,11 +135,11 @@ public class Audit {
     this.action = action;
   }
 
-  public JSONObject getAuditedChanges() {
+  public JsonNode getAuditedChanges() {
     return auditedChanges;
   }
 
-  public void setAuditedChanges(JSONObject auditedChanges) {
+  public void setAuditedChanges(JsonNode auditedChanges) {
     this.auditedChanges = auditedChanges;
   }
 

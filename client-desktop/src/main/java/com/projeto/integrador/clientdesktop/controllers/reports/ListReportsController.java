@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Map.Entry;
 
@@ -15,6 +13,7 @@ import com.projeto.integrador.clientdesktop.collections.ProjectSeasonCollection;
 import com.projeto.integrador.clientdesktop.models.SolarRadiation;
 import com.projeto.integrador.clientdesktop.resources.ReportResource;
 import com.projeto.integrador.clientdesktop.resources.SolarRadiationResource;
+import com.projeto.integrador.clientdesktop.utils.I18n;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,7 +31,6 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.PieChart.Data;
 import javafx.scene.chart.XYChart.Series;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.layout.StackPane;
@@ -198,7 +196,7 @@ public class ListReportsController implements Initializable {
         value = projectsByMonthsJsonData.get(key).asInt();
       }
 
-      serie.getData().add(new XYChart.Data<String, Integer> (getMonthTranslated(date.getMonth().name()), value));
+      serie.getData().add(new XYChart.Data<String, Integer> (I18n.t(date.getMonth().name()), value));
 
       date = date.plusMonths(1);
     }
@@ -206,24 +204,6 @@ public class ListReportsController implements Initializable {
     data.addAll(serie);
 
     return data;
-  }
-
-  private String getMonthTranslated(String month) {
-    Map <String, String> i18n = new HashMap<String, String>();
-    i18n.put("january", "Janeiro");
-    i18n.put("february", "Fevereiro");
-    i18n.put("march", "Março");
-    i18n.put("april", "Abril");
-    i18n.put("may", "Maio");
-    i18n.put("june", "Junho");
-    i18n.put("july", "Julho");
-    i18n.put("august", "Agosto");
-    i18n.put("september", "Setembro");
-    i18n.put("october", "Outubro");
-    i18n.put("november", "Novembro");
-    i18n.put("december", "Dezembro");
-
-    return i18n.get(month.toLowerCase());
   }
 
   @FXML

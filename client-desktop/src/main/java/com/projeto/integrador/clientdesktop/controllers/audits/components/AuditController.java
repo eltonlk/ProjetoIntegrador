@@ -1,12 +1,19 @@
 package com.projeto.integrador.clientdesktop.controllers.audits.components;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Map.Entry;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.projeto.integrador.clientdesktop.config.StageManager;
 import com.projeto.integrador.clientdesktop.models.Audit;
 import com.projeto.integrador.clientdesktop.utils.DateParser;
+import com.projeto.integrador.clientdesktop.utils.I18n;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
@@ -41,9 +48,28 @@ public class AuditController implements Initializable {
   private void fillContent() {
     usernameLabel.setText(audit.getUsername());
     modifiedDateLabel.setText(DateParser.localized(audit.getCreatedAt()));
-    actionLabel.setText(audit.getAction());
-    auditableTypeLabel.setText(audit.getAuditableType());
-    auditedChangesLabel.setText(audit.getAuditedChanges().toString());
+    actionLabel.setText(I18n.t(audit.getAction()));
+    auditableTypeLabel.setText(I18n.t(audit.getAuditableType()));
+    auditedChangesLabel.setText(i18nAuditedChanges(audit.getAuditedChanges()));
+  }
+
+  private String i18nAuditedChanges(JsonNode jsonObject) {
+    String text = "";
+
+    Iterator<Entry<String, JsonNode>> iterator = jsonObject.fields();
+
+    while (iterator.hasNext()) {
+      Entry<String, JsonNode> entry = iterator.next();
+      String key = entry.getKey();
+
+      text += I18n.t(key) + " = " + jsonObject.get(key).toString();
+
+      if (iterator.hasNext()) {
+        text += ", ";
+      }
+    }
+
+    return "{ " + text + " }";
   }
 
   @FXML
