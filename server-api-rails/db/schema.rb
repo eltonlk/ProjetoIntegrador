@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_08_035950) do
+ActiveRecord::Schema.define(version: 2019_11_24_155007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -187,4 +187,17 @@ ActiveRecord::Schema.define(version: 2019_11_08_035950) do
   add_foreign_key "user_roles", "privileges"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
+
+  create_view "used_materials", sql_definition: <<-SQL
+      SELECT mat.id,
+      count(pro.*) AS count
+     FROM (((((materials mat
+       LEFT JOIN component_materials cma ON ((cma.material_id = mat.id)))
+       LEFT JOIN components com ON ((com.id = cma.component_id)))
+       LEFT JOIN faces fac ON ((fac.id = com.face_id)))
+       LEFT JOIN rooms roo ON ((roo.id = fac.room_id)))
+       LEFT JOIN projects pro ON ((pro.id = roo.project_id)))
+    WHERE (mat.active IS TRUE)
+    GROUP BY mat.id;
+  SQL
 end

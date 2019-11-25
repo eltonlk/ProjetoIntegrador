@@ -49,8 +49,10 @@ gem 'simple_command'
 
 gem 'audited'
 
-gem "pundit"
+gem 'pundit'
 
-gem "active_attr"
+gem 'active_attr'
 
 gem 'prawn'
+
+gem 'scenic'
