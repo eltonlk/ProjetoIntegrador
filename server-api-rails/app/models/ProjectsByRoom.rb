@@ -1,5 +1,5 @@
-class UsedMaterial < ActiveRecord::Base
-  self.primary_key = :material_id
+class ProjectsByRoom < ActiveRecord::Base
+  self.primary_key = :project_id
 
   def readonly?
     true

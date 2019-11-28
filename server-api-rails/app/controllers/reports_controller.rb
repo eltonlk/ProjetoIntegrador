@@ -7,9 +7,7 @@ class ReportsController < ApplicationController
 
   # GET /reports
   def index
-    @projects = ProjectQuery.new.filter @filter_form
-
-    render json: ProjectChart.new(@projects).configurations
+    render json: ProjectChart.new(@filter_form).configurations
   end
 
   private

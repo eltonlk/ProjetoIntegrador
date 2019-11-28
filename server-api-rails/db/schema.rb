@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_24_155007) do
+ActiveRecord::Schema.define(version: 2019_11_28_021214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -189,15 +189,39 @@ ActiveRecord::Schema.define(version: 2019_11_24_155007) do
   add_foreign_key "user_roles", "users"
 
   create_view "used_materials", sql_definition: <<-SQL
-      SELECT mat.id,
-      count(pro.*) AS count
-     FROM (((((materials mat
-       LEFT JOIN component_materials cma ON ((cma.material_id = mat.id)))
-       LEFT JOIN components com ON ((com.id = cma.component_id)))
-       LEFT JOIN faces fac ON ((fac.id = com.face_id)))
-       LEFT JOIN rooms roo ON ((roo.id = fac.room_id)))
-       LEFT JOIN projects pro ON ((pro.id = roo.project_id)))
-    WHERE (mat.active IS TRUE)
-    GROUP BY mat.id;
+      SELECT materials.id AS material_id,
+      projects.id AS project_id,
+      projects.created_at,
+      projects.solar_radiation_id
+     FROM (((((materials
+       JOIN component_materials ON ((component_materials.material_id = materials.id)))
+       JOIN components ON ((components.id = component_materials.component_id)))
+       JOIN faces ON ((faces.id = components.face_id)))
+       JOIN rooms ON ((rooms.id = faces.room_id)))
+       JOIN projects ON ((projects.id = rooms.project_id)))
+    WHERE (materials.active IS TRUE)
+    GROUP BY materials.id, projects.id, projects.created_at, projects.solar_radiation_id;
+  SQL
+  create_view "projects_by_rooms", sql_definition: <<-SQL
+      SELECT projects.id AS project_id,
+      count(rooms.*) AS rooms,
+      projects.created_at,
+      projects.solar_radiation_id
+     FROM (projects
+       LEFT JOIN rooms ON ((rooms.project_id = projects.id)))
+    GROUP BY projects.id, projects.created_at, projects.solar_radiation_id;
+  SQL
+  create_view "projects_by_seasons", sql_definition: <<-SQL
+      SELECT projects.season,
+      projects.id AS project_id,
+      projects.created_at,
+      projects.solar_radiation_id
+     FROM projects;
+  SQL
+  create_view "projects_by_year_and_months", sql_definition: <<-SQL
+      SELECT projects.id AS project_id,
+      projects.created_at,
+      projects.solar_radiation_id
+     FROM projects;
   SQL
 end

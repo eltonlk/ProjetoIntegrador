@@ -1,17 +1,13 @@
-class ProjectQuery
-  def initialize relation = Project
-    @relation = relation.extend Scopes
-  end
+class ProjectsBySeason < ActiveRecord::Base
+    self.primary_key = :season
 
-  def filter filter_object
-    @relation
-      .by_period(filter_object.date_from, filter_object.date_to)
-      .by_solar_radiation(filter_object.solar_radiation_id)
-      .order(name: :desc)
-  end
+    enum season: %w( summer winter )
 
-  module Scopes
-    def by_period date_from, date_to
+    def readonly?
+      true
+    end
+
+    def self.by_period date_from, date_to
       return all if date_from.blank? and date_to.blank?
 
       if date_from.present? and date_to.present?
@@ -23,10 +19,9 @@ class ProjectQuery
       end
     end
 
-    def by_solar_radiation solar_radiation
+    def self.by_solar_radiation solar_radiation
       return all if solar_radiation.blank?
 
       where solar_radiation_id: solar_radiation
     end
   end
-end
