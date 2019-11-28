@@ -24,6 +24,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -81,6 +82,8 @@ public class ListReportsController implements Initializable {
     pane2.getChildren().add(projectsBySeasonPieChart());
     pane3.getChildren().clear();
     pane3.getChildren().add(projectsByMonthLineChart());
+    pane4.getChildren().clear();
+    pane4.getChildren().add(usedMaterialBarChart());
   }
 
   @FXML
@@ -125,6 +128,7 @@ public class ListReportsController implements Initializable {
     }
 
     pie.setData(pieData);
+    pie.setLegendVisible(false);
 
     return pie;
   }
@@ -163,6 +167,7 @@ public class ListReportsController implements Initializable {
     }
 
     pie.setData(pieData);
+    pie.setLegendVisible(false);
 
     return pie;
   }
@@ -174,6 +179,7 @@ public class ListReportsController implements Initializable {
 
     line.setTitle("Projetos criados por mês");
     line.setData(projectsByMonthLineChartData(reportJsonData.get("projects_by_months")));
+    line.setLegendVisible(false);
 
     return line;
   }
@@ -206,6 +212,36 @@ public class ListReportsController implements Initializable {
     return data;
   }
 
+  private BarChart usedMaterialBarChart() {
+    CategoryAxis xAxis = new CategoryAxis();
+    NumberAxis yAxis = new NumberAxis();
+    BarChart bar = new BarChart(xAxis, yAxis);
+
+    bar.setTitle("Materials: quantidade de projetos utilizados");
+    bar.getData().add(usedMaterialBarChartData(reportJsonData.get("used_materials")));
+    bar.setLegendVisible(false);
+
+    return bar;
+  }
+
+  private XYChart.Series usedMaterialBarChartData(JsonNode usedMaterialsJsonData) {
+    XYChart.Series barData = new XYChart.Series();
+
+    Iterator<Entry<String, JsonNode>> iterator = usedMaterialsJsonData.fields();
+
+    while (iterator.hasNext()) {
+      Entry<String, JsonNode> entry = iterator.next();
+      String key = entry.getKey();
+      int value = entry.getValue().asInt();
+
+      XYChart.Data data = new XYChart.Data(key, value);
+
+      barData.getData().add(data);
+    }
+
+    return barData;
+  }
+
   @FXML
   private DatePicker startAtInput, endAtInput;
 
@@ -213,6 +249,6 @@ public class ListReportsController implements Initializable {
   private ComboBox<SolarRadiation> solarRadiationComboBox;
 
   @FXML
-  private StackPane pane1, pane2, pane3;
+  private StackPane pane1, pane2, pane3, pane4;
 
 }

@@ -40,7 +40,9 @@ class ProjectChart
     def used_materials
       UsedMaterial.by_period(filter_object.date_from, filter_object.date_to)
         .by_solar_radiation(filter_object.solar_radiation_id)
-        .group(:material_id)
+        .group(:material)
         .count
+        .map{ |material, projects_count| [ material.name, projects_count ] }
+        .to_h
     end
 end

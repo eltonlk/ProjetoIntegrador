@@ -1,6 +1,8 @@
 class UsedMaterial < ActiveRecord::Base
   self.primary_key = :material_id
 
+  belongs_to :material
+
   def readonly?
     true
   end
